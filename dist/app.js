@@ -30,7 +30,7 @@ function updateHeader() {
     header.classList.remove('is-floating', 'is-hidden');
     scrollReference = y;
     scrollDirection = 0;
-  } else if (!header.classList.contains('is-floating') && y > header.offsetHeight && direction > 0) {
+  } else if (!header.classList.contains('is-floating') && y > header.offsetHeight) {
     // Park it above the viewport before switching from absolute to fixed.
     header.classList.add('is-parked', 'is-floating', 'is-hidden');
   } else if (header.classList.contains('is-floating') && Math.abs(y - scrollReference) > 7) {
