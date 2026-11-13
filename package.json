@@ -1,0 +1,10 @@
+{
+  "name": "metelitsa-homepage",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Адаптивная главная страница стоматологии Метелица",
+  "scripts": {
+    "check": "node --check dist/app.js && node scripts/check.mjs",
+    "dev": "python3 -m http.server 5173 --directory dist"
+  }
+}

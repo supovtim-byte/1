@@ -1,0 +1,17 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import assert from 'node:assert/strict';
+const root = path.resolve(import.meta.dirname, '../dist');
+const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
+const css = fs.readFileSync(path.join(root, 'styles.css'), 'utf8');
+const js = fs.readFileSync(path.join(root, 'app.js'), 'utf8');
+const references = [...new Set([...`${html}\n${css}\n${js}`.matchAll(/assets\/[a-z0-9-]+\.(?:svg|png|jpg|ttf)/g)].map(match => match[0]))];
+for (const reference of references) assert.ok(fs.statSync(path.join(root,reference)).size > 0, `Missing or empty resource: ${reference}`);
+assert.ok(!/figma\.com\/api\/mcp\/asset/.test(html+css+js), 'Temporary Figma URLs must never ship');
+const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(match => match[1]);
+assert.equal(ids.length, new Set(ids).size, 'IDs must be unique');
+for (const anchor of html.matchAll(/href="#([^"]+)"/g)) assert.ok(ids.includes(anchor[1]), `Broken anchor: ${anchor[1]}`);
+assert.equal((html.match(/<details>/g)||[]).length, 5);
+assert.ok(!/<details\s[^>]*\bopen/.test(html), 'All FAQs must start collapsed');
+assert.ok(html.indexOf('doctor-alexandra') < html.indexOf('doctor-olga'), 'Alexandra must appear first');
+console.log(`Verified ${references.length} nonempty local resources, unique IDs, anchors, FAQ defaults and doctor order.`);
