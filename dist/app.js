@@ -23,20 +23,19 @@ let scrollDirection = 0;
 let scrollTicking = false;
 function updateHeader() {
   const y = Math.max(0, window.scrollY);
-  if (mobile.matches || y < 20) {
+  const direction = y > lastScrollY ? 1 : y < lastScrollY ? -1 : scrollDirection;
+  if (direction !== scrollDirection) { scrollReference = lastScrollY; scrollDirection = direction; }
+  if (mobile.matches || y === 0) {
+    header.classList.add('is-parked');
     header.classList.remove('is-floating', 'is-hidden');
     scrollReference = y;
     scrollDirection = 0;
-  } else if (y > 110) {
-    const direction = y > lastScrollY ? 1 : y < lastScrollY ? -1 : scrollDirection;
-    if (direction !== scrollDirection) { scrollReference = lastScrollY; scrollDirection = direction; }
-    if (Math.abs(y - scrollReference) > 7) {
-      header.classList.add('is-floating');
-      header.classList.toggle('is-hidden', direction > 0);
-      if (direction > 0) closePopovers();
-    }
-  } else if (y < lastScrollY) {
-    header.classList.remove('is-floating', 'is-hidden');
+  } else if (!header.classList.contains('is-floating') && y > header.offsetHeight && direction > 0) {
+    // Park it above the viewport before switching from absolute to fixed.
+    header.classList.add('is-parked', 'is-floating', 'is-hidden');
+  } else if (header.classList.contains('is-floating') && Math.abs(y - scrollReference) > 7) {
+    if (direction < 0) header.classList.remove('is-parked', 'is-hidden');
+    else { header.classList.add('is-hidden'); closePopovers(); }
   }
   lastScrollY = y;
   scrollTicking = false;
@@ -218,10 +217,6 @@ $$('[data-all-doctors]').forEach(button => button.addEventListener('click', () =
   }).join('');
   showContent('Наши врачи', `<div class="all-doctors-grid">${cards}</div>`);
 }));
-$$('.review-read').forEach(button => button.addEventListener('click', () => {
-  const card = button.closest('.review-card');
-  showContent($('h3', card).textContent, `<p class="review-date">${escapeHTML($('time', card).textContent)}</p><p>${escapeHTML($('p', card).textContent)}</p><a class="button" href="https://yandex.ru/maps/org/metelitsa/1132881772/reviews/" target="_blank" rel="noopener noreferrer">Отзывы на Яндексе ↗</a>`);
-}));
 const contactHTML = '<p>Мы на связи ежедневно с 9:00 до 21:00. Позвоните нам или напишите на почту — поможем выбрать врача и удобное время приёма.</p><a class="dialog-phone" href="tel:+79313990580">+7 931 399 05 80</a><p><a class="text-link" href="mailto:info@metelitsa-dent.ru">info@metelitsa-dent.ru</a></p>';
 $$('[data-contact-channel]').forEach(button => button.addEventListener('click', () => showContent('Связаться с нами', contactHTML)));
 const infoContent = {
@@ -286,6 +281,33 @@ phoneInput.addEventListener('blur', () => {
   if (digits.length === 10 && digits[0] === '9') digits = '7' + digits;
   if (digits.length === 11 && ['7','8'].includes(digits[0])) phoneInput.value = `+7 ${digits.slice(1,4)} ${digits.slice(4,7)} ${digits.slice(7,9)} ${digits.slice(9,11)}`;
 });
+const nameInput = $('#appointment-name');
+const submitButton = $('button[type="submit"]', form);
+function updateFormState() {
+  const digits = phoneInput.value.replace(/\D/g, '');
+  const phoneValid = digits.length >= 10 && digits.length <= 15 && phoneInput.validity.valid;
+  const nameValid = nameInput.value.trim().length > 0;
+  phoneInput.classList.toggle('is-valid', phoneValid);
+  nameInput.classList.toggle('is-valid', nameValid);
+  submitButton.disabled = !(phoneValid && nameValid);
+}
+[phoneInput, nameInput].forEach(input => {
+  input.addEventListener('input', updateFormState);
+  input.addEventListener('change', updateFormState);
+  input.addEventListener('blur', updateFormState);
+});
+window.addEventListener('pageshow', updateFormState);
+updateFormState();
+
+// Keep the FAQ an accordion, including browsers without native details groups.
+const questions = $$('.faq-list details');
+questions.forEach(question => {
+  question.name = 'clinic-faq';
+  question.addEventListener('toggle', () => {
+    if (question.open) questions.forEach(other => { if (other !== question) other.open = false; });
+  });
+});
+
 form.addEventListener('submit', event => {
   event.preventDefault();
   const digits = phoneInput.value.replace(/\D/g,'');

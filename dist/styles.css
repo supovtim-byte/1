@@ -28,3 +28,44 @@ body.accessible{--body-size:22px;--title-size:56px;--ink:#001f30;--muted:#264657
 
 @media(max-height:600px) and (min-width:768px){.hero h1{font-size:clamp(40px,4.4271vw,65px)}.hero-content{bottom:40px}.hero-meta{margin-bottom:25px}}
 @media(max-width:767px){.hero-picture:after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,var(--bg),transparent 18%);pointer-events:none}}
+
+/* Refinements shared by both layouts. */
+h1,h2,h3{font-weight:400}
+.hero h1{font-weight:400}
+.phone-link{font-style:normal;font-weight:400;align-items:center}
+.phone-link>span{display:block;flex:none;width:7px;height:7px;border-right:1px solid currentColor;border-bottom:1px solid currentColor;transform:rotate(45deg);margin-top:-4px;font-size:0}
+.header.is-parked{transition:none}
+.services .mobile-services{display:none}
+.mobile-hero-meta{display:none}
+.doctor-photo{background:rgba(255,255,255,.5);isolation:isolate;transition:background .25s}
+.doctor-photo>img{mix-blend-mode:multiply}
+.doctor-card:hover .doctor-photo,.doctor-card:focus-within .doctor-photo{background:white}
+.review-card{transition:background .25s}.review-card:hover{background:white}
+.review-read{display:none}
+.faq-list details,.faq-list details[open]{background:rgba(255,255,255,.5)}
+.faq-list summary:hover{background:transparent}
+.field input{background:rgba(255,255,255,.5);color:#000;border:0;outline:none;box-shadow:none;transition:background .2s}
+.field input:focus,.field input:focus-visible{border:0;outline:none;box-shadow:none}
+.field input.is-valid{background:rgba(190,224,201,.5)}
+.consent{max-width:none}.consent>span{flex:1;min-width:0}.consent .inline-link{display:block;white-space:normal;text-align:left}
+#appointment-form>.button{background:var(--blue)}
+#appointment-form>.button:disabled{background:rgba(0,178,255,.5);cursor:default;transform:none}
+.about-photos{box-sizing:content-box;padding-bottom:70px}
+.carousel-section>.carousel-track{width:100vw;margin-left:calc((100% - 100vw)/2);padding-inline:calc((100vw - 100%)/2)}
+@media(max-width:767px){
+ :root{--gutter:20px}
+ .hero{height:100vh;height:100lvh}
+ .hero .hero-meta{display:none}
+ .mobile-hero-meta{display:block;margin-top:26px}
+ .mobile-hero-meta .hero-meta{position:static;display:flex;flex-direction:column-reverse;gap:11px;margin:0;color:#000;text-shadow:none}
+ .mobile-hero-meta .stars{filter:brightness(0)}
+ .mobile-hero-meta .rating-tooltip{color:#000}
+ .about{margin-top:33px}
+ .services .mobile-services{display:flex}
+ .appointment{background:transparent;overflow:visible;border-radius:0}
+ .appointment-photo{border-radius:10px}
+ .appointment-content{padding:28px 0 0}
+ .footer-grid{grid-template-columns:1fr}
+ .footer-contact{grid-column:auto}
+ .faq-list details,.faq-list details[open]{background:white}
+}
