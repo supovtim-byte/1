@@ -8,6 +8,7 @@ const js = fs.readFileSync(path.join(root, 'app.js'), 'utf8');
 const references = [...new Set([...`${html}\n${css}\n${js}`.matchAll(/assets\/[a-z0-9-]+\.(?:svg|png|jpg|ttf)/g)].map(match => match[0]))];
 for (const reference of references) assert.ok(fs.statSync(path.join(root,reference)).size > 0, `Missing or empty resource: ${reference}`);
 assert.ok(!/figma\.com\/api\/mcp\/asset/.test(html+css+js), 'Temporary Figma URLs must never ship');
+for (const pattern of html.matchAll(/pattern="([^"]+)"/g)) new RegExp(pattern[1], 'v');
 const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(match => match[1]);
 assert.equal(ids.length, new Set(ids).size, 'IDs must be unique');
 for (const anchor of html.matchAll(/href="#([^"]+)"/g)) assert.ok(ids.includes(anchor[1]), `Broken anchor: ${anchor[1]}`);
