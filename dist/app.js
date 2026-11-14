@@ -60,7 +60,7 @@ $$('.popover-toggle').forEach(button => {
   });
 });
 document.addEventListener('click', event => { if (!event.target.closest('.popover-wrap')) closePopovers(); });
-document.addEventListener('keydown', event => { if (event.key === 'Escape') closePopovers(); });
+document.addEventListener('keydown', event => { if (event.key === 'Escape') { closePopovers(); if ($('#mobile-menu').open) closeDialog($('#mobile-menu')); } });
 
 // A five-second gallery, with a circular thumbnail for the selected photograph.
 let aboutIndex = 0;
@@ -171,14 +171,22 @@ $$('.carousel-track').forEach(setupCarousel);
 const contentDialog = $('#content-dialog');
 const mobileMenu = $('#mobile-menu');
 const searchDialog = $('#search-dialog');
+function syncMobileMenu() {
+  const open = mobileMenu.open;
+  const button = $('#mobile-menu-toggle');
+  button.setAttribute('aria-expanded', String(open));
+  button.setAttribute('aria-label', open ? 'Закрыть меню' : 'Открыть меню');
+  document.body.classList.toggle('menu-open', open);
+  [$('#header'), $('#main'), $('#footer')].forEach(node => node.inert = open);
+}
 function closeDialog(dialog) {
   dialog.close();
-  if (dialog === mobileMenu) $('#mobile-menu-toggle').setAttribute('aria-expanded', 'false');
+  if (dialog === mobileMenu) syncMobileMenu();
 }
 function openDialog(dialog) {
   $$('dialog[open]').forEach(open => { if (open !== dialog) closeDialog(open); });
   closePopovers();
-  if (!dialog.open) dialog.showModal();
+  if (!dialog.open) { if (dialog === mobileMenu) { dialog.show(); syncMobileMenu(); } else dialog.showModal(); }
 }
 function showContent(title, html) {
   $('#dialog-title').textContent = title;
@@ -194,7 +202,7 @@ $$('dialog').forEach(dialog => {
       if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) closeDialog(dialog);
     }
   });
-  dialog.addEventListener('close', () => { if (dialog === mobileMenu) $('#mobile-menu-toggle').setAttribute('aria-expanded', 'false'); });
+  dialog.addEventListener('close', () => { if (dialog === mobileMenu) syncMobileMenu(); });
 });
 $('#mobile-menu-toggle').addEventListener('click', () => {
   if (mobileMenu.open) closeDialog(mobileMenu);
@@ -217,7 +225,7 @@ $$('[data-all-doctors]').forEach(button => button.addEventListener('click', () =
   }).join('');
   showContent('Наши врачи', `<div class="all-doctors-grid">${cards}</div>`);
 }));
-const contactHTML = '<p>Мы на связи ежедневно с 9:00 до 21:00. Позвоните нам или напишите на почту — поможем выбрать врача и удобное время приёма.</p><a class="dialog-phone" href="tel:+79313990580">+7 931 399 05 80</a><p><a class="text-link" href="mailto:info@metelitsa-dent.ru">info@metelitsa-dent.ru</a></p>';
+const contactHTML = '<p>Работаем с 9 до 21. Позвоните нам или напишите на почту — поможем выбрать врача и удобное время приёма.</p><a class="dialog-phone" href="tel:+79313990580">+7 931 399 05 80</a><p><a class="text-link" href="mailto:info@metelitsa-dent.ru">info@metelitsa-dent.ru</a></p>';
 $$('[data-contact-channel]').forEach(button => button.addEventListener('click', () => showContent('Связаться с нами', contactHTML)));
 const infoContent = {
   'Налоговый вычет':'Вы можете оформить социальный налоговый вычет за стоматологическое лечение. Свяжитесь с администратором, чтобы заказать справку и уточнить список необходимых документов.',
@@ -248,7 +256,7 @@ $$('.site-search').forEach(input => {
     const query = normalize(input.value);
     if (!query) { results.replaceChildren(); return; }
     const matches = searchItems.filter(item => query.split(/\s+/).every(word => normalize(item.name).includes(word))).slice(0,8);
-    results.innerHTML = matches.length ? matches.map(item => `<a href="${item.href}"${item.service === undefined ? '' : ` data-service-select="${item.service}"`}>${escapeHTML(item.name)} <span aria-hidden="true">↗</span></a>`).join('') : '<p>Ничего не нашлось. Попробуйте другое слово или позвоните нам.</p>';
+    results.innerHTML = matches.length ? matches.map(item => `<a href="${item.href}"${item.service === undefined ? '' : ` data-service-select="${item.service}"`}>${escapeHTML(item.name)}</a>`).join('') : '<p>Ничего не нашлось. Попробуйте другое слово или позвоните нам.</p>';
   });
 });
 $$('[data-open-search]').forEach(button => button.addEventListener('click', () => { openDialog(searchDialog); $('#dialog-search').focus(); }));
@@ -340,3 +348,11 @@ document.addEventListener('click', event => {
   }
 });
 updateHeader();
+
+// Use the layout viewport, excluding the scrollbar, for full-width card tracks.
+function syncViewportWidth() {
+  document.documentElement.style.setProperty('--viewport-width', document.documentElement.clientWidth + 'px');
+}
+syncViewportWidth();
+window.addEventListener('resize', syncViewportWidth);
+new ResizeObserver(syncViewportWidth).observe(document.documentElement);

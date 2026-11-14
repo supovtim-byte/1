@@ -29,3 +29,5 @@
 - [Гигиена — Unsplash](https://images.unsplash.com/photo-1598256989800-fe5f95da9787)
 
 [Условия Unsplash](https://unsplash.com/license). Geologica: https://github.com/google/fonts/tree/main/ofl/geologica
+
+`about-2-clean.jpg` и `about-3-clean.jpg` — фотографии тех же слоёв, экспортированные без маски скругления. Радиус задаётся в CSS.

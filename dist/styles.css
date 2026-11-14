@@ -51,7 +51,7 @@ h1,h2,h3{font-weight:400}
 #appointment-form>.button{background:var(--blue)}
 #appointment-form>.button:disabled{background:rgba(0,178,255,.5);cursor:default;transform:none}
 .about-photos{box-sizing:content-box;padding-bottom:70px}
-.carousel-section>.carousel-track{width:100vw;margin-left:calc((100% - 100vw)/2);padding-inline:calc((100vw - 100%)/2)}
+.carousel-section>.carousel-track{width:var(--viewport-width,100vw);margin-left:calc((100% - var(--viewport-width,100vw))/2);padding-inline:calc((var(--viewport-width,100vw) - 100%)/2)}
 @media(max-width:767px){
  :root{--gutter:20px}
  .hero{height:100vh;height:100lvh}
@@ -76,9 +76,42 @@ h1,h2,h3{font-weight:400}
   .about-photo{border-radius:10px}
   .about-photos:has(.about-photo.active:nth-child(n+2)){aspect-ratio:1;padding-bottom:0}
   .about-photo:nth-child(n+2){border-radius:8.333333%}
-  .services>.mobile-services{width:100vw;margin-left:calc((100% - 100vw)/2);padding-inline:calc((100vw - 100%)/2)}
+  .services>.mobile-services{width:var(--viewport-width,100vw);margin-left:calc((100% - var(--viewport-width,100vw))/2);padding-inline:calc((var(--viewport-width,100vw) - 100%)/2)}
   .footer{font-size:max(16px,var(--body-size))}
   .footer .footer-links,.footer .footer-legal,.footer .footer-contact p,.footer .footer-email,
   body.accessible .footer .footer-links{font-size:max(16px,calc(12 * var(--mobile-unit)))}
   .footer .footer-phone{font-size:max(16px,calc(20 * var(--mobile-unit)))}
 }
+
+/* Navigation and draft content refinements. */
+.mobile-menu nav>a,.more-popover>a,.search-results>a{border:0}
+.more-popover .search-box label,.mobile-menu .search-box label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+.consent .inline-link{display:inline;width:auto;line-height:inherit}
+.review-card>p{flex:0 0 auto;-webkit-line-clamp:7;line-clamp:7}
+.review-bottom{flex-shrink:0}
+.footer-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.footer-card{min-width:0;overflow-wrap:anywhere}
+@media(min-width:768px){
+ .header{background:var(--bg)}
+ .doctor-card{background:rgba(255,255,255,.5);border-radius:10px;isolation:isolate;transition:background .25s}
+ .doctor-photo{background:color-mix(in srgb,var(--bg) 50%,white);isolation:isolate}
+ .doctor-card:hover,.doctor-card:focus-within{background:white}
+}
+@media(min-width:768px) and (max-width:900px){
+ .header{gap:16px}.brand{width:150px}.desktop-nav{gap:12px;font-size:13px}.header-actions{gap:14px}
+ .phone-link{font-size:14px}.header-book{font-size:14px;padding-inline:18px}
+}
+@media(max-width:767px){
+ .footer-grid{grid-template-columns:1fr}
+ .mobile-menu{position:fixed;z-index:65;height:calc(100dvh - var(--dock-height));margin:0;max-height:calc(100dvh - var(--dock-height));border-radius:0;padding-bottom:30px}
+ .mobile-menu .dialog-heading{justify-content:center}
+ #mobile-menu-toggle[aria-expanded="true"]{position:relative;background:white}
+ #mobile-menu-toggle[aria-expanded="true"]>img{visibility:hidden}
+ #mobile-menu-toggle[aria-expanded="true"]:before,#mobile-menu-toggle[aria-expanded="true"]:after{content:"";position:absolute;width:22px;height:2px;border-radius:2px;background:var(--ink);transform:rotate(45deg)}
+ #mobile-menu-toggle[aria-expanded="true"]:after{transform:rotate(-45deg)}
+ .about-photo:nth-child(n+2){border-radius:10px}
+}
+@media(min-width:768px){
+ .services-menu,.service-visual,.about-photos,.about-copy,.appointment-photo,.appointment-content{min-width:0}
+}
+@media(min-width:768px){.service-visual{width:100%}}
