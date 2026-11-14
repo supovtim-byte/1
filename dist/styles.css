@@ -69,3 +69,16 @@ h1,h2,h3{font-weight:400}
  .footer-contact{grid-column:auto}
  .faq-list details,.faq-list details[open]{background:white}
 }
+
+@media(max-width:767px){
+  /* Preserve the photos' own corners instead of clipping them a second time. */
+  .about-photos{overflow:visible;border-radius:0;background:transparent}
+  .about-photo{border-radius:10px}
+  .about-photos:has(.about-photo.active:nth-child(n+2)){aspect-ratio:1;padding-bottom:0}
+  .about-photo:nth-child(n+2){border-radius:8.333333%}
+  .services>.mobile-services{width:100vw;margin-left:calc((100% - 100vw)/2);padding-inline:calc((100vw - 100%)/2)}
+  .footer{font-size:max(16px,var(--body-size))}
+  .footer .footer-links,.footer .footer-legal,.footer .footer-contact p,.footer .footer-email,
+  body.accessible .footer .footer-links{font-size:max(16px,calc(12 * var(--mobile-unit)))}
+  .footer .footer-phone{font-size:max(16px,calc(20 * var(--mobile-unit)))}
+}
