@@ -3,6 +3,12 @@ const mobileLayout = window.matchMedia("(max-width: 600px)");
 const clinicPhone = "+7 931 399 05 80";
 const header = document.querySelector(".site-header");
 
+for (const photo of document.querySelectorAll(".hero-photo, .appointment-photo")) {
+  if (photo.complete && photo.naturalWidth) continue;
+  photo.classList.add("is-loading");
+  photo.addEventListener("load", () => photo.classList.remove("is-loading"), { once: true });
+}
+
 const compactMenu = header.querySelector("#compact-menu-panel");
 for (const link of header.querySelectorAll(".primary-links a, #more-panel a")) {
   compactMenu.append(link.cloneNode(true));
@@ -151,6 +157,7 @@ new ResizeObserver(() => {
 }).observe(header);
 
 const gallery = document.querySelector("[data-gallery]");
+const galleryTrack = gallery.querySelector(".about-media");
 const galleryImages = [...gallery.querySelectorAll("[data-gallery-image]")];
 const galleryButtons = [...gallery.querySelectorAll(".gallery-thumb")];
 const galleryControls = gallery.querySelector(".gallery-thumbs");
@@ -204,6 +211,87 @@ new IntersectionObserver(([entry]) => {
   galleryVisible = entry.isIntersecting;
   scheduleGallery();
 }, { threshold: .3 }).observe(gallery);
+
+let photoCopies = [];
+let mobileGalleryVisible = false;
+let mobileGalleryPaused = false;
+let mobileGalleryFrame = 0;
+let mobileGalleryWidth = 0;
+let mobileGalleryOffset = 0;
+let lastGalleryFrameTime = 0;
+
+function moveMobileGallery(now) {
+  if (lastGalleryFrameTime) {
+    const elapsed = Math.min(now - lastGalleryFrameTime, 50);
+    mobileGalleryOffset -= elapsed * .018;
+    if (mobileGalleryOffset < mobileGalleryWidth) mobileGalleryOffset += mobileGalleryWidth;
+    galleryTrack.scrollLeft = mobileGalleryOffset;
+  }
+  lastGalleryFrameTime = now;
+  mobileGalleryFrame = requestAnimationFrame(moveMobileGallery);
+}
+
+function scheduleMobileGallery() {
+  cancelAnimationFrame(mobileGalleryFrame);
+  lastGalleryFrameTime = 0;
+  if (mobileGalleryWidth && mobileGalleryVisible && !mobileGalleryPaused && !reduceMotion.matches && !document.hidden) {
+    mobileGalleryFrame = requestAnimationFrame(moveMobileGallery);
+  }
+}
+
+function pauseMobileGallery() {
+  if (!mobileLayout.matches || mobileGalleryPaused) return;
+  mobileGalleryPaused = true;
+  scheduleMobileGallery();
+}
+
+function measureMobileGallery() {
+  if (!photoCopies.length) return;
+  const width = galleryImages[0].getBoundingClientRect().left - photoCopies[0].getBoundingClientRect().left;
+  if (!width || width === mobileGalleryWidth) return;
+  const position = mobileGalleryWidth ? galleryTrack.scrollLeft / mobileGalleryWidth : 1;
+  mobileGalleryWidth = width;
+  mobileGalleryOffset = width * position;
+  galleryTrack.scrollLeft = mobileGalleryOffset;
+}
+
+function syncMobileGallery() {
+  if (!mobileLayout.matches) {
+    photoCopies.forEach(photo => photo.remove());
+    photoCopies = [];
+    mobileGalleryWidth = 0;
+    galleryTrack.removeAttribute("tabindex");
+  } else {
+    galleryTrack.tabIndex = 0;
+    if (!photoCopies.length && !reduceMotion.matches && !mobileGalleryPaused) {
+      photoCopies = [...galleryImages, ...galleryImages].map(photo => {
+        const copy = photo.cloneNode(true);
+        copy.setAttribute("aria-hidden", "true");
+        copy.alt = "";
+        return copy;
+      });
+      galleryTrack.prepend(...photoCopies.slice(0, galleryImages.length));
+      galleryTrack.append(...photoCopies.slice(galleryImages.length));
+      measureMobileGallery();
+    }
+  }
+  scheduleMobileGallery();
+}
+
+galleryTrack.addEventListener("pointerdown", pauseMobileGallery, { passive: true });
+galleryTrack.addEventListener("focus", pauseMobileGallery);
+galleryTrack.addEventListener("wheel", event => {
+  if (event.deltaX || event.shiftKey) pauseMobileGallery();
+}, { passive: true });
+new ResizeObserver(measureMobileGallery).observe(galleryTrack);
+new IntersectionObserver(([entry]) => {
+  mobileGalleryVisible = entry.isIntersecting;
+  scheduleMobileGallery();
+}, { threshold: .15 }).observe(galleryTrack);
+document.addEventListener("visibilitychange", scheduleMobileGallery);
+reduceMotion.addEventListener("change", syncMobileGallery);
+mobileLayout.addEventListener("change", syncMobileGallery);
+syncMobileGallery();
 
 const serviceList = document.querySelector(".service-list");
 const serviceOptions = [...serviceList.querySelectorAll("[data-service]")];
@@ -404,9 +492,57 @@ for (let copy = 0; copy < 2; copy++) {
 
 document.querySelectorAll("[data-carousel]").forEach(enableCarousel);
 
-if (!("name" in HTMLDetailsElement.prototype)) {
-  const questions = [...document.querySelectorAll(".faq details")];
-  for (const question of questions) {
+const questions = [...document.querySelectorAll(".faq details")];
+const faqTransitions = new WeakMap();
+
+function stopFaqTransition(question) {
+  faqTransitions.get(question)?.animation.cancel();
+  faqTransitions.delete(question);
+}
+
+function resizeFaq(question, from, to, closing = false) {
+  if (Math.abs(from - to) < 1) {
+    if (closing) question.open = false;
+    return;
+  }
+  const animation = question.animate({ height: [from + "px", to + "px"] }, {
+    duration: 230,
+    easing: "cubic-bezier(.2, .75, .25, 1)",
+    fill: "forwards"
+  });
+  faqTransitions.set(question, { animation, closing });
+  animation.onfinish = () => {
+    if (faqTransitions.get(question)?.animation !== animation) return;
+    if (closing) question.open = false;
+    stopFaqTransition(question);
+  };
+}
+
+for (const question of questions) {
+  const summary = question.querySelector("summary");
+  summary.addEventListener("click", event => {
+    if (reduceMotion.matches || !question.animate) return;
+    event.preventDefault();
+    const from = question.getBoundingClientRect().height;
+    const opening = !question.open || faqTransitions.get(question)?.closing;
+    stopFaqTransition(question);
+    if (!opening) {
+      resizeFaq(question, from, summary.getBoundingClientRect().height, true);
+      return;
+    }
+
+    const previous = questions.find(other => other !== question && other.open);
+    if (previous) {
+      const previousHeight = previous.getBoundingClientRect().height;
+      stopFaqTransition(previous);
+      previous.open = false;
+      resizeFaq(previous, previousHeight, previous.getBoundingClientRect().height);
+    }
+    question.open = true;
+    resizeFaq(question, from, question.getBoundingClientRect().height);
+  });
+
+  if (!("name" in HTMLDetailsElement.prototype)) {
     question.addEventListener("toggle", () => {
       if (!question.open) return;
       questions.filter(other => other !== question && other.open).forEach(other => { other.open = false; });
@@ -521,7 +657,6 @@ largeTextButton.addEventListener("click", () => {
 
 const mobileMenuButton = document.querySelector("[data-mobile-menu]");
 const menuClose = mobileMenu.querySelector(".mobile-action-close");
-const menuHandle = mobileMenu.querySelector(".mobile-menu-handle");
 const searchForm = mobileMenu.querySelector(".mobile-search");
 const searchField = searchForm.querySelector("input");
 const searchCancel = searchForm.querySelector(".mobile-search-cancel");
@@ -532,6 +667,7 @@ const visualViewport = window.visualViewport;
 let pressedMenuBackdrop = false;
 let menuSwipe = null;
 let menuDismissTimer;
+let lastMenuSwipe = -Infinity;
 const searchCatalog = [
   ...[...mobileMenu.querySelectorAll(".mobile-menu-links a")].map(link => ({
     title: link.textContent.trim(),
@@ -603,6 +739,12 @@ mobileMenu.addEventListener("pointerdown", event => {
   pressedMenuBackdrop = event.target === mobileMenu && (event.clientY < bounds.top || event.clientY > bounds.bottom);
 });
 mobileMenu.addEventListener("click", event => {
+  if (event.detail && performance.now() - lastMenuSwipe < 220) {
+    event.preventDefault();
+    event.stopPropagation();
+  }
+}, true);
+mobileMenu.addEventListener("click", event => {
   const link = event.target.closest("a");
   if (link && (link.closest("nav") || link.closest(".mobile-search-results"))) {
     mobileMenu.close();
@@ -617,22 +759,38 @@ mobileMenu.addEventListener("click", event => {
   pressedMenuBackdrop = false;
 });
 
-menuHandle.addEventListener("pointerdown", event => {
-  if (!event.isPrimary || event.button !== 0 || menuDismissTimer) return;
-  menuSwipe = { pointerId: event.pointerId, startY: event.clientY };
-  menuHandle.setPointerCapture(event.pointerId);
-  mobileMenu.classList.remove("is-opening");
-  mobileMenu.classList.add("is-dragging");
-});
-menuHandle.addEventListener("pointermove", event => {
-  if (event.pointerId !== menuSwipe?.pointerId) return;
-  const distance = Math.max(0, event.clientY - menuSwipe.startY);
-  mobileMenu.style.setProperty("--menu-drag-y", distance + "px");
-});
-function finishMenuSwipe(event) {
-  if (event.pointerId !== menuSwipe?.pointerId) return;
-  const shouldDismiss = event.type === "pointerup" && event.clientY - menuSwipe.startY >= 60;
+function startMenuSwipe(id, x, y) {
+  if (pressedMenuBackdrop || menuDismissTimer || mobileMenu.classList.contains("is-searching")) return;
+  menuSwipe = { id, x, y, active: false };
+}
+
+function moveMenuSwipe(id, x, y, onStart) {
+  if (id !== menuSwipe?.id) return false;
+  const distance = y - menuSwipe.y;
+  if (!menuSwipe.active) {
+    const across = Math.abs(x - menuSwipe.x);
+    if (Math.max(across, Math.abs(distance)) < 8) return false;
+    if (distance <= across) {
+      menuSwipe = null;
+      return false;
+    }
+    menuSwipe.active = true;
+    onStart?.();
+    mobileMenu.classList.remove("is-opening");
+    mobileMenu.classList.add("is-dragging");
+  }
+  mobileMenu.style.setProperty("--menu-drag-y", Math.max(0, distance) + "px");
+  return true;
+}
+
+function finishMenuSwipe(id, y, released) {
+  if (id !== menuSwipe?.id) return;
+  const start = menuSwipe;
   menuSwipe = null;
+  if (!start.active) return;
+  lastMenuSwipe = performance.now();
+  const threshold = Math.max(18, Math.min(60, (window.innerHeight - start.y) * .7));
+  const shouldDismiss = released && y - start.y >= threshold;
   mobileMenu.classList.remove("is-dragging");
   if (!shouldDismiss) {
     mobileMenu.style.removeProperty("--menu-drag-y");
@@ -643,9 +801,47 @@ function finishMenuSwipe(event) {
     menuDismissTimer = setTimeout(() => mobileMenu.close(), 180);
   }
 }
-menuHandle.addEventListener("pointerup", finishMenuSwipe);
-menuHandle.addEventListener("lostpointercapture", finishMenuSwipe);
 
+mobileMenu.addEventListener("pointerdown", event => {
+  if (event.isPrimary && event.button === 0 && event.pointerType !== "touch") {
+    startMenuSwipe(event.pointerId, event.clientX, event.clientY);
+  }
+});
+mobileMenu.addEventListener("pointermove", event => {
+  if (event.pointerType === "touch" || !(event.buttons & 1)) return;
+  if (moveMenuSwipe(event.pointerId, event.clientX, event.clientY, () => mobileMenu.setPointerCapture(event.pointerId))) {
+    event.preventDefault();
+  }
+});
+for (const type of ["pointerup", "pointercancel", "lostpointercapture"]) {
+  mobileMenu.addEventListener(type, event => {
+    if (event.pointerType !== "touch") finishMenuSwipe(event.pointerId, event.clientY, type === "pointerup");
+  });
+}
+
+mobileMenu.addEventListener("touchstart", event => {
+  if (event.touches.length !== 1) {
+    if (menuSwipe) finishMenuSwipe(menuSwipe.id, 0, false);
+    return;
+  }
+  const touch = event.changedTouches[0];
+  startMenuSwipe(touch.identifier, touch.clientX, touch.clientY);
+}, { passive: true });
+mobileMenu.addEventListener("touchmove", event => {
+  const touch = event.changedTouches[0];
+  if (moveMenuSwipe(touch.identifier, touch.clientX, touch.clientY) && event.cancelable) event.preventDefault();
+}, { passive: false });
+for (const type of ["touchend", "touchcancel"]) {
+  mobileMenu.addEventListener(type, event => {
+    const touch = event.changedTouches[0];
+    finishMenuSwipe(touch.identifier, touch.clientY, type === "touchend");
+  });
+}
+
+searchField.addEventListener("mousedown", event => {
+  if (!mobileMenu.classList.contains("is-searching")) event.preventDefault();
+});
+searchField.addEventListener("click", () => searchField.focus());
 searchField.addEventListener("focus", () => {
   mobileMenu.classList.remove("is-opening");
   mobileMenu.classList.add("is-searching");
