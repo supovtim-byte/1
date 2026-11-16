@@ -981,3 +981,144 @@ address { font-style: normal; }
   .about-photo-strip.is-looping { animation: none; }
   .mobile-menu[open].is-opening::before, .mobile-menu[open].is-opening > :not(.mobile-menu-actions) { animation: none; }
 }
+
+.treatment-page {
+  --treatment-rail: max(205px, calc(500 * var(--unit)));
+  --treatment-gap: max(30px, calc(80 * var(--unit)));
+  --treatment-trailing: calc(60 * var(--unit));
+}
+
+.treatment-hero, .treatment-layout {
+  display: grid;
+  grid-template-columns: var(--treatment-rail) minmax(0, 1fr);
+  column-gap: var(--treatment-gap);
+}
+.treatment-hero {
+  position: relative;
+  block-size: 100svh;
+  min-block-size: calc(var(--header-space) + var(--edge) + 380px);
+  padding: var(--header-space) var(--edge) var(--edge);
+}
+.treatment-intro {
+  display: grid;
+  align-content: center;
+  justify-items: start;
+  gap: max(22px, calc(40 * var(--unit)));
+  padding-inline-start: var(--inside);
+}
+.treatment-intro h1 {
+  max-inline-size: calc(440 * var(--unit));
+  font-size: var(--title);
+  line-height: 1.1;
+  letter-spacing: -.03em;
+}
+.treatment-back { display: inline-flex; align-items: center; gap: 12px; }
+.treatment-back img { inline-size: max(6px, calc(8 * var(--unit))); block-size: auto; }
+.treatment-back:hover, .treatment-nav a:hover { color: var(--link-hover); }
+.treatment-book { background: var(--panel); color: var(--link); }
+.treatment-book:hover { color: var(--link-hover); }
+.treatment-hero-media {
+  position: relative;
+  min-block-size: 0;
+  border-radius: var(--photo-radius);
+  overflow: hidden;
+  background: var(--photo-background);
+}
+.treatment-hero-media img { object-position: center; }
+
+.treatment-layout {
+  margin-block-start: max(52px, calc(95 * var(--unit)));
+  padding-block-end: var(--section-gap);
+}
+.treatment-page .site-footer { margin-block-start: 0; }
+.treatment-nav {
+  position: sticky;
+  inset-block-start: calc(var(--header-space) + var(--edge));
+  align-self: start;
+  display: grid;
+  align-content: start;
+  gap: max(12px, calc(20 * var(--unit)));
+  min-block-size: min(calc(884 * var(--unit)), calc(100svh - var(--header-space) - 2 * var(--edge)));
+  padding: var(--inside);
+  border-radius: var(--photo-radius);
+  background: var(--panel);
+  font-size: max(14px, calc(22 * var(--unit)));
+}
+.treatment-nav a { inline-size: fit-content; }
+.treatment-content { min-inline-size: 0; padding-inline-end: var(--treatment-trailing); }
+.treatment-content .section-shell { margin-inline: 0; }
+.treatment-about p {
+  margin-block-start: max(16px, calc(30 * var(--unit)));
+  font-size: var(--large);
+  line-height: 1.5;
+  letter-spacing: -.02em;
+}
+.treatment-about h2 + p { margin-block-start: max(19px, calc(40 * var(--unit))); }
+.treatment-content .section-heading { padding-inline: 0; }
+.treatment-content .deck-more { margin-inline-start: 0; }
+.treatment-content .carousel {
+  margin-inline: 0 calc(-1 * (var(--treatment-trailing) + var(--edge)));
+  padding-inline: 0 var(--edge);
+  scroll-padding-inline: 0 var(--edge);
+}
+.treatment-prices summary { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; }
+.treatment-price { font-weight: 500; white-space: nowrap; }
+.treatment-price-body {
+  display: grid;
+  grid-template-columns: minmax(0, .9fr) minmax(0, 1fr);
+  gap: var(--inside);
+  padding: 0 var(--inside) var(--inside);
+  font-size: var(--body);
+}
+.treatment-price-body dl { display: grid; gap: max(6px, calc(14 * var(--unit))); margin: 0; }
+.treatment-price-body dl div { display: flex; justify-content: space-between; gap: 10px; }
+.treatment-price-body dd { margin: 0; white-space: nowrap; }
+.treatment-content .appointment { min-block-size: max(420px, calc(626 * var(--unit))); }
+.treatment-page .appointment-photo { inset: 0; width: 100%; height: 100%; object-position: center; }
+.treatment-page .appointment-content { inline-size: min(100%, max(285px, calc(368 * var(--unit)))); }
+
+@media (max-width: 1080px) {
+  .treatment-intro h1 { max-inline-size: none; }
+  .treatment-price-body { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (max-width: 780px) {
+  .treatment-page { --treatment-trailing: 0px; }
+  .treatment-layout { grid-template-columns: minmax(0, 1fr); row-gap: 26px; }
+  .treatment-nav {
+    z-index: 5;
+    grid-auto-flow: column;
+    grid-auto-columns: max-content;
+    justify-content: start;
+    gap: 18px;
+    overflow-x: auto;
+    min-block-size: 0;
+    padding: 12px 18px;
+    border-radius: 20px;
+    scrollbar-width: none;
+  }
+  .treatment-content [id] { scroll-margin-top: calc(var(--header-space) + var(--edge) + 64px); }
+}
+
+@media (max-width: 600px) {
+  .treatment-hero {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto minmax(0, 1fr);
+    row-gap: 20px;
+    min-block-size: 0;
+    block-size: auto;
+    padding-block-start: 78px;
+  }
+  .treatment-intro { gap: 14px; padding-inline-start: calc(5 * var(--mobile-unit)); }
+  .treatment-intro h1 { max-inline-size: calc(330 * var(--mobile-unit)); }
+  .treatment-brand img { filter: none; }
+  .treatment-hero-media { min-block-size: max(210px, calc(100svh - 256px)); }
+  .treatment-layout { margin-block-start: 45px; row-gap: 24px; }
+  .treatment-nav { inset-block-start: 0; }
+  .treatment-content .carousel {
+    margin-inline: calc(-1 * var(--edge));
+    padding-inline: var(--edge);
+    scroll-padding-inline: var(--edge);
+  }
+  .treatment-prices summary { column-gap: 9px; }
+}

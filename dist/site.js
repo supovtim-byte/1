@@ -156,100 +156,109 @@ new ResizeObserver(() => {
   positionHeader();
 }).observe(header);
 
-const gallery = document.querySelector("[data-gallery]");
-const galleryTrack = gallery.querySelector(".about-media");
-const galleryStrip = galleryTrack.querySelector(".about-photo-strip");
-const galleryImages = [...gallery.querySelectorAll("[data-gallery-image]")];
-const galleryButtons = [...gallery.querySelectorAll(".gallery-thumb")];
-const galleryControls = gallery.querySelector(".gallery-thumbs");
-let activePhoto = 0;
-let galleryVisible = false;
-let galleryTimer;
+function initializeGallery(gallery) {
+  const galleryTrack = gallery.querySelector(".about-media");
+  const galleryStrip = galleryTrack.querySelector(".about-photo-strip");
+  const galleryImages = [...gallery.querySelectorAll("[data-gallery-image]")];
+  const galleryButtons = [...gallery.querySelectorAll(".gallery-thumb")];
+  const galleryControls = gallery.querySelector(".gallery-thumbs");
+  let activePhoto = 0;
+  let galleryVisible = false;
+  let galleryTimer;
 
-function showPhoto(index) {
-  activePhoto = index;
-  galleryImages.forEach((photo, i) => {
-    photo.classList.toggle("is-current", i === index);
-    if (i === index || mobileLayout.matches) photo.removeAttribute("aria-hidden");
-    else photo.setAttribute("aria-hidden", "true");
-  });
-  galleryButtons.forEach((button, i) => button.setAttribute("aria-pressed", String(i === index)));
-}
+  function showPhoto(index) {
+    activePhoto = index;
+    galleryImages.forEach((photo, i) => {
+      photo.classList.toggle("is-current", i === index);
+      if (i === index || mobileLayout.matches) photo.removeAttribute("aria-hidden");
+      else photo.setAttribute("aria-hidden", "true");
+    });
+    galleryButtons.forEach((button, i) => button.setAttribute("aria-pressed", String(i === index)));
+  }
 
-function scheduleGallery() {
-  clearTimeout(galleryTimer);
-  const usingControls = galleryControls.matches(":hover, :focus-within");
-  if (mobileLayout.matches || !galleryVisible || usingControls || reduceMotion.matches || document.hidden) return;
-  galleryTimer = setTimeout(() => {
-    showPhoto((activePhoto + 1) % galleryImages.length);
-    scheduleGallery();
-  }, 5500);
-}
+  function scheduleGallery() {
+    clearTimeout(galleryTimer);
+    const usingControls = galleryControls.matches(":hover, :focus-within");
+    if (mobileLayout.matches || !galleryVisible || usingControls || reduceMotion.matches || document.hidden) return;
+    galleryTimer = setTimeout(() => {
+      showPhoto((activePhoto + 1) % galleryImages.length);
+      scheduleGallery();
+    }, 5500);
+  }
 
-galleryButtons.forEach((button, index) => {
-  button.addEventListener("pointerenter", event => {
-    if (event.pointerType === "touch") return;
-    showPhoto(index);
-    scheduleGallery();
-  });
-  button.addEventListener("click", () => {
-    showPhoto(index);
-    scheduleGallery();
-  });
-  button.addEventListener("focus", () => {
-    if (button.matches(":focus-visible")) {
+  galleryButtons.forEach((button, index) => {
+    button.addEventListener("pointerenter", event => {
+      if (event.pointerType === "touch") return;
       showPhoto(index);
       scheduleGallery();
-    }
-  });
-});
-galleryControls.addEventListener("pointerleave", scheduleGallery);
-galleryControls.addEventListener("focusout", () => requestAnimationFrame(scheduleGallery));
-document.addEventListener("visibilitychange", scheduleGallery);
-reduceMotion.addEventListener("change", scheduleGallery);
-showPhoto(activePhoto);
-new IntersectionObserver(([entry]) => {
-  galleryVisible = entry.isIntersecting;
-  scheduleGallery();
-}, { threshold: .3 }).observe(gallery);
-
-let photoCopies = [];
-galleryStrip.style.setProperty("--photo-count", galleryImages.length);
-
-function syncMobileGallery() {
-  const looping = mobileLayout.matches && !reduceMotion.matches;
-  if (!looping) {
-    photoCopies.forEach(photo => photo.remove());
-    photoCopies = [];
-  } else if (!photoCopies.length) {
-    photoCopies = galleryImages.map(photo => {
-      const copy = photo.cloneNode(true);
-      copy.setAttribute("aria-hidden", "true");
-      copy.alt = "";
-      return copy;
     });
-    galleryStrip.prepend(...photoCopies);
+    button.addEventListener("click", () => {
+      showPhoto(index);
+      scheduleGallery();
+    });
+    button.addEventListener("focus", () => {
+      if (button.matches(":focus-visible")) {
+        showPhoto(index);
+        scheduleGallery();
+      }
+    });
+  });
+  galleryControls.addEventListener("pointerleave", scheduleGallery);
+  galleryControls.addEventListener("focusout", () => requestAnimationFrame(scheduleGallery));
+  document.addEventListener("visibilitychange", scheduleGallery);
+  reduceMotion.addEventListener("change", scheduleGallery);
+  showPhoto(activePhoto);
+  new IntersectionObserver(([entry]) => {
+    galleryVisible = entry.isIntersecting;
+    scheduleGallery();
+  }, { threshold: .3 }).observe(gallery);
+
+  let photoCopies = [];
+  galleryStrip.style.setProperty("--photo-count", galleryImages.length);
+
+  function syncMobileGallery() {
+    const looping = mobileLayout.matches && !reduceMotion.matches;
+    if (!looping) {
+      photoCopies.forEach(photo => photo.remove());
+      photoCopies = [];
+    } else if (!photoCopies.length) {
+      photoCopies = galleryImages.map(photo => {
+        const copy = photo.cloneNode(true);
+        copy.setAttribute("aria-hidden", "true");
+        copy.alt = "";
+        return copy;
+      });
+      galleryStrip.prepend(...photoCopies);
+    }
+    galleryStrip.classList.toggle("is-looping", looping);
   }
-  galleryStrip.classList.toggle("is-looping", looping);
+
+  new IntersectionObserver(([entry]) => {
+    galleryStrip.classList.toggle("is-visible", entry.isIntersecting);
+  }, { threshold: .15 }).observe(galleryTrack);
+  reduceMotion.addEventListener("change", syncMobileGallery);
+  mobileLayout.addEventListener("change", syncMobileGallery);
+  syncMobileGallery();
+
+  mobileLayout.addEventListener("change", () => {
+    showPhoto(activePhoto);
+    scheduleGallery();
+  });
 }
 
-new IntersectionObserver(([entry]) => {
-  galleryStrip.classList.toggle("is-visible", entry.isIntersecting);
-}, { threshold: .15 }).observe(galleryTrack);
-reduceMotion.addEventListener("change", syncMobileGallery);
-mobileLayout.addEventListener("change", syncMobileGallery);
-syncMobileGallery();
+const gallery = document.querySelector("[data-gallery]");
+if (gallery) initializeGallery(gallery);
 
 const serviceList = document.querySelector(".service-list");
-const serviceOptions = [...serviceList.querySelectorAll("[data-service]")];
-serviceList.style.setProperty("--service-count", serviceOptions.length);
+const serviceOptions = [...(serviceList?.querySelectorAll("[data-service]") ?? [])];
+serviceList?.style.setProperty("--service-count", serviceOptions.length);
 const serviceImages = [...document.querySelectorAll("[data-service-image]")];
 const serviceDialog = document.querySelector("#service-dialog");
-const serviceDialogTitle = serviceDialog.querySelector("h2");
-const serviceDialogImage = serviceDialog.querySelector("[data-dialog-image]");
-const serviceDialogDescription = serviceDialog.querySelector("[data-dialog-description]");
-const serviceDialogLink = serviceDialog.querySelector("[data-service-link]");
-const serviceDialogBook = serviceDialog.querySelector("[data-service-book]");
+const serviceDialogTitle = serviceDialog?.querySelector("h2");
+const serviceDialogImage = serviceDialog?.querySelector("[data-dialog-image]");
+const serviceDialogDescription = serviceDialog?.querySelector("[data-dialog-description]");
+const serviceDialogLink = serviceDialog?.querySelector("[data-service-link]");
+const serviceDialogBook = serviceDialog?.querySelector("[data-service-book]");
 const priceList = "https://metelitsa-dent.ru/files/price.pdf";
 const services = {
   sleep: {
@@ -433,7 +442,7 @@ function enableCarousel(section) {
 
 const doctorTrack = document.querySelector("#doctors-track");
 const originalDoctorCards = [...doctorTrack.children];
-for (let copy = 0; copy < 2; copy++) {
+for (let copy = 0; copy < (Number(doctorTrack.dataset.repeat) || 0); copy++) {
   doctorTrack.append(...originalDoctorCards.map(card => card.cloneNode(true)));
 }
 
@@ -530,7 +539,7 @@ document.querySelectorAll("[data-book]").forEach(link => {
     openMobileBooking(event);
   });
 });
-serviceDialogBook.addEventListener("click", event => {
+serviceDialogBook?.addEventListener("click", event => {
   selectAppointment(serviceDialogBook.dataset.book);
   serviceDialog.close();
   openMobileBooking(event);
@@ -620,7 +629,7 @@ let menuSwipe = null;
 let menuDismissTimer;
 let lastMenuSwipe = -Infinity;
 const searchCatalog = [
-  ...[...mobileMenu.querySelectorAll(".mobile-menu-links a")].map(link => ({
+  ...[...document.querySelectorAll(".mobile-menu-links a, .treatment-nav a")].map(link => ({
     title: link.textContent.trim(),
     href: link.getAttribute("href"),
     service: link.dataset.showService
@@ -811,8 +820,6 @@ searchCancel.addEventListener("click", () => {
 visualViewport?.addEventListener("resize", positionSearch);
 visualViewport?.addEventListener("scroll", positionSearch);
 mobileLayout.addEventListener("change", () => {
-  showPhoto(activePhoto);
-  scheduleGallery();
   if (!mobileLayout.matches) {
     mobileMenu.close();
     mobileBooking.close();
