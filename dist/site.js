@@ -158,6 +158,7 @@ new ResizeObserver(() => {
 
 const gallery = document.querySelector("[data-gallery]");
 const galleryTrack = gallery.querySelector(".about-media");
+const galleryStrip = galleryTrack.querySelector(".about-photo-strip");
 const galleryImages = [...gallery.querySelectorAll("[data-gallery-image]")];
 const galleryButtons = [...gallery.querySelectorAll(".gallery-thumb")];
 const galleryControls = gallery.querySelector(".gallery-thumbs");
@@ -213,66 +214,28 @@ new IntersectionObserver(([entry]) => {
 }, { threshold: .3 }).observe(gallery);
 
 let photoCopies = [];
-let mobileGalleryVisible = false;
-let mobileGalleryFrame = 0;
-let mobileGalleryWidth = 0;
-let mobileGalleryOffset = 0;
-let lastGalleryFrameTime = 0;
-
-function moveMobileGallery(now) {
-  if (lastGalleryFrameTime) {
-    const elapsed = Math.min(now - lastGalleryFrameTime, 50);
-    mobileGalleryOffset -= elapsed * .018;
-    if (mobileGalleryOffset < mobileGalleryWidth) mobileGalleryOffset += mobileGalleryWidth;
-    galleryTrack.scrollLeft = mobileGalleryOffset;
-  }
-  lastGalleryFrameTime = now;
-  mobileGalleryFrame = requestAnimationFrame(moveMobileGallery);
-}
-
-function scheduleMobileGallery() {
-  cancelAnimationFrame(mobileGalleryFrame);
-  lastGalleryFrameTime = 0;
-  if (mobileGalleryWidth && mobileGalleryVisible && !reduceMotion.matches && !document.hidden) {
-    mobileGalleryFrame = requestAnimationFrame(moveMobileGallery);
-  }
-}
-
-function measureMobileGallery() {
-  if (!photoCopies.length) return;
-  const width = galleryImages[0].getBoundingClientRect().left - photoCopies[0].getBoundingClientRect().left;
-  if (!width || width === mobileGalleryWidth) return;
-  const position = mobileGalleryWidth ? galleryTrack.scrollLeft / mobileGalleryWidth : 1;
-  mobileGalleryWidth = width;
-  mobileGalleryOffset = width * position;
-  galleryTrack.scrollLeft = mobileGalleryOffset;
-}
+galleryStrip.style.setProperty("--photo-count", galleryImages.length);
 
 function syncMobileGallery() {
-  if (!mobileLayout.matches) {
+  const looping = mobileLayout.matches && !reduceMotion.matches;
+  if (!looping) {
     photoCopies.forEach(photo => photo.remove());
     photoCopies = [];
-    mobileGalleryWidth = 0;
-  } else if (!photoCopies.length && !reduceMotion.matches) {
-    photoCopies = [...galleryImages, ...galleryImages].map(photo => {
+  } else if (!photoCopies.length) {
+    photoCopies = galleryImages.map(photo => {
       const copy = photo.cloneNode(true);
       copy.setAttribute("aria-hidden", "true");
       copy.alt = "";
       return copy;
     });
-    galleryTrack.prepend(...photoCopies.slice(0, galleryImages.length));
-    galleryTrack.append(...photoCopies.slice(galleryImages.length));
-    measureMobileGallery();
+    galleryStrip.prepend(...photoCopies);
   }
-  scheduleMobileGallery();
+  galleryStrip.classList.toggle("is-looping", looping);
 }
 
-new ResizeObserver(measureMobileGallery).observe(galleryTrack);
 new IntersectionObserver(([entry]) => {
-  mobileGalleryVisible = entry.isIntersecting;
-  scheduleMobileGallery();
+  galleryStrip.classList.toggle("is-visible", entry.isIntersecting);
 }, { threshold: .15 }).observe(galleryTrack);
-document.addEventListener("visibilitychange", scheduleMobileGallery);
 reduceMotion.addEventListener("change", syncMobileGallery);
 mobileLayout.addEventListener("change", syncMobileGallery);
 syncMobileGallery();

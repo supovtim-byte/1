@@ -228,6 +228,7 @@ address { font-style: normal; }
 .about-media, .service-media, .map, .doctor-photo { position: relative; isolation: isolate; overflow: hidden; }
 .about-media, .service-media, .map { border-radius: var(--photo-radius); background: var(--photo-background); }
 .about-media { aspect-ratio: 1222 / 765; }
+.about-photo-strip { display: contents; }
 .about-media [data-gallery-image], .service-media [data-service-image] { opacity: 0; transition: opacity .32s ease; }
 .about-media .is-current, .service-media .is-current { opacity: 1; z-index: 1; }
 .about-media::after {
@@ -721,24 +722,40 @@ address { font-style: normal; }
   .high-contrast .mobile-rating-score { color: var(--ink); }
 
   .about { display: block; margin-block-start: 45px; }
-  .about-media, .service-list, .carousel { column-gap: var(--mobile-gutter); }
+  .about-photo-strip, .service-list, .carousel { column-gap: var(--mobile-gutter); }
   .about-media, .service-list {
-    display: grid;
-    grid-auto-flow: column;
     margin-inline: calc(-1 * var(--edge));
     padding-inline: var(--edge);
     border-radius: 0;
     background: transparent;
   }
   .service-list {
+    display: grid;
+    grid-auto-flow: column;
     overflow-x: auto;
     scrollbar-width: none;
     overscroll-behavior-inline: contain;
     scroll-padding-inline: var(--edge);
     scroll-snap-type: x mandatory;
   }
-  .about-media { grid-auto-columns: calc(290 * var(--mobile-unit)); aspect-ratio: auto; scroll-behavior: auto; }
+  .about-media { aspect-ratio: auto; }
   .about-media::after { display: none; }
+  .about-photo-strip {
+    --photo-width: calc(290 * var(--mobile-unit));
+    --photo-cycle-width: calc((var(--photo-width) + var(--mobile-gutter)) * var(--photo-count));
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: var(--photo-width);
+    inline-size: max-content;
+  }
+  .about-photo-strip.is-looping {
+    animation: about-photos-right calc(17s * var(--photo-count)) linear infinite both paused;
+  }
+  .about-photo-strip.is-looping.is-visible { animation-play-state: running; }
+  @keyframes about-photos-right {
+    from { transform: translateX(calc(-1 * var(--photo-cycle-width))); }
+    to { transform: translateX(0); }
+  }
   .about-media [data-gallery-image] {
     position: static;
     block-size: auto;
@@ -958,5 +975,6 @@ address { font-style: normal; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::after, *::before { scroll-behavior: auto !important; transition-duration: 0s !important; }
+  .about-photo-strip.is-looping { animation: none; }
   .mobile-menu[open].is-opening::before, .mobile-menu[open].is-opening > :not(.mobile-menu-actions) { animation: none; }
 }
