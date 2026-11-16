@@ -749,12 +749,12 @@ address { font-style: normal; }
     inline-size: max-content;
   }
   .about-photo-strip.is-looping {
-    animation: about-photos-right calc(17s * var(--photo-count)) linear infinite both paused;
+    animation: about-photos-left calc(17s * var(--photo-count)) linear infinite both paused;
   }
   .about-photo-strip.is-looping.is-visible { animation-play-state: running; }
-  @keyframes about-photos-right {
-    from { transform: translateX(calc(-1 * var(--photo-cycle-width))); }
-    to { transform: translateX(0); }
+  @keyframes about-photos-left {
+    from { transform: translateX(0); }
+    to { transform: translateX(calc(-1 * var(--photo-cycle-width))); }
   }
   .about-media [data-gallery-image] {
     position: static;
