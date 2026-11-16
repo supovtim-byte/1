@@ -727,16 +727,17 @@ address { font-style: normal; }
     grid-auto-flow: column;
     margin-inline: calc(-1 * var(--edge));
     padding-inline: var(--edge);
-    overflow-x: auto;
     border-radius: 0;
     background: transparent;
+  }
+  .service-list {
+    overflow-x: auto;
     scrollbar-width: none;
     overscroll-behavior-inline: contain;
     scroll-padding-inline: var(--edge);
+    scroll-snap-type: x mandatory;
   }
-  .service-list { scroll-snap-type: x mandatory; }
   .about-media { grid-auto-columns: calc(290 * var(--mobile-unit)); aspect-ratio: auto; scroll-behavior: auto; }
-  .about-media:focus-visible { outline: 2px solid var(--link-hover); outline-offset: -3px; }
   .about-media::after { display: none; }
   .about-media [data-gallery-image] {
     position: static;
@@ -746,6 +747,7 @@ address { font-style: normal; }
     border-radius: calc(30 * var(--mobile-unit));
     background: var(--photo-background);
     opacity: 1;
+    pointer-events: none;
   }
   .about-content { padding: 20px calc(5 * var(--mobile-unit)) 0; }
   .about-content p { max-inline-size: 50ch; margin: 14px 0 0; line-height: 1.5; }

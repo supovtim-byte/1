@@ -214,7 +214,6 @@ new IntersectionObserver(([entry]) => {
 
 let photoCopies = [];
 let mobileGalleryVisible = false;
-let mobileGalleryPaused = false;
 let mobileGalleryFrame = 0;
 let mobileGalleryWidth = 0;
 let mobileGalleryOffset = 0;
@@ -234,15 +233,9 @@ function moveMobileGallery(now) {
 function scheduleMobileGallery() {
   cancelAnimationFrame(mobileGalleryFrame);
   lastGalleryFrameTime = 0;
-  if (mobileGalleryWidth && mobileGalleryVisible && !mobileGalleryPaused && !reduceMotion.matches && !document.hidden) {
+  if (mobileGalleryWidth && mobileGalleryVisible && !reduceMotion.matches && !document.hidden) {
     mobileGalleryFrame = requestAnimationFrame(moveMobileGallery);
   }
-}
-
-function pauseMobileGallery() {
-  if (!mobileLayout.matches || mobileGalleryPaused) return;
-  mobileGalleryPaused = true;
-  scheduleMobileGallery();
 }
 
 function measureMobileGallery() {
@@ -260,29 +253,20 @@ function syncMobileGallery() {
     photoCopies.forEach(photo => photo.remove());
     photoCopies = [];
     mobileGalleryWidth = 0;
-    galleryTrack.removeAttribute("tabindex");
-  } else {
-    galleryTrack.tabIndex = 0;
-    if (!photoCopies.length && !reduceMotion.matches && !mobileGalleryPaused) {
-      photoCopies = [...galleryImages, ...galleryImages].map(photo => {
-        const copy = photo.cloneNode(true);
-        copy.setAttribute("aria-hidden", "true");
-        copy.alt = "";
-        return copy;
-      });
-      galleryTrack.prepend(...photoCopies.slice(0, galleryImages.length));
-      galleryTrack.append(...photoCopies.slice(galleryImages.length));
-      measureMobileGallery();
-    }
+  } else if (!photoCopies.length && !reduceMotion.matches) {
+    photoCopies = [...galleryImages, ...galleryImages].map(photo => {
+      const copy = photo.cloneNode(true);
+      copy.setAttribute("aria-hidden", "true");
+      copy.alt = "";
+      return copy;
+    });
+    galleryTrack.prepend(...photoCopies.slice(0, galleryImages.length));
+    galleryTrack.append(...photoCopies.slice(galleryImages.length));
+    measureMobileGallery();
   }
   scheduleMobileGallery();
 }
 
-galleryTrack.addEventListener("pointerdown", pauseMobileGallery, { passive: true });
-galleryTrack.addEventListener("focus", pauseMobileGallery);
-galleryTrack.addEventListener("wheel", event => {
-  if (event.deltaX || event.shiftKey) pauseMobileGallery();
-}, { passive: true });
 new ResizeObserver(measureMobileGallery).observe(galleryTrack);
 new IntersectionObserver(([entry]) => {
   mobileGalleryVisible = entry.isIntersecting;
