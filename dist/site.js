@@ -439,60 +439,64 @@ for (let copy = 0; copy < 2; copy++) {
 
 document.querySelectorAll("[data-carousel]").forEach(enableCarousel);
 
-const questions = [...document.querySelectorAll(".faq details")];
-const faqTransitions = new WeakMap();
+const disclosures = [...document.querySelectorAll(".faq details, .mobile-routes details")];
+const disclosureTransitions = new WeakMap();
 
-function stopFaqTransition(question) {
-  faqTransitions.get(question)?.animation.cancel();
-  faqTransitions.delete(question);
+function stopDisclosureTransition(details) {
+  disclosureTransitions.get(details)?.animation.cancel();
+  disclosureTransitions.delete(details);
 }
 
-function resizeFaq(question, from, to, closing = false) {
+function resizeDisclosure(details, from, to, closing = false) {
   if (Math.abs(from - to) < 1) {
-    if (closing) question.open = false;
+    if (closing) details.open = false;
     return;
   }
-  const animation = question.animate({ height: [from + "px", to + "px"] }, {
+  const animation = details.animate({ height: [from + "px", to + "px"] }, {
     duration: 230,
     easing: "cubic-bezier(.2, .75, .25, 1)",
     fill: "forwards"
   });
-  faqTransitions.set(question, { animation, closing });
+  disclosureTransitions.set(details, { animation, closing });
   animation.onfinish = () => {
-    if (faqTransitions.get(question)?.animation !== animation) return;
-    if (closing) question.open = false;
-    stopFaqTransition(question);
+    if (disclosureTransitions.get(details)?.animation !== animation) return;
+    if (closing) details.open = false;
+    stopDisclosureTransition(details);
   };
 }
 
-for (const question of questions) {
-  const summary = question.querySelector("summary");
+for (const details of disclosures) {
+  const summary = details.querySelector("summary");
+  const group = details.getAttribute("name");
+  const openPeer = () => group && disclosures.find(other => other !== details && other.open && other.getAttribute("name") === group);
+
   summary.addEventListener("click", event => {
-    if (reduceMotion.matches || !question.animate) return;
+    if (reduceMotion.matches || !details.animate) return;
     event.preventDefault();
-    const from = question.getBoundingClientRect().height;
-    const opening = !question.open || faqTransitions.get(question)?.closing;
-    stopFaqTransition(question);
+    const from = details.getBoundingClientRect().height;
+    const opening = !details.open || disclosureTransitions.get(details)?.closing;
+    stopDisclosureTransition(details);
     if (!opening) {
-      resizeFaq(question, from, summary.getBoundingClientRect().height, true);
+      resizeDisclosure(details, from, summary.getBoundingClientRect().height, true);
       return;
     }
 
-    const previous = questions.find(other => other !== question && other.open);
+    const previous = openPeer();
     if (previous) {
       const previousHeight = previous.getBoundingClientRect().height;
-      stopFaqTransition(previous);
+      stopDisclosureTransition(previous);
       previous.open = false;
-      resizeFaq(previous, previousHeight, previous.getBoundingClientRect().height);
+      resizeDisclosure(previous, previousHeight, previous.getBoundingClientRect().height);
     }
-    question.open = true;
-    resizeFaq(question, from, question.getBoundingClientRect().height);
+    details.open = true;
+    resizeDisclosure(details, from, details.getBoundingClientRect().height);
   });
 
-  if (!("name" in HTMLDetailsElement.prototype)) {
-    question.addEventListener("toggle", () => {
-      if (!question.open) return;
-      questions.filter(other => other !== question && other.open).forEach(other => { other.open = false; });
+  if (group && !("name" in HTMLDetailsElement.prototype)) {
+    details.addEventListener("toggle", () => {
+      if (!details.open) return;
+      const previous = openPeer();
+      if (previous) previous.open = false;
     });
   }
 }
