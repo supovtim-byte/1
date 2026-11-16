@@ -1,138 +1,498 @@
 <!doctype html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Семейная стоматология «Метелица» в Санкт-Петербурге. Услуги, врачи и запись на приём.">
   <meta name="theme-color" content="#e8f5ff">
-  <meta name="description" content="Метелица — семейная стоматология в Санкт-Петербурге. Лечим с заботой с 2007 года. Детская стоматология, лечение во сне и заботливые врачи.">
-  <title>Метелица — стоматология, в которую хочется вернуться</title>
-  <link rel="preload" href="assets/geologica-light.ttf" as="font" type="font/ttf" crossorigin>
-  <link rel="preload" href="assets/hero.jpg" as="image" media="(min-width: 768px)">
-  <link rel="stylesheet" href="styles.css?v=20261114-4">
-  <script src="app.js?v=20261114-3" defer></script>
+  <title>Стоматология «Метелица» — Санкт-Петербург</title>
+  <link rel="icon" href="assets/logo.png" type="image/png">
+  <link rel="preload" href="assets/geologica.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+  <script src="site.js" defer></script>
 </head>
 <body>
-<a class="skip-link" href="#main">Перейти к содержанию</a>
-<header class="header" id="header">
-  <a class="brand" href="#home" aria-label="Метелица — главная"><img src="assets/logo.png" width="244" height="44" alt="Метелица"></a>
-  <nav class="desktop-nav" aria-label="Основная навигация">
-    <a href="#services">услуги и цены</a>
-    <a href="#services" data-service-select="0">лечение во сне</a>
-    <a href="#services" data-service-select="1">детям</a>
-    <a href="#contacts">контакты</a>
-    <div class="popover-wrap more-wrap">
-      <button class="more-button popover-toggle" aria-label="Другие разделы и поиск" aria-expanded="false" aria-controls="more-popover"><img src="assets/more.svg" alt="" width="30" height="4"></button>
-      <div class="popover more-popover" id="more-popover">
-        <a href="#about">О клинике</a><a href="#doctors">Наши врачи</a><a href="#faq">Частые вопросы</a>
-        <div class="search-box"><label class="sr-only" for="header-search">Поиск по сайту</label><div class="search-input-wrap"><input id="header-search" class="site-search" type="search" placeholder="Поиск по сайту" autocomplete="off"></div><div class="search-results" aria-live="polite"></div></div>
+  <a class="skip-link" href="#main">Перейти к содержанию</a>
+  <header class="site-header" id="header">
+    <a class="brand" href="#top" aria-label="Метелица — на главную">
+      <img src="assets/logo.png" alt="Метелица">
+    </a>
+
+    <nav class="navigation" aria-label="Главное меню">
+      <div class="primary-links">
+        <a href="#services">Услуги и цены</a>
+        <a href="#services" data-show-service="sleep">Лечение во сне</a>
+        <a href="#services" data-show-service="child">Детям</a>
+        <a href="#contacts">Контакты</a>
+      </div>
+      <div class="popover more-menu" data-popover>
+        <button class="popover-trigger icon-button" type="button" aria-label="Ещё разделы" aria-expanded="false" aria-controls="more-panel">
+          <img src="assets/more.svg" alt="">
+        </button>
+        <div class="popover-panel" id="more-panel" inert>
+          <a href="#doctors">Врачи</a>
+          <a href="#reviews">Отзывы</a>
+          <a href="#about">О клинике</a>
+          <a href="https://metelitsa-dent.ru/nalogovyy-vychet/">Налоговый вычет</a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="header-actions">
+      <div class="popover phone-popover" data-popover>
+        <button class="popover-trigger phone-trigger" type="button" aria-label="Телефон +7 931 399 05 80" aria-expanded="false" aria-controls="phone-panel">
+          <span class="phone-label">+7 931 399 05 80</span>
+          <img src="assets/phone-chevron.svg" alt="">
+        </button>
+        <div class="popover-panel" id="phone-panel" inert>
+          <p>Работаем с 9 до 21</p>
+          <a class="text-link" href="tel:+79313990580">Позвонить</a>
+          <button class="text-link copy-number" type="button" data-copy-phone>Скопировать номер</button>
+          <div class="socials">
+            <a href="https://t.me/stom_metelitsa" aria-label="Метелица в Telegram" target="_blank" rel="noopener">
+              <img src="assets/telegram-phone.svg" alt="">
+            </a>
+            <a href="https://vk.com/detskaya_stomatologia_metelitsa" aria-label="Метелица ВКонтакте" target="_blank" rel="noopener">
+              <img src="assets/vk-phone.svg" alt="">
+            </a>
+          </div>
+          <span class="sr-only" role="status" data-copy-status></span>
+        </div>
+      </div>
+      <a class="button button-primary header-book" href="#appointment" data-book>записаться</a>
+      <div class="popover compact-menu" data-popover>
+        <button class="popover-trigger compact-menu-trigger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="compact-menu-panel">
+          <span class="menu-icon" aria-hidden="true"></span>
+        </button>
+        <nav class="popover-panel" id="compact-menu-panel" aria-label="Меню для планшета и телефона" inert></nav>
       </div>
     </div>
-  </nav>
-  <div class="header-actions">
-    <div class="popover-wrap phone-wrap">
-      <a class="phone-link" href="tel:+79313990580">+7 931 399 05 80 <span aria-hidden="true"></span></a>
-      <div class="popover phone-popover"><p>Работаем с 9 до 21</p><a href="mailto:info@metelitsa-dent.ru">info@metelitsa-dent.ru</a></div>
+  </header>
+
+  <main id="main">
+    <section class="hero-screen" id="top" aria-labelledby="home-title">
+      <div class="hero">
+        <img class="hero-photo cover" src="assets/hero.png" alt="" fetchpriority="high">
+        <div class="hero-shade" aria-hidden="true"></div>
+        <a class="mobile-brand" href="#top" aria-label="Метелица — на главную"><img src="assets/logo.png" alt="Метелица"></a>
+        <h1 id="home-title">Стоматология,<br>в которую хочется вернуться</h1>
+        <div class="hero-aside">
+          <div class="popover rating-popover" data-popover>
+            <button class="popover-trigger rating-trigger" type="button" aria-label="Рейтинг клиники 5 из 5 на Яндекс Картах" aria-expanded="false" aria-controls="rating-panel">
+              <span class="yandex-mark"><img src="assets/yandex.png" alt=""></span>
+              <span class="rating-stars" aria-hidden="true">
+                <img src="assets/star.svg" alt=""><img src="assets/star.svg" alt=""><img src="assets/star.svg" alt=""><img src="assets/star.svg" alt=""><img src="assets/star.svg" alt="">
+              </span>
+            </button>
+            <div class="popover-panel" id="rating-panel" inert>
+              <p class="rating-value">5.0</p>
+              <p>рейтинг на Яндекс Картах</p>
+              <a class="text-link" href="https://yandex.ru/maps/org/metelitsa/1132881772/reviews/" target="_blank" rel="noopener">Более 200 отзывов</a>
+            </div>
+          </div>
+          <a class="hero-address" href="#contacts">Санкт-Петербург,<br>Обуховской Обороны, 271 Ж</a>
+        </div>
+      </div>
+    </section>
+
+    <a class="mobile-rating section-shell" href="https://yandex.ru/maps/org/metelitsa/1132881772/reviews/" target="_blank" rel="noopener">
+      <span class="yandex-mark"><img src="assets/yandex.png" alt=""></span>
+      <span class="mobile-rating-score">5.0</span>
+      <span>1330+ оценок на Яндекс</span>
+    </a>
+
+    <section class="section about section-shell" id="about" aria-labelledby="about-title" data-gallery>
+      <div class="about-media" id="clinic-gallery">
+        <img class="cover is-current" data-gallery-image src="assets/about-1.jpg" alt="Ребёнок в стоматологическом кресле" loading="lazy">
+        <img class="cover" data-gallery-image src="assets/about-2.jpg" alt="Вход в клинику «Метелица»" loading="lazy" aria-hidden="true">
+        <img class="cover" data-gallery-image src="assets/about-3.jpg" alt="Игровая комната в клинике «Метелица»" loading="lazy" aria-hidden="true">
+      </div>
+      <div class="about-content">
+        <h2 id="about-title">Лечим с заботой<br>с 2007 года</h2>
+        <p>Мы знаем, что каждый приходит со своими ожиданиями и переживаниями, поэтому уделяем внимание не только результату лечения, но и тому, как проходит сам приём</p>
+        <div class="gallery-thumbs" role="group" aria-label="Фотографии клиники">
+          <button class="gallery-thumb" type="button" aria-label="Первое фото" aria-controls="clinic-gallery" aria-pressed="true">
+            <img src="assets/about-1.jpg" alt="" loading="lazy">
+          </button>
+          <button class="gallery-thumb" type="button" aria-label="Второе фото" aria-controls="clinic-gallery" aria-pressed="false">
+            <img src="assets/about-2.jpg" alt="" loading="lazy">
+          </button>
+          <button class="gallery-thumb" type="button" aria-label="Третье фото" aria-controls="clinic-gallery" aria-pressed="false">
+            <img src="assets/about-3.jpg" alt="" loading="lazy">
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section services section-shell" id="services" aria-labelledby="services-title">
+      <div class="service-content">
+        <h2 id="services-title">Услуги</h2>
+        <ul class="service-list" aria-label="Карточки услуг">
+          <li>
+            <button class="service-option is-current" type="button" id="service-sleep" data-service="sleep" aria-haspopup="dialog" aria-controls="service-dialog">
+              <img class="service-card-photo" src="assets/service-sleep.jpg" alt="" loading="lazy">
+              <span>Лечение под наркозом</span><img class="service-arrow" src="assets/service-arrow.svg" alt="">
+            </button>
+          </li>
+          <li>
+            <button class="service-option" type="button" id="service-child" data-service="child" aria-haspopup="dialog" aria-controls="service-dialog">
+              <img class="service-card-photo" src="assets/about-1.jpg" alt="" loading="lazy">
+              <span>Первый приём ребёнка</span><img class="service-arrow" src="assets/service-arrow.svg" alt="">
+            </button>
+          </li>
+          <li>
+            <button class="service-option" type="button" id="service-therapy" data-service="therapy" aria-haspopup="dialog" aria-controls="service-dialog">
+              <img class="service-card-photo" src="assets/service-therapy.jpg" alt="" loading="lazy">
+              <span>Терапия</span><img class="service-arrow" src="assets/service-arrow.svg" alt="">
+            </button>
+          </li>
+          <li>
+            <button class="service-option" type="button" id="service-prosthetics" data-service="prosthetics" aria-haspopup="dialog" aria-controls="service-dialog">
+              <img class="service-card-photo" src="assets/service-prosthetics.jpg" alt="" loading="lazy">
+              <span>Протезирование</span><img class="service-arrow" src="assets/service-arrow.svg" alt="">
+            </button>
+          </li>
+          <li>
+            <button class="service-option" type="button" id="service-ortho" data-service="ortho" aria-haspopup="dialog" aria-controls="service-dialog">
+              <img class="service-card-photo" src="assets/service-ortho.jpg" alt="" loading="lazy">
+              <span>Исправление прикуса</span><img class="service-arrow" src="assets/service-arrow.svg" alt="">
+            </button>
+          </li>
+          <li>
+            <button class="service-option" type="button" id="service-hygiene" data-service="hygiene" aria-haspopup="dialog" aria-controls="service-dialog">
+              <img class="service-card-photo" src="assets/service-hygiene.jpg" alt="" loading="lazy">
+              <span>Гигиена и профилактика</span><img class="service-arrow" src="assets/service-arrow.svg" alt="">
+            </button>
+          </li>
+        </ul>
+        <a class="text-link service-more" href="https://metelitsa-dent.ru/files/price.pdf" target="_blank" rel="noopener">Все услуги</a>
+      </div>
+      <div class="service-media" aria-hidden="true">
+        <img class="cover is-current" data-service-image="sleep" src="assets/service-sleep.jpg" alt="" loading="lazy">
+        <img class="cover" data-service-image="child" src="assets/service-child.jpg" alt="" loading="lazy">
+        <img class="cover" data-service-image="therapy" src="assets/service-therapy.jpg" alt="" loading="lazy">
+        <img class="cover" data-service-image="prosthetics" src="assets/service-prosthetics.jpg" alt="" loading="lazy">
+        <img class="cover" data-service-image="ortho" src="assets/service-ortho.jpg" alt="" loading="lazy">
+        <img class="cover" data-service-image="hygiene" src="assets/service-hygiene.jpg" alt="" loading="lazy">
+      </div>
+    </section>
+
+    <section class="section deck section-shell" id="doctors" aria-labelledby="doctors-title" data-carousel>
+      <div class="section-heading">
+        <h2 id="doctors-title">Команда заботливых врачей</h2>
+        <div class="carousel-controls">
+          <button class="icon-button" type="button" data-prev aria-label="Предыдущие врачи" aria-controls="doctors-track"><img src="assets/carousel-prev.svg" alt=""></button>
+          <button class="icon-button" type="button" data-next aria-label="Следующие врачи" aria-controls="doctors-track"><img src="assets/carousel-next.svg" alt=""></button>
+        </div>
+      </div>
+      <div class="carousel doctor-track" id="doctors-track" tabindex="0" aria-label="Карточки врачей">
+        <article class="doctor-card">
+          <div class="doctor-photo">
+            <img class="cover" src="assets/doctor-1.png" alt="" loading="lazy" draggable="false">
+            <a class="button doctor-book" href="#appointment" data-book="Сизонец Александра" aria-label="Записаться на приём к Александре Сизонец">Записаться к врачу</a>
+          </div>
+          <h3>Сизонец Александра</h3>
+          <p>главный врач, терапевт, хирург</p>
+        </article>
+        <article class="doctor-card">
+          <div class="doctor-photo">
+            <img class="cover" src="assets/doctor-2.png" alt="" loading="lazy" draggable="false">
+            <a class="button doctor-book" href="#appointment" data-book="Маслёнок Ольга" aria-label="Записаться на приём к Ольге Маслёнок">Записаться к врачу</a>
+          </div>
+          <h3>Маслёнок Ольга</h3>
+          <p>терапевт, хирург</p>
+        </article>
+        <article class="doctor-card">
+          <div class="doctor-photo">
+            <img class="cover" src="assets/doctor-3.png" alt="" loading="lazy" draggable="false">
+            <a class="button doctor-book" href="#appointment" data-book="Филипп Бармашев" aria-label="Записаться на приём к Филиппу Бармашеву">Записаться к врачу</a>
+          </div>
+          <h3>Филипп Бармашев</h3>
+          <p>хирург</p>
+        </article>
+        <article class="doctor-card">
+          <div class="doctor-photo">
+            <img class="cover" src="assets/doctor-4.png" alt="" loading="lazy" draggable="false">
+            <a class="button doctor-book" href="#appointment" data-book="Зырянова Оксана" aria-label="Записаться на приём к Оксане Зыряновой">Записаться к врачу</a>
+          </div>
+          <h3>Зырянова Оксана</h3>
+          <p>терапевт, детский стоматолог</p>
+        </article>
+      </div>
+      <a class="text-link deck-more" href="https://metelitsa-dent.ru/about/personal/">Все врачи</a>
+    </section>
+
+    <section class="section deck section-shell" id="reviews" aria-labelledby="reviews-title" data-carousel>
+      <div class="section-heading">
+        <h2 id="reviews-title">85% клиентов приходят по рекомендации</h2>
+        <div class="carousel-controls">
+          <button class="icon-button" type="button" data-prev aria-label="Предыдущие отзывы" aria-controls="reviews-track"><img src="assets/carousel-prev.svg" alt=""></button>
+          <button class="icon-button" type="button" data-next aria-label="Следующие отзывы" aria-controls="reviews-track"><img src="assets/carousel-next.svg" alt=""></button>
+        </div>
+      </div>
+      <div class="carousel review-track" id="reviews-track" tabindex="0" aria-label="Карточки отзывов">
+        <article class="review-card">
+          <h3>Карина Долгушина</h3>
+          <p>Карина рассказала, что ребёнку вылечили зубы за один визит в медикаментозном сне. Семье понравилось, что команда подробно объяснила ход процедуры и помогла ребёнку чувствовать себя спокойно.</p>
+          <div class="review-meta">
+            <time datetime="06-21">21 июня</time>
+            <img src="assets/review-photo.jpg" alt="" loading="lazy" draggable="false">
+          </div>
+        </article>
+        <article class="review-card">
+          <h3>Дарья З.</h3>
+          <p>Приходила на профессиональную чистку. Дарья отметила внимательное отношение команды, детскую игровую зону и то, что после процедуры ей показали результат и дали рекомендации по уходу.</p>
+          <div class="review-meta"><time datetime="2026-02-28">28 февраля 2026</time></div>
+        </article>
+        <article class="review-card">
+          <h3>Князева А.</h3>
+          <p>Пришла на профгигиену по рекомендации. Врач объясняла каждый этап, а после чистки показала фотографии до и после и рассказала, как ухаживать за зубами дома.</p>
+          <div class="review-meta"><time datetime="2025-03-04">4 марта 2025</time></div>
+        </article>
+        <article class="review-card">
+          <h3>Юлия Николаева</h3>
+          <p>Юлия рассказала о лечении зубов дочери под наркозом. Семья оценила, что врач заранее объяснил, как пройдёт визит, и оставался рядом в комнате пробуждения.</p>
+          <div class="review-meta"><time datetime="2025-07-10">10 июля 2025</time></div>
+        </article>
+        <article class="review-card">
+          <h3>Евгения Коваленко</h3>
+          <p>Семья обратилась с травмой зубов у ребёнка. Администраторы связались утром, а врач заранее объяснил план лечения. Во время визита родителям рассказывали, как всё проходит.</p>
+          <div class="review-meta"><time datetime="2025-10-26">26 октября 2025</time></div>
+        </article>
+        <article class="review-card">
+          <h3>Liza P.</h3>
+          <p>Лиза боялась стоматологов, но на профессиональной чистке чувствовала себя спокойно. Во время процедуры врач объяснял свои действия, а в конце показал, на какие участки обращать внимание дома.</p>
+          <div class="review-meta"><time datetime="2025-09-06">6 сентября 2025</time></div>
+        </article>
+        <article class="review-card">
+          <h3>Мария</h3>
+          <p>После первого осмотра семье помогли спланировать лечение во сне. Мария особенно отметила игровую зону и то, что сын сам мог выбрать подарок после приёма.</p>
+          <div class="review-meta"><time datetime="2025-08-25">25 августа 2025</time></div>
+        </article>
+        <article class="review-card">
+          <h3>Александр</h3>
+          <p>Александр отметил современное оборудование и детский кабинет. До клиники ему было удобно добираться на трамвае. Вход он нашёл со стороны бизнес-центра.</p>
+          <div class="review-meta"><time datetime="2025-07-31">31 июля 2025</time></div>
+        </article>
+        <article class="review-card">
+          <h3>Islamovr</h3>
+          <p>Автор отзыва отметил, что ребёнок ушёл с приёма спокойным и с улыбкой. Семье запомнились терпение врача и то, как команда общалась с ребёнком.</p>
+          <div class="review-meta"><time datetime="2025-06-26">26 июня 2025</time></div>
+        </article>
+        <article class="review-card">
+          <h3>Анжелика</h3>
+          <p>Анжелика оценила работу врачей и ассистентов, внимание администраторов и чистоту в клинике. В отзыве она также отметила комфортную обстановку и приемлемые для неё цены.</p>
+          <div class="review-meta"><time datetime="2024-05-11">11 мая 2024</time></div>
+        </article>
+        <article class="review-card">
+          <h3>Лариса И.</h3>
+          <p>Лариса поблагодарила Дарью Ходыкину за внимательный осмотр и лечение. По словам пациентки, врач выяснила причину давно беспокоившей её боли.</p>
+          <div class="review-meta"><time datetime="2024-05-04">4 мая 2024</time></div>
+        </article>
+        <article class="review-card">
+          <h3>Дарья Григорьева</h3>
+          <p>Дарья рассказала, что ходит в клинику вместе с ребёнком. Ей запомнились внимание врача и ассистента на её приёме и терпение детского стоматолога.</p>
+          <div class="review-meta"><time datetime="2023-06-04">4 июня 2023</time></div>
+        </article>
+        <article class="review-card">
+          <h3>Ксения Кокозина</h3>
+          <p>Ксения хотела попасть к конкретному врачу. Администраторы записали её в лист ожидания и через несколько дней нашли время. На приёме врач сделал снимок и дал рекомендации.</p>
+          <div class="review-meta"><time datetime="2022-08-15">15 августа 2022</time></div>
+        </article>
+        <article class="review-card">
+          <h3>Елена Контарова</h3>
+          <p>Семья сначала приходила лечить дочке зубы, позднее здесь ей поставили брекеты. Елена отметила, что дочь стала охотнее ходить на приёмы, а администраторы заранее напоминают о записи.</p>
+          <div class="review-meta"><time datetime="2021-12-06">6 декабря 2021</time></div>
+        </article>
+      </div>
+      <a class="text-link deck-more" href="https://yandex.ru/maps/org/metelitsa/1132881772/reviews/" target="_blank" rel="noopener">Все отзывы</a>
+    </section>
+
+    <section class="section faq section-shell" id="faq" aria-labelledby="faq-title">
+      <div class="section-heading"><h2 id="faq-title">Частые вопросы</h2></div>
+      <div class="faq-list">
+        <details name="clinic-faq">
+          <summary>Можно ли записаться к определённому врачу?<span class="faq-icon" aria-hidden="true"></span></summary>
+          <p>Да, сообщите администратору, к какому специалисту хотите попасть. Вам помогут подобрать свободное время.</p>
+        </details>
+        <details name="clinic-faq">
+          <summary>Можно ли перенести запись?<span class="faq-icon" aria-hidden="true"></span></summary>
+          <p>Позвоните в клинику по номеру <a href="tel:+79313990580">+7 931 399 05 80</a>, и администратор поможет выбрать другое время.</p>
+        </details>
+        <details name="clinic-faq">
+          <summary>Можно ли обратиться по полису ДМС?<span class="faq-icon" aria-hidden="true"></span></summary>
+          <p>Посмотрите <a class="text-link" href="https://metelitsa-dent.ru/about/strahovye-kompanii/">список страховых компаний</a> и уточните у администратора условия по вашему полису.</p>
+        </details>
+        <details name="clinic-faq" id="tax-faq">
+          <summary>Возможен ли налоговый вычет?<span class="faq-icon" aria-hidden="true"></span></summary>
+          <p>На <a class="text-link" href="https://metelitsa-dent.ru/nalogovyy-vychet/">сайте клиники</a> указано, как запросить справку об оплате услуг для налогового вычета.</p>
+        </details>
+        <details name="clinic-faq">
+          <summary>Безопасно ли ставить коронки?<span class="faq-icon" aria-hidden="true"></span></summary>
+          <p>На консультации стоматолог оценит состояние зубов и объяснит, когда нужна коронка, какие есть материалы и какие риски важно учесть в вашем случае.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="section contacts section-shell" id="contacts" aria-labelledby="contacts-title">
+      <a class="map" href="https://yandex.ru/maps/org/metelitsa/1132881772/" target="_blank" rel="noopener" aria-label="Открыть клинику в Яндекс Картах">
+        <img class="cover" src="assets/map.png" alt="Карта проезда к клинике «Метелица»" loading="lazy">
+      </a>
+      <div class="contact-card">
+        <h2 id="contacts-title">Приходите знакомиться</h2>
+        <address>Санкт-Петербург,<br>БЦ «Обуховъ»,<br>проспект Обуховской Обороны,<br>дом 271 Ж</address>
+        <div class="contact-route">
+          <p>Построить маршрут</p>
+          <a class="text-link" href="https://yandex.ru/maps/2/saint-petersburg/?mode=routes&amp;rtext=59.848668%2C30.457634~59.852033%2C30.478653&amp;rtt=pd" target="_blank" rel="noopener">От метро Обухово</a>
+          <a class="text-link" href="https://yandex.ru/maps/2/saint-petersburg/?mode=routes&amp;rtext=~59.852033%2C30.478653&amp;rtt=mt" target="_blank" rel="noopener">Общественным транспортом</a>
+        </div>
+      </div>
+      <div class="mobile-routes">
+        <details>
+          <summary>Путь от метро Обухово <img src="assets/mobile-chevron.svg" alt=""></summary>
+          <p>В будни от метро «Обухово» ходит бесплатный автобус до бизнес-центра «Обуховъ». Поездка занимает несколько минут.</p>
+          <a class="text-link mobile-route-link" href="https://yandex.ru/maps/2/saint-petersburg/?mode=routes&amp;rtext=59.848668%2C30.457634~59.852033%2C30.478653&amp;rtt=pd" target="_blank" rel="noopener" aria-label="Построить маршрут на Яндекс Картах от метро Обухово">Построить маршрут на Яндекс Картах</a>
+        </details>
+        <details>
+          <summary>Общественным транспортом <img src="assets/mobile-chevron.svg" alt=""></summary>
+          <p>Трамваи № 24 и 27 останавливаются у БЦ «Обуховъ» на проспекте Обуховской Обороны, между станциями «Пролетарская» и «Рыбацкое».</p>
+          <a class="text-link mobile-route-link" href="https://yandex.ru/maps/2/saint-petersburg/?mode=routes&amp;rtext=~59.852033%2C30.478653&amp;rtt=mt" target="_blank" rel="noopener" aria-label="Построить маршрут на Яндекс Картах на общественном транспорте">Построить маршрут на Яндекс Картах</a>
+        </details>
+      </div>
+    </section>
+
+    <section class="section appointment section-shell" id="appointment" aria-labelledby="appointment-title">
+      <img class="cover appointment-photo" src="assets/visit.jpg" alt="" loading="lazy">
+      <div class="appointment-shade" aria-hidden="true"></div>
+      <div class="appointment-content">
+        <h2 id="appointment-title">Запись<br>на приём</h2>
+        <form id="appointment-form">
+          <p class="appointment-selection" id="appointment-selection" hidden></p>
+          <label class="field phone-field">
+            <span class="sr-only">Ваш номер телефона</span>
+            <input id="appointment-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 000 000 00 00" pattern="\+7 \d{3} \d{3} \d{2} \d{2}" required aria-label="Ваш номер телефона" aria-describedby="phone-hint">
+            <span class="phone-mask" aria-hidden="true">
+              <span data-mask-prefix>+7 000 000 00 00</span><span data-mask-tail></span><span class="required-mark">*</span>
+            </span>
+          </label>
+          <span id="phone-hint" class="sr-only">Введите десять цифр российского номера после +7.</span>
+          <label class="field name-field">
+            <span class="sr-only">Ваше имя</span>
+            <input id="appointment-name" name="name" autocomplete="given-name" placeholder="Имя" maxlength="100">
+          </label>
+          <div class="consent">
+            <input type="checkbox" id="appointment-consent" name="consent" required>
+            <div><label for="appointment-consent">Даю согласие на обработку персональных данных</label> <a class="text-link" href="https://metelitsa-dent.ru/agreement/" aria-label="Политика обработки персональных данных" target="_blank" rel="noopener">(?)</a></div>
+          </div>
+          <button class="button button-primary" type="submit" disabled>позвоните мне</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer section-shell">
+    <div class="footer-grid">
+      <div class="footer-card footer-contacts">
+        <div><a class="footer-phone" href="tel:+79313990580">+7 931 399 05 80</a><p>ежедневно с 9 до 21</p></div>
+        <div class="socials">
+          <a href="https://t.me/stom_metelitsa" aria-label="Метелица в Telegram" target="_blank" rel="noopener"><img src="assets/telegram-footer.svg" alt=""></a>
+          <a href="https://vk.com/detskaya_stomatologia_metelitsa" aria-label="Метелица ВКонтакте" target="_blank" rel="noopener"><img src="assets/vk-footer.svg" alt=""></a>
+        </div>
+      </div>
+      <div class="footer-card">
+        <a href="https://metelitsa-dent.ru/nalogovyy-vychet/">Налоговый вычет</a>
+        <a href="https://metelitsa-dent.ru/about/personal/">Сведения о медработниках</a>
+        <a href="https://metelitsa-dent.ru/about/license/">Документы и лицензия</a>
+        <a href="https://metelitsa-dent.ru/kontroliruyushchie-organy/">Контролирующие органы</a>
+        <a href="https://yandex.ru/maps/org/metelitsa/1132881772/reviews/">Оценить качество услуг</a>
+      </div>
+      <div class="footer-card">
+        <a href="https://metelitsa-dent.ru/search/">Поиск по сайту</a>
+        <a href="https://metelitsa-dent.ru/sitemap/">Карта сайта</a>
+        <button type="button" data-accessibility aria-pressed="false">Версия для слабовидящих</button>
+        <a href="https://metelitsa-dent.ru/about/vacancies/">Вакансии</a>
+        <a href="https://metelitsa-dent.ru/agreement/">Конфиденциальность</a>
+      </div>
     </div>
-    <a class="button header-book" href="#appointment">записаться</a>
+    <div class="footer-note">
+      <p>Информация на сайте носит справочный характер и не является публичной офертой</p>
+      <p>© 2012–2026 metelitsa-dent.ru</p>
+    </div>
+  </footer>
+
+  <div class="mobile-actions mobile-dock" aria-label="Быстрые действия">
+    <a class="button button-primary" href="#appointment" data-book>записаться на приём</a>
+    <a class="mobile-action-icon" href="https://t.me/stom_metelitsa" target="_blank" rel="noopener" aria-label="Написать в Telegram"><img src="assets/mobile-telegram.svg" alt=""></a>
+    <button class="mobile-action-icon" type="button" data-mobile-menu aria-label="Открыть меню" aria-haspopup="dialog" aria-expanded="false" aria-controls="mobile-navigation">
+      <img src="assets/mobile-menu.svg" alt="">
+    </button>
   </div>
-</header>
-<main id="main">
-  <section class="hero" id="home" aria-labelledby="hero-title">
-    <picture class="hero-picture"><source media="(max-width: 767px)" srcset="assets/hero-mobile.jpg"><img src="assets/hero.jpg" alt="Врач заботливо беседует с пациенткой в стоматологическом кресле" width="1920" height="966" fetchpriority="high"></picture>
-    <div class="hero-content container">
-      <div class="hero-meta">
-        <a class="rating-link" href="https://yandex.ru/maps/org/metelitsa/1132881772/reviews/" target="_blank" rel="noopener noreferrer" aria-label="Перейти к отзывам о Метелице на Яндексе">
-          <img class="yandex-icon" src="assets/yandex.png" width="24" height="24" alt="Яндекс"><span class="stars" aria-label="5 из 5"><img src="assets/star.svg" width="15" height="13" alt=""><img src="assets/star.svg" width="15" height="13" alt=""><img src="assets/star.svg" width="15" height="13" alt=""><img src="assets/star.svg" width="15" height="13" alt=""><img src="assets/star.svg" width="15" height="13" alt=""></span><span class="rating-tooltip" role="tooltip">перейти к отзывам <span aria-hidden="true">↗</span></span>
-        </a>
-        <a class="hero-address" href="#contacts"><span class="desktop-address">Санкт-Петербург, </span><span class="mobile-address">пр. </span>Обуховской обороны, 271</a>
+
+  <dialog class="mobile-menu" id="mobile-navigation" aria-label="Меню">
+    <span class="mobile-menu-handle" aria-hidden="true"></span>
+    <div class="mobile-menu-content">
+      <form class="mobile-search" role="search">
+        <input type="search" placeholder="поиск по сайту" aria-label="Поиск по сайту" autocomplete="off" enterkeyhint="search">
+        <button class="mobile-search-cancel" type="button" hidden>Готово</button>
+      </form>
+      <nav class="mobile-menu-links" aria-label="Разделы сайта">
+        <a href="#services">Услуги и цены</a>
+        <a href="#service-child" data-show-service="child">Детям</a>
+        <a href="#contacts">Контакты</a>
+        <a href="#service-sleep" data-show-service="sleep">Лечение во сне</a>
+        <a href="#doctors">Врачи</a>
+        <a href="https://metelitsa-dent.ru/nalogovyy-vychet/">Налоговый вычет</a>
+        <a href="#reviews">Отзывы</a>
+        <a href="#about">О клинике</a>
+      </nav>
+      <details class="mobile-accessibility">
+        <summary><img src="assets/mobile-eye.svg" alt=""> Для слабовидящих <img src="assets/mobile-eye-down.svg" alt=""></summary>
+        <div class="mobile-accessibility-controls">
+          <button type="button" data-large-text aria-pressed="false">Крупный текст</button>
+          <button type="button" data-accessibility aria-pressed="false">Высокий контраст</button>
+        </div>
+      </details>
+      <div class="mobile-search-results" hidden>
+        <p role="status"></p>
+        <ul></ul>
       </div>
-      <h1 id="hero-title">Стоматология, в&nbsp;которую хочется вернуться</h1>
     </div>
-  </section>
-  <div class="mobile-hero-meta container">
-      <div class="hero-meta">
-        <a class="rating-link" href="https://yandex.ru/maps/org/metelitsa/1132881772/reviews/" target="_blank" rel="noopener noreferrer" aria-label="Перейти к отзывам о Метелице на Яндексе">
-          <img class="yandex-icon" src="assets/yandex.png" width="24" height="24" alt="Яндекс"><span class="stars" aria-label="5 из 5"><img src="assets/star.svg" width="15" height="13" alt=""><img src="assets/star.svg" width="15" height="13" alt=""><img src="assets/star.svg" width="15" height="13" alt=""><img src="assets/star.svg" width="15" height="13" alt=""><img src="assets/star.svg" width="15" height="13" alt=""></span><span class="rating-tooltip" role="tooltip">перейти к отзывам <span aria-hidden="true">↗</span></span>
-        </a>
-        <a class="hero-address" href="#contacts"><span class="desktop-address">Санкт-Петербург, </span><span class="mobile-address">пр. </span>Обуховской обороны, 271</a>
+    <div class="mobile-actions mobile-menu-actions">
+      <a class="button button-primary" href="#appointment" data-book>записаться на приём</a>
+      <a class="mobile-action-icon" href="https://t.me/stom_metelitsa" target="_blank" rel="noopener" aria-label="Написать в Telegram"><img src="assets/mobile-telegram.svg" alt=""></a>
+      <form method="dialog">
+        <button class="mobile-action-icon mobile-action-close" type="submit" aria-label="Закрыть меню" autofocus><img src="assets/mobile-close.svg" alt=""></button>
+      </form>
+    </div>
+  </dialog>
+
+  <dialog class="detail-dialog mobile-booking" id="mobile-booking" aria-labelledby="appointment-title">
+    <form method="dialog"><button class="dialog-close icon-button" aria-label="Закрыть">×</button></form>
+  </dialog>
+
+  <dialog id="service-dialog" class="detail-dialog" aria-labelledby="service-dialog-title">
+    <form method="dialog"><button class="dialog-close icon-button" aria-label="Закрыть">×</button></form>
+    <img class="dialog-photo" alt="" data-dialog-image>
+    <div class="dialog-copy">
+      <h2 id="service-dialog-title"></h2>
+      <p data-dialog-description></p>
+      <div class="dialog-actions">
+        <a class="button button-primary" href="#appointment" data-service-book>Записаться</a>
+        <a class="text-link" data-service-link target="_blank" rel="noopener"></a>
       </div>
-  </div>
-  <section class="about container section" id="about" aria-labelledby="about-title">
-    <div class="about-photos" aria-live="off">
-      <img class="about-photo active" src="assets/about-1.jpg" width="1121" height="691" alt="Маленький пациент чувствует себя спокойно на приёме" data-about-photo="0" loading="lazy">
-      <img class="about-photo" src="assets/about-2-clean.jpg" width="1121" height="691" alt="Вход в стоматологию Метелица" data-about-photo="1" loading="lazy">
-      <img class="about-photo" src="assets/about-3-clean.jpg" width="1121" height="691" alt="Заботливая атмосфера нашей клиники" data-about-photo="2" loading="lazy">
     </div>
-    <div class="about-copy">
-      <div class="about-thumbnails" role="group" aria-label="Фотографии клиники">
-        <button class="thumbnail active" data-about-select="0" aria-label="Показать фотографию пациента" aria-pressed="true"><img src="assets/about-1.jpg" width="60" height="60" alt=""></button>
-        <button class="thumbnail" data-about-select="1" aria-label="Показать вход в клинику" aria-pressed="false"><img src="assets/about-2-thumb.jpg" width="60" height="60" alt=""></button>
-        <button class="thumbnail" data-about-select="2" aria-label="Показать атмосферу клиники" aria-pressed="false"><img src="assets/about-3-thumb.jpg" width="60" height="60" alt=""></button>
+  </dialog>
+
+  <dialog id="appointment-dialog" class="detail-dialog appointment-dialog" aria-labelledby="appointment-dialog-title">
+    <form method="dialog"><button class="dialog-close icon-button" aria-label="Закрыть">×</button></form>
+    <div class="dialog-copy">
+      <h2 id="appointment-dialog-title">Свяжитесь с клиникой</h2>
+      <p>Онлайн-отправка заявки пока не подключена. Для записи позвоните администратору или напишите в Telegram.</p>
+      <div class="dialog-actions">
+        <a class="button button-primary" href="tel:+79313990580">+7 931 399 05 80</a>
+        <a class="text-link" href="https://t.me/stom_metelitsa" target="_blank" rel="noopener">Написать в Telegram</a>
       </div>
-      <h2 id="about-title">Лечим с заботой<br>с 2007 года</h2>
-      <p>Мы знаем, что каждый приходит со своими ожиданиями и переживаниями, поэтому уделяем внимание не только результату лечения, но и тому, как проходит сам приём</p>
     </div>
-  </section>
-  <section class="services container section" id="services" aria-labelledby="services-title">
-    <div class="services-menu"><h2 id="services-title">Услуги</h2><div class="service-list" role="group" aria-label="Выберите услугу">
-      <button class="service-item active" data-service="0" aria-pressed="true"><span>Лечение под наркозом</span><img src="assets/service-arrow.svg" width="16" height="19" alt=""></button>
-      <button class="service-item" data-service="1" aria-pressed="false"><span>Первый приём ребёнка</span><img src="assets/service-arrow.svg" width="16" height="19" alt=""></button>
-      <button class="service-item" data-service="2" aria-pressed="false"><span>Терапия</span><img src="assets/service-arrow.svg" width="16" height="19" alt=""></button>
-      <button class="service-item" data-service="3" aria-pressed="false"><span>Протезирование</span><img src="assets/service-arrow.svg" width="16" height="19" alt=""></button>
-      <button class="service-item" data-service="4" aria-pressed="false"><span>Исправление прикуса</span><img src="assets/service-arrow.svg" width="16" height="19" alt=""></button>
-      <button class="service-item" data-service="5" aria-pressed="false"><span>Гигиена и профилактика</span><img src="assets/service-arrow.svg" width="16" height="19" alt=""></button>
-    </div><button class="text-link all-services" data-open-services>Смотреть все</button></div>
-    <div class="service-visual"><div class="service-photos">
-      <img class="service-photo active" data-service-photo="0" src="assets/service-sleep.jpg" width="1197" height="765" alt="Бережное лечение ребёнка с использованием седации" loading="lazy">
-      <img class="service-photo" data-service-photo="1" src="assets/about-1.jpg" width="1197" height="765" alt="Первый приём маленького пациента" loading="lazy">
-      <img class="service-photo" data-service-photo="2" src="assets/service-therapy.jpg" width="1197" height="765" alt="Осмотр зубов стоматологом" loading="lazy">
-      <img class="service-photo" data-service-photo="3" src="assets/service-prosthetics.jpg" width="1197" height="765" alt="Современный кабинет стоматологии" loading="lazy">
-      <img class="service-photo" data-service-photo="4" src="assets/service-braces.jpg" width="1197" height="765" alt="Прозрачная капа для исправления прикуса" loading="lazy">
-      <img class="service-photo" data-service-photo="5" src="assets/service-hygiene.jpg" width="1197" height="765" alt="Профилактика и забота о здоровье улыбки" loading="lazy">
-    </div><a class="button service-book" href="#appointment">записаться на приём</a></div>
-    <div class="mobile-services carousel-track" id="mobile-services" tabindex="0" aria-label="Услуги, прокручиваемый список"></div>
-    <button class="text-link mobile-services-all" data-open-services>Все услуги</button>
-  </section>
-  <section class="doctors container section carousel-section" id="doctors" aria-labelledby="doctors-title">
-    <div class="section-heading"><h2 id="doctors-title">Команда заботливых врачей</h2><div class="section-actions"><button class="text-link" data-all-doctors>Все врачи</button><div class="slider-arrows"><img src="assets/slider-arrows.svg" width="148" height="64" alt=""><button class="arrow-prev" data-carousel="doctors-track" data-direction="-1" aria-label="Предыдущий врач" disabled></button><button class="arrow-next" data-carousel="doctors-track" data-direction="1" aria-label="Следующий врач"></button></div></div></div>
-    <div class="carousel-track doctors-track" id="doctors-track" tabindex="0" role="region" aria-roledescription="карусель" aria-label="Команда врачей">
-      <article class="doctor-card"><div class="doctor-photo"><img src="assets/doctor-alexandra.jpg" width="502" height="502" alt="Сизонец Александра" loading="lazy" draggable="false"><a class="button doctor-book" href="#appointment" data-doctor="Сизонец Александра">записаться к врачу</a></div><div class="doctor-info"><h3>Сизонец Александра</h3><p>Главный врач, терапевт, хирург</p></div></article>
-      <article class="doctor-card"><div class="doctor-photo"><img src="assets/doctor-olga.jpg" width="502" height="502" alt="Маслёнок Ольга" loading="lazy" draggable="false"><a class="button doctor-book" href="#appointment" data-doctor="Маслёнок Ольга">записаться к врачу</a></div><div class="doctor-info"><h3>Маслёнок Ольга</h3><p>Терапевт, хирург</p></div></article>
-      <article class="doctor-card"><div class="doctor-photo"><img src="assets/doctor-alexey.jpg" width="502" height="502" alt="Алексей Патрушев" loading="lazy" draggable="false"><a class="button doctor-book" href="#appointment" data-doctor="Алексей Патрушев">записаться к врачу</a></div><div class="doctor-info"><h3>Алексей Патрушев</h3><p>Хирург</p></div></article>
-      <article class="doctor-card"><div class="doctor-photo"><img src="assets/doctor-4.png" width="502" height="502" alt="Марина Ковалёва" loading="lazy" draggable="false"><a class="button doctor-book" href="#appointment" data-doctor="Марина Ковалёва">записаться к врачу</a></div><div class="doctor-info"><h3>Марина Ковалёва</h3><p>Терапевт, хирург</p></div></article>
-      <article class="doctor-card"><div class="doctor-photo"><img src="assets/doctor-alexandra.jpg" width="502" height="502" alt="Елена Смирнова" loading="lazy" draggable="false"><a class="button doctor-book" href="#appointment" data-doctor="Елена Смирнова">записаться к врачу</a></div><div class="doctor-info"><h3>Елена Смирнова</h3><p>Главный врач, терапевт, хирург</p></div></article>
-      <article class="doctor-card"><div class="doctor-photo"><img src="assets/doctor-olga.jpg" width="502" height="502" alt="Ирина Лебедева" loading="lazy" draggable="false"><a class="button doctor-book" href="#appointment" data-doctor="Ирина Лебедева">записаться к врачу</a></div><div class="doctor-info"><h3>Ирина Лебедева</h3><p>Терапевт, хирург</p></div></article>
-      <article class="doctor-card"><div class="doctor-photo"><img src="assets/doctor-alexey.jpg" width="502" height="502" alt="Сергей Волков" loading="lazy" draggable="false"><a class="button doctor-book" href="#appointment" data-doctor="Сергей Волков">записаться к врачу</a></div><div class="doctor-info"><h3>Сергей Волков</h3><p>Хирург</p></div></article>
-      <article class="doctor-card"><div class="doctor-photo"><img src="assets/doctor-alexandra.jpg" width="502" height="502" alt="Анастасия Орлова" loading="lazy" draggable="false"><a class="button doctor-book" href="#appointment" data-doctor="Анастасия Орлова">записаться к врачу</a></div><div class="doctor-info"><h3>Анастасия Орлова</h3><p>Главный врач, терапевт, хирург</p></div></article>
-    </div><button class="text-link mobile-all" data-all-doctors>Все врачи</button>
-  </section>
-  <section class="reviews container section carousel-section" id="reviews" aria-labelledby="reviews-title">
-    <div class="section-heading"><h2 id="reviews-title">85% клиентов приходят по&nbsp;рекомендации</h2><div class="section-actions"><a class="text-link" href="https://yandex.ru/maps/org/metelitsa/1132881772/reviews/" target="_blank" rel="noopener noreferrer">Все отзывы</a><div class="slider-arrows"><img src="assets/slider-arrows.svg" width="148" height="64" alt=""><button class="arrow-prev" data-carousel="reviews-track" data-direction="-1" aria-label="Предыдущий отзыв" disabled></button><button class="arrow-next" data-carousel="reviews-track" data-direction="1" aria-label="Следующий отзыв"></button></div></div></div>
-    <div class="carousel-track reviews-track" id="reviews-track" tabindex="0" role="region" aria-roledescription="карусель" aria-label="Отзывы пациентов">
-      <article class="review-card"><h3>Наталья Иванова</h3><time datetime="2026-10-18">18 октября 2026</time><p>Пришли с сыном на первый приём и очень переживали, как всё пройдёт. Врач сначала познакомилась с ребёнком, показала инструменты и рассказала, что будет делать. Никто не торопил и не уговаривал через силу. После осмотра нам подробно объяснили, какие зубы требуют внимания, составили план и ответили на вопросы. Особенно понравилось, что с ребёнком разговаривали спокойно и уважительно. На следующий визит он шёл уже без страха. Администратор помогла подобрать время после школы, а перед приёмом напомнила о записи. Для нашей семьи это оказалось очень важно: теперь поход к стоматологу перестал быть событием, к которому нужно готовиться целую неделю. Спасибо за заботу и терпение!</p><div class="review-bottom"><img src="assets/review.jpg" width="90" height="90" alt="Фотография к черновому отзыву" loading="lazy" draggable="false"></div></article>
-      <article class="review-card"><h3>Ольга Соколова</h3><time datetime="2026-09-27">27 сентября 2026</time><p>Очень уютная клиника и внимательная команда. Записалась на профессиональную гигиену: всё сделали аккуратно, рассказали об уходе дома и помогли подобрать щётку. После приёма осталось приятное ощущение заботы.</p><div class="review-bottom"></div></article>
-      <article class="review-card"><h3>Дмитрий Кузнецов</h3><time datetime="2026-08-14">14 августа 2026</time><p>Долго откладывал лечение, поэтому на консультацию пришёл с большим списком вопросов. Врач внимательно выслушал, показал результаты осмотра и объяснил несколько возможных вариантов. Мы обсудили сроки, порядок посещений и стоимость каждого этапа. Мне было важно понимать, что происходит, и здесь я получил понятные ответы без сложных терминов. Во время лечения врач предупреждал о каждом действии, спрашивал, удобно ли мне, и давал время отдохнуть. Записываться на следующие визиты было удобно, администраторы помогали подобрать время с учётом рабочего графика. Рад, что наконец решился заняться зубами и нашёл место, где чувствую себя спокойно.</p><div class="review-bottom"><img src="assets/appointment.jpg" width="90" height="90" alt="Фотография к черновому отзыву" loading="lazy" draggable="false"></div></article>
-      <article class="review-card"><h3>Мария Алексеева</h3><time datetime="2026-07-02">2 июля 2026</time><p>Водим в «Метелицу» двоих детей. У каждого свой характер: старшая задаёт много вопросов, а младшему нужно время, чтобы освоиться. Врачи умеют найти подход к обоим. На приёме сначала всё показывают и объясняют, дают ребёнку почувствовать себя участником процесса. Нам подробно рассказали, как чистить зубы дома, на какие привычки обратить внимание и когда прийти на следующий осмотр. Очень нравится спокойная атмосфера без спешки. Можно задать любой вопрос и получить доброжелательный ответ. После посещения дети обсуждают не страх и боль, а то, какие интересные инструменты им показали. Для родителей это большая радость.</p><div class="review-bottom"><img src="assets/about-1.jpg" width="90" height="90" alt="Фотография к черновому отзыву" loading="lazy" draggable="false"></div></article>
-      <article class="review-card"><h3>Андрей Морозов</h3><time datetime="2026-05-23">23 мая 2026</time><p>Удобно добираться от метро, запись прошла быстро. Приём начался вовремя. Врач объяснил план лечения и подробно ответил на мои вопросы. Вернусь на профилактический осмотр.</p><div class="review-bottom"></div></article>
-      <article class="review-card"><h3>Екатерина Белова</h3><time datetime="2026-04-11">11 апреля 2026</time><p>Обратилась по рекомендации подруги и осталась довольна знакомством с клиникой. С самого начала было комфортно: администратор рассказала, как пройти, а врач на консультации внимательно расспросила о том, что меня беспокоит. Мы обсудили мои ожидания и составили последовательный план. Во время приёма можно было спокойно уточнять детали, никто не торопил. Понравилось, что рекомендации по домашнему уходу были конкретными и понятными. После лечения мне ещё раз объяснили, на что обращать внимание и когда лучше прийти на контроль. Чувствуется, что здесь стараются сделать каждый визит удобным для пациента.</p><div class="review-bottom"><img src="assets/service-hygiene.jpg" width="90" height="90" alt="Фотография к черновому отзыву" loading="lazy" draggable="false"></div></article>
-      <article class="review-card"><h3>Павел Никитин</h3><time datetime="2026-02-19">19 февраля 2026</time><p>Проходил несколько этапов лечения и могу отметить хорошую организацию. Всё заранее обсудили, помогли подобрать даты, а изменения в расписании согласовывали со мной. Врач подробно объяснял, что уже сделано и какие шаги предстоят. На приёмах было спокойно, можно было сделать паузу и задать вопросы. Особенно ценю внимательное отношение к деталям: перед началом уточняли самочувствие и комфорт, после рассказывали о рекомендациях. Теперь регулярно прихожу на осмотры и не откладываю их, как раньше. Спасибо всей команде за терпение и понятное общение.</p><div class="review-bottom"></div></article>
-      <article class="review-card"><h3>Анна Петрова</h3><time datetime="2025-12-08">8 декабря 2025</time><p>Приятно, когда в клинике помнят о твоих пожеланиях. Посещала врача несколько раз, и каждый приём проходил спокойно и последовательно. На консультации подробно разобрали мои вопросы, показали, что требует лечения, а что достаточно наблюдать. Мне понравилось, что план можно было обсудить и выбрать удобный темп. В кабинете чисто и уютно, администраторы доброжелательные. Отдельное спасибо за рекомендации по уходу: врач не просто перечислила средства, а объяснила, как ими пользоваться. После визита осталось ощущение, что о моём комфорте действительно позаботились.</p><div class="review-bottom"><img src="assets/review.jpg" width="90" height="90" alt="Фотография к черновому отзыву" loading="lazy" draggable="false"></div></article>
-    </div><a class="text-link mobile-all" href="https://yandex.ru/maps/org/metelitsa/1132881772/reviews/" target="_blank" rel="noopener noreferrer">Все отзывы</a>
-  </section>
-  <section class="faq container section" id="faq" aria-labelledby="faq-title"><h2 id="faq-title">Частые вопросы</h2><div class="faq-list">
-    <details><summary>Можно ли записаться к определённому врачу?<span class="faq-chevron"><img class="closed-chevron" src="assets/chevron-down.svg" width="23" height="13" alt=""><img class="open-chevron" src="assets/chevron-up.svg" width="23" height="13" alt=""></span></summary><p>Да, сообщите администратору, к какому специалисту хотите попасть. Вам помогут подобрать свободное время.</p></details>
-    <details><summary>Можно ли перенести запись?<span class="faq-chevron"><img class="closed-chevron" src="assets/chevron-down.svg" width="23" height="13" alt=""><img class="open-chevron" src="assets/chevron-up.svg" width="23" height="13" alt=""></span></summary><p>Да. Позвоните нам по номеру <a href="tel:+79313990580">+7 931 399 05 80</a>, и администратор подберёт другое удобное время. Пожалуйста, предупредите нас заранее.</p></details>
-    <details><summary>Можно ли обратиться по полису ДМС?<span class="faq-chevron"><img class="closed-chevron" src="assets/chevron-down.svg" width="23" height="13" alt=""><img class="open-chevron" src="assets/chevron-up.svg" width="23" height="13" alt=""></span></summary><p>Условия приёма зависят от вашей страховой программы. Свяжитесь с администратором: мы поможем уточнить возможность лечения по вашему полису.</p></details>
-    <details><summary>Возможен ли налоговый вычет?<span class="faq-chevron"><img class="closed-chevron" src="assets/chevron-down.svg" width="23" height="13" alt=""><img class="open-chevron" src="assets/chevron-up.svg" width="23" height="13" alt=""></span></summary><p>Да, вы можете оформить социальный налоговый вычет за лечение. Администратор расскажет, какие документы нужны, и подготовит справку.</p></details>
-    <details><summary>Безопасно ли ставить коронки?<span class="faq-chevron"><img class="closed-chevron" src="assets/chevron-down.svg" width="23" height="13" alt=""><img class="open-chevron" src="assets/chevron-up.svg" width="23" height="13" alt=""></span></summary><p>Решение о восстановлении зуба коронкой врач принимает после диагностики. На консультации мы объясним показания, этапы лечения и подходящие материалы.</p></details>
-  </div></section>
-  <section class="contacts container section" id="contacts" aria-labelledby="contacts-title"><h2 id="contacts-title">Приходите знакомиться</h2><div class="contacts-grid"><div class="contact-card"><address>Санкт-Петербург,<br>БЦ «Обуховъ»,<br>Проспект Обуховской Обороны,<br>дом 271 Ж</address><div class="directions"><p>Построить маршрут</p><a class="text-link" href="https://yandex.ru/maps/?rtext=59.8498,30.4571~59.852033,30.478653&rtt=pd" target="_blank" rel="noopener noreferrer">От метро Обухово</a><a class="text-link" href="https://yandex.ru/maps/?rtext=~59.852033,30.478653&rtt=mt" target="_blank" rel="noopener noreferrer">Общественным транспортом</a></div></div><a class="map-mask" href="https://yandex.ru/maps/org/metelitsa/1132881772/" target="_blank" rel="noopener noreferrer" aria-label="Открыть Метелицу на Яндекс Картах"><picture><source media="(max-width: 767px)" srcset="assets/map-mobile.jpg"><img src="assets/map.jpg" width="1162" height="605" alt="Расположение клиники Метелица на карте Санкт-Петербурга" loading="lazy"></picture><span class="map-hint">открыть на карте ↗</span></a></div></section>
-  <section class="appointment container section" id="appointment" aria-labelledby="appointment-title"><img class="appointment-photo" src="assets/appointment.jpg" width="1167" height="755" alt="Светлый кабинет с современным стоматологическим оборудованием" loading="lazy"><div class="appointment-content"><h2 id="appointment-title">Записаться<br>на приём</h2><form id="appointment-form"><p class="selected-doctor" id="selected-doctor" hidden></p><label class="field"><span class="sr-only">Ваш телефон, обязательное поле</span><input type="tel" name="phone" id="appointment-phone" placeholder="+7 000 000 00 00 *" autocomplete="tel" inputmode="tel" required pattern="\+?[0-9\s\(\)\-]{10,22}" maxlength="22"></label><label class="field"><span class="sr-only">Ваше имя</span><input type="text" name="name" id="appointment-name" required placeholder="Имя" autocomplete="given-name" maxlength="60"></label><label class="consent"><input type="checkbox" name="consent" required><span>Даю согласие на <button type="button" class="inline-link" data-privacy>обработку персональных данных</button></span></label><button class="button" type="submit" disabled>позвоните мне</button></form></div></section>
-</main>
-<footer class="footer container" id="footer"><div class="footer-grid"><div class="footer-card footer-contact"><div><a class="footer-phone" href="tel:+79313990580">+7 931 399 05 80</a><p>Работаем с 9 до 21</p></div><div class="socials"><button data-contact-channel="Telegram" aria-label="Связаться с клиникой в Telegram"><img src="assets/telegram.svg" width="40" height="40" alt="Telegram"></button><button data-contact-channel="ВКонтакте" aria-label="Связаться с клиникой во ВКонтакте"><img src="assets/vk.svg" width="40" height="40" alt="ВКонтакте"></button></div></div><div class="footer-card footer-links"><button data-info="Налоговый вычет">Налоговый вычет</button><a href="#doctors">Сведения о медработниках</a><button data-info="Документы и лицензия">Документы и лицензия</button><button data-info="Контролирующие органы">Контролирующие органы</button><a href="https://yandex.ru/maps/org/metelitsa/1132881772/reviews/" target="_blank" rel="noopener noreferrer">Оценить качество услуг</a></div><div class="footer-card footer-links"><button data-open-search>Поиск по сайту</button><button data-sitemap>Карта сайта</button><button id="accessibility-toggle" aria-pressed="false">Версия для слабовидящих</button><button data-info="Вакансии">Вакансии</button><button data-privacy>Конфиденциальность</button></div></div><div class="footer-legal"><p>Информация на сайте носит справочный характер и не является публичной офертой</p><p>© 2012–2026 metelitsa-dent.ru</p></div></footer>
-<nav class="mobile-dock" aria-label="Быстрые действия"><a class="button" href="#appointment">записаться</a><button class="dock-icon" data-contact-channel="сообщение" aria-label="Написать в клинику"><img src="assets/message.svg" width="52" height="52" alt=""></button><a class="dock-icon phone-dock" href="tel:+79313990580" aria-label="Позвонить в клинику"><img src="assets/phone.png" width="24" height="24" alt=""></a><button class="dock-icon" id="mobile-menu-toggle" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobile-menu"><img src="assets/menu.svg" width="53" height="52" alt=""></button></nav>
-<dialog class="mobile-menu" id="mobile-menu"><div class="dialog-heading"><img src="assets/logo.png" width="160" height="29" alt="Метелица"></div><nav aria-label="Мобильная навигация"><a href="#services">Услуги и цены </a><a href="#about">О клинике </a><a href="#doctors">Наши врачи </a><a href="#reviews">Отзывы </a><a href="#faq">Частые вопросы </a><a href="#contacts">Контакты </a></nav><div class="search-box"><label class="sr-only" for="mobile-search">Поиск по сайту</label><input class="site-search" id="mobile-search" type="search" placeholder="Поиск по сайту" autocomplete="off"><div class="search-results" aria-live="polite"></div></div><a class="menu-phone" href="tel:+79313990580">+7 931 399 05 80</a><p>Работаем с 9 до 21</p></dialog>
-<dialog class="content-dialog" id="content-dialog"><div class="dialog-heading"><h2 id="dialog-title"></h2><button class="close-button" data-close-dialog aria-label="Закрыть окно">×</button></div><div id="dialog-content"></div></dialog>
-<dialog class="content-dialog search-dialog" id="search-dialog"><div class="dialog-heading"><h2>Поиск по сайту</h2><button class="close-button" data-close-dialog aria-label="Закрыть поиск">×</button></div><div class="search-box"><label class="sr-only" for="dialog-search">Что вас интересует?</label><input class="site-search" id="dialog-search" type="search" placeholder="Поиск по сайту" autocomplete="off"><div class="search-results" aria-live="polite"></div></div></dialog>
+  </dialog>
 </body>
 </html>
