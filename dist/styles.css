@@ -316,7 +316,7 @@ address { font-style: normal; }
   transition: background-color .16s, opacity .16s;
 }
 .carousel-controls .icon-button:not(:disabled):hover { background: var(--panel); }
-.carousel-controls .icon-button:disabled { opacity: .45; cursor: default; }
+.carousel-controls .icon-button:disabled { opacity: .1; cursor: default; }
 .carousel-controls img { inline-size: max(9px, calc(13 * var(--unit))); }
 .carousel {
   display: grid;
@@ -1023,7 +1023,7 @@ address { font-style: normal; }
   overflow: hidden;
   background: var(--photo-background);
 }
-.treatment-hero-media img { object-position: center; }
+.treatment-hero-media img { object-position: 65% center; }
 
 .treatment-layout {
   margin-block-start: max(52px, calc(95 * var(--unit)));
@@ -1063,21 +1063,37 @@ address { font-style: normal; }
   padding-inline: 0 var(--edge);
   scroll-padding-inline: 0 var(--edge);
 }
-.treatment-prices summary { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; }
-.treatment-price { font-weight: 500; white-space: nowrap; }
+.treatment-prices {
+  --price-summary-gap: 16px;
+  --price-arrow-width: max(17px, calc(23 * var(--unit)));
+}
+.treatment-prices summary {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto var(--price-arrow-width);
+  column-gap: var(--price-summary-gap);
+}
+.treatment-price { margin-inline-end: 10px; font-weight: 500; white-space: nowrap; }
+.treatment-price, .treatment-price-body dd { font-variant-numeric: tabular-nums; }
+.treatment-prices .faq-icon { inline-size: var(--price-arrow-width); }
+.treatment-price-body, .treatment-prices details > p { font-weight: 400; }
 .treatment-price-body {
   display: grid;
   grid-template-columns: minmax(0, .9fr) minmax(0, 1fr);
   gap: var(--inside);
   padding: 0 var(--inside) var(--inside);
+  padding-inline-end: calc(var(--inside) + var(--price-arrow-width) + var(--price-summary-gap) + 10px);
   font-size: var(--body);
 }
 .treatment-price-body dl { display: grid; gap: max(6px, calc(14 * var(--unit))); margin: 0; }
-.treatment-price-body dl div { display: flex; justify-content: space-between; gap: 10px; }
-.treatment-price-body dd { margin: 0; white-space: nowrap; }
+.treatment-price-body dl div { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 10px; }
+.treatment-price-body dd { margin: 0; margin-inline-start: auto; white-space: nowrap; }
 .treatment-content .appointment { min-block-size: max(420px, calc(626 * var(--unit))); }
-.treatment-page .appointment-photo { inset: 0; width: 100%; height: 100%; object-position: center; }
+.treatment-page .appointment-photo { inset: 0; width: 100%; height: 100%; object-position: 65% center; }
 .treatment-page .appointment-content { inline-size: min(100%, max(285px, calc(368 * var(--unit)))); }
+
+@media (min-width: 781px) {
+  .treatment-about { padding-block-start: 30px; }
+}
 
 @media (max-width: 1080px) {
   .treatment-intro h1 { max-inline-size: none; }
@@ -1123,5 +1139,5 @@ address { font-style: normal; }
     padding-inline: var(--edge);
     scroll-padding-inline: var(--edge);
   }
-  .treatment-prices summary { column-gap: 9px; }
+  .treatment-prices { --price-summary-gap: 9px; }
 }
