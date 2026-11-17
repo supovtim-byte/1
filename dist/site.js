@@ -196,6 +196,21 @@ if (treatmentNav) {
     activeLink?.removeAttribute("aria-current");
     current?.setAttribute("aria-current", "location");
     activeLink = current;
+    revealActiveLink();
+  }
+
+  function revealActiveLink() {
+    if (!activeLink) return;
+    const navBox = treatmentNav.getBoundingClientRect();
+    const linkBox = activeLink.getBoundingClientRect();
+    const behavior = reduceMotion.matches ? "instant" : "smooth";
+    if (horizontalNav.matches) {
+      if (linkBox.left < navBox.left || linkBox.right > navBox.right) {
+        treatmentNav.scrollTo({ left: treatmentNav.scrollLeft + linkBox.left - navBox.left - 10, behavior });
+      }
+    } else if (linkBox.top < navBox.top || linkBox.bottom > navBox.bottom) {
+      treatmentNav.scrollTo({ top: treatmentNav.scrollTop + linkBox.top - navBox.top - 20, behavior });
+    }
   }
 
   function scheduleActiveSection() {
@@ -205,7 +220,10 @@ if (treatmentNav) {
   }
 
   window.addEventListener("scroll", scheduleActiveSection, { passive: true });
-  window.addEventListener("resize", scheduleActiveSection);
+  window.addEventListener("resize", () => {
+    scheduleActiveSection();
+    revealActiveLink();
+  });
   new ResizeObserver(scheduleActiveSection).observe(document.querySelector(".treatment-content"));
   updateActiveSection();
 }
@@ -458,8 +476,8 @@ function enableCarousel(section) {
 }
 
 const doctorTrack = document.querySelector("#doctors-track");
-const originalDoctorCards = [...doctorTrack.children];
-for (let copy = 0; copy < (Number(doctorTrack.dataset.repeat) || 0); copy++) {
+const originalDoctorCards = [...(doctorTrack?.children ?? [])];
+for (let copy = 0; copy < (Number(doctorTrack?.dataset.repeat) || 0); copy++) {
   doctorTrack.append(...originalDoctorCards.map(card => card.cloneNode(true)));
 }
 
@@ -647,7 +665,10 @@ const searchCatalog = [
     service: link.dataset.showService
   })),
   ...serviceOptions.map(option => ({ title: option.textContent.trim(), href: "#" + option.id, service: option.dataset.service })),
-  { title: "Частые вопросы", href: "#faq" }
+  ...[...document.querySelectorAll(".prices-list dt")].map(item => ({
+    title: item.textContent.trim(), href: "#" + item.closest(".prices-category").id
+  })),
+  { title: "Частые вопросы", href: document.querySelector("#faq") ? "#faq" : "index.html#faq" }
 ];
 
 function normalizeSearch(value) {
