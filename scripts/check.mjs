@@ -5,8 +5,10 @@ const root = path.resolve(import.meta.dirname, '../dist');
 const pages = new Map(fs.readdirSync(root).filter(file => file.endsWith('.html'))
   .map(file => [file, fs.readFileSync(path.join(root, file), 'utf8')]));
 const html = pages.get('index.html');
-const css = fs.readFileSync(path.join(root, 'styles.css'), 'utf8');
-const js = fs.readFileSync(path.join(root, 'site.js'), 'utf8');
+const css = fs.readdirSync(root).filter(file => file.endsWith('.css'))
+  .map(file => fs.readFileSync(path.join(root, file), 'utf8')).join('\n');
+const js = fs.readdirSync(root).filter(file => file.endsWith('.js'))
+  .map(file => fs.readFileSync(path.join(root, file), 'utf8')).join('\n');
 const allHtml = [...pages.values()].join('\n');
 const references = [...new Set([...`${allHtml}\n${css}\n${js}`.matchAll(/assets\/[a-z0-9-]+\.(?:svg|png|jpg|ttf)/g)].map(match => match[0]))];
 for (const reference of references) assert.ok(fs.statSync(path.join(root,reference)).size > 0, `Missing or empty resource: ${reference}`);
