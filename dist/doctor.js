@@ -1,75 +1,32 @@
-// The production page uses the shrinking portrait. ?preview=motion exposes both options.
+// Reveal the sidebar only after the hero portrait has left the viewport.
 const doctorPage = document.querySelector('.doctor-page');
-const motionQuery = new URLSearchParams(location.search);
 const doctorMotion = window.matchMedia('(min-width: 901px)');
-const doctorReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const heroSlot = document.querySelector('.doctor-hero-slot');
-const portraitTarget = document.querySelector('.doctor-portrait-target');
 const doctorLayout = document.querySelector('.doctor-layout');
-const motionPreview = document.querySelector('.doctor-motion-preview');
-const motionRadios = [...motionPreview.querySelectorAll('input')];
-const previewMode = motionQuery.get('motion') === 'fade' ? 'fade' : 'shrink';
-doctorPage.dataset.doctorMotion = previewMode;
-motionRadios.forEach(radio => { radio.checked = radio.value === previewMode; });
-motionPreview.hidden = motionQuery.get('preview') !== 'motion';
 
 let portraitFrame = 0;
-let portraitGeometry;
-const clampProgress = value => Math.max(0, Math.min(1, value));
+let portraitRevealAt = Infinity;
+const portraitRevealGap = 32;
 
 function measurePortrait() {
-  const slot = heroSlot.getBoundingClientRect();
-  const stickyTop = Number.parseFloat(getComputedStyle(portraitTarget.parentElement).top);
-  portraitGeometry = {
-    left: slot.left, top: slot.top + scrollY, width: slot.width, height: slot.height,
-    end: Math.max(1, doctorLayout.getBoundingClientRect().top + scrollY - stickyTop),
-    startRadius: Number.parseFloat(getComputedStyle(heroSlot).borderTopLeftRadius),
-    endRadius: Number.parseFloat(getComputedStyle(portraitTarget).borderTopLeftRadius)
-  };
+  portraitRevealAt = heroSlot.getBoundingClientRect().bottom + scrollY + portraitRevealGap;
   schedulePortrait();
 }
 
 function renderPortrait() {
   portraitFrame = 0;
-  const enabled = doctorMotion.matches && !doctorReducedMotion.matches;
-  doctorPage.classList.toggle('doctor-motion-ready', enabled);
-  if (!enabled || !portraitGeometry) return;
-  const target = portraitTarget.getBoundingClientRect();
-  const progress = clampProgress(scrollY / portraitGeometry.end);
-  doctorPage.classList.toggle('doctor-card-visible', progress > .72);
-  if (doctorPage.dataset.doctorMotion !== 'shrink') return;
-  const mix = (from, to) => from + (to - from) * progress;
-  const values = {
-    x: mix(portraitGeometry.left, target.left),
-    y: mix(portraitGeometry.top - scrollY, target.top),
-    width: mix(portraitGeometry.width, target.width),
-    height: mix(portraitGeometry.height, target.height),
-    radius: mix(portraitGeometry.startRadius, portraitGeometry.endRadius)
-  };
-  for (const [key, value] of Object.entries(values)) doctorPage.style.setProperty('--portrait-' + key, value + 'px');
-  doctorPage.style.setProperty('--portrait-caption', clampProgress((progress - .7) / .3));
+  doctorPage.classList.toggle('doctor-motion-ready', doctorMotion.matches);
+  doctorPage.classList.toggle('doctor-card-visible', doctorMotion.matches && scrollY >= portraitRevealAt);
 }
 
 function schedulePortrait() {
   if (!portraitFrame) portraitFrame = requestAnimationFrame(renderPortrait);
 }
 
-motionRadios.forEach(radio => radio.addEventListener('change', () => {
-  doctorPage.dataset.doctorMotion = radio.value;
-  const url = new URL(location.href);
-  url.searchParams.set('motion', radio.value);
-  history.replaceState(null, '', url);
-  measurePortrait();
-}));
-document.querySelector('[data-replay-motion]').addEventListener('click', () => {
-  window.scrollTo({top: 0, behavior: 'instant'});
-  schedulePortrait();
-});
 window.addEventListener('scroll', schedulePortrait, {passive: true});
 window.addEventListener('resize', measurePortrait, {passive: true});
 window.addEventListener('pageshow', measurePortrait);
 doctorMotion.addEventListener('change', measurePortrait);
-doctorReducedMotion.addEventListener('change', measurePortrait);
 new ResizeObserver(measurePortrait).observe(doctorLayout);
 document.fonts.ready.then(measurePortrait);
 measurePortrait();

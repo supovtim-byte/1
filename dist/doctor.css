@@ -78,24 +78,9 @@
 .doctor-appointment .consent input:focus-visible { outline-color: var(--link-hover); }
 .doctor-page .site-footer { margin-block-start: max(70px, calc(120 * var(--unit))); }
 
-.doctor-motion-preview { position: fixed; inset: auto 20px 20px auto; z-index: 8; display: flex; flex-wrap: wrap; gap: 12px; max-inline-size: 380px; margin: 0; padding: 12px 18px 16px; border: 1px solid var(--panel); border-radius: 20px; background: var(--white); box-shadow: 0 4px 24px rgb(17 61 80 / 10%); font-size: 13px; }
-.doctor-motion-preview[hidden] { display: none; }
-.doctor-motion-preview legend { padding-inline: 6px; background: var(--white); border-radius: 6px; }
-.doctor-motion-preview label { cursor: pointer; }
-.doctor-motion-preview input { accent-color: var(--link); }
-.doctor-motion-preview button { flex-basis: 100%; text-align: start; }
-
 @media (min-width: 901px) {
-  .doctor-motion-ready[data-doctor-motion="shrink"] .doctor-hero-media {
-    position: fixed; inset: 0 auto auto 0; z-index: 2;
-    inline-size: var(--portrait-width); block-size: var(--portrait-height);
-    transform: translate3d(var(--portrait-x), var(--portrait-y), 0); border-radius: var(--portrait-radius);
-    pointer-events: none; will-change: transform, width, height;
-  }
-  .doctor-motion-ready[data-doctor-motion="shrink"] .doctor-portrait-target img { visibility: hidden; }
-  .doctor-motion-ready[data-doctor-motion="shrink"] .doctor-caption { opacity: var(--portrait-caption, 0); }
-  .doctor-motion-ready[data-doctor-motion="fade"] .doctor-sticky { opacity: 0; transform: translateY(20px); transition: opacity .5s ease, transform .5s var(--ease-out); }
-  .doctor-motion-ready[data-doctor-motion="fade"].doctor-card-visible .doctor-sticky { opacity: 1; transform: none; }
+  .doctor-motion-ready .doctor-sticky { visibility: hidden; opacity: 0; transform: translateY(12px); transition: opacity .85s ease-in-out, transform .85s var(--ease-out); }
+  .doctor-motion-ready.doctor-card-visible .doctor-sticky { visibility: visible; opacity: 1; transform: none; }
 }
 @media (max-width: 1100px) {
   .doctor-intro h1 { max-inline-size: none; }
@@ -111,18 +96,17 @@
   .doctor-layout { display: block; margin-inline: var(--doctor-edge); }
   .doctor-sidebar { display: none; }
   .doctor-about p { max-inline-size: none; }
-  .doctor-motion-preview { display: none; }
 }
 @media (max-width: 600px) {
   .doctor-page { --doctor-edge: calc(20 * var(--mobile-unit)); }
   .doctor-hero { position: relative; display: flex; flex-direction: column; gap: 30px; padding-block-start: 91px; }
   .doctor-intro { padding: 0 calc(5 * var(--mobile-unit)); }
   .doctor-brand img { filter: none; }
-  .doctor-intro .treatment-back { margin-block-end: 18px; }
+  .doctor-intro .treatment-back { margin-block-end: 18px; padding-inline-start: 0; }
   .doctor-intro h1 { max-inline-size: 100%; font-size: clamp(30px, 9.167vw, 44px); }
   .doctor-specialty { margin-block-start: 20px; }
   .doctor-specialty p + p { margin-block-start: 4px; }
-  .doctor-intro .button { margin-block-start: 24px; }
+  .doctor-intro .button { display: none; }
   .doctor-hero-slot { flex: none; inline-size: 100%; aspect-ratio: 1.1; min-block-size: 0; }
   .doctor-layout { margin-block-start: 55px; }
   .doctor-about, .doctor-education, .doctor-directions, .doctor-reviews { padding: 0; }
