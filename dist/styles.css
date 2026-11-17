@@ -693,9 +693,8 @@ address { font-style: normal; }
   .hero-screen { display: block; height: auto; padding: 0; }
   .hero {
     display: block;
-    min-block-size: max(425px, 100svh + 26px);
-    min-block-size: max(425px, 100dvh + 26px);
-    padding: clamp(96px, 17.22svh, 132px) var(--inside) 100px;
+    min-block-size: max(425px, calc(var(--initial-viewport-height, 100svh) + 26px));
+    padding: clamp(96px, calc(var(--initial-viewport-height, 100svh) * .1722), 132px) var(--inside) 100px;
     border-radius: 0 0 var(--mobile-radius) var(--mobile-radius);
   }
   .hero-photo { object-position: 86% center; }
@@ -1123,8 +1122,7 @@ address { font-style: normal; }
     grid-template-rows: auto minmax(180px, 1fr);
     row-gap: 30px;
     min-block-size: min-content;
-    block-size: calc(100svh - var(--treatment-dock-control-size) - var(--treatment-dock-bottom-padding) - var(--dock-safe-area) - var(--edge));
-    block-size: calc(100dvh - var(--treatment-dock-control-size) - var(--treatment-dock-bottom-padding) - var(--dock-safe-area) - var(--edge));
+    block-size: calc(var(--initial-viewport-height, 100svh) - var(--treatment-dock-control-size) - var(--treatment-dock-bottom-padding) - var(--dock-safe-area) - var(--edge));
     padding-block: 91px 0;
   }
   .treatment-intro { gap: 0; padding-inline: calc(5 * var(--mobile-unit)); }

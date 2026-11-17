@@ -1,3 +1,6 @@
+// Keep mobile hero images stable when browser chrome changes the viewport.
+document.documentElement.style.setProperty("--initial-viewport-height", window.innerHeight + "px");
+
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const mobileLayout = window.matchMedia("(max-width: 600px)");
 const clinicPhone = "+7 931 399 05 80";
