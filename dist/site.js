@@ -673,6 +673,16 @@ const searchCatalog = [
     service: link.dataset.showService
   })),
   ...serviceOptions.map(option => ({ title: option.textContent.trim(), href: "#" + option.id, service: option.dataset.service })),
+  ...[...document.querySelectorAll(".doctors-grid .doctor-card")].map(card => ({
+    title: card.querySelector("h2").textContent.trim() + " — " + card.querySelector("p").textContent.trim(),
+    href: "doctors.html#" + card.id
+  })),
+  ...[...document.querySelectorAll(".direction-card")].map(card => ({
+    title: card.querySelector("h2").textContent.trim(), href: "uslugi.html#" + card.id
+  })),
+  ...[...document.querySelectorAll(".direction-details a")].map(link => ({
+    title: link.textContent.trim(), href: link.getAttribute("href")
+  })),
   ...[...document.querySelectorAll(".prices-service-link")].map(item => ({
     title: item.textContent.trim(), href: "#" + item.closest(".prices-category").id
   })),

@@ -1,0 +1,162 @@
+/* Catalogs share the site's typography, surfaces, booking form and navigation. */
+.catalog-page { --catalog-gap: clamp(14px, 1.5vw, 28px); }
+.catalog-heading {
+  position: relative;
+  padding: max(112px, calc(170 * var(--unit))) var(--inside) 0;
+}
+.catalog-heading h1 {
+  font-size: var(--display);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -.04em;
+}
+.catalog-heading > p {
+  max-inline-size: 44ch;
+  margin-block-start: 22px;
+  font-size: var(--large);
+  color: var(--muted);
+}
+.catalog-toolbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px 24px;
+  margin-block: 32px 0;
+}
+.catalog-filters { display: flex; flex-wrap: wrap; gap: 8px; }
+.catalog-filters[hidden] { display: none; }
+.catalog-filter {
+  min-block-size: 44px;
+  padding: 10px 18px 12px;
+  border-radius: 999px;
+  background: var(--panel);
+  transition: background-color .18s ease, color .18s ease;
+}
+.catalog-filter:hover { background: var(--field); }
+.catalog-filter[aria-pressed="true"] { color: var(--white); background: var(--ink); }
+.catalog-count { color: var(--muted); white-space: nowrap; }
+.catalog-grid { margin-block-start: clamp(30px, 3vw, 56px); }
+.doctors-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 42px var(--catalog-gap);
+}
+.doctors-grid > [hidden] { display: none; }
+.doctors-grid .doctor-card { min-inline-size: 0; }
+.doctors-grid .doctor-photo { position: relative; overflow: hidden; }
+.doctors-grid .doctor-photo > img { object-fit: contain; }
+.doctors-grid .doctor-profile-photo img { object-fit: contain; }
+.doctors-grid .doctor-card h2 {
+  margin-block-start: 18px;
+  padding-inline: 12px;
+  font-size: max(18px, calc(26 * var(--unit)));
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: -.02em;
+}
+.doctors-grid .doctor-card p {
+  padding-inline: 12px;
+  margin-block-start: 6px;
+  font-size: max(14px, calc(18 * var(--unit)));
+}
+.catalog-book {
+  color: var(--link-hover);
+  background: var(--page);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(5px);
+  min-block-size: 44px;
+}
+.doctors-grid .catalog-book { position: absolute; inset: auto 16px 16px; }
+.doctor-card:focus-within .catalog-book,
+.direction-card:focus-within .catalog-book {
+  opacity: 1;
+  pointer-events: auto;
+  transform: none;
+}
+@media (hover: hover) {
+  .doctor-card:hover .catalog-book,
+  .direction-card:hover .catalog-book {
+    opacity: 1;
+    pointer-events: auto;
+    transform: none;
+  }
+}
+.catalog-book:hover, .catalog-book:focus-visible { color: var(--white); background: var(--link-hover); }
+.directions-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: start;
+  gap: var(--catalog-gap);
+}
+.direction-card {
+  min-inline-size: 0;
+  border-radius: var(--radius);
+  background: var(--panel);
+  overflow: hidden;
+}
+.direction-photo { inline-size: 100%; aspect-ratio: 1.8; object-fit: cover; }
+.direction-copy { display: flex; flex-direction: column; padding: clamp(22px, 2vw, 38px); }
+.direction-copy h2 {
+  min-block-size: 2.4em;
+  font-size: max(24px, calc(34 * var(--unit)));
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -.03em;
+}
+.direction-copy > p { min-block-size: 3em; margin-block-start: 14px; font-size: max(15px, var(--body)); color: var(--muted); }
+.direction-details { margin-block-start: 24px; border-block-start: 1px solid rgb(17 61 80 / 12%); }
+.direction-details summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-block-size: 58px;
+  list-style: none;
+  cursor: pointer;
+  font-size: max(15px, var(--body));
+}
+.direction-details summary::-webkit-details-marker { display: none; }
+.direction-chevron { inline-size: 11px; transition: transform .18s ease; }
+.direction-details[open] .direction-chevron { transform: rotate(180deg); }
+.direction-details summary:hover { color: var(--link-hover); }
+.direction-details ul { list-style: none; display: grid; gap: 12px; padding: 4px 0 24px; font-size: max(14px, var(--body)); }
+.direction-details a { display: inline-block; padding-block: 2px; }
+.direction-details a:hover { color: var(--link-hover); }
+.direction-details a:focus-visible { outline-offset: 2px; }
+.direction-copy > .catalog-book { align-self: flex-start; margin-block-start: 14px; }
+.catalog-price-link { display: inline-flex; align-items: center; gap: 14px; margin-block-start: 24px; font-size: var(--large); }
+.catalog-price-link img { inline-size: 12px; }
+.catalog-page .appointment { margin-block-start: var(--section-gap); }
+
+@media (max-width: 1100px) {
+  .doctors-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .directions-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (hover: none), (pointer: coarse) {
+  .catalog-book { opacity: 1; pointer-events: auto; transform: none; }
+}
+@media (max-width: 600px) {
+  .catalog-heading { padding: 100px 5px 0; }
+  .catalog-heading h1 { font-size: clamp(32px, 9.167vw, 46px); }
+  .catalog-heading > p { margin-block-start: 18px; }
+  .catalog-heading .mobile-brand { inset-block-start: 25px; inset-inline-start: 5px; }
+  .catalog-heading .mobile-brand img { filter: none; }
+  .catalog-toolbar { margin-block-start: 26px; gap: 14px; }
+  .catalog-filters { gap: 7px; }
+  .catalog-filter { padding-inline: 15px; font-size: max(14px, calc(var(--body) - 2px)); }
+  .catalog-count { font-size: var(--small); }
+  .catalog-grid { margin-block-start: 28px; }
+  .doctors-grid, .directions-grid { grid-template-columns: minmax(0, 1fr); }
+  .doctors-grid { row-gap: 32px; }
+  .doctors-grid .doctor-card h2 { font-size: max(21px, var(--body)); }
+  .doctors-grid .doctor-card p { font-size: var(--body); }
+  .catalog-book { opacity: 1; pointer-events: auto; transform: none; }
+  .direction-copy { padding: 24px; }
+  .direction-copy h2 { min-block-size: 0; font-size: var(--title); }
+  .direction-copy > p { min-block-size: 0; font-size: var(--body); }
+  .direction-details summary, .direction-details ul { font-size: var(--body); }
+  .direction-copy > .catalog-book { margin-block-start: 14px; }
+  .catalog-price-link { font-size: var(--body); }
+  .mobile-large-text .catalog-heading h1 { font-size: var(--title); }
+}
