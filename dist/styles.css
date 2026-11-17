@@ -11,7 +11,6 @@
   --page: #e8f5ff;
   --panel: #cfe8ff;
   --photo-background: #dcecf9;
-  --doctor-background: #d5e8f8;
   --field: #f8fcff;
   --ink: #113d50;
   --muted: rgb(17 61 80 / 65%);
@@ -338,7 +337,7 @@ address { font-style: normal; }
 .carousel.is-dragging a { cursor: grabbing; }
 .carousel > article { user-select: none; }
 .doctor-track { --card-width: max(245px, calc(502 * var(--unit))); }
-.doctor-photo { border-radius: var(--radius); aspect-ratio: 1; background: var(--doctor-background); }
+.doctor-photo { border-radius: var(--radius); aspect-ratio: 1; background: var(--panel); }
 .doctor-book {
   position: absolute;
   inset-inline-start: 20px;
@@ -807,7 +806,7 @@ address { font-style: normal; }
   #doctors-title { max-inline-size: calc(290 * var(--mobile-unit)); }
   #reviews-title { max-inline-size: calc(300 * var(--mobile-unit)); }
   .doctor-track { --card-width: calc(290 * var(--mobile-unit)); }
-  .doctor-card { border-radius: var(--mobile-radius); background: var(--doctor-background); }
+  .doctor-card { border-radius: var(--mobile-radius); background: var(--panel); }
   .doctor-card h3, .doctor-card p { padding-inline: var(--inside); }
   .doctor-card h3 { margin-block-start: 15px; }
   .doctor-card p { margin-block-start: 4px; padding-block-end: 20px; color: var(--ink); font-size: var(--small); }
@@ -1033,18 +1032,21 @@ address { font-style: normal; }
 .treatment-page .site-footer { margin-block-start: 0; }
 .treatment-nav {
   position: sticky;
-  inset-block-start: calc(var(--header-space) + var(--edge));
+  inset-block-start: calc(var(--visible-header-height, 0px) + var(--edge));
   align-self: start;
   display: grid;
   align-content: start;
   gap: max(12px, calc(20 * var(--unit)));
-  min-block-size: min(calc(884 * var(--unit)), calc(100svh - var(--header-space) - 2 * var(--edge)));
+  block-size: calc(100dvh - var(--visible-header-height, 0px) - 2 * var(--edge));
+  min-block-size: 0;
+  overflow-y: auto;
   padding: var(--inside);
   border-radius: var(--photo-radius);
   background: var(--panel);
   font-size: max(14px, calc(22 * var(--unit)));
 }
 .treatment-nav a { inline-size: fit-content; }
+.treatment-nav a[aria-current="location"] { color: var(--link); }
 .treatment-content { min-inline-size: 0; padding-inline-end: var(--treatment-trailing); }
 .treatment-content .section-shell { margin-inline: 0; }
 .treatment-about p {
@@ -1092,6 +1094,7 @@ address { font-style: normal; }
     justify-content: start;
     gap: 18px;
     overflow-x: auto;
+    block-size: auto;
     min-block-size: 0;
     padding: 12px 18px;
     border-radius: 20px;

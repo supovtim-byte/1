@@ -2,6 +2,7 @@ const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const mobileLayout = window.matchMedia("(max-width: 600px)");
 const clinicPhone = "+7 931 399 05 80";
 const header = document.querySelector(".site-header");
+const treatmentNav = document.querySelector(".treatment-nav");
 
 for (const photo of document.querySelectorAll(".hero-photo, .appointment-photo")) {
   if (photo.complete && photo.naturalWidth) continue;
@@ -112,10 +113,18 @@ copyNumber.addEventListener("click", async () => {
 let previousY = Math.max(0, window.scrollY);
 let headerTop = 0;
 let headerHeight = header.getBoundingClientRect().height;
+let visibleHeaderHeight = 0;
+
+function updateTreatmentHeader(height) {
+  if (!treatmentNav || height === visibleHeaderHeight) return;
+  visibleHeaderHeight = height;
+  treatmentNav.style.setProperty("--visible-header-height", height + "px");
+}
 
 function positionHeader() {
   const y = Math.max(0, window.scrollY);
   if (mobileLayout.matches) {
+    updateTreatmentHeader(0);
     previousY = y;
     return;
   }
@@ -147,6 +156,9 @@ function positionHeader() {
 
   const offscreen = !header.classList.contains("is-pinned") && headerTop + headerHeight <= y;
   header.inert = !keyboardInHeader && offscreen;
+  updateTreatmentHeader(header.classList.contains("is-pinned")
+    ? headerHeight
+    : Math.max(0, Math.min(headerHeight, headerTop + headerHeight - y)));
   previousY = y;
 }
 
@@ -155,6 +167,48 @@ new ResizeObserver(() => {
   headerHeight = header.getBoundingClientRect().height;
   positionHeader();
 }).observe(header);
+mobileLayout.addEventListener("change", positionHeader);
+
+if (treatmentNav) {
+  const sections = [...treatmentNav.querySelectorAll('a[href^="#"]')]
+    .map(link => ({ link, section: document.getElementById(link.hash.slice(1)) }))
+    .filter(item => item.section);
+  const horizontalNav = window.matchMedia("(max-width: 780px)");
+  let activeLink;
+  let pendingFrame = false;
+
+  function updateActiveSection() {
+    pendingFrame = false;
+    if (!sections.length) return;
+    const anchorOffset = parseFloat(getComputedStyle(sections[0].section).scrollMarginTop) || 0;
+    const readingTop = Math.max(anchorOffset, horizontalNav.matches
+      ? Math.max(0, treatmentNav.getBoundingClientRect().bottom) + 20
+      : visibleHeaderHeight + 20);
+    let current = sections[0]?.link;
+    for (const { link, section } of sections) {
+      if (section.getBoundingClientRect().top > readingTop + 1) break;
+      current = link;
+    }
+    if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2) {
+      current = sections.at(-1).link;
+    }
+    if (current === activeLink) return;
+    activeLink?.removeAttribute("aria-current");
+    current?.setAttribute("aria-current", "location");
+    activeLink = current;
+  }
+
+  function scheduleActiveSection() {
+    if (pendingFrame) return;
+    pendingFrame = true;
+    requestAnimationFrame(updateActiveSection);
+  }
+
+  window.addEventListener("scroll", scheduleActiveSection, { passive: true });
+  window.addEventListener("resize", scheduleActiveSection);
+  new ResizeObserver(scheduleActiveSection).observe(document.querySelector(".treatment-content"));
+  updateActiveSection();
+}
 
 function initializeGallery(gallery) {
   const galleryTrack = gallery.querySelector(".about-media");
