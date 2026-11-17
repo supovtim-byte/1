@@ -357,6 +357,9 @@ address { font-style: normal; }
 .doctor-card h3, .doctor-card p { padding-inline: var(--inside) 8px; font-size: var(--body); }
 .doctor-card h3 { margin-block-start: max(10px, calc(20 * var(--unit))); }
 .doctor-card p { color: var(--muted); }
+.doctor-profile-link:hover { color: var(--link-hover); }
+.doctor-profile-photo { position: absolute; inset: 0; border-radius: inherit; }
+.doctor-profile-photo:focus-visible { outline-offset: -4px; }
 .deck-more { display: inline-block; margin: max(20px, calc(40 * var(--unit))) 0 0 var(--inside); }
 
 .review-track { --card-width: max(285px, calc(560 * var(--unit))); }
@@ -1015,8 +1018,8 @@ address { font-style: normal; }
 .treatment-back { display: inline-flex; align-items: center; gap: 12px; }
 .treatment-back img { inline-size: max(6px, calc(8 * var(--unit))); block-size: auto; }
 .treatment-back:hover, .treatment-nav a:hover { color: var(--link-hover); }
-.treatment-book { background: var(--panel); color: var(--link); }
-.treatment-book:hover { color: var(--link-hover); }
+.treatment-book { background: var(--ink); color: var(--white); }
+.treatment-book:hover { background: var(--link-hover); color: var(--white); }
 .treatment-hero-media {
   position: relative;
   min-block-size: 0;
