@@ -8,8 +8,8 @@
   <title>Стоматология «Метелица» — Санкт-Петербург</title>
   <link rel="icon" href="assets/logo.png" type="image/png">
   <link rel="preload" href="assets/geologica.ttf" as="font" type="font/ttf" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=treatment-details-20261117">
-  <script src="site.js?v=treatment-nav-20261117" defer></script>
+  <link rel="stylesheet" href="styles.css?v=treatment-mobile-20261117">
+  <script src="site.js?v=treatment-mobile-20261117" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Перейти к содержанию</a>
@@ -131,40 +131,40 @@
         <h2 id="services-title">Услуги</h2>
         <ul class="service-list" aria-label="Карточки услуг">
           <li>
-            <button class="service-option is-current" type="button" id="service-sleep" data-service="sleep" aria-haspopup="dialog" aria-controls="service-dialog">
+            <a class="service-option is-current" href="lechenie-molochnyh-zubov.html" id="service-sleep" data-service="sleep">
               <img class="service-card-photo" src="assets/service-sleep.jpg" alt="" loading="lazy">
               <span>Лечение под наркозом</span><img class="service-arrow" src="assets/service-arrow.svg" alt="">
-            </button>
+            </a>
           </li>
           <li>
-            <button class="service-option" type="button" id="service-child" data-service="child" aria-haspopup="dialog" aria-controls="service-dialog">
+            <a class="service-option" href="lechenie-molochnyh-zubov.html" id="service-child" data-service="child">
               <img class="service-card-photo" src="assets/about-1.jpg" alt="" loading="lazy">
               <span>Первый приём ребёнка</span><img class="service-arrow" src="assets/service-arrow.svg" alt="">
-            </button>
+            </a>
           </li>
           <li>
-            <button class="service-option" type="button" id="service-therapy" data-service="therapy" aria-haspopup="dialog" aria-controls="service-dialog">
+            <a class="service-option" href="lechenie-molochnyh-zubov.html" id="service-therapy" data-service="therapy">
               <img class="service-card-photo" src="assets/service-therapy.jpg" alt="" loading="lazy">
               <span>Терапия</span><img class="service-arrow" src="assets/service-arrow.svg" alt="">
-            </button>
+            </a>
           </li>
           <li>
-            <button class="service-option" type="button" id="service-prosthetics" data-service="prosthetics" aria-haspopup="dialog" aria-controls="service-dialog">
+            <a class="service-option" href="lechenie-molochnyh-zubov.html" id="service-prosthetics" data-service="prosthetics">
               <img class="service-card-photo" src="assets/service-prosthetics.jpg" alt="" loading="lazy">
               <span>Протезирование</span><img class="service-arrow" src="assets/service-arrow.svg" alt="">
-            </button>
+            </a>
           </li>
           <li>
-            <button class="service-option" type="button" id="service-ortho" data-service="ortho" aria-haspopup="dialog" aria-controls="service-dialog">
+            <a class="service-option" href="lechenie-molochnyh-zubov.html" id="service-ortho" data-service="ortho">
               <img class="service-card-photo" src="assets/service-ortho.jpg" alt="" loading="lazy">
               <span>Исправление прикуса</span><img class="service-arrow" src="assets/service-arrow.svg" alt="">
-            </button>
+            </a>
           </li>
           <li>
-            <button class="service-option" type="button" id="service-hygiene" data-service="hygiene" aria-haspopup="dialog" aria-controls="service-dialog">
+            <a class="service-option" href="lechenie-molochnyh-zubov.html" id="service-hygiene" data-service="hygiene">
               <img class="service-card-photo" src="assets/service-hygiene.jpg" alt="" loading="lazy">
               <span>Гигиена и профилактика</span><img class="service-arrow" src="assets/service-arrow.svg" alt="">
-            </button>
+            </a>
           </li>
         </ul>
         <a class="text-link service-more" href="https://metelitsa-dent.ru/files/price.pdf" target="_blank" rel="noopener">Все услуги</a>
@@ -470,19 +470,6 @@
 
   <dialog class="detail-dialog mobile-booking" id="mobile-booking" aria-labelledby="appointment-title">
     <form method="dialog"><button class="dialog-close icon-button" aria-label="Закрыть">×</button></form>
-  </dialog>
-
-  <dialog id="service-dialog" class="detail-dialog" aria-labelledby="service-dialog-title">
-    <form method="dialog"><button class="dialog-close icon-button" aria-label="Закрыть">×</button></form>
-    <img class="dialog-photo" alt="" data-dialog-image>
-    <div class="dialog-copy">
-      <h2 id="service-dialog-title"></h2>
-      <p data-dialog-description></p>
-      <div class="dialog-actions">
-        <a class="button button-primary" href="#appointment" data-service-book>Записаться</a>
-        <a class="text-link" data-service-link target="_blank" rel="noopener"></a>
-      </div>
-    </div>
   </dialog>
 
   <dialog id="appointment-dialog" class="detail-dialog appointment-dialog" aria-labelledby="appointment-dialog-title">

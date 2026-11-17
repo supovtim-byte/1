@@ -307,30 +307,6 @@ const serviceList = document.querySelector(".service-list");
 const serviceOptions = [...(serviceList?.querySelectorAll("[data-service]") ?? [])];
 serviceList?.style.setProperty("--service-count", serviceOptions.length);
 const serviceImages = [...document.querySelectorAll("[data-service-image]")];
-const serviceDialog = document.querySelector("#service-dialog");
-const serviceDialogTitle = serviceDialog?.querySelector("h2");
-const serviceDialogImage = serviceDialog?.querySelector("[data-dialog-image]");
-const serviceDialogDescription = serviceDialog?.querySelector("[data-dialog-description]");
-const serviceDialogLink = serviceDialog?.querySelector("[data-service-link]");
-const serviceDialogBook = serviceDialog?.querySelector("[data-service-book]");
-const priceList = "https://metelitsa-dent.ru/files/price.pdf";
-const services = {
-  sleep: {
-    description: "Клиника проводит лечение зубов в медикаментозном сне. Узнать, как подготовиться к визиту и как проходит приём, можно на сайте клиники.",
-    link: "https://metelitsa-dent.ru/lechenie-zubov-pod-narkozom/",
-    linkText: "О лечении во сне"
-  },
-  child: {
-    description: "На первом приёме ребёнок знакомится с врачом, а стоматолог проводит осмотр и обсуждает с родителями дальнейшие шаги.",
-    link: "https://metelitsa-dent.ru/about/pravila-zapisi-na-pervichnyy-priem-obsledovanie-konsultatsiyu/",
-    linkText: "Как проходит первый приём"
-  },
-  therapy: { description: "Осмотр, диагностика и лечение кариеса и его осложнений. План лечения врач обсуждает на консультации." },
-  prosthetics: { description: "Восстановление зубов с помощью коронок, вкладок и других ортопедических конструкций. Варианты подбирают после осмотра." },
-  ortho: { description: "Консультация ортодонта и подбор способа коррекции прикуса для детей и взрослых." },
-  hygiene: { description: "Профессиональная гигиена полости рта и рекомендации по домашнему уходу." }
-};
-
 function showService(id) {
   const activeIndex = serviceOptions.findIndex(option => option.dataset.service === id);
   if (activeIndex < 0) return;
@@ -345,20 +321,7 @@ serviceOptions.forEach(option => {
     if (!mobileLayout.matches && event.pointerType !== "touch") showService(id);
   });
   option.addEventListener("focus", () => showService(id));
-  option.addEventListener("click", () => {
-    showService(id);
-    const title = option.textContent.trim();
-    const service = services[id];
-    serviceDialogTitle.textContent = title;
-    serviceDialogDescription.textContent = service.description;
-    serviceDialogImage.src = mobileLayout.matches
-      ? option.querySelector(".service-card-photo").src
-      : serviceImages.find(photo => photo.dataset.serviceImage === id).src;
-    serviceDialogLink.href = service.link ?? priceList;
-    serviceDialogLink.textContent = service.linkText ?? "Посмотреть цены";
-    serviceDialogBook.dataset.book = title;
-    serviceDialog.showModal();
-  });
+  option.addEventListener("click", () => showService(id));
 });
 
 document.querySelectorAll("[data-show-service]").forEach(link => {
@@ -592,11 +555,6 @@ document.querySelectorAll("[data-book]").forEach(link => {
     selectAppointment(link.dataset.book);
     openMobileBooking(event);
   });
-});
-serviceDialogBook?.addEventListener("click", event => {
-  selectAppointment(serviceDialogBook.dataset.book);
-  serviceDialog.close();
-  openMobileBooking(event);
 });
 
 const phone = document.querySelector("#appointment-phone");

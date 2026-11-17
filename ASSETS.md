@@ -31,3 +31,12 @@
 [Условия Unsplash](https://unsplash.com/license). Geologica: https://github.com/google/fonts/tree/main/ofl/geologica
 
 `about-2-clean.jpg` и `about-3-clean.jpg` — фотографии тех же слоёв, экспортированные без маски скругления. Радиус задаётся в CSS.
+
+
+Мобильная страница услуги: иконки экспортированы без изменений из [макета 80:882](https://www.figma.com/design/X3zv11QOwSF4P2WVZ3yYX4/Untitled?node-id=80-882):
+
+- `mobile-home.svg` — слой `80:1026`;
+- `treatment-back-mobile.svg` — слой `80:1025`;
+- `treatment-price-chevron.svg` — слой `80:1043`.
+
+В мобильной и десктопной версиях услуги используются ранее выбранные фотографии `about-1.jpg` и `service-child.jpg`.

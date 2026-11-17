@@ -986,6 +986,8 @@ address { font-style: normal; }
   --treatment-gap: max(30px, calc(80 * var(--unit)));
   --treatment-trailing: calc(60 * var(--unit));
 }
+.treatment-mobile-title, .treatment-mobile-only { display: none; }
+.treatment-review-photo { display: contents; }
 
 .treatment-hero, .treatment-layout {
   display: grid;
@@ -1093,6 +1095,7 @@ address { font-style: normal; }
 
 @media (min-width: 781px) {
   .treatment-about { padding-block-start: 30px; }
+  .treatment-content .doctor-card h3, .treatment-content .doctor-card p { padding-inline: 0; }
 }
 
 @media (max-width: 1080px) {
@@ -1104,40 +1107,94 @@ address { font-style: normal; }
   .treatment-page { --treatment-trailing: 0px; }
   .treatment-layout { grid-template-columns: minmax(0, 1fr); row-gap: 26px; }
   .treatment-nav {
-    z-index: 5;
-    grid-auto-flow: column;
-    grid-auto-columns: max-content;
-    justify-content: start;
-    gap: 18px;
-    overflow-x: auto;
-    block-size: auto;
-    min-block-size: 0;
-    padding: 12px 18px;
-    border-radius: 20px;
-    scrollbar-width: none;
+    display: none;
   }
-  .treatment-content [id] { scroll-margin-top: calc(var(--header-space) + var(--edge) + 64px); }
+  .treatment-content [id] { scroll-margin-top: calc(var(--header-space) + var(--edge)); }
 }
 
 @media (max-width: 600px) {
   .treatment-hero {
     grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: auto minmax(0, 1fr);
-    row-gap: 20px;
+    grid-template-rows: auto auto;
+    row-gap: 50px;
     min-block-size: 0;
     block-size: auto;
-    padding-block-start: 78px;
+    padding-block: 20px 0;
   }
-  .treatment-intro { gap: 14px; padding-inline-start: calc(5 * var(--mobile-unit)); }
-  .treatment-intro h1 { max-inline-size: calc(330 * var(--mobile-unit)); }
-  .treatment-brand img { filter: none; }
-  .treatment-hero-media { min-block-size: max(210px, calc(100svh - 256px)); }
-  .treatment-layout { margin-block-start: 45px; row-gap: 24px; }
-  .treatment-nav { inset-block-start: 0; }
+  .treatment-intro { gap: 0; padding-inline: calc(5 * var(--mobile-unit)); }
+  .treatment-brand { display: none; }
+  .treatment-back { gap: 8px; margin-block-end: 35px; }
+  .treatment-back picture { display: flex; }
+  .treatment-back img { inline-size: auto; block-size: auto; }
+  .treatment-intro h1 {
+    max-inline-size: calc(320 * var(--mobile-unit));
+    margin-block-end: 20px;
+    font-size: clamp(29px, 9.1667vw, 40px);
+  }
+  .treatment-book { min-block-size: 50px; padding: 12px 25px 18px; color: var(--ink); line-height: 20px; }
+  .treatment-hero-media { min-block-size: 0; aspect-ratio: 330 / 341; border-radius: calc(30 * var(--mobile-unit)); }
+  .treatment-layout { margin-block-start: 70px; row-gap: 0; padding-block-end: 70px; }
+  .treatment-about { padding-inline: calc(5 * var(--mobile-unit)); }
+  .treatment-about h2 { max-inline-size: calc(300 * var(--mobile-unit)); }
+  .treatment-about p { margin-block-start: 0; letter-spacing: normal; }
+  .treatment-about h2 + p { margin-block-start: 20px; }
+  .treatment-content .section-heading { padding-inline: var(--mobile-gutter); margin-block-end: 20px; }
+  .treatment-content .carousel-controls { display: none; }
+  .treatment-desktop-title { display: none; }
+  .treatment-mobile-title { display: inline; }
+  .treatment-mobile-only { display: inline-block; }
+  .treatment-content .deck-more { margin-inline-start: var(--mobile-gutter); }
+  .treatment-review-photo {
+    display: block;
+    position: relative;
+    inline-size: calc(75 * var(--mobile-unit));
+    aspect-ratio: 1;
+    margin-block-start: auto;
+    overflow: hidden;
+    border-radius: calc(15 * var(--mobile-unit));
+  }
+  .treatment-review-photo img {
+    position: absolute;
+    inset: -110.81% auto auto -143.18%;
+    inline-size: 305.77%;
+    block-size: 407.69%;
+    max-inline-size: none;
+    margin: 0;
+    border-radius: 0;
+  }
   .treatment-content .carousel {
     margin-inline: calc(-1 * var(--edge));
     padding-inline: var(--edge);
     scroll-padding-inline: var(--edge);
   }
-  .treatment-prices { --price-summary-gap: 9px; }
+  .treatment-prices { --price-summary-gap: 20px; --price-arrow-width: 12px; }
+  .treatment-prices h2 { max-inline-size: calc(209 * var(--mobile-unit)); }
+  .treatment-prices summary {
+    grid-template-columns: minmax(0, 1fr) var(--price-arrow-width);
+    grid-template-rows: auto auto;
+    row-gap: 3px;
+    min-block-size: 76px;
+    padding-block: 12px 18px;
+    letter-spacing: -.02em;
+  }
+  .treatment-prices summary > span:first-child { grid-column: 1; grid-row: 1; }
+  .treatment-price { grid-column: 1; grid-row: 2; margin: 0; font-size: var(--small); font-weight: 400; line-height: 1.5; }
+  .treatment-prices .faq-icon, .treatment-prices details[open] .faq-icon {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: center;
+    block-size: 8px;
+    background-image: url("assets/treatment-price-chevron.svg");
+    background-size: auto;
+  }
+  .treatment-price-body { gap: 16px; padding-inline-end: var(--inside); }
+  .treatment-content > .appointment { display: none; }
+  .treatment-page .mobile-actions { gap: 8px; padding: 10px 10px calc(10px + var(--dock-safe-area)) 15px; }
+  .treatment-page .mobile-actions .button { min-block-size: 50px; padding-block: 12px 18px; font-size: 16px; line-height: 20px; }
+  .treatment-page .mobile-action-icon { inline-size: 50px; block-size: 50px; }
+  .treatment-page .mobile-home, .treatment-page [data-mobile-menu] { inline-size: 51px; }
+  .treatment-page .mobile-action-icon img { inline-size: auto; block-size: auto; max-inline-size: none; }
+  .treatment-page .mobile-dock { background: rgb(232 245 255 / 1%); -webkit-backdrop-filter: blur(5px); backdrop-filter: blur(5px); }
+  .treatment-page .mobile-dock::before { display: none; }
+  .mobile-large-text .treatment-intro h1 { font-size: var(--title); }
 }
