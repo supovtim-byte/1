@@ -1,0 +1,157 @@
+/* Doctor profile — proportions from Figma frame 132:241 (1920 px). */
+.button-dark { color: var(--white); background: var(--ink); }
+.button-dark:hover { color: var(--white); background: var(--link-hover); }
+.doctor-page { --doctor-edge: max(24px, calc(60 * var(--unit))); }
+.doctor-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 705fr) minmax(0, 1135fr);
+  gap: max(20px, calc(40 * var(--unit)));
+  margin-inline: var(--edge);
+  padding-block-start: calc(var(--header-height) + max(20px, calc(38 * var(--unit))));
+}
+.doctor-intro { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding-inline: max(4px, calc(40 * var(--unit))) 0; padding-block-end: calc(85 * var(--unit)); }
+.doctor-intro .treatment-back { margin-block-end: max(24px, calc(40 * var(--unit))); padding-inline-start: calc(5 * var(--unit)); }
+.doctor-intro h1 { max-inline-size: calc(637 * var(--unit)); font-size: max(34px, calc(60 * var(--unit))); line-height: 1.1; letter-spacing: -.03em; }
+.doctor-specialty { margin-block-start: max(22px, calc(40 * var(--unit))); font-weight: 300; }
+.doctor-specialty p + p { margin-block-start: calc(5 * var(--unit)); }
+.doctor-intro .button { margin-block-start: max(28px, calc(50 * var(--unit))); }
+.doctor-hero-slot { position: relative; inline-size: 100%; aspect-ratio: 1135 / 797; min-inline-size: 0; border-radius: var(--photo-radius); }
+.doctor-hero-media { position: absolute; inset: 0; display: flex; justify-content: center; overflow: hidden; border-radius: var(--photo-radius); background: var(--panel); }
+.doctor-hero-media img { flex: none; inline-size: auto; block-size: 100%; max-inline-size: none; aspect-ratio: 1; object-fit: contain; }
+.doctor-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1278fr) minmax(0, 502fr);
+  gap: max(30px, calc(60 * var(--unit)));
+  margin: max(80px, calc(140 * var(--unit))) var(--edge) 0 var(--doctor-edge);
+}
+.doctor-content { min-inline-size: 0; }
+.doctor-about { padding-block-start: calc(10 * var(--unit)); }
+.doctor-about h2, .doctor-education h2 { font-size: max(26px, calc(40 * var(--unit))); }
+.doctor-about p, .doctor-education dl { font-size: var(--large); line-height: 1.5; letter-spacing: -.02em; }
+.doctor-about p { max-inline-size: calc(1218 * var(--unit)); margin-block-start: max(20px, calc(30 * var(--unit))); }
+.doctor-about h2 + p, .doctor-education dl { margin-block-start: max(26px, calc(40 * var(--unit))); }
+.doctor-education { margin-block-start: max(64px, calc(120 * var(--unit))); }
+.doctor-education dl { display: grid; gap: max(15px, calc(20 * var(--unit))); margin-block-end: 0; line-height: 1.6; }
+.doctor-education dl > div { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: max(20px, calc(30 * var(--unit))); }
+.doctor-education dt { font-variant-numeric: tabular-nums; }
+.doctor-education dd { margin: 0; max-inline-size: calc(1122 * var(--unit)); }
+.doctor-education dl > div:nth-child(1) dd { max-inline-size: calc(1017 * var(--unit)); }
+.doctor-education dl > div:nth-child(2) dd { max-inline-size: calc(943 * var(--unit)); }
+.doctor-education dl > div:nth-child(4) dd { max-inline-size: calc(649 * var(--unit)); }
+.doctor-education dl > div:nth-child(5) dd { max-inline-size: calc(789 * var(--unit)); }
+.doctor-directions { margin-block-start: max(64px, calc(120 * var(--unit))); }
+.doctor-directions h2 { margin-block-end: max(28px, calc(43 * var(--unit))); }
+.doctor-directions summary { min-block-size: max(68px, calc(95 * var(--unit))); }
+.doctor-service-links { display: grid; gap: max(14px, calc(20 * var(--unit))); padding: 0 var(--inside) max(28px, calc(35 * var(--unit))); list-style: none; color: var(--link); }
+.doctor-service-links a:hover { color: var(--link-hover); }
+.doctor-reviews { margin-block-start: max(64px, calc(120 * var(--unit))); }
+.doctor-content .section-heading { padding-inline: 0; }
+.doctor-content .deck-more { margin-inline-start: 0; }
+.doctor-reviews .carousel { margin-inline: 0; padding-inline: 0; scroll-padding-inline: 0; }
+.doctor-reviews .review-track { --card-width: max(285px, calc(560 * var(--unit))); }
+.doctor-reviews .review-card { clip-path: inset(0 var(--review-clip-right, 0px) 0 var(--review-clip-left, 0px) round var(--review-radius-tl, var(--radius)) var(--review-radius-tr, var(--radius)) var(--review-radius-br, var(--radius)) var(--review-radius-bl, var(--radius))); }
+.doctor-reviews .review-card > p { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 7; overflow: hidden; }
+.doctor-sticky { position: sticky; top: calc(var(--header-height) + var(--edge)); }
+.doctor-portrait-target { aspect-ratio: 1; border-radius: var(--radius); overflow: hidden; background: var(--panel); }
+.doctor-portrait-target img { inline-size: 100%; block-size: 100%; object-fit: contain; }
+.doctor-caption { padding: max(12px, calc(20 * var(--unit))) max(10px, calc(40 * var(--unit))) 0; text-align: center; letter-spacing: -.02em; }
+.doctor-caption p + p { margin-block-start: calc(5 * var(--unit)); }
+
+/* Reuse the shared form and its dialogs in the lighter profile layout. */
+.doctor-appointment {
+  display: block; min-block-size: 0; margin-inline: 0; margin-block-start: max(64px, calc(120 * var(--unit)));
+  padding: 0; color: var(--ink); background: transparent; border-radius: 0; overflow: visible;
+}
+.doctor-appointment .appointment-content { inline-size: 100%; }
+.doctor-appointment h2 { margin-block-end: max(28px, calc(40 * var(--unit))); font-size: var(--title); line-height: 1.1; letter-spacing: -.03em; }
+.doctor-appointment form { grid-template-columns: minmax(0, max(250px, calc(390 * var(--unit)))) auto; gap: max(20px, calc(30 * var(--unit))) max(10px, calc(15 * var(--unit))); justify-content: start; align-items: center; }
+.doctor-appointment .appointment-selection { grid-column: 1 / -1; }
+.doctor-appointment .field { grid-column: 1; border-radius: 50px; min-block-size: max(56px, calc(85 * var(--unit))); background: var(--panel); }
+.doctor-appointment .field:focus-within { outline: 2px solid var(--link-hover); outline-offset: 3px; }
+.doctor-appointment form > .button { grid-column: 2; grid-row: 1; margin: 0; min-block-size: max(56px, calc(85 * var(--unit))); padding: max(14px, calc(23 * var(--unit))) max(20px, calc(35 * var(--unit))) max(17px, calc(29 * var(--unit))); font-size: var(--large); }
+.doctor-appointment form:has(.appointment-selection:not([hidden])) > .button { grid-row: 2; }
+.doctor-appointment [type="submit"]:disabled { background: var(--white); color: rgb(17 61 80 / 40%); cursor: default; }
+.doctor-appointment .consent { grid-column: 1 / -1; }
+.doctor-appointment .consent > div { max-inline-size: none; }
+.doctor-appointment .consent input { background: var(--panel); }
+.doctor-appointment .consent input:checked { background: var(--link); }
+.doctor-appointment .consent input:focus-visible { outline-color: var(--link-hover); }
+.doctor-page .site-footer { margin-block-start: max(70px, calc(120 * var(--unit))); }
+
+.doctor-motion-preview { position: fixed; inset: auto 20px 20px auto; z-index: 8; display: flex; flex-wrap: wrap; gap: 12px; max-inline-size: 380px; margin: 0; padding: 12px 18px 16px; border: 1px solid var(--panel); border-radius: 20px; background: var(--white); box-shadow: 0 4px 24px rgb(17 61 80 / 10%); font-size: 13px; }
+.doctor-motion-preview[hidden] { display: none; }
+.doctor-motion-preview legend { padding-inline: 6px; background: var(--white); border-radius: 6px; }
+.doctor-motion-preview label { cursor: pointer; }
+.doctor-motion-preview input { accent-color: var(--link); }
+.doctor-motion-preview button { flex-basis: 100%; text-align: start; }
+
+@media (min-width: 901px) {
+  .doctor-motion-ready[data-doctor-motion="shrink"] .doctor-hero-media {
+    position: fixed; inset: 0 auto auto 0; z-index: 2;
+    inline-size: var(--portrait-width); block-size: var(--portrait-height);
+    transform: translate3d(var(--portrait-x), var(--portrait-y), 0); border-radius: var(--portrait-radius);
+    pointer-events: none; will-change: transform, width, height;
+  }
+  .doctor-motion-ready[data-doctor-motion="shrink"] .doctor-portrait-target img { visibility: hidden; }
+  .doctor-motion-ready[data-doctor-motion="shrink"] .doctor-caption { opacity: var(--portrait-caption, 0); }
+  .doctor-motion-ready[data-doctor-motion="fade"] .doctor-sticky { opacity: 0; transform: translateY(20px); transition: opacity .5s ease, transform .5s var(--ease-out); }
+  .doctor-motion-ready[data-doctor-motion="fade"].doctor-card-visible .doctor-sticky { opacity: 1; transform: none; }
+}
+@media (max-width: 1100px) {
+  .doctor-intro h1 { max-inline-size: none; }
+  .doctor-hero-slot { min-block-size: 430px; }
+  .doctor-layout { grid-template-columns: minmax(0, 1fr) 27%; gap: 28px; }
+  .doctor-caption { font-size: 12px; padding-inline: 0; }
+  .doctor-appointment form { grid-template-columns: minmax(0, 1fr) auto; }
+}
+@media (max-width: 900px) {
+  .doctor-hero { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .doctor-hero-slot { min-block-size: 390px; }
+  .doctor-intro h1 { font-size: 34px; }
+  .doctor-layout { display: block; margin-inline: var(--doctor-edge); }
+  .doctor-sidebar { display: none; }
+  .doctor-about p { max-inline-size: none; }
+  .doctor-motion-preview { display: none; }
+}
+@media (max-width: 600px) {
+  .doctor-page { --doctor-edge: calc(20 * var(--mobile-unit)); }
+  .doctor-hero { position: relative; display: flex; flex-direction: column; gap: 30px; padding-block-start: 91px; }
+  .doctor-intro { padding: 0 calc(5 * var(--mobile-unit)); }
+  .doctor-brand img { filter: none; }
+  .doctor-intro .treatment-back { margin-block-end: 18px; }
+  .doctor-intro h1 { max-inline-size: 100%; font-size: clamp(30px, 9.167vw, 44px); }
+  .doctor-specialty { margin-block-start: 20px; }
+  .doctor-specialty p + p { margin-block-start: 4px; }
+  .doctor-intro .button { margin-block-start: 24px; }
+  .doctor-hero-slot { flex: none; inline-size: 100%; aspect-ratio: 1.1; min-block-size: 0; }
+  .doctor-layout { margin-block-start: 55px; }
+  .doctor-about, .doctor-education, .doctor-directions, .doctor-reviews { padding: 0; }
+  .doctor-about h2, .doctor-education h2 { font-size: var(--title); }
+  .doctor-about p, .doctor-education dl { font-size: var(--body); letter-spacing: normal; }
+  .doctor-about h2 + p, .doctor-education dl { margin-block-start: 25px; }
+  .doctor-education, .doctor-directions, .doctor-reviews { margin-block-start: 60px; }
+  .doctor-education dl { gap: 20px; }
+  .doctor-education dl > div { gap: 18px; }
+  .doctor-education dd, .doctor-education dl > div:nth-child(1) dd, .doctor-education dl > div:nth-child(2) dd, .doctor-education dl > div:nth-child(4) dd, .doctor-education dl > div:nth-child(5) dd { max-inline-size: none; }
+  .doctor-directions .faq-list { margin-inline: calc(-5 * var(--mobile-unit)); }
+  .doctor-directions h2 { margin-block-end: 25px; }
+  .doctor-directions summary { min-block-size: 70px; font-size: 20px; }
+  .doctor-service-links { gap: 16px; padding-block-end: 25px; }
+  .doctor-reviews .review-track { --card-width: calc(300 * var(--mobile-unit)); }
+  .doctor-reviews .review-card { min-block-size: 390px; }
+  .doctor-reviews #reviews-title { max-inline-size: none; }
+  .doctor-reviews .section-heading { margin-block-end: 25px; }
+  .doctor-appointment { display: block; margin-block-start: 60px; }
+  .doctor-appointment form { grid-template-columns: minmax(0, 1fr); gap: 18px; justify-items: stretch; }
+  .doctor-appointment .field { grid-column: 1; min-block-size: 60px; }
+  .doctor-appointment form > .button, .doctor-appointment form:has(.appointment-selection:not([hidden])) > .button { grid-column: 1; grid-row: auto; min-block-size: 56px; font-size: var(--body); }
+  .doctor-appointment .consent { grid-row: auto; font-size: var(--small); }
+  .doctor-page .mobile-booking .doctor-appointment { min-block-size: 0; padding: 35px 20px 25px; color: var(--ink); }
+  .doctor-page .mobile-booking .appointment-content { inline-size: 100%; }
+  .doctor-page .mobile-booking .doctor-appointment h2 { font-size: var(--title); }
+  .mobile-large-text .doctor-intro h1 { font-size: var(--title); }
+  .doctor-page .site-footer { margin-block-start: 70px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .doctor-page .doctor-sticky { transition: none; transform: none; }
+}

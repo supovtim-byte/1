@@ -612,6 +612,7 @@ phone.addEventListener("input", () => {
   }
   phone.setCustomValidity("");
   drawPhoneMask();
+  updateAppointmentButton();
 });
 phone.addEventListener("focus", drawPhoneMask);
 phone.addEventListener("invalid", () => {
@@ -625,7 +626,11 @@ appointmentForm.addEventListener("submit", event => {
   event.preventDefault();
   appointmentDialog.showModal();
 });
-appointmentForm.querySelector("[type=submit]").disabled = false;
+function updateAppointmentButton() {
+  appointmentForm.querySelector("[type=submit]").disabled = !/^\+7 \d{3} \d{3} \d{2} \d{2}$/.test(phone.value);
+}
+window.addEventListener("pageshow", updateAppointmentButton);
+updateAppointmentButton();
 
 document.querySelectorAll(".detail-dialog").forEach(dialog => {
   dialog.addEventListener("click", event => {
