@@ -809,10 +809,10 @@ address { font-style: normal; }
   .doctor-card { border-radius: var(--mobile-radius); background: var(--panel); }
   .doctor-card h3, .doctor-card p { padding-inline: var(--inside); }
   .doctor-card h3 { margin-block-start: 15px; }
-  .doctor-card p { margin-block-start: 4px; padding-block-end: 20px; color: var(--ink); font-size: var(--small); }
+  .doctor-card p { margin-block-start: 4px; padding-block-end: 20px; color: var(--ink); font-size: max(13px, var(--small)); }
   .review-track { --card-width: calc(300 * var(--mobile-unit)); }
   .review-card { min-block-size: 459px; padding: 17px var(--inside) 20px; gap: 0; }
-  .review-meta { display: contents; }
+  .review-meta { display: contents; font-size: max(13px, var(--small)); }
   .review-meta time { order: -1; margin-block-start: 2px; }
   .review-card h3 { order: -2; line-height: 1.5; }
   .review-card > p { margin: 25px 0 15px; line-height: 1.5; }
@@ -1114,12 +1114,17 @@ address { font-style: normal; }
 }
 
 @media (max-width: 600px) {
+  .treatment-page {
+    --treatment-dock-control-size: 50px;
+    --treatment-dock-bottom-padding: 10px;
+  }
   .treatment-hero {
     grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: auto auto;
+    grid-template-rows: auto minmax(180px, 1fr);
     row-gap: 30px;
-    min-block-size: 0;
-    block-size: auto;
+    min-block-size: min-content;
+    block-size: calc(100svh - var(--treatment-dock-control-size) - var(--treatment-dock-bottom-padding) - var(--dock-safe-area) - var(--edge));
+    block-size: calc(100dvh - var(--treatment-dock-control-size) - var(--treatment-dock-bottom-padding) - var(--dock-safe-area) - var(--edge));
     padding-block: 91px 0;
   }
   .treatment-intro { gap: 0; padding-inline: calc(5 * var(--mobile-unit)); }
@@ -1134,7 +1139,7 @@ address { font-style: normal; }
     font-size: clamp(29px, 9.1667vw, 40px);
   }
   .treatment-book { display: none; }
-  .treatment-hero-media { min-block-size: 0; aspect-ratio: 330 / 380; border-radius: calc(30 * var(--mobile-unit)); }
+  .treatment-hero-media { min-block-size: 0; border-radius: calc(30 * var(--mobile-unit)); }
   .treatment-layout { margin-block-start: 60px; row-gap: 0; padding-block-end: 70px; }
   .treatment-about { padding-inline: calc(5 * var(--mobile-unit)); }
   .treatment-about h2 { max-inline-size: calc(300 * var(--mobile-unit)); }
@@ -1181,7 +1186,7 @@ address { font-style: normal; }
     letter-spacing: -.02em;
   }
   .treatment-prices summary > span:first-child { grid-column: 1; grid-row: 1; }
-  .treatment-price { grid-column: 1; grid-row: 2; margin: 0; font-size: var(--small); font-weight: 400; line-height: 1.5; }
+  .treatment-price { grid-column: 1; grid-row: 2; margin: 0; font-size: max(13px, var(--small)); font-weight: 400; line-height: 1.5; }
   .treatment-prices .faq-icon, .treatment-prices details[open] .faq-icon {
     grid-column: 2;
     grid-row: 1;
@@ -1195,9 +1200,9 @@ address { font-style: normal; }
   .treatment-price-body dl div { display: grid; grid-template-columns: minmax(0, 1fr) max-content; align-items: start; }
   .treatment-price-body dt { min-inline-size: 0; overflow-wrap: anywhere; }
   .treatment-content > .appointment { display: none; }
-  .treatment-page .mobile-actions { gap: 8px; padding: 10px 10px calc(10px + var(--dock-safe-area)) 15px; }
-  .treatment-page .mobile-actions .button { min-block-size: 50px; padding-block: 12px 18px; font-size: 16px; line-height: 20px; }
-  .treatment-page .mobile-action-icon { inline-size: 50px; block-size: 50px; }
+  .treatment-page .mobile-actions { gap: 8px; padding: 10px 10px calc(var(--treatment-dock-bottom-padding) + var(--dock-safe-area)) 15px; }
+  .treatment-page .mobile-actions .button { min-block-size: var(--treatment-dock-control-size); padding-block: 12px 18px; font-size: 16px; line-height: 20px; }
+  .treatment-page .mobile-action-icon { inline-size: 50px; block-size: var(--treatment-dock-control-size); }
   .treatment-page .mobile-home, .treatment-page [data-mobile-menu] { inline-size: 51px; }
   .treatment-page .mobile-action-icon img { inline-size: auto; block-size: auto; max-inline-size: none; }
   .treatment-page .mobile-dock { background: rgb(232 245 255 / 1%); -webkit-backdrop-filter: blur(5px); backdrop-filter: blur(5px); }
