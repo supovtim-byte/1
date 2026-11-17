@@ -1,5 +1,5 @@
 /* Catalogs share the site's typography, surfaces, booking form and navigation. */
-.catalog-page { --catalog-gap: clamp(14px, 1.5vw, 28px); }
+.catalog-page { --catalog-gap: 20px; }
 .catalog-heading {
   position: relative;
   padding: max(112px, calc(170 * var(--unit))) var(--inside) 0;
@@ -39,7 +39,7 @@
 .doctors-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 42px var(--catalog-gap);
+  gap: var(--catalog-gap);
 }
 .doctors-grid > [hidden] { display: none; }
 .doctors-grid .doctor-card { min-inline-size: 0; }
@@ -48,14 +48,14 @@
 .doctors-grid .doctor-profile-photo img { object-fit: contain; }
 .doctors-grid .doctor-card h2 {
   margin-block-start: 18px;
-  padding-inline: 12px;
+  padding-inline: var(--inside) 8px;
   font-size: max(18px, calc(26 * var(--unit)));
   font-weight: 400;
   line-height: 1.3;
   letter-spacing: -.02em;
 }
 .doctors-grid .doctor-card p {
-  padding-inline: 12px;
+  padding-inline: var(--inside) 8px;
   margin-block-start: 6px;
   font-size: max(14px, calc(18 * var(--unit)));
 }
@@ -86,26 +86,38 @@
 .directions-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  align-items: start;
+  align-items: stretch;
   gap: var(--catalog-gap);
 }
 .direction-card {
+  display: flex;
+  flex-direction: column;
   min-inline-size: 0;
+  padding: var(--inside);
   border-radius: var(--radius);
   background: var(--panel);
   overflow: hidden;
 }
-.direction-photo { inline-size: 100%; aspect-ratio: 1.8; object-fit: cover; }
-.direction-copy { display: flex; flex-direction: column; padding: clamp(22px, 2vw, 38px); }
+.direction-photo {
+  inline-size: clamp(112px, 10vw, 160px);
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: max(16px, calc(24 * var(--unit)));
+}
+.direction-copy {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  margin-block-start: max(44px, calc(88 * var(--unit)));
+}
 .direction-copy h2 {
-  min-block-size: 2.4em;
-  font-size: max(24px, calc(34 * var(--unit)));
+  font-size: max(22px, calc(28 * var(--unit)));
   font-weight: 400;
   line-height: 1.2;
   letter-spacing: -.03em;
 }
-.direction-copy > p { min-block-size: 3em; margin-block-start: 14px; font-size: max(15px, var(--body)); color: var(--muted); }
-.direction-details { margin-block-start: 24px; border-block-start: 1px solid rgb(17 61 80 / 12%); }
+.direction-copy > p { margin-block: 14px 24px; font-size: max(15px, var(--body)); color: var(--muted); }
+.direction-details { margin-block-start: auto; border-block-start: 1px solid rgb(17 61 80 / 12%); }
 .direction-details summary {
   display: flex;
   align-items: center;
@@ -148,11 +160,12 @@
   .catalog-count { font-size: var(--small); }
   .catalog-grid { margin-block-start: 28px; }
   .doctors-grid, .directions-grid { grid-template-columns: minmax(0, 1fr); }
-  .doctors-grid { row-gap: 32px; }
+  .doctors-grid .doctor-card h2, .doctors-grid .doctor-card p { padding-inline: var(--inside); }
   .doctors-grid .doctor-card h2 { font-size: max(21px, var(--body)); }
   .doctors-grid .doctor-card p { font-size: var(--body); }
   .catalog-book { opacity: 1; pointer-events: auto; transform: none; }
-  .direction-copy { padding: 24px; }
+  .direction-card { padding: 24px; }
+  .direction-copy { margin-block-start: 40px; }
   .direction-copy h2 { min-block-size: 0; font-size: var(--title); }
   .direction-copy > p { min-block-size: 0; font-size: var(--body); }
   .direction-details summary, .direction-details ul { font-size: var(--body); }
