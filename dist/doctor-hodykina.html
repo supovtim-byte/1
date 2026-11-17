@@ -9,11 +9,11 @@
   <link rel="icon" href="assets/logo.png" type="image/png">
   <link rel="preload" href="assets/geologica.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="stylesheet" href="styles.css?v=doctor-20261117">
-  <link rel="stylesheet" href="doctor.css?v=20261117">
-  <script src="doctor.js?v=20261117" defer></script>
+  <link rel="stylesheet" href="doctor.css?v=fade-20261117">
+  <script src="doctor.js?v=fade-20261117" defer></script>
   <script src="site.js?v=doctor-20261117" defer></script>
 </head>
-<body class="doctor-page" data-doctor-motion="shrink">
+<body class="doctor-page">
   <a class="skip-link" href="#main">Перейти к содержанию</a>
   <header class="site-header" id="header">
     <a class="brand" href="index.html" aria-label="Метелица — на главную">
@@ -75,7 +75,7 @@
     <section class="doctor-hero" id="top" aria-labelledby="doctor-title">
       <div class="doctor-intro">
         <a class="mobile-brand doctor-brand" href="index.html" aria-label="Метелица — на главную"><img src="assets/logo.png" alt="Метелица"></a>
-        <a class="treatment-back" href="index.html#doctors"><img src="assets/carousel-prev.svg" alt="">Врачи</a>
+        <a class="treatment-back" href="index.html#doctors"><picture><source media="(max-width: 600px)" srcset="assets/treatment-back-mobile.svg"><img src="assets/carousel-prev.svg" alt=""></picture>Врачи</a>
         <h1 id="doctor-title">Ходыкина Дарья Александровна</h1>
         <div class="doctor-specialty"><p>Врач-стоматолог-терапевт</p><p>Опыт работы — 16 лет</p></div>
         <a class="button button-dark" href="#appointment" data-book="Ходыкина Дарья Александровна">записаться к врачу</a>
@@ -197,13 +197,6 @@
       </aside>
     </div>
   </main>
-
-  <fieldset class="doctor-motion-preview" hidden>
-    <legend>Анимация карточки</legend>
-    <label><input type="radio" name="doctor-motion" value="shrink" checked> Уменьшение</label>
-    <label><input type="radio" name="doctor-motion" value="fade"> Появление</label>
-    <button class="text-link" type="button" data-replay-motion>Посмотреть с начала</button>
-  </fieldset>
 
   <footer class="site-footer section-shell">
     <div class="footer-grid">
