@@ -668,7 +668,7 @@ const searchCatalog = [
     service: link.dataset.showService
   })),
   ...serviceOptions.map(option => ({ title: option.textContent.trim(), href: "#" + option.id, service: option.dataset.service })),
-  ...[...document.querySelectorAll(".prices-list dt")].map(item => ({
+  ...[...document.querySelectorAll(".prices-service-link")].map(item => ({
     title: item.textContent.trim(), href: "#" + item.closest(".prices-category").id
   })),
   { title: "Частые вопросы", href: document.querySelector("#faq") ? "#faq" : "index.html#faq" }
@@ -861,3 +861,88 @@ mobileLayout.addEventListener("change", () => {
     mobileBooking.close();
   }
 });
+
+// Keep price conditions attached to the relevant service, with touch and keyboard access.
+let activePriceHint = null;
+let priceHintPinned = false;
+let priceHintTimer;
+
+function closePriceHint() {
+  clearTimeout(priceHintTimer);
+  if (!activePriceHint) return;
+  const { trigger, panel } = activePriceHint;
+  activePriceHint = null;
+  priceHintPinned = false;
+  trigger.setAttribute("aria-expanded", "false");
+  if (panel.matches(":popover-open")) panel.hidePopover();
+}
+
+function positionPriceHint() {
+  if (!activePriceHint) return;
+  const { trigger, panel } = activePriceHint;
+  const viewport = window.visualViewport;
+  const width = viewport?.width ?? window.innerWidth;
+  const height = viewport?.height ?? window.innerHeight;
+  const leftEdge = (viewport?.offsetLeft ?? 0) + 16;
+  const topEdge = (viewport?.offsetTop ?? 0) + 16;
+  panel.style.maxWidth = Math.max(0, width - 32) + "px";
+  panel.style.maxHeight = Math.max(0, height - 32) + "px";
+  const anchor = trigger.getBoundingClientRect();
+  const box = panel.getBoundingClientRect();
+  const left = Math.max(leftEdge, Math.min(anchor.left - 8, leftEdge + width - 32 - box.width));
+  let top = anchor.bottom + 10;
+  if (top + box.height > topEdge + height - 32) top = anchor.top - box.height - 10;
+  panel.style.left = left + "px";
+  panel.style.top = Math.max(topEdge, top) + "px";
+}
+
+function showPriceHint(trigger, panel, pin = false) {
+  clearTimeout(priceHintTimer);
+  if (activePriceHint?.trigger !== trigger) closePriceHint();
+  activePriceHint = { trigger, panel };
+  priceHintPinned = pin || priceHintPinned;
+  if (!panel.matches(":popover-open")) panel.showPopover();
+  trigger.setAttribute("aria-expanded", "true");
+  positionPriceHint();
+}
+
+function schedulePriceHintClose() {
+  clearTimeout(priceHintTimer);
+  if (priceHintPinned || activePriceHint?.trigger.matches(":focus-visible")) return;
+  priceHintTimer = setTimeout(closePriceHint, 160);
+}
+
+for (const trigger of document.querySelectorAll(".prices-hint-trigger")) {
+  const panel = document.getElementById(trigger.getAttribute("popovertarget"));
+  trigger.addEventListener("pointerenter", event => {
+    if (event.pointerType !== "touch") showPriceHint(trigger, panel);
+  });
+  trigger.addEventListener("pointerleave", schedulePriceHintClose);
+  trigger.addEventListener("focus", () => {
+    if (trigger.matches(":focus-visible")) showPriceHint(trigger, panel);
+  });
+  trigger.addEventListener("blur", schedulePriceHintClose);
+  trigger.addEventListener("click", event => {
+    event.preventDefault();
+    if (activePriceHint?.trigger === trigger && priceHintPinned) closePriceHint();
+    else showPriceHint(trigger, panel, true);
+  });
+  panel.addEventListener("pointerenter", () => clearTimeout(priceHintTimer));
+  panel.addEventListener("pointerleave", schedulePriceHintClose);
+  panel.addEventListener("toggle", event => {
+    const open = event.newState === "open";
+    trigger.setAttribute("aria-expanded", String(open));
+    if (!open && activePriceHint?.panel === panel) {
+      activePriceHint = null;
+      priceHintPinned = false;
+      clearTimeout(priceHintTimer);
+    }
+  });
+}
+window.addEventListener("scroll", () => {
+  if (!activePriceHint) return;
+  const box = activePriceHint.trigger.getBoundingClientRect();
+  if (box.bottom < 0 || box.top > window.innerHeight) closePriceHint();
+  else positionPriceHint();
+}, { passive: true });
+window.addEventListener("resize", closePriceHint);

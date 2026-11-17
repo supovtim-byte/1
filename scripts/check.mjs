@@ -18,6 +18,11 @@ for (const [file, content] of pages) {
   for (const pattern of content.matchAll(/pattern="([^"]+)"/g)) new RegExp(pattern[1], 'v');
   const ids = pageIds.get(file);
   assert.equal(ids.length, new Set(ids).size, `${file}: IDs must be unique`);
+  for (const [, targets] of content.matchAll(/\b(?:aria-describedby|aria-labelledby|aria-controls|popovertarget)="([^"]+)"/g)) {
+    for (const target of targets.split(/\s+/)) {
+      assert.ok(ids.includes(target), `${file}: missing accessible target ${target}`);
+    }
+  }
   for (const [, reference] of content.matchAll(/\b(?:href|src)="([^"]+)"/g)) {
     const url = new URL(reference, `https://local.test/${file}`);
     if (url.origin !== 'https://local.test') continue;
