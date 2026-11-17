@@ -1229,16 +1229,9 @@ address { font-style: normal; }
 }
 .prices-category-link:hover, .prices-category-link:focus-visible { color: var(--link-hover); }
 .prices-category-link:hover > img { transform: translate(3px, -3px); }
-.prices-document {
-  display: inline-block;
-  vertical-align: middle;
-  font-size: var(--small);
-  font-weight: 400;
-  letter-spacing: normal;
-  color: var(--muted);
-}
 .prices-list { margin: max(18px, calc(24 * var(--unit))) 0 0; }
 .prices-list > div {
+  position: relative;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(130px, 26%);
   align-items: baseline;
@@ -1251,6 +1244,10 @@ address { font-style: normal; }
   background: url("assets/prices-divider.svg") top center / 100% 1px no-repeat;
 }
 .prices-list dt { color: #000; }
+.prices-service-link::after { content: ""; position: absolute; inset: 0; }
+.prices-list > div:hover .prices-service-link, .prices-service-link:focus-visible { color: var(--link-hover); }
+.prices-service-link:focus-visible { outline: none; }
+.prices-service-link:focus-visible::after { outline: 2px solid var(--link-hover); outline-offset: 4px; }
 .prices-list dd { margin: 0; text-align: end; color: var(--link); font-variant-numeric: tabular-nums; }
 .prices-amount { white-space: nowrap; }
 .prices-unit { display: block; margin-block-start: 3px; font-size: var(--body); color: var(--muted); }
