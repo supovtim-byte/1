@@ -3,13 +3,17 @@ const doctorPage = document.querySelector('.doctor-page');
 const doctorMotion = window.matchMedia('(min-width: 901px)');
 const heroSlot = document.querySelector('.doctor-hero-slot');
 const doctorLayout = document.querySelector('.doctor-layout');
+const stickyPortrait = document.querySelector('.doctor-sticky');
 
 let portraitFrame = 0;
 let portraitRevealAt = Infinity;
 const portraitRevealGap = 32;
 
 function measurePortrait() {
-  portraitRevealAt = heroSlot.getBoundingClientRect().bottom + scrollY + portraitRevealGap;
+  const heroClearedAt = heroSlot.getBoundingClientRect().bottom + scrollY + portraitRevealGap;
+  const stickyTop = Number.parseFloat(getComputedStyle(stickyPortrait).top);
+  const pinnedAt = doctorLayout.getBoundingClientRect().top + scrollY - stickyTop;
+  portraitRevealAt = Math.max(heroClearedAt, pinnedAt);
   schedulePortrait();
 }
 

@@ -51,7 +51,7 @@
 .doctor-reviews .review-track { --card-width: max(285px, calc(560 * var(--unit))); }
 .doctor-reviews .review-card { clip-path: inset(0 var(--review-clip-right, 0px) 0 var(--review-clip-left, 0px) round var(--review-radius-tl, var(--radius)) var(--review-radius-tr, var(--radius)) var(--review-radius-br, var(--radius)) var(--review-radius-bl, var(--radius))); }
 .doctor-reviews .review-card > p { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 7; overflow: hidden; }
-.doctor-sticky { position: sticky; top: calc(var(--header-height) + var(--edge)); }
+.doctor-sticky { position: sticky; top: var(--edge); }
 .doctor-portrait-target { aspect-ratio: 1; border-radius: var(--radius); overflow: hidden; background: var(--panel); }
 .doctor-portrait-target img { inline-size: 100%; block-size: 100%; object-fit: contain; }
 .doctor-caption { padding: max(12px, calc(20 * var(--unit))) max(10px, calc(40 * var(--unit))) 0; text-align: center; letter-spacing: -.02em; }
@@ -79,8 +79,8 @@
 .doctor-page .site-footer { margin-block-start: max(70px, calc(120 * var(--unit))); }
 
 @media (min-width: 901px) {
-  .doctor-motion-ready .doctor-sticky { visibility: hidden; opacity: 0; transform: translateY(12px); transition: opacity .85s ease-in-out, transform .85s var(--ease-out); }
-  .doctor-motion-ready.doctor-card-visible .doctor-sticky { visibility: visible; opacity: 1; transform: none; }
+  .doctor-motion-ready .doctor-sticky { visibility: hidden; opacity: 0; transition: opacity .85s ease-in-out; }
+  .doctor-motion-ready.doctor-card-visible .doctor-sticky { visibility: visible; opacity: 1; }
 }
 @media (max-width: 1100px) {
   .doctor-intro h1 { max-inline-size: none; }
