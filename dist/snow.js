@@ -3,8 +3,8 @@
   if (!photo) return;
 
   const hero = photo.parentElement;
+  const mobileLayout = matchMedia("(max-width: 600px)");
   const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
-  const protectedContent = hero.querySelectorAll("h1, .hero-aside, .rating-popover .popover-panel, .mobile-brand");
   const canvas = document.createElement("canvas");
   const context = canvas.getContext("2d");
   if (!context) return;
@@ -23,7 +23,6 @@
   let visible = false;
   let frame = 0;
   let previousTime = 0;
-  let protectedAreas = [];
 
   function measure() {
     const bounds = canvas.getBoundingClientRect();
@@ -36,7 +35,8 @@
       canvas.width = Math.round(width * ratio);
       canvas.height = Math.round(height * ratio);
       context.setTransform(ratio, 0, 0, ratio, 0, 0);
-      const count = Math.round(1.5 * Math.min(36, Math.max(8, Math.round(width * height / 33000))));
+      const baseCount = Math.min(36, Math.max(8, Math.round(width * height / 33000)));
+      const count = mobileLayout.matches ? Math.round(baseCount * 1.5) : baseCount;
       flakes.length = Math.min(flakes.length, count);
 
       while (flakes.length < count) {
@@ -52,17 +52,6 @@
         });
       }
     }
-
-    protectedAreas = Array.from(protectedContent, element => {
-      const rect = element.getBoundingClientRect();
-      if (!rect.width || !rect.height || element.inert) return null;
-      return {
-        left: rect.left - bounds.left - 12,
-        top: rect.top - bounds.top - 12,
-        right: rect.right - bounds.left + 12,
-        bottom: rect.bottom - bounds.top + 12
-      };
-    }).filter(Boolean);
   }
 
   function draw(time) {
@@ -95,9 +84,6 @@
       }
       if (flake.x > width + edgePadding) flake.x = -edgePadding;
       if (flake.x < -edgePadding) flake.x = width + edgePadding;
-
-      if (protectedAreas.some(area => flake.x > area.left && flake.x < area.right &&
-          flake.y > area.top && flake.y < area.bottom)) continue;
 
       context.globalAlpha = flake.opacity;
       context.fillStyle = context.strokeStyle = "#fff";
@@ -141,13 +127,6 @@
 
   const resize = new ResizeObserver(() => { if (frame) measure(); });
   resize.observe(hero);
-  protectedContent.forEach(element => resize.observe(element));
-
-  const panel = hero.querySelector("#rating-panel");
-  if (panel) {
-    new MutationObserver(() => { if (frame) measure(); })
-      .observe(panel, { attributes: true, attributeFilter: ["inert"] });
-  }
 
   new IntersectionObserver(([entry]) => {
     visible = entry.isIntersecting;
