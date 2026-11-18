@@ -8,12 +8,12 @@
   <title>Врачи — стоматология «Метелица»</title>
   <link rel="icon" href="assets/logo.png" type="image/png">
   <link rel="preload" href="assets/geologica.ttf" as="font" type="font/ttf" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=header-label-20261118">
-  <link rel="stylesheet" href="catalog.css?v=doctor-tags-20261118">
+  <link rel="stylesheet" href="styles.css?v=menus-sleep-20261119">
+  <link rel="stylesheet" href="catalog.css?v=doctor-filters-20261119">
   <script src="site.js?v=service-cards-20261118" defer></script>
-  <script src="catalog.js?v=catalogs-20261117" defer></script>
+  <script src="catalog.js?v=doctor-counts-20261119" defer></script>
 </head>
-<body class="catalog-page">
+<body class="catalog-page doctors-page">
   <a class="skip-link" href="#main">Перейти к содержанию</a>
   <header class="site-header" id="header">
     <a class="brand" href="index.html" aria-label="Метелица — на главную">
@@ -23,8 +23,7 @@
     <nav class="navigation" aria-label="Главное меню">
       <div class="primary-links">
         <a href="uslugi.html">Услуги</a>
-        <a href="uslugi-i-ceny.html">Цены</a>
-        <a href="index.html#service-sleep">Лечение во сне</a>
+        <a href="lechenie-vo-sne.html">Лечение во сне</a>
         <a href="lechenie-molochnyh-zubov.html">Детям</a>
         <a href="index.html#contacts">Контакты</a>
       </div>
@@ -36,6 +35,7 @@
           <a href="doctors.html" aria-current="page">Врачи</a>
           <a href="index.html#reviews">Отзывы</a>
           <a href="index.html#about">О клинике</a>
+          <a href="uslugi-i-ceny.html">Цены</a>
           <a href="https://metelitsa-dent.ru/nalogovyy-vychet/">Налоговый вычет</a>
         </div>
       </div>
@@ -78,16 +78,16 @@
       <h1 id="catalog-title">Врачи</h1>
       <div class="catalog-toolbar">
         <div class="catalog-filters" role="group" aria-label="Специализация и направления работы врача" data-doctor-filters hidden>
-          <button class="catalog-filter" type="button" data-specialty="all" aria-pressed="true" aria-controls="doctors-grid">Все врачи</button>
-          <button class="catalog-filter" type="button" data-specialty="therapy" aria-pressed="false" aria-controls="doctors-grid">Терапевты</button>
-          <button class="catalog-filter" type="button" data-specialty="surgery" aria-pressed="false" aria-controls="doctors-grid">Хирурги</button>
-          <button class="catalog-filter" type="button" data-specialty="children" aria-pressed="false" aria-controls="doctors-grid">Детские стоматологи</button>
-          <button class="catalog-filter" type="button" data-specialty="chief" aria-pressed="false" aria-controls="doctors-grid">Главный врач</button>
-          <button class="catalog-filter" type="button" data-specialty="caries" aria-pressed="false" aria-controls="doctors-grid">Лечение кариеса</button>
-          <button class="catalog-filter" type="button" data-specialty="endodontics" aria-pressed="false" aria-controls="doctors-grid">Лечение каналов</button>
-          <button class="catalog-filter" type="button" data-specialty="prevention" aria-pressed="false" aria-controls="doctors-grid">Профилактика</button>
+          <button class="catalog-filter" type="button" data-specialty="all" aria-pressed="true" aria-controls="doctors-grid">Все врачи <span class="catalog-filter-count" data-filter-count>12</span></button>
+          <button class="catalog-filter" type="button" data-specialty="therapy" aria-pressed="false" aria-controls="doctors-grid">Терапевты <span class="catalog-filter-count" data-filter-count hidden></span></button>
+          <button class="catalog-filter" type="button" data-specialty="surgery" aria-pressed="false" aria-controls="doctors-grid">Хирурги <span class="catalog-filter-count" data-filter-count hidden></span></button>
+          <button class="catalog-filter" type="button" data-specialty="children" aria-pressed="false" aria-controls="doctors-grid">Детские стоматологи <span class="catalog-filter-count" data-filter-count hidden></span></button>
+          <button class="catalog-filter" type="button" data-specialty="chief" aria-pressed="false" aria-controls="doctors-grid">Главный врач <span class="catalog-filter-count" data-filter-count hidden></span></button>
+          <button class="catalog-filter" type="button" data-specialty="caries" aria-pressed="false" aria-controls="doctors-grid">Лечение кариеса <span class="catalog-filter-count" data-filter-count hidden></span></button>
+          <button class="catalog-filter" type="button" data-specialty="endodontics" aria-pressed="false" aria-controls="doctors-grid">Лечение каналов <span class="catalog-filter-count" data-filter-count hidden></span></button>
+          <button class="catalog-filter" type="button" data-specialty="prevention" aria-pressed="false" aria-controls="doctors-grid">Профилактика <span class="catalog-filter-count" data-filter-count hidden></span></button>
         </div>
-        <p class="catalog-count" role="status" aria-live="polite" aria-atomic="true" data-doctor-count>12 врачей</p>
+        <p class="sr-only" role="status" aria-live="polite" aria-atomic="true" data-doctor-status>Показано: 12 врачей</p>
       </div>
     </section>
 
@@ -100,6 +100,7 @@
           </div>
           <h3 id="alexandra-name"><a class="doctor-profile-link" href="doctor-hodykina.html">Сизонец Александра</a></h3>
           <p>главный врач, терапевт, хирург</p>
+          <p class="doctor-experience">опыт: 6 лет</p>
         </article>
         <article class="doctor-card" id="doctor-olga" data-doctor-specialties="therapy surgery caries" aria-labelledby="olga-name">
           <div class="doctor-photo">
@@ -108,6 +109,7 @@
           </div>
           <h3 id="olga-name"><a class="doctor-profile-link" href="doctor-hodykina.html">Маслёнок Ольга</a></h3>
           <p>терапевт, хирург</p>
+          <p class="doctor-experience">опыт: 6 лет</p>
         </article>
         <article class="doctor-card" id="doctor-philipp" data-doctor-specialties="surgery" aria-labelledby="philipp-name">
           <div class="doctor-photo">
@@ -116,6 +118,7 @@
           </div>
           <h3 id="philipp-name"><a class="doctor-profile-link" href="doctor-hodykina.html">Филипп Бармашев</a></h3>
           <p>хирург</p>
+          <p class="doctor-experience">опыт: 6 лет</p>
         </article>
         <article class="doctor-card" id="doctor-oksana" data-doctor-specialties="therapy children caries" aria-labelledby="oksana-name">
           <div class="doctor-photo">
@@ -124,6 +127,7 @@
           </div>
           <h3 id="oksana-name"><a class="doctor-profile-link" href="doctor-hodykina.html">Зырянова Оксана</a></h3>
           <p>терапевт, детский стоматолог</p>
+          <p class="doctor-experience">опыт: 6 лет</p>
         </article>
         <article class="doctor-card" id="doctor-daria" data-doctor-specialties="therapy caries endodontics prevention" aria-labelledby="daria-name">
           <div class="doctor-photo">
@@ -132,6 +136,7 @@
           </div>
           <h3 id="daria-name"><a class="doctor-profile-link" href="doctor-hodykina.html">Ходыкина Дарья Александровна</a></h3>
           <p>врач-стоматолог-терапевт</p>
+          <p class="doctor-experience">опыт: 16 лет</p>
         </article>
         <article class="doctor-card" data-doctor-copy id="doctor-alexandra-copy-1" data-doctor-specialties="therapy surgery chief caries" aria-labelledby="alexandra-name-copy-1">
           <div class="doctor-photo">
@@ -140,6 +145,7 @@
           </div>
           <h3 id="alexandra-name-copy-1"><a class="doctor-profile-link" href="doctor-hodykina.html">Сизонец Александра</a></h3>
           <p>главный врач, терапевт, хирург</p>
+          <p class="doctor-experience">опыт: 6 лет</p>
         </article>
         <article class="doctor-card" data-doctor-copy id="doctor-olga-copy-2" data-doctor-specialties="therapy surgery caries" aria-labelledby="olga-name-copy-2">
           <div class="doctor-photo">
@@ -148,6 +154,7 @@
           </div>
           <h3 id="olga-name-copy-2"><a class="doctor-profile-link" href="doctor-hodykina.html">Маслёнок Ольга</a></h3>
           <p>терапевт, хирург</p>
+          <p class="doctor-experience">опыт: 6 лет</p>
         </article>
         <article class="doctor-card" data-doctor-copy id="doctor-philipp-copy-3" data-doctor-specialties="surgery" aria-labelledby="philipp-name-copy-3">
           <div class="doctor-photo">
@@ -156,6 +163,7 @@
           </div>
           <h3 id="philipp-name-copy-3"><a class="doctor-profile-link" href="doctor-hodykina.html">Филипп Бармашев</a></h3>
           <p>хирург</p>
+          <p class="doctor-experience">опыт: 6 лет</p>
         </article>
         <article class="doctor-card" data-doctor-copy id="doctor-oksana-copy-4" data-doctor-specialties="therapy children caries" aria-labelledby="oksana-name-copy-4">
           <div class="doctor-photo">
@@ -164,6 +172,7 @@
           </div>
           <h3 id="oksana-name-copy-4"><a class="doctor-profile-link" href="doctor-hodykina.html">Зырянова Оксана</a></h3>
           <p>терапевт, детский стоматолог</p>
+          <p class="doctor-experience">опыт: 6 лет</p>
         </article>
         <article class="doctor-card" data-doctor-copy id="doctor-daria-copy-5" data-doctor-specialties="therapy caries endodontics prevention" aria-labelledby="daria-name-copy-5">
           <div class="doctor-photo">
@@ -172,6 +181,7 @@
           </div>
           <h3 id="daria-name-copy-5"><a class="doctor-profile-link" href="doctor-hodykina.html">Ходыкина Дарья Александровна</a></h3>
           <p>врач-стоматолог-терапевт</p>
+          <p class="doctor-experience">опыт: 16 лет</p>
         </article>
         <article class="doctor-card" data-doctor-copy id="doctor-alexandra-copy-6" data-doctor-specialties="therapy surgery chief caries" aria-labelledby="alexandra-name-copy-6">
           <div class="doctor-photo">
@@ -180,6 +190,7 @@
           </div>
           <h3 id="alexandra-name-copy-6"><a class="doctor-profile-link" href="doctor-hodykina.html">Сизонец Александра</a></h3>
           <p>главный врач, терапевт, хирург</p>
+          <p class="doctor-experience">опыт: 6 лет</p>
         </article>
         <article class="doctor-card" data-doctor-copy id="doctor-olga-copy-7" data-doctor-specialties="therapy surgery caries" aria-labelledby="olga-name-copy-7">
           <div class="doctor-photo">
@@ -188,6 +199,7 @@
           </div>
           <h3 id="olga-name-copy-7"><a class="doctor-profile-link" href="doctor-hodykina.html">Маслёнок Ольга</a></h3>
           <p>терапевт, хирург</p>
+          <p class="doctor-experience">опыт: 6 лет</p>
         </article>
     </div>
 
@@ -267,7 +279,7 @@
         <a href="uslugi-i-ceny.html">Цены</a>
         <a href="lechenie-molochnyh-zubov.html">Детям</a>
         <a href="index.html#contacts">Контакты</a>
-        <a href="index.html#service-sleep">Лечение во сне</a>
+        <a href="lechenie-vo-sne.html">Лечение во сне</a>
         <a href="doctors.html" aria-current="page">Врачи</a>
         <a href="https://metelitsa-dent.ru/nalogovyy-vychet/">Налоговый вычет</a>
         <a href="index.html#reviews">Отзывы</a>
