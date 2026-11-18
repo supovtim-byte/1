@@ -1065,6 +1065,23 @@ address { font-style: normal; }
   transition: color .2s ease;
 }
 .treatment-nav a[aria-current="location"] { color: var(--link); }
+.treatment-nav-panel {
+  gap: max(12px, calc(20 * var(--unit)));
+  margin-block-start: 0;
+  padding: var(--inside);
+  border-radius: var(--photo-radius);
+  color: var(--ink);
+  background: var(--panel);
+  font-size: max(14px, calc(22 * var(--unit)));
+  line-height: 1.5;
+}
+.treatment-nav-panel a {
+  inline-size: fit-content;
+  min-block-size: 0;
+  display: block;
+  padding: 0;
+  border-radius: 0;
+}
 .treatment-content { min-inline-size: 0; padding-inline-end: var(--treatment-trailing); }
 .treatment-content .section-shell { margin-inline: 0; }
 .treatment-about p {
