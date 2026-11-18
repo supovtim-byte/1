@@ -179,6 +179,69 @@ if (treatmentNav) {
   const horizontalNav = window.matchMedia("(max-width: 780px)");
   let activeLink;
   let pendingFrame = false;
+  let indicatorGeometry = null;
+  let indicatorFrame;
+  const alignedHeading = !document.body.classList.contains("prices-page")
+    ? sections[0]?.section.querySelector("h2") : null;
+
+  function alignFirstNavRow() {
+    if (!alignedHeading || !sections.length) return;
+    if (horizontalNav.matches) {
+      treatmentNav.style.removeProperty("--nav-top-offset");
+      return;
+    }
+    const first = sections[0].link;
+    const navBox = treatmentNav.getBoundingClientRect();
+    const rowBox = first.getBoundingClientRect();
+    const headingBox = alignedHeading.getBoundingClientRect();
+    const layoutBox = treatmentNav.parentElement.getBoundingClientRect();
+    const rowStyle = getComputedStyle(first);
+    const top = parseFloat(rowStyle.paddingTop);
+    const bottom = parseFloat(rowStyle.paddingBottom);
+    const rowCenter = rowBox.top - navBox.top + treatmentNav.scrollTop
+      + top + (rowBox.height - top - bottom) / 2;
+    const headingCenter = headingBox.top - layoutBox.top + headingBox.height / 2;
+    const offset = Math.max(0, headingCenter - rowCenter);
+    const previous = parseFloat(treatmentNav.style.getPropertyValue("--nav-top-offset")) || 0;
+    if (Math.abs(offset - previous) > .1) treatmentNav.style.setProperty("--nav-top-offset", offset + "px");
+  }
+
+  function positionActiveIndicator(animate = true) {
+    if (!activeLink || horizontalNav.matches || !treatmentNav.clientWidth) {
+      cancelAnimationFrame(indicatorFrame);
+      treatmentNav.classList.remove("has-active-indicator", "is-indicator-animated");
+      indicatorGeometry = null;
+      return;
+    }
+    const navBox = treatmentNav.getBoundingClientRect();
+    const linkBox = activeLink.getBoundingClientRect();
+    const geometry = {
+      x: linkBox.left - navBox.left + treatmentNav.scrollLeft,
+      y: linkBox.top - navBox.top + treatmentNav.scrollTop,
+      width: linkBox.width,
+      height: linkBox.height
+    };
+    if (indicatorGeometry && Object.keys(geometry).every(key => Math.abs(geometry[key] - indicatorGeometry[key]) < .1)) return;
+    const smooth = animate && indicatorGeometry && !reduceMotion.matches;
+    if (!smooth) treatmentNav.classList.remove("is-indicator-animated");
+    for (const [key, value] of Object.entries(geometry)) {
+      treatmentNav.style.setProperty("--nav-indicator-" + key, value + "px");
+    }
+    treatmentNav.classList.add("has-active-indicator");
+    indicatorGeometry = geometry;
+    if (!smooth) {
+      cancelAnimationFrame(indicatorFrame);
+      // Paint the initial/resized position before enabling interpolation.
+      indicatorFrame = requestAnimationFrame(() => {
+        indicatorFrame = requestAnimationFrame(() => treatmentNav.classList.add("is-indicator-animated"));
+      });
+    }
+  }
+
+  function refreshNavigationLayout() {
+    alignFirstNavRow();
+    positionActiveIndicator(false);
+  }
 
   function updateActiveSection() {
     pendingFrame = false;
@@ -199,6 +262,7 @@ if (treatmentNav) {
     activeLink?.removeAttribute("aria-current");
     current?.setAttribute("aria-current", "location");
     activeLink = current;
+    positionActiveIndicator();
     revealActiveLink();
   }
 
@@ -224,10 +288,20 @@ if (treatmentNav) {
 
   window.addEventListener("scroll", scheduleActiveSection, { passive: true });
   window.addEventListener("resize", () => {
+    refreshNavigationLayout();
     scheduleActiveSection();
     revealActiveLink();
   });
   new ResizeObserver(scheduleActiveSection).observe(document.querySelector(".treatment-content"));
+  const navLayoutObserver = new ResizeObserver(refreshNavigationLayout);
+  navLayoutObserver.observe(treatmentNav);
+  for (const { link } of sections) navLayoutObserver.observe(link);
+  if (alignedHeading) navLayoutObserver.observe(alignedHeading);
+  document.fonts.ready.then(() => {
+    refreshNavigationLayout();
+    scheduleActiveSection();
+  });
+  alignFirstNavRow();
   updateActiveSection();
 }
 
