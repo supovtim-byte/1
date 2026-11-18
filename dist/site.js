@@ -179,7 +179,7 @@ if (treatmentNav) {
   const horizontalNav = window.matchMedia("(max-width: 780px)");
   let activeLink;
   let pendingFrame = false;
-  const alignedHeading = !document.body.classList.contains("prices-page")
+  const alignedHeading = !document.body.classList.contains("prices-page") && !treatmentNav.classList.contains("treatment-nav-panel")
     ? sections[0]?.section.querySelector("h2") : null;
 
   function alignFirstNavRow() {
