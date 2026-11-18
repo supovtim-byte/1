@@ -11,7 +11,8 @@
 
   canvas.setAttribute("aria-hidden", "true");
   canvas.style.cssText = "position:absolute;inset:0;width:100%;height:100%;border-radius:inherit;pointer-events:none;z-index:-1";
-  photo.after(canvas);
+  const shade = hero.querySelector(".hero-shade");
+  (shade || photo).after(canvas);
 
   const sizeScale = 2;
   const edgePadding = 6 * sizeScale;
@@ -35,7 +36,7 @@
       canvas.width = Math.round(width * ratio);
       canvas.height = Math.round(height * ratio);
       context.setTransform(ratio, 0, 0, ratio, 0, 0);
-      const count = Math.min(36, Math.max(8, Math.round(width * height / 33000)));
+      const count = Math.round(1.5 * Math.min(36, Math.max(8, Math.round(width * height / 33000))));
       flakes.length = Math.min(flakes.length, count);
 
       while (flakes.length < count) {
