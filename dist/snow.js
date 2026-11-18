@@ -13,6 +13,8 @@
   canvas.style.cssText = "position:absolute;inset:0;width:100%;height:100%;border-radius:inherit;pointer-events:none;z-index:-1";
   photo.after(canvas);
 
+  const sizeScale = 2;
+  const edgePadding = 6 * sizeScale;
   const flakes = [];
   let width = 0;
   let height = 0;
@@ -86,12 +88,12 @@
       flake.phase += delta;
       flake.x += (Math.sin(flake.phase) * 5 + flake.vx) * delta;
       flake.y += (flake.speed + flake.vy) * delta;
-      if (flake.y > height + 6) {
-        flake.y = -6;
+      if (flake.y > height + edgePadding) {
+        flake.y = -edgePadding;
         flake.x = Math.random() * width;
       }
-      if (flake.x > width + 6) flake.x = -6;
-      if (flake.x < -6) flake.x = width + 6;
+      if (flake.x > width + edgePadding) flake.x = -edgePadding;
+      if (flake.x < -edgePadding) flake.x = width + edgePadding;
 
       if (protectedAreas.some(area => flake.x > area.left && flake.x < area.right &&
           flake.y > area.top && flake.y < area.bottom)) continue;
@@ -100,15 +102,16 @@
       context.fillStyle = context.strokeStyle = "#fff";
       context.beginPath();
       if (flake.radius < 2.6) {
-        context.arc(flake.x, flake.y, flake.radius * 0.65, 0, Math.PI * 2);
+        context.arc(flake.x, flake.y, flake.radius * 0.65 * sizeScale, 0, Math.PI * 2);
         context.fill();
       } else {
-        context.lineWidth = 0.85;
+        context.lineWidth = 0.85 * sizeScale;
+        const radius = flake.radius * sizeScale;
         for (let arm = 0; arm < 6; arm++) {
           const angle = arm * Math.PI / 3 + flake.phase * 0.1;
           context.moveTo(flake.x, flake.y);
-          context.lineTo(flake.x + Math.cos(angle) * flake.radius,
-            flake.y + Math.sin(angle) * flake.radius);
+          context.lineTo(flake.x + Math.cos(angle) * radius,
+            flake.y + Math.sin(angle) * radius);
         }
         context.stroke();
       }
