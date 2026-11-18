@@ -39,7 +39,7 @@
 .doctors-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: var(--catalog-gap);
+  gap: 40px var(--catalog-gap);
   margin-inline: calc(var(--edge) + var(--inside));
 }
 .doctors-grid > [hidden] { display: none; }
