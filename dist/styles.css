@@ -1098,7 +1098,7 @@ address { font-style: normal; }
 
 @media (min-width: 781px) {
   .treatment-about { padding-block-start: 30px; }
-  .treatment-content .doctor-card h3, .treatment-content .doctor-card p { padding-inline: 0; }
+  :is(.treatment-content, .doctors-grid) .doctor-card :is(h3, p) { padding-inline: 0; }
 }
 
 @media (max-width: 1080px) {
