@@ -129,6 +129,7 @@ address { font-style: normal; }
 .primary-links a:hover { color: var(--link-hover); }
 .header-actions { margin-inline-start: auto; gap: max(12px, calc(42 * var(--unit))); }
 .header-book { min-block-size: max(40px, calc(55 * var(--unit))); }
+.header-book > span { display: inline-block; transform: translateY(2px); }
 .compact-menu { display: none; }
 
 .popover { position: relative; }
