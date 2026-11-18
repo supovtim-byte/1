@@ -1037,7 +1037,6 @@ address { font-style: normal; }
 .treatment-page .site-footer { margin-block-start: 0; }
 .treatment-nav {
   position: sticky;
-  isolation: isolate;
   inset-block-start: calc(var(--visible-header-height, 0px) + var(--edge));
   align-self: start;
   display: grid;
@@ -1049,6 +1048,7 @@ address { font-style: normal; }
   margin-block-start: var(--nav-top-offset, 0px);
   padding: 0 max(12px, calc(20 * var(--unit))) 0 0;
   border-radius: 0;
+  color: #000;
   background: transparent;
   font-size: max(16px, calc(24 * var(--unit)));
   line-height: 1.2;
@@ -1056,35 +1056,15 @@ address { font-style: normal; }
   scrollbar-color: transparent transparent;
 }
 .treatment-nav a {
-  position: relative;
-  z-index: 1;
   inline-size: 100%;
   min-block-size: max(50px, calc(70 * var(--unit)));
   display: flex;
   align-items: center;
   padding: max(12px, calc(17 * var(--unit))) max(16px, calc(30 * var(--unit))) max(14px, calc(22 * var(--unit)));
   border-radius: max(24px, calc(40 * var(--unit)));
+  transition: color .2s ease;
 }
-.treatment-nav a[aria-current="location"] { color: var(--ink); background: var(--panel); }
-.treatment-nav::before {
-  content: "";
-  position: absolute;
-  z-index: 0;
-  top: 0;
-  left: var(--nav-indicator-x, 0px);
-  width: var(--nav-indicator-width, 0px);
-  height: var(--nav-indicator-height, 0px);
-  transform: translate3d(0, var(--nav-indicator-y, 0px), 0);
-  border-radius: max(24px, calc(40 * var(--unit)));
-  background: var(--panel);
-  opacity: 0;
-  pointer-events: none;
-}
-.treatment-nav.has-active-indicator::before { opacity: 1; }
-.treatment-nav.has-active-indicator a[aria-current="location"] { background: transparent; }
-.treatment-nav.is-indicator-animated::before {
-  transition: transform .4s var(--ease-out), width .4s var(--ease-out), height .4s var(--ease-out);
-}
+.treatment-nav a[aria-current="location"] { color: var(--link); }
 .treatment-content { min-inline-size: 0; padding-inline-end: var(--treatment-trailing); }
 .treatment-content .section-shell { margin-inline: 0; }
 .treatment-about p {
