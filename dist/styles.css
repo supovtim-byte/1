@@ -1018,7 +1018,7 @@ address { font-style: normal; }
 }
 .treatment-back { display: inline-flex; align-items: center; gap: 12px; }
 .treatment-back img { inline-size: max(6px, calc(8 * var(--unit))); block-size: auto; }
-.treatment-back:hover, .treatment-nav a:hover { color: var(--link-hover); }
+.treatment-back:hover { color: var(--link-hover); }
 .treatment-book { background: var(--ink); color: var(--white); }
 .treatment-book:hover { background: var(--link-hover); color: var(--white); }
 .treatment-hero-media {
@@ -1041,17 +1041,27 @@ address { font-style: normal; }
   align-self: start;
   display: grid;
   align-content: start;
-  gap: max(12px, calc(20 * var(--unit)));
+  gap: 0;
   block-size: calc(100dvh - var(--visible-header-height, 0px) - 2 * var(--edge));
   min-block-size: 0;
   overflow-y: auto;
-  padding: var(--inside);
-  border-radius: var(--photo-radius);
-  background: var(--panel);
-  font-size: max(14px, calc(22 * var(--unit)));
+  padding: 0 max(12px, calc(20 * var(--unit))) 0 0;
+  border-radius: 0;
+  background: transparent;
+  font-size: max(16px, calc(24 * var(--unit)));
+  line-height: 1.2;
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
 }
-.treatment-nav a { inline-size: fit-content; }
-.treatment-nav a[aria-current="location"] { color: var(--link); }
+.treatment-nav a {
+  inline-size: 100%;
+  min-block-size: max(50px, calc(70 * var(--unit)));
+  display: flex;
+  align-items: center;
+  padding: max(12px, calc(17 * var(--unit))) max(16px, calc(30 * var(--unit))) max(14px, calc(22 * var(--unit)));
+  border-radius: max(24px, calc(40 * var(--unit)));
+}
+.treatment-nav a[aria-current="location"] { color: var(--ink); background: var(--panel); }
 .treatment-content { min-inline-size: 0; padding-inline-end: var(--treatment-trailing); }
 .treatment-content .section-shell { margin-inline: 0; }
 .treatment-about p {
@@ -1212,15 +1222,13 @@ address { font-style: normal; }
   .mobile-large-text .treatment-intro h1 { font-size: var(--title); }
 }
 
-/* Services catalog: cards and a quiet navigation rail from Figma 108:1465. */
+/* Price list: cards and the shared quiet navigation rail. */
 .prices-page {
   --treatment-rail: max(220px, calc(464 * var(--unit)));
   --treatment-gap: max(36px, calc(111 * var(--unit)));
   --treatment-trailing: 0px;
   --prices-outer-start: max(20px, calc(60 * var(--unit)));
   --prices-outer-end: max(20px, calc(111 * var(--unit)));
-  --prices-surface: #def0ff;
-  --prices-accent: #00b2ff;
 }
 .prices-heading {
   padding-block-start: max(108px, calc(164 * var(--unit)));
@@ -1237,47 +1245,30 @@ address { font-style: normal; }
   margin-inline: var(--prices-outer-start) var(--prices-outer-end);
 }
 .prices-page .treatment-nav {
-  gap: 0;
   margin-block-start: max(32px, calc(60 * var(--unit)));
-  padding: 0 max(12px, calc(20 * var(--unit))) 0 0;
-  border-radius: 0;
-  background: transparent;
-  font-size: max(16px, calc(24 * var(--unit)));
-  line-height: 1.2;
-  scrollbar-width: thin;
-  scrollbar-color: transparent transparent;
 }
-.prices-page .treatment-nav:has(:focus-visible) { scrollbar-color: var(--prices-surface) transparent; }
+.treatment-nav:has(:focus-visible) { scrollbar-color: var(--panel) transparent; }
 @media (hover: hover) {
-  .prices-page .treatment-nav:hover { scrollbar-color: var(--prices-surface) transparent; }
+  .treatment-nav:hover { scrollbar-color: var(--panel) transparent; }
 }
-.prices-page .treatment-nav a {
-  inline-size: 100%;
-  min-block-size: max(50px, calc(70 * var(--unit)));
-  display: flex;
-  align-items: center;
-  padding: max(12px, calc(17 * var(--unit))) max(16px, calc(30 * var(--unit))) max(14px, calc(22 * var(--unit)));
-  border-radius: max(24px, calc(40 * var(--unit)));
-}
-.prices-page .treatment-nav a[aria-current="location"] { color: var(--prices-accent); background: var(--prices-surface); }
-.prices-page .treatment-nav::-webkit-scrollbar { width: 7px; height: 4px; }
-.prices-page .treatment-nav::-webkit-scrollbar-track { background: transparent; }
-.prices-page .treatment-nav::-webkit-scrollbar-thumb { background: transparent; border-radius: 10px; }
-.prices-page .treatment-nav:has(:focus-visible)::-webkit-scrollbar-thumb { background: var(--prices-surface); }
+.treatment-nav::-webkit-scrollbar { width: 7px; height: 4px; }
+.treatment-nav::-webkit-scrollbar-track { background: transparent; }
+.treatment-nav::-webkit-scrollbar-thumb { background: transparent; border-radius: 10px; }
+.treatment-nav:has(:focus-visible)::-webkit-scrollbar-thumb { background: var(--panel); }
 @media (hover: hover) {
-  .prices-page .treatment-nav:hover::-webkit-scrollbar-thumb { background: var(--prices-surface); }
+  .treatment-nav:hover::-webkit-scrollbar-thumb { background: var(--panel); }
 }
-.prices-page .treatment-nav::-webkit-scrollbar-button { display: none; width: 0; height: 0; }
-.prices-page .treatment-nav::-webkit-scrollbar-corner { background: transparent; }
+.treatment-nav::-webkit-scrollbar-button { display: none; width: 0; height: 0; }
+.treatment-nav::-webkit-scrollbar-corner { background: transparent; }
 @supports selector(::-webkit-scrollbar) {
-  .prices-page .treatment-nav,
-  .prices-page .treatment-nav:hover,
-  .prices-page .treatment-nav:has(:focus-visible) { scrollbar-width: auto; scrollbar-color: auto; }
+  .treatment-nav,
+  .treatment-nav:hover,
+  .treatment-nav:has(:focus-visible) { scrollbar-width: auto; scrollbar-color: auto; }
 }
 .prices-category {
   padding: max(28px, calc(70 * var(--unit))) max(24px, calc(90 * var(--unit))) max(28px, calc(60 * var(--unit)));
   border-radius: max(24px, calc(50 * var(--unit)));
-  background: rgb(207 232 255 / 40%);
+  background: var(--panel);
 }
 .prices-category + .prices-category { margin-block-start: max(12px, calc(20 * var(--unit))); }
 .prices-category h2 { font-size: max(28px, calc(45 * var(--unit))); font-weight: 500; line-height: 1.2; letter-spacing: normal; }
