@@ -1442,6 +1442,22 @@ address { font-style: normal; }
 .service-centered .service-prices { margin-block-start: max(72px, calc(120 * var(--unit))); }
 .service-centered .service-faq { margin-block-start: max(80px, calc(140 * var(--unit))); }
 
+@media (min-width: 601px) {
+  .service-centered .service-prices {
+    --price-content-gap: max(30px, calc(60 * var(--unit)));
+    --price-panel-padding: max(24px, calc(40 * var(--unit)));
+    --price-summary-padding: max(20px, calc(24 * var(--unit)));
+  }
+  .service-centered .service-prices details[open] summary { min-block-size: 0; }
+  .service-centered .service-prices .treatment-price-body {
+    padding-block-start: calc(var(--price-content-gap) - var(--price-summary-padding));
+    padding-inline-end: calc(var(--price-panel-padding) + var(--price-summary-gap) + var(--price-arrow-width));
+  }
+  .service-centered .service-prices .treatment-price-body > p { max-inline-size: 100%; }
+  .service-centered .service-prices .treatment-price-body dl { margin-block-start: var(--price-content-gap); }
+  .service-centered .service-prices .treatment-price-body dd { text-align: end; }
+}
+
 @media (max-width: 1100px) {
   .service-wide .service-section { grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 32px; }
   .service-centered .service-section { inline-size: 72%; }
