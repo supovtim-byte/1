@@ -1067,7 +1067,7 @@ address { font-style: normal; }
   transition: color .2s ease;
 }
 .treatment-nav a[aria-current="location"] { color: var(--link); }
-.treatment-nav-service {
+.treatment-nav-shared {
   gap: max(12px, calc(20 * var(--unit)));
   padding: 0 max(12px, calc(20 * var(--unit))) 0 var(--inside);
   color: var(--ink);
@@ -1075,7 +1075,7 @@ address { font-style: normal; }
   line-height: 1.5;
   letter-spacing: -.02em;
 }
-.treatment-nav-service a {
+.treatment-nav-shared a {
   inline-size: fit-content;
   min-block-size: 0;
   display: block;
@@ -1323,6 +1323,7 @@ address { font-style: normal; }
   margin-inline: var(--prices-outer-start) var(--prices-outer-end);
 }
 .prices-page .treatment-nav {
+  padding-inline-start: 0;
   margin-block-start: max(32px, calc(60 * var(--unit)));
 }
 .treatment-nav:has(:focus-visible) { scrollbar-color: var(--panel) transparent; }
