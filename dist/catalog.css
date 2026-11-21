@@ -139,7 +139,7 @@
     padding: calc(10 * var(--unit)) calc(20 * var(--unit)) calc(16 * var(--unit));
     border-radius: calc(19 * var(--unit));
     color: var(--muted);
-    background: rgb(207 232 255 / 50%);
+    background: rgb(217 237 255 / 50%);
     line-height: 1.25;
   }
   .doctors-page .catalog-filter:hover { background: var(--panel); }
