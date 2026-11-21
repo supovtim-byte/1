@@ -1396,9 +1396,7 @@ address { font-style: normal; }
 
 /* Service alternatives: Figma 200:763 and 200:1102. */
 .service-page { --service-inset: max(24px, calc(70 * var(--unit))); --service-copy-size: max(18px, calc(26 * var(--unit))); font-size: max(16px, calc(20 * var(--unit))); }
-.service-main { padding-block-start: calc(var(--header-height) + 20px); }
-.service-hero { position: relative; isolation: isolate; display: flex; align-items: flex-end; aspect-ratio: 1879 / 814; min-block-size: 400px; margin-inline: 20px; padding: max(24px, calc(50 * var(--unit))); border-radius: var(--photo-radius); overflow: clip; color: var(--white); background: var(--ink); }
-.service-hero-photo { z-index: -1; }
+.service-hero { overflow: clip; }
 .service-mobile-brand { display: none; }
 .service-back { position: absolute; inset-block-start: max(24px, calc(40 * var(--unit))); inset-inline-start: max(24px, calc(40 * var(--unit))); display: inline-flex; align-items: center; gap: 12px; min-block-size: 32px; }
 .service-back img { flex: none; max-inline-size: none; }
@@ -1428,71 +1426,44 @@ address { font-style: normal; }
 .service-prices .treatment-price-book { display: inline-flex; margin-block-start: max(30px, calc(60 * var(--unit))); color: var(--ink); font-size: max(16px, calc(20 * var(--unit))); }
 .service-prices .treatment-price-book:hover { color: var(--white); }
 .service-price-note { margin-block-start: 8px; font-size: max(14px, calc(16 * var(--unit))); color: var(--muted); }
-.service-doctors, .service-reviews { margin: max(80px, calc(160 * var(--unit))) max(20px, calc(40 * var(--unit))) 0; }
-.service-doctors .section-heading, .service-reviews .section-heading { padding-inline: max(4px, calc(30 * var(--unit))); margin-block-end: max(28px, calc(40 * var(--unit))); }
-.service-doctors .doctor-track { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: max(16px, calc(20 * var(--unit))); margin: 0; padding: 0; overflow: visible; }
-.service-doctors .doctor-photo { position: relative; }
-.service-doctors .doctor-card { min-inline-size: 0; }
-.service-doctors .doctor-card h3 { font-size: max(18px, calc(24 * var(--unit))); letter-spacing: -.02em; }
-.service-doctors .doctor-card p { font-size: max(14px, calc(16 * var(--unit))); color: var(--ink); }
-.service-doctors .doctor-card :is(h3, p) { padding-inline: max(4px, calc(30 * var(--unit))) 0; }
-.service-doctors .doctor-card h3 + p { margin-block-start: max(8px, calc(10 * var(--unit))); }
-.service-doctors .service-doctor-experience { margin-block-start: 5px; }
-.service-doctors .carousel-controls { display: none; }
-.service-doctors .deck-more, .service-reviews .deck-more { margin-inline-start: max(4px, calc(30 * var(--unit))); }
+.service-doctors .service-doctor-experience { margin-block-start: 5px; font-size: max(13px, var(--small)); }
 .service-faq summary { min-block-size: max(72px, calc(92 * var(--unit))); font-size: var(--service-copy-size); }
 .service-faq details > p { max-inline-size: 100%; font-size: var(--service-copy-size); }
-.service-reviews .review-track { --card-width: calc((100% - 2 * var(--gap)) / 3); margin-inline: 0; padding-inline: 0; }
-.service-reviews .review-card { min-block-size: 320px; font-size: max(16px, calc(20 * var(--unit))); }
 .service-appointment { min-block-size: max(500px, calc(720 * var(--unit))); margin: max(80px, calc(140 * var(--unit))) 20px 0; }
 .service-appointment .appointment-photo { inset: 0; inline-size: 100%; block-size: 100%; object-position: 65% center; }
 .service-appointment .appointment-content { inline-size: min(100%, max(320px, calc(590 * var(--unit)))); }
 .service-appointment h2 { max-inline-size: 9em; }
 .service-appointment-intro { margin-block-end: max(24px, calc(35 * var(--unit))); max-inline-size: 28em; }
 .service-page .site-footer { margin-block-start: max(64px, calc(100 * var(--unit))); }
-.service-centered .service-hero { aspect-ratio: 1859 / 804; margin-inline: max(20px, calc(30 * var(--unit))); padding-inline: max(24px, calc(40 * var(--unit))); }
 .service-centered .service-hero-bottom { align-items: flex-start; flex-direction: column; gap: max(30px, calc(55 * var(--unit))); }
 .service-centered .service-section { inline-size: calc(1128 * var(--unit)); max-inline-size: calc(100% - 48px); margin-inline: auto; }
 .service-centered .service-section h2 { margin-block-end: max(30px, calc(40 * var(--unit))); }
 .service-centered .service-prices { margin-block-start: max(72px, calc(120 * var(--unit))); }
 .service-centered .service-prices details[open] summary { color: var(--link); }
-.service-centered .service-doctors { margin-inline: max(20px, calc(30 * var(--unit))); margin-block-start: max(80px, calc(130 * var(--unit))); }
-.service-centered .service-doctors .section-heading { inline-size: calc(1128 * var(--unit)); max-inline-size: calc(100% - 48px); margin-inline: auto; padding-inline: 0; }
 .service-centered .service-faq { margin-block-start: max(80px, calc(140 * var(--unit))); }
 
 @media (max-width: 1100px) {
   .service-wide .service-section { grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 32px; }
-  .service-centered .service-section, .service-centered .service-doctors .section-heading { inline-size: 72%; }
+  .service-centered .service-section { inline-size: 72%; }
   .service-prices .treatment-price-body > p { max-inline-size: 100%; }
-  .service-doctors .doctor-card :is(h3, p) { padding-inline: 4px 0; }
-  .service-reviews .review-track { --card-width: calc((100% - var(--gap)) / 2); }
 }
 @media (max-width: 780px) {
   .service-page { --service-inset: 24px; --service-copy-size: 18px; }
-  .service-hero { min-block-size: 480px; }
-  .service-hero-photo { object-position: 62% center; }
   .service-hero-bottom { align-items: flex-start; flex-direction: column; gap: 28px; }
   .service-wide .service-section { grid-template-columns: minmax(0, 1fr); gap: 28px; margin-inline: 24px; }
-  .service-centered .service-section, .service-centered .service-doctors .section-heading { inline-size: calc(100% - 48px); max-inline-size: none; }
+  .service-centered .service-section { inline-size: calc(100% - 48px); max-inline-size: none; }
   .service-section { margin-block-start: 64px; }
-  .service-doctors .doctor-track { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; padding-block-end: 8px; }
-  .service-doctors .doctor-card { flex: 0 0 42%; scroll-snap-align: start; }
-  .service-doctors .carousel-controls { display: flex; }
-  .service-doctors .section-heading, .service-reviews .section-heading { padding-inline: 4px; }
-  .service-centered .service-doctors .section-heading { inline-size: 100%; padding-inline: 4px; }
-  .service-reviews .review-track { --card-width: 78%; }
 }
 @media (max-width: 600px) {
   .service-page { --service-inset: 20px; --service-copy-size: 16px; }
-  .service-main { padding-block-start: 10px; }
-  .service-page .service-hero { aspect-ratio: auto; min-block-size: 600px; block-size: 80svh; max-block-size: 780px; margin-inline: 10px; padding: 26px 20px; border-radius: 28px; }
-  .service-mobile-brand { position: absolute; display: block; inset: 24px auto auto 20px; inline-size: 155px; }
+  .service-mobile-brand { display: block; }
   .service-mobile-brand img { filter: brightness(0) invert(1); }
-  .service-back { inset-block-start: 76px; inset-inline-start: 20px; font-size: 16px; }
-  .service-hero-photo { object-position: 62% center; }
+  .service-back { inset-block-start: 76px; inset-inline-start: var(--inside); font-size: 16px; }
+  .service-hero .hero-photo { object-position: 64% center; }
+  .service-doctors .doctor-card p:not(.service-doctor-experience) { padding-block-end: 0; }
   .service-page .service-hero-bottom { gap: 28px; }
   .service-hero h1 { font-size: clamp(36px, 10vw, 54px); }
-  .service-hero-book { font-size: 16px; }
+  .service-hero-book { display: none; }
   .service-page .service-section { inline-size: auto; max-inline-size: none; margin: 60px 20px 0; }
   .service-wide .service-section { gap: 24px; }
   .service-section h2 { font-size: 30px; }
@@ -1506,14 +1477,8 @@ address { font-style: normal; }
   .service-prices .treatment-price-body dl > div { grid-template-columns: minmax(0, 1fr); gap: 5px; padding-block-end: 25px; }
   .service-prices .treatment-price-body dl > div::after { inset-block-end: 12px; }
   .service-prices .treatment-price-body dd { font-weight: 500; }
-  .service-page .service-doctors, .service-reviews { margin: 64px 20px 0; }
-  .service-doctors .doctor-card { flex-basis: 78%; }
-  .service-doctors .section-heading { gap: 14px; }
-  .service-doctors .doctor-card h3 { font-size: 20px; }
-  .service-doctors .doctor-card p { font-size: 14px; }
   .service-faq summary { min-block-size: 80px; padding: 20px; }
   .service-faq details > p { padding: 4px 20px 24px; font-size: 16px; }
-  .service-reviews .review-track { --card-width: 90%; }
   .service-appointment { display: none; }
   .mobile-booking .service-appointment { display: flex; min-block-size: min(560px, 100dvh - 40px); }
   .service-appointment h2 { font-size: 36px; }

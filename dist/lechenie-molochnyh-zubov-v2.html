@@ -8,7 +8,7 @@
   <title>Лечение молочных зубов · вариант 2 — стоматология «Метелица»</title>
   <link rel="icon" href="assets/logo.png" type="image/png">
   <link rel="preload" href="assets/geologica.ttf" as="font" type="font/ttf" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=service-variants-20261121">
+  <link rel="stylesheet" href="styles.css?v=service-variants-20261121-2">
   <script src="site.js?v=full-sidebar-20261119" defer></script>
 </head>
 <body class="service-page service-centered">
@@ -71,13 +71,16 @@
   </header>
 
   <main id="main" class="service-main">
-      <section class="service-hero" id="top" aria-labelledby="service-title">
-        <img class="cover service-hero-photo" src="assets/service-hero-centered.png" width="1859" height="804" alt="Ребёнок улыбается в стоматологическом кресле" fetchpriority="high">
+      <section class="hero-screen" id="top" aria-labelledby="service-title">
+        <div class="hero service-hero">
+        <img class="cover hero-photo" src="assets/about-1.jpg" width="1536" height="1024" alt="Ребёнок улыбается в стоматологическом кресле" fetchpriority="high">
+        <div class="hero-shade" aria-hidden="true"></div>
         <a class="mobile-brand service-mobile-brand" href="index.html" aria-label="Метелица — на главную"><img src="assets/logo.png" alt="Метелица"></a>
         <a class="service-back" href="uslugi.html"><img src="assets/service-back.svg" width="8" height="12" alt="">услуги</a>
         <div class="service-hero-bottom">
           <h1 id="service-title">Лечение<br>молочных зубов</h1>
           <a class="button service-button service-hero-book" href="#appointment" data-book="Лечение молочных зубов">записать ребёнка</a>
+        </div>
         </div>
       </section>
 
@@ -93,7 +96,7 @@
       <section class="service-section service-prices faq treatment-prices" id="prices" aria-labelledby="prices-title">
           <h2 id="prices-title">Направления и цены</h2>
           <div class="faq-list">
-            <details name="treatment-prices" open>
+            <details name="treatment-prices">
               <summary><span>Лечение кариеса молочного зуба</span><span class="treatment-price">от 4 900 ₽</span><span class="treatment-price-chevron treatment-price-chevron-up" aria-hidden="true"><img src="assets/service-price-up.svg" width="20" height="12" alt=""></span></summary>
               <div class="treatment-price-body">
                 <p>Кариес может развиваться незаметно и долго не вызывать боли. На осмотре врач определит глубину поражения, расскажет, какое лечение потребуется, и уточнит его стоимость.</p>
@@ -143,7 +146,7 @@
           </div>
         </section>
 
-      <section class="service-doctors deck" id="doctors" aria-labelledby="doctors-title" data-carousel>
+      <section class="section deck section-shell service-doctors" id="doctors" aria-labelledby="doctors-title" data-carousel>
           <div class="section-heading">
             <h2 id="doctors-title">Детские врачи</h2>
             <div class="carousel-controls">
@@ -151,7 +154,7 @@
               <button class="icon-button" type="button" data-next aria-label="Следующие врачи" aria-controls="doctors-track"><img src="assets/carousel-next.svg" alt=""></button>
             </div>
           </div>
-          <div class="carousel doctor-track" id="doctors-track" tabindex="0" aria-label="Карточки врачей">
+          <div class="carousel doctor-track" id="doctors-track" data-repeat="2" tabindex="0" aria-label="Карточки врачей">
             <article class="doctor-card">
               <div class="doctor-photo">
                 <a class="doctor-profile-photo" href="doctor-hodykina.html" aria-label="Открыть страницу врача: Сизонец Александра"><img class="cover" src="assets/doctor-1.png" alt="" loading="lazy" draggable="false"></a>
@@ -202,9 +205,9 @@
         </div>
       </section>
 
-      <section class="service-reviews deck" id="reviews" aria-labelledby="reviews-title" data-carousel>
+      <section class="section deck section-shell service-reviews" id="reviews" aria-labelledby="reviews-title" data-carousel>
           <div class="section-heading">
-            <h2 id="reviews-title">Родители о «Метелице»</h2>
+            <h2 id="reviews-title">Отзывы родителей</h2>
             <div class="carousel-controls">
               <button class="icon-button" type="button" data-prev aria-label="Предыдущие отзывы" aria-controls="reviews-track"><img src="assets/carousel-prev.svg" alt=""></button>
               <button class="icon-button" type="button" data-next aria-label="Следующие отзывы" aria-controls="reviews-track"><img src="assets/carousel-next.svg" alt=""></button>
