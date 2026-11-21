@@ -617,7 +617,7 @@ address { font-style: normal; }
   .section-heading { padding-inline: 6px; }
   .doctor-track { --card-width: min(79vw, 320px); }
   .review-track { --card-width: min(81vw, 330px); }
-  .doctor-card h3, .doctor-card p { padding-inline: 8px; }
+  .doctor-card h3, .doctor-card p { padding-inline: 6px; }
   .deck-more { margin-inline-start: 8px; }
   .faq details > p { max-inline-size: 100%; }
   .contacts { gap: 12px; }
@@ -814,9 +814,9 @@ address { font-style: normal; }
   #reviews-title { max-inline-size: calc(300 * var(--mobile-unit)); }
   .doctor-track { --card-width: calc(290 * var(--mobile-unit)); }
   .doctor-card { border-radius: var(--mobile-radius); background: var(--panel); }
-  .doctor-card h3, .doctor-card p { padding-inline: var(--inside); }
+  .doctor-card h3, .doctor-card p { padding-inline: var(--mobile-gutter); }
   .doctor-card h3 { margin-block-start: 15px; }
-  .doctor-card p { margin-block-start: 10px; padding-block-end: 0; color: var(--ink); font-size: 16px; }
+  .doctor-card p { margin-block-start: 10px; padding-block-end: 0; color: var(--ink); font-size: max(13px, var(--small)); }
   .doctor-card p:last-child { padding-block-end: 20px; }
   .review-track { --card-width: calc(300 * var(--mobile-unit)); }
   .review-card { min-block-size: 459px; padding: 17px var(--inside) 20px; gap: 0; }
