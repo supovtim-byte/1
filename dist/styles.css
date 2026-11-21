@@ -1038,13 +1038,14 @@ address { font-style: normal; }
 }
 .treatment-page .site-footer { margin-block-start: 0; }
 .treatment-nav {
+  --nav-sticky-gap: max(20px, calc(60 * var(--unit)));
   position: sticky;
-  inset-block-start: calc(var(--visible-header-height, 0px) + var(--edge));
+  inset-block-start: calc(var(--visible-header-height, 0px) + var(--nav-sticky-gap));
   align-self: start;
   display: grid;
   align-content: start;
   gap: 0;
-  block-size: calc(100dvh - var(--visible-header-height, 0px) - 2 * var(--edge));
+  block-size: calc(100dvh - var(--visible-header-height, 0px) - var(--nav-sticky-gap) - var(--edge));
   min-block-size: 0;
   overflow-y: auto;
   margin-block-start: var(--nav-top-offset, 0px);
