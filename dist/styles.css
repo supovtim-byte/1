@@ -357,9 +357,9 @@ address { font-style: normal; }
   .doctor-card:hover .doctor-book { opacity: 1; transform: translateY(0); pointer-events: auto; }
 }
 .doctor-book:hover { background: var(--link-hover); color: var(--white); }
-.doctor-card h3, .doctor-card p { padding-inline: max(20px, calc(30 * var(--unit))); font-size: var(--body); }
+.doctor-card h3, .doctor-card p { padding-inline: var(--inside); font-size: var(--body); color: var(--ink); }
 .doctor-card h3 { margin-block-start: 15px; }
-.doctor-card p { color: #000; font-size: 16px; font-weight: 400; line-height: 1.5; }
+.doctor-card p { color: var(--ink); font-size: 16px; font-weight: 400; line-height: 1.5; }
 .doctor-card h3 + p { margin-block-start: 10px; }
 .doctor-card .doctor-experience { margin-block-start: 5px; }
 .doctor-profile-link:hover { color: var(--link-hover); }
@@ -816,7 +816,7 @@ address { font-style: normal; }
   .doctor-card { border-radius: var(--mobile-radius); background: var(--panel); }
   .doctor-card h3, .doctor-card p { padding-inline: var(--inside); }
   .doctor-card h3 { margin-block-start: 15px; }
-  .doctor-card p { margin-block-start: 10px; padding-block-end: 0; color: #000; font-size: 16px; }
+  .doctor-card p { margin-block-start: 10px; padding-block-end: 0; color: var(--ink); font-size: 16px; }
   .doctor-card p:last-child { padding-block-end: 20px; }
   .review-track { --card-width: calc(300 * var(--mobile-unit)); }
   .review-card { min-block-size: 459px; padding: 17px var(--inside) 20px; gap: 0; }
