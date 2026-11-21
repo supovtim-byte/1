@@ -1427,6 +1427,8 @@ address { font-style: normal; }
 .service-prices .treatment-price-book:hover { color: var(--white); }
 .service-price-note { margin-block-start: 8px; font-size: max(14px, calc(16 * var(--unit))); color: var(--muted); }
 .service-doctors .service-doctor-experience { margin-block-start: 5px; font-size: max(13px, var(--small)); }
+.service-doctors .doctor-book { background: var(--link-hover); color: var(--white); }
+.service-doctors .doctor-book:hover { background: var(--ink); color: var(--white); }
 .service-faq summary { min-block-size: max(72px, calc(92 * var(--unit))); font-size: var(--service-copy-size); }
 .service-faq details > p { max-inline-size: 100%; font-size: var(--service-copy-size); }
 .service-appointment { min-block-size: max(500px, calc(720 * var(--unit))); margin: max(80px, calc(140 * var(--unit))) 20px 0; }
