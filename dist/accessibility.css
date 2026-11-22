@@ -1,0 +1,98 @@
+.accessibility-toolbar[hidden] { display: none; }
+.accessibility-toolbar {
+  position: fixed;
+  z-index: 30;
+  inset: 0 0 auto;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px 20px;
+  min-block-size: 72px;
+  padding: 12px 24px;
+  border-block-end: 3px solid var(--ink);
+  background: var(--page);
+  color: var(--ink);
+  font: 400 18px/1.4 Geologica, sans-serif;
+}
+.accessibility-toolbar-title { font-weight: 600; }
+.accessibility-toolbar label { display: flex; align-items: center; gap: 8px; }
+.accessibility-toolbar select, .accessibility-toolbar button {
+  min-block-size: 44px;
+  padding: 6px 12px;
+  border: 2px solid currentColor;
+  border-radius: 8px;
+  background: var(--page);
+  color: inherit;
+  font: inherit;
+}
+.accessibility-toolbar .accessibility-exit { margin-inline-start: auto; text-decoration: underline; text-underline-offset: 4px; }
+.accessibility-toolbar select:focus-visible { outline: 3px solid var(--link-hover); outline-offset: 3px; }
+
+@media (min-width: 601px) {
+  :root.accessibility-mode {
+    --accessibility-font-size: 18px;
+    --accessibility-heading-size: 36px;
+    --body: var(--accessibility-font-size);
+    --small: var(--accessibility-font-size);
+    --large: calc(var(--accessibility-font-size) * 1.2);
+    --title: var(--accessibility-heading-size);
+    --display: calc(var(--accessibility-heading-size) * 1.4);
+    --button-font-size: var(--accessibility-font-size);
+    --button-height: 48px;
+    --header-height: max(88px, calc(101 * var(--unit)));
+    --compact-control-size: 48px;
+    --photo-background: var(--panel);
+    --muted: var(--ink);
+  }
+  :root.accessibility-mode[data-accessibility-font="large"] { --accessibility-font-size: 22px; --accessibility-heading-size: 44px; }
+  :root.accessibility-mode[data-accessibility-font="extra"] { --accessibility-font-size: 26px; --accessibility-heading-size: 52px; }
+  :root.accessibility-mode.accessibility-dark {
+    color-scheme: dark;
+    --page: #111;
+    --panel: #252525;
+    --header-panel: #252525;
+    --arrival-panel: #252525;
+    --field: #252525;
+    --ink: #fff;
+    --white: #fff;
+    --link: #7cddff;
+    --link-hover: #b5efff;
+  }
+  .accessibility-mode body { padding-block-start: var(--accessibility-toolbar-height, 0px); }
+  .accessibility-mode :is(body, .service-page) { font-size: var(--body); }
+  .accessibility-mode [id] { scroll-margin-top: calc(var(--header-space) + var(--accessibility-toolbar-height, 0px) + 16px); }
+  .accessibility-mode .hero-screen { min-block-size: 580px; height: calc(100svh - var(--accessibility-toolbar-height, 0px)); }
+  .accessibility-mode :is(.site-header, .site-header .popover-panel, .header-book, .button, .hero-address, .review-meta, .doctor-card p, .footer-note, .direction-details, .direction-details ul, .direction-details summary, .catalog-filter, .treatment-nav, .prices-list, .treatment-price, .appointment-selection, .consent) { font-size: var(--body); }
+  .accessibility-mode .doctor-card h3 { font-size: var(--large); }
+  .accessibility-mode :is(.prices-list dt, .prices-list dd, .treatment-nav, .field, .field input) { color: var(--ink); }
+  .accessibility-mode .field input { caret-color: var(--ink); }
+  .accessibility-mode :is(.phone-mask, .phone-mask [data-mask-tail]) { color: var(--ink); }
+  .accessibility-mode .field input::placeholder { color: var(--ink); opacity: 1; }
+  .accessibility-mode :is(input, select, textarea):focus-visible { outline: 3px solid var(--link-hover); outline-offset: 3px; }
+  .accessibility-mode :is(.button-primary, .service-button, .treatment-book) { background: var(--ink); color: var(--page); }
+  .accessibility-mode .site-header .popover-panel {
+    max-block-size: calc(100dvh - var(--accessibility-toolbar-height, 0px) - var(--header-height) - 16px);
+    overflow-y: auto;
+    min-inline-size: min(380px, calc(100vw - 40px));
+  }
+  .accessibility-mode :is(.about-content, .service-copy, .treatment-price-body, .contact-card) { line-height: 1.6; }
+  .accessibility-mode :is(.brand img, .mobile-brand img) { background: #e8f5ff; border-radius: 4px; }
+  .accessibility-no-images main img:not([src$=".svg"]):not([src$="logo.png"]), .accessibility-no-images .dialog-photo { visibility: hidden; }
+  .accessibility-no-images .hero-shade { display: none; }
+  .accessibility-no-images :is(.hero, .hero h1, .hero-address, .service-back, .group-template-label, .group-template-intro) { color: var(--ink); }
+  .accessibility-no-images .hero { background: var(--panel); }
+}
+@media (min-width: 601px) and (max-width: 1400px) {
+  .accessibility-mode .navigation { display: none; }
+  .accessibility-mode .header-actions { gap: 0; }
+  .accessibility-mode .header-book { margin-inline-start: 18px; }
+  .accessibility-mode .header-telegram { margin-inline-start: 10px; }
+  .accessibility-mode .compact-menu { display: block; margin-inline-start: 10px; }
+}
+@media (min-width: 601px) and (max-width: 1100px) {
+  .accessibility-mode .phone-popover { display: none; }
+  .accessibility-toolbar { padding-inline: 16px; gap: 8px 12px; }
+}
+@media (max-width: 600px) {
+  .accessibility-toolbar { display: none; }
+}

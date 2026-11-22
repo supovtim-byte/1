@@ -5,6 +5,31 @@ const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const mobileLayout = window.matchMedia("(max-width: 600px)");
 const clinicPhone = "+7 931 399 05 80";
 const header = document.querySelector(".site-header");
+const accessibilityDesktop = window.matchMedia("(min-width: 601px)");
+const accessibilityToolbar = document.createElement("aside");
+accessibilityToolbar.className = "accessibility-toolbar";
+accessibilityToolbar.hidden = true;
+accessibilityToolbar.setAttribute("aria-label", "Настройки версии для слабовидящих");
+accessibilityToolbar.innerHTML = `
+  <span class="accessibility-toolbar-title">Для слабовидящих</span>
+  <label>Текст
+    <select data-accessibility-font aria-label="Размер текста">
+      <option value="normal">Обычный</option>
+      <option value="large">Крупный</option>
+      <option value="extra">Очень крупный</option>
+    </select>
+  </label>
+  <label>Цвет
+    <select data-accessibility-theme aria-label="Цветовая схема">
+      <option value="light">Чёрный на белом</option>
+      <option value="dark">Белый на чёрном</option>
+    </select>
+  </label>
+  <button type="button" data-accessibility-images aria-pressed="true">Изображения: включены</button>
+  <button class="accessibility-exit" type="button" data-accessibility-exit>Обычная версия</button>
+`;
+header.before(accessibilityToolbar);
+
 const treatmentNav = document.querySelector(".treatment-nav");
 
 for (const photo of document.querySelectorAll(".hero-photo, .appointment-photo")) {
@@ -20,7 +45,7 @@ for (const link of header.querySelectorAll(".primary-links a, #more-panel a, #mo
 
 // Keep contacts reachable in the compact navigation after simplifying the desktop row.
 const compactContacts = document.createElement("a");
-compactContacts.href = "index.html#contacts";
+compactContacts.href = "contacts.html";
 compactContacts.textContent = "Контакты";
 compactMenu.insertBefore(compactContacts, compactMenu.querySelector("[data-accessibility]"));
 
@@ -165,9 +190,10 @@ function positionHeader() {
 
   const offscreen = !header.classList.contains("is-pinned") && headerTop + headerHeight <= y;
   header.inert = !keyboardInHeader && offscreen;
-  updateTreatmentHeader(header.classList.contains("is-pinned")
+  const toolbarHeight = accessibilityToolbar.hidden ? 0 : accessibilityToolbar.getBoundingClientRect().height;
+  updateTreatmentHeader(toolbarHeight + (header.classList.contains("is-pinned")
     ? headerHeight
-    : Math.max(0, Math.min(headerHeight, headerTop + headerHeight - y)));
+    : Math.max(0, Math.min(headerHeight, headerTop + headerHeight - y))));
   previousY = y;
 }
 
@@ -683,12 +709,84 @@ document.querySelectorAll(".detail-dialog").forEach(dialog => {
 });
 
 const accessibilityButtons = document.querySelectorAll("[data-accessibility]");
+const accessibilityFont = accessibilityToolbar.querySelector("[data-accessibility-font]");
+const accessibilityTheme = accessibilityToolbar.querySelector("[data-accessibility-theme]");
+const accessibilityImages = accessibilityToolbar.querySelector("[data-accessibility-images]");
+const accessibilityStorageKey = "metelitsa-accessibility";
+const accessibilityState = { enabled: false, font: "large", theme: "light", images: true };
+let mobileContrast = document.documentElement.classList.contains("high-contrast");
+try {
+  const saved = JSON.parse(localStorage.getItem(accessibilityStorageKey));
+  if (saved && typeof saved === "object") {
+    accessibilityState.enabled = saved.enabled === true;
+    if (["normal", "large", "extra"].includes(saved.font)) accessibilityState.font = saved.font;
+    if (["light", "dark"].includes(saved.theme)) accessibilityState.theme = saved.theme;
+    accessibilityState.images = saved.images !== false;
+  }
+} catch { /* Settings remain usable when storage is disabled. */ }
+
+function measureAccessibilityToolbar() {
+  const height = accessibilityToolbar.hidden ? 0 : accessibilityToolbar.getBoundingClientRect().height;
+  document.documentElement.style.setProperty("--accessibility-toolbar-height", height + "px");
+  positionHeader();
+}
+
+function applyAccessibilitySettings() {
+  const root = document.documentElement;
+  const active = accessibilityDesktop.matches && accessibilityState.enabled;
+  root.classList.toggle("accessibility-mode", active);
+  root.classList.toggle("high-contrast", active || mobileContrast);
+  root.classList.toggle("accessibility-dark", active && accessibilityState.theme === "dark");
+  root.classList.toggle("accessibility-no-images", active && !accessibilityState.images);
+  root.dataset.accessibilityFont = accessibilityState.font;
+  accessibilityToolbar.hidden = !active;
+  accessibilityFont.value = accessibilityState.font;
+  accessibilityTheme.value = accessibilityState.theme;
+  accessibilityImages.setAttribute("aria-pressed", String(accessibilityState.images));
+  accessibilityImages.textContent = "Изображения: " + (accessibilityState.images ? "включены" : "выключены");
+  accessibilityButtons.forEach(control => control.setAttribute("aria-pressed", String(accessibilityDesktop.matches ? active : mobileContrast)));
+  measureAccessibilityToolbar();
+}
+
+function saveAccessibilitySettings() {
+  try { localStorage.setItem(accessibilityStorageKey, JSON.stringify(accessibilityState)); } catch { /* Optional persistence. */ }
+  applyAccessibilitySettings();
+}
+
 accessibilityButtons.forEach(button => {
   button.addEventListener("click", () => {
-    const enabled = document.documentElement.classList.toggle("high-contrast");
-    accessibilityButtons.forEach(control => control.setAttribute("aria-pressed", String(enabled)));
+    if (!accessibilityDesktop.matches) {
+      mobileContrast = !mobileContrast;
+      applyAccessibilitySettings();
+      return;
+    }
+    accessibilityState.enabled = !accessibilityState.enabled;
+    closePopover();
+    saveAccessibilitySettings();
+    if (accessibilityState.enabled) accessibilityFont.focus({ preventScroll: true });
+    else header.querySelector('[aria-controls="more-panel"]').focus({ preventScroll: true });
   });
 });
+accessibilityFont.addEventListener("change", () => {
+  accessibilityState.font = accessibilityFont.value;
+  saveAccessibilitySettings();
+});
+accessibilityTheme.addEventListener("change", () => {
+  accessibilityState.theme = accessibilityTheme.value;
+  saveAccessibilitySettings();
+});
+accessibilityImages.addEventListener("click", () => {
+  accessibilityState.images = !accessibilityState.images;
+  saveAccessibilitySettings();
+});
+accessibilityToolbar.querySelector("[data-accessibility-exit]").addEventListener("click", () => {
+  accessibilityState.enabled = false;
+  saveAccessibilitySettings();
+  header.querySelector('[aria-controls="more-panel"]').focus({ preventScroll: true });
+});
+accessibilityDesktop.addEventListener("change", applyAccessibilitySettings);
+new ResizeObserver(measureAccessibilityToolbar).observe(accessibilityToolbar);
+applyAccessibilitySettings();
 
 const largeTextButton = mobileMenu.querySelector("[data-large-text]");
 largeTextButton.addEventListener("click", () => {
@@ -721,7 +819,7 @@ const searchCatalog = [
     href: "doctors.html#" + card.id
   })),
   ...[...document.querySelectorAll(".direction-card")].map(card => ({
-    title: card.querySelector("h2").textContent.trim(), href: "uslugi.html#" + card.id
+    title: card.querySelector("h2").textContent.trim(), href: card.querySelector("h2 a")?.getAttribute("href") || "uslugi.html#" + card.id
   })),
   ...[...document.querySelectorAll(".direction-details a")].map(link => ({
     title: link.textContent.trim(), href: link.getAttribute("href")
