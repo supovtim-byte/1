@@ -56,10 +56,10 @@
 @media (min-width: 601px) {
   .children-page {
     --body: clamp(16px, 1.041667vw, 20px);
-    --large: clamp(16px, calc(11.443px + .75818vw), 26px);
+    --large: clamp(16px, calc(26 * var(--unit)), 26px);
     --small: clamp(13px, calc(11.633px + .227445vw), 16px);
-    --title: clamp(36px, calc(29.625px + 1.0612vw), 50px);
-    --display: clamp(48px, calc(34px + 1.875vw), 70px);
+    --title: clamp(36px, calc(50 * var(--unit)), 50px);
+    --display: clamp(48px, calc(70 * var(--unit)), 70px);
   }
 }
 @media (min-width: 601px) and (max-width: 1080px) {
@@ -99,6 +99,20 @@
   /* 127/75 makes a stacked tablet photo 25% shorter than the old 127/100. */
   .children-photo, .children-first-visit .children-photo { min-block-size: 0; aspect-ratio: 127 / 75; }
   .children-copy { padding-inline: var(--children-text-inset); }
+}
+/* Compact two-column blocks give copy half the width before stacking.
+   The photo keeps its natural minimum ratio and fills a taller text row. */
+@media (min-width: 961px) and (max-width: 1440px) {
+  .children-split { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .children-photo, .children-first-visit .children-photo { min-block-size: 0; aspect-ratio: auto; align-self: stretch; }
+  .children-photo::before { content: ""; display: block; aspect-ratio: 1158 / 759; }
+  .children-first-visit .children-photo::before { aspect-ratio: 1118 / 795; }
+}
+@media (min-width: 961px) {
+  .children-first-visit .children-copy > p + p { margin-block-start: clamp(12px, calc(20 * var(--unit)), 20px); }
+  .children-sleep-card h3 { font-size: clamp(20px, calc(30 * var(--unit)), 30px); }
+  .children-sleep-card p { margin-block-start: clamp(16px, calc(30 * var(--unit)), 30px); }
+  .children-sleep-arrow { padding-block-start: clamp(16px, calc(30 * var(--unit)), 30px); }
 }
 /* Two readable treatment cards on tablets; the full-width photo is above text. */
 @media (max-width: 1200px), (pointer: coarse) and (max-width: 1366px) {
