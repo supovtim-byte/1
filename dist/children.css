@@ -1,7 +1,5 @@
 /* Page-specific layout; shared sections retain styles.css and site.js. */
-.children-hero-screen { height: auto; padding-block-end: 0; }
-.children-page .hero { min-block-size: max(430px, calc(787 * var(--unit))); }
-.children-page .hero h1 { max-inline-size: calc(800 * var(--unit)); line-height: 1; }
+.children-page .hero h1 { max-inline-size: max(350px, calc(800 * var(--unit))); line-height: 1; }
 .children-page .hero-photo { object-position: center; }
 .children-page .hero-shade { background: none; }
 .children-split { display: grid; grid-template-columns: minmax(0, 1158fr) minmax(0, 722fr); margin-block-start: max(64px, calc(106 * var(--unit))); }
@@ -39,16 +37,42 @@
 .children-sleep-card:hover h3 { color: var(--link-hover); }
 .high-contrast .children-sleep-card, .high-contrast .children-services .service-list::before { background: var(--panel); }
 .high-contrast .children-sleep-card p { color: var(--ink); }
-@media (min-width: 601px) and (max-width: 1000px) {
+@media (min-width: 601px) and (max-width: 1080px) {
+  .children-page .hero h1 { max-inline-size: 98%; }
+  .children-page .hero-photo { object-position: 75% center; }
+  .children-page .hero-shade { background: linear-gradient(0deg, rgb(2 29 43 / 78%), rgb(2 29 43 / 50%) 22%, transparent 63%); }
   .children-split { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
   .children-copy h2 { max-inline-size: none; }
   .children-benefits { gap: 16px; max-inline-size: none; margin-inline-start: 0; }
   .children-benefits li { gap: 12px; }
   .children-copy { padding-inline: 24px 8px; }
   .children-first-visit .children-copy { padding-inline: 24px 8px; }
-  .children-photo { min-block-size: 430px; }
+  .children-photo { min-inline-size: 0; inline-size: 100%; min-block-size: 320px; aspect-ratio: auto; }
+  .children-first-visit .children-photo { aspect-ratio: auto; }
+  .children-first-visit .children-copy > p { max-inline-size: none; }
+  .children-sleep-intro { max-inline-size: none; }
   .children-sleep-card { grid-template-columns: minmax(0, 1fr) 34%; gap: 12px; }
   .children-sleep-card > div { padding: 16px 0 16px 12px; }
+}
+@media (min-width: 601px) and (max-width: 780px) {
+  .children-split { grid-template-columns: minmax(0, 1fr); gap: 21px; }
+  .children-photo, .children-first-visit .children-photo { min-block-size: 0; aspect-ratio: 1.27; }
+  .children-copy, .children-first-visit .children-copy { padding: 0; }
+  .children-sleep-grid { grid-template-columns: minmax(0, 1fr); }
+  .children-sleep-intro { margin-inline: 6px; }
+}
+/* Touch tablets use the same service cards as phones, without hover. */
+@media (min-width: 601px) and (max-width: 1080px), (min-width: 601px) and (hover: none), (min-width: 601px) and (pointer: coarse) {
+  .children-services { display: block; }
+  .children-services .service-content { padding: 0; }
+  .children-services .service-content h2 { margin: 0 var(--inside) 24px; }
+  .children-services .service-list { display: grid; grid-auto-flow: column; grid-auto-columns: clamp(240px, 35vw, 320px); grid-auto-rows: auto; inline-size: auto; min-inline-size: 0; max-inline-size: none; gap: var(--gap); overflow-x: auto; margin-inline: calc(-1 * var(--edge)); padding-inline: var(--edge); scroll-snap-type: x mandatory; scroll-padding-inline: var(--edge); scrollbar-width: none; }
+  .children-services .service-list::before, .children-services .service-media, .children-services .service-arrow { display: none; }
+  .children-services .service-list li { scroll-snap-align: start; }
+  .children-services .service-option { display: flex; flex-direction: column; justify-content: flex-start; align-items: stretch; gap: 0; min-block-size: 0; padding: 0 0 20px; border-radius: var(--radius); background: var(--panel); }
+  .children-services .service-card-photo { display: block; inline-size: 100%; aspect-ratio: 213 / 189; object-fit: cover; border-radius: var(--radius); }
+  .children-services .service-option span { padding: 16px var(--inside) 0; }
+  .children-services .service-more { margin: 20px var(--inside) 0; }
 }
 @media (max-width: 600px) {
   .children-page .hero { min-block-size: max(540px, var(--initial-viewport-height, 100svh)); }
