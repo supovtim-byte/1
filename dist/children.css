@@ -61,19 +61,6 @@
   .children-sleep-grid { grid-template-columns: minmax(0, 1fr); }
   .children-sleep-intro { margin-inline: 6px; }
 }
-/* Touch tablets use the same service cards as phones, without hover. */
-@media (min-width: 601px) and (max-width: 1080px), (min-width: 601px) and (hover: none), (min-width: 601px) and (pointer: coarse) {
-  .children-services { display: block; }
-  .children-services .service-content { padding: 0; }
-  .children-services .service-content h2 { margin: 0 var(--inside) 24px; }
-  .children-services .service-list { display: grid; grid-auto-flow: column; grid-auto-columns: clamp(240px, 35vw, 320px); grid-auto-rows: auto; inline-size: auto; min-inline-size: 0; max-inline-size: none; gap: var(--gap); overflow-x: auto; margin-inline: calc(-1 * var(--edge)); padding-inline: var(--edge); scroll-snap-type: x mandatory; scroll-padding-inline: var(--edge); scrollbar-width: none; }
-  .children-services .service-list::before, .children-services .service-media, .children-services .service-arrow { display: none; }
-  .children-services .service-list li { scroll-snap-align: start; }
-  .children-services .service-option { display: flex; flex-direction: column; justify-content: flex-start; align-items: stretch; gap: 0; min-block-size: 0; padding: 0 0 20px; border-radius: var(--radius); background: var(--panel); }
-  .children-services .service-card-photo { display: block; inline-size: 100%; aspect-ratio: 213 / 189; object-fit: cover; border-radius: var(--radius); }
-  .children-services .service-option span { padding: 16px var(--inside) 0; }
-  .children-services .service-more { margin: 20px var(--inside) 0; }
-}
 @media (max-width: 600px) {
   .children-page .hero { min-block-size: max(540px, var(--initial-viewport-height, 100svh)); }
   .children-page .hero h1 { max-inline-size: 100%; line-height: 1.1; }
