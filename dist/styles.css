@@ -10,6 +10,7 @@
   color-scheme: light;
   --page: #e8f5ff;
   --panel: #d9edff;
+  --arrival-panel: #cfe8ff;
   --photo-background: #dcecf9;
   --field: #f8fcff;
   --ink: #113d50;
@@ -409,9 +410,20 @@ address { font-style: normal; }
 
 .contacts { display: grid; grid-template-columns: 1315fr 550fr; gap: var(--gap); }
 .map { display: block; min-height: max(320px, calc(685 * var(--unit))); }
-.contact-card { display: flex; flex-direction: column; padding: max(20px, calc(35 * var(--unit))) var(--inside); border-radius: var(--radius); background: var(--panel); }
+.contact-card { display: flex; flex-direction: column; padding: max(20px, calc(35 * var(--unit))) var(--inside) max(20px, calc(40 * var(--unit))); border-radius: var(--radius); background: var(--arrival-panel); }
 .contact-card h2 { margin-bottom: max(14px, calc(25 * var(--unit))); }
 .contact-route { display: grid; justify-items: start; gap: max(4px, calc(10 * var(--unit))); margin-top: auto; padding-block-start: 22px; }
+.contact-map-link { align-self: flex-start; margin-block-start: auto; padding-block-start: 22px; }
+.arrival-directions { margin-block-start: max(60px, calc(120 * var(--unit))); }
+.directions-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: max(12px, calc(16 * var(--unit))); }
+.directions-card { display: flex; flex-direction: column; align-items: flex-start; min-inline-size: 0; min-block-size: calc(297 * var(--unit)); padding: max(20px, calc(26 * var(--unit))) var(--inside) max(24px, calc(44 * var(--unit))); border-radius: var(--radius); background: var(--arrival-panel); }
+.directions-card h3 { font-size: var(--large); line-height: 1.5; }
+.directions-card p { margin-block-start: max(18px, calc(30 * var(--unit))); line-height: 1.6; }
+.directions-card > a { margin-block-start: auto; padding-block-start: max(22px, calc(30 * var(--unit))); line-height: 1.6; }
+
+@media (max-width: 780px) {
+  .directions-grid { grid-template-columns: minmax(0, 1fr); }
+}
 
 .appointment {
   position: relative;
@@ -549,7 +561,7 @@ address { font-style: normal; }
 .appointment-dialog h2 { margin-inline-end: 32px; }
 :root:has(dialog[open]) { overflow: hidden; }
 
-:root.high-contrast { --page: #fff; --panel: #e2f0f8; --ink: #081f2b; --link: #005e87; --muted: #214153; }
+:root.high-contrast { --page: #fff; --panel: #e2f0f8; --arrival-panel: #e2f0f8; --ink: #081f2b; --link: #005e87; --muted: #214153; }
 .high-contrast .text-link { text-decoration: underline; text-underline-offset: 3px; }
 
 @media (max-width: 1080px) {
@@ -840,7 +852,10 @@ address { font-style: normal; }
   .contacts h2 { grid-row: 1; margin: 0 var(--mobile-gutter) 20px; }
   .contacts .map { grid-row: 2; z-index: 1; aspect-ratio: 330 / 276; min-block-size: 0; }
   .contact-card { display: contents; }
-  .contact-card address { grid-row: 3; margin-block-start: -25px; padding: 41px var(--inside) 20px; border-radius: var(--mobile-radius); background: var(--panel); }
+  .contact-card address { grid-row: 3; margin-block-start: -25px; padding: 41px var(--inside) 16px; border-radius: var(--mobile-radius) var(--mobile-radius) 0 0; background: var(--arrival-panel); }
+  .contact-map-link { grid-row: 4; margin: 0; padding: 0 var(--inside) 20px; border-radius: 0 0 var(--mobile-radius) var(--mobile-radius); background: var(--arrival-panel); }
+  .arrival-directions { margin-block-start: var(--section-gap); }
+  .directions-card { min-block-size: 0; padding: 20px var(--inside) 24px; }
   .mobile-routes { display: grid; margin-block-start: 8px; }
   .mobile-routes details { overflow: clip; border-radius: var(--mobile-radius); background: var(--panel); }
   .mobile-routes details[open] { padding-block-end: 18px; }
