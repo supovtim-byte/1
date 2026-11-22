@@ -9,8 +9,7 @@
   <link rel="icon" href="assets/logo.png" type="image/png">
   <link rel="preload" href="assets/geologica.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="stylesheet" href="styles.css?v=mobile-card-padding-20261121-8">
-  <link rel="stylesheet" href="doctor.css?v=centered-20261122">
-  <script src="doctor.js?v=centered-20261122" defer></script>
+  <link rel="stylesheet" href="doctor.css?v=wide-20261122-2">
   <script src="site.js?v=doctor-centered-20261122" defer></script>
 </head>
 <body class="doctor-page">
@@ -73,16 +72,18 @@
   </header>
 
   <main id="main">
-    <section class="doctor-hero doctor-shell" id="top" aria-labelledby="doctor-title">
-      <a class="mobile-brand doctor-brand" href="index.html" aria-label="Метелица — на главную"><img src="assets/logo.png" alt="Метелица"></a>
-      <a class="doctor-back" href="doctors.html"><img src="assets/doctor-back.svg" width="8" height="12" alt="">все врачи</a>
-      <div class="doctor-intro">
-        <h1 id="doctor-title">Ходыкина Дарья Александровна</h1>
-        <div class="doctor-specialty"><p>Врач-стоматолог-терапевт</p><p>Опыт работы — 16 лет</p></div>
-        <a class="button doctor-profile-book" href="#appointment" data-book="Ходыкина Дарья Александровна">записаться к врачу</a>
-      </div>
-      <div class="doctor-hero-slot">
-        <div class="doctor-hero-media"><img class="cover" src="assets/doctor-daria.png" width="1594" height="1594" alt="Ходыкина Дарья Александровна" fetchpriority="high"></div>
+    <section class="hero-screen doctor-hero-screen" id="top" aria-labelledby="doctor-title">
+      <div class="hero doctor-hero">
+        <a class="mobile-brand doctor-brand" href="index.html" aria-label="Метелица — на главную"><img src="assets/logo.png" alt="Метелица"></a>
+        <a class="doctor-back" href="doctors.html"><img src="assets/doctor-back.svg" width="8" height="12" alt="">все врачи</a>
+        <div class="doctor-intro">
+          <h1 id="doctor-title">Ходыкина Дарья Александровна</h1>
+          <div class="doctor-specialty"><p>Врач-стоматолог-терапевт</p><p>Опыт работы — 16 лет</p></div>
+          <a class="button doctor-profile-book" href="#appointment" data-book="Ходыкина Дарья Александровна">записаться к врачу</a>
+        </div>
+        <div class="doctor-hero-slot">
+          <div class="doctor-hero-media"><img class="cover" src="assets/doctor-daria.png" width="1594" height="1594" alt="Ходыкина Дарья Александровна" fetchpriority="high"></div>
+        </div>
       </div>
     </section>
 
@@ -169,35 +170,35 @@
           </div>
         </section>
 
-        <section class="section deck doctor-reviews" id="reviews" aria-labelledby="reviews-title" data-carousel>
-          <div class="section-heading">
-            <h2 id="reviews-title">Отзывы о враче</h2>
-            <div class="carousel-controls">
-              <button class="icon-button" type="button" data-prev aria-label="Предыдущие отзывы" aria-controls="reviews-track"><img src="assets/carousel-prev.svg" alt=""></button>
-              <button class="icon-button" type="button" data-next aria-label="Следующие отзывы" aria-controls="reviews-track"><img src="assets/carousel-next.svg" alt=""></button>
-            </div>
-          </div>
-          <div class="carousel review-track" id="reviews-track" tabindex="0" aria-label="Карточки отзывов">
-            <article class="review-card">
-              <h3>Наталья Иванова</h3>
-              <p>Лечимся в данной клинике, очень довольны. Очень нравится подход к детям! Лечили ребенку зубы в медикаментозном сне, все прошло отлично, вылечили сразу все зубы, перед процедурой все подробно объяснили и все прошло просто замечательно.</p>
-              <div class="review-meta"><time datetime="2022-08-24">24 августа 2022</time><img src="assets/doctor-review.png" alt="" width="90" height="90" loading="lazy" draggable="false"></div>
-            </article>
-            <article class="review-card">
-              <h3>Наталья Иванова</h3>
-              <p>Лечимся в данной клинике, очень довольны. Очень нравится подход к детям! Лечили ребенку зубы в медикаментозном сне, все прошло отлично.</p>
-              <div class="review-meta"><time datetime="2022-08-24">24 августа 2022</time></div>
-            </article>
-            <article class="review-card">
-              <h3>Наталья Иванова</h3>
-              <p>Лечимся в данной клинике, очень довольны. Очень нравится подход к детям! Лечили ребенку зубы в медикаментозном сне, все прошло отлично.</p>
-              <div class="review-meta"><time datetime="2022-08-24">24 августа 2022</time></div>
-            </article>
-          </div>
-          <a class="text-link deck-more" href="https://yandex.ru/maps/org/metelitsa/1132881772/reviews/" target="_blank" rel="noopener">Все отзывы</a>
-        </section>
       </div>
     </div>
+    <section class="section deck section-shell doctor-reviews" id="reviews" aria-labelledby="reviews-title" data-carousel>
+      <div class="section-heading">
+        <h2 id="reviews-title">Отзывы о враче</h2>
+        <div class="carousel-controls">
+          <button class="icon-button" type="button" data-prev aria-label="Предыдущие отзывы" aria-controls="reviews-track"><img src="assets/carousel-prev.svg" alt=""></button>
+          <button class="icon-button" type="button" data-next aria-label="Следующие отзывы" aria-controls="reviews-track"><img src="assets/carousel-next.svg" alt=""></button>
+        </div>
+      </div>
+      <div class="carousel review-track" id="reviews-track" tabindex="0" aria-label="Карточки отзывов">
+        <article class="review-card">
+          <h3>Наталья Иванова</h3>
+          <p>Лечимся в данной клинике, очень довольны. Очень нравится подход к детям! Лечили ребенку зубы в медикаментозном сне, все прошло отлично, вылечили сразу все зубы, перед процедурой все подробно объяснили и все прошло просто замечательно.</p>
+          <div class="review-meta"><time datetime="2022-08-24">24 августа 2022</time><img src="assets/doctor-review.png" alt="" width="90" height="90" loading="lazy" draggable="false"></div>
+        </article>
+        <article class="review-card">
+          <h3>Наталья Иванова</h3>
+          <p>Лечимся в данной клинике, очень довольны. Очень нравится подход к детям! Лечили ребенку зубы в медикаментозном сне, все прошло отлично.</p>
+          <div class="review-meta"><time datetime="2022-08-24">24 августа 2022</time></div>
+        </article>
+        <article class="review-card">
+          <h3>Наталья Иванова</h3>
+          <p>Лечимся в данной клинике, очень довольны. Очень нравится подход к детям! Лечили ребенку зубы в медикаментозном сне, все прошло отлично.</p>
+          <div class="review-meta"><time datetime="2022-08-24">24 августа 2022</time></div>
+        </article>
+      </div>
+      <a class="text-link deck-more" href="https://yandex.ru/maps/org/metelitsa/1132881772/reviews/" target="_blank" rel="noopener">Все отзывы</a>
+    </section>
   </main>
 
   <footer class="site-footer section-shell">

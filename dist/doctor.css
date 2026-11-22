@@ -1,21 +1,22 @@
-/* Doctor profile — Figma 198:665; shared site header and footer. */
+/* Doctor profile — Figma 238:1775; shared site header, reviews and footer. */
 .doctor-page { --doctor-column: calc(1128 * var(--unit)); --doctor-section-gap: max(64px, calc(130 * var(--unit))); --doctor-heading: max(28px, calc(50 * var(--unit))); --doctor-body: max(18px, calc(26 * var(--unit))); }
 .doctor-shell { inline-size: var(--doctor-column); max-inline-size: calc(100% - 48px); margin-inline: auto; }
-.doctor-hero { position: relative; display: grid; grid-template-columns: minmax(0, 526fr) minmax(0, 602fr); padding-block-start: calc(var(--header-height) + 20px); }
-.doctor-back { position: absolute; z-index: 1; inset-block-start: calc(var(--header-height) + 60px); inset-inline-start: 2px; display: inline-flex; align-items: center; gap: 12px; min-block-size: 30px; }
+.doctor-hero-screen { padding-block-start: calc(var(--header-height) + 20px); }
+.doctor-hero { display: block; overflow: hidden; padding: max(24px, calc(50 * var(--unit))) max(24px, calc(50 * var(--unit))) max(24px, calc(45 * var(--unit))); color: var(--ink); background: radial-gradient(ellipse 36.36% 85.03% at 70.7979% 77.0522%, rgb(120 191 255 / 60%), rgb(169 214 255 / 60%) 50%, rgb(217 237 255 / 60%)), var(--panel); }
+.doctor-back { position: absolute; z-index: 2; inset-block-start: max(24px, calc(40 * var(--unit))); inset-inline-start: max(24px, calc(50 * var(--unit))); display: inline-flex; align-items: center; gap: 12px; min-block-size: 30px; }
 .doctor-back img { flex: none; max-inline-size: none; }
 .doctor-back:hover { color: var(--link-hover); }
-.doctor-intro { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding-block-end: calc(22 * var(--unit)); }
-.doctor-intro h1 { max-inline-size: calc(491 * var(--unit)); font-size: var(--doctor-heading); font-weight: 500; line-height: 1.1; letter-spacing: -.03em; }
+.doctor-intro { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: flex-start; block-size: 100%; padding-block-start: calc(70 * var(--unit)); }
+.doctor-intro h1 { max-inline-size: calc(588 * var(--unit)); font-size: var(--display); font-weight: 500; line-height: 1; letter-spacing: -.03em; }
 .doctor-specialty { margin-block-start: max(24px, calc(40 * var(--unit))); font-size: max(16px, calc(20 * var(--unit))); font-weight: 400; line-height: 1.5; }
-.doctor-specialty p + p { margin-block-start: 5px; }
+.doctor-specialty p + p { margin-block-start: 10px; }
 .doctor-profile-book { color: var(--ink); background: var(--white); }
 .doctor-profile-book:hover { color: var(--white); background: var(--link); }
-.doctor-intro > .button { margin-block-start: max(32px, calc(70 * var(--unit))); }
-.doctor-hero-slot { position: relative; min-inline-size: 0; aspect-ratio: 602 / 804; }
-.doctor-hero-media { position: absolute; inset: 0; overflow: hidden; border-radius: var(--photo-radius); background: var(--panel); }
-.doctor-hero-media img { object-fit: cover; }
-.doctor-layout { margin-block-start: max(64px, calc(120 * var(--unit))); }
+.doctor-intro > .button { margin-block-start: auto; }
+.doctor-hero-slot { position: absolute; z-index: 0; inset-block: 0; inset-inline-start: 41.5957%; inline-size: 53.883%; min-inline-size: 0; }
+.doctor-hero-media { position: absolute; inset: 0; overflow: hidden; border-radius: var(--photo-radius); }
+.doctor-hero-media img { inset: auto; inset-block-start: -5.83%; inset-inline-start: 0; inline-size: 100%; block-size: 125.85%; max-inline-size: none; object-fit: cover; object-position: center top; }
+.doctor-layout { margin-block-start: max(44px, calc(120 * var(--unit) - var(--edge))); }
 .doctor-content { min-inline-size: 0; }
 .doctor-content h2 { font-size: var(--doctor-heading); font-weight: 500; line-height: 1.1; letter-spacing: -.03em; }
 .doctor-content > section + section { margin-block-start: var(--doctor-section-gap); }
@@ -32,37 +33,32 @@
 .doctor-direction-icon img { max-inline-size: none; }
 .doctor-direction-up, .doctor-directions details[open] .doctor-direction-down { display: none; }
 .doctor-directions details[open] .doctor-direction-up { display: block; }
-.doctor-service-links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-flow: column; grid-template-rows: repeat(3, auto); gap: 15px max(30px, calc(48 * var(--unit))); padding: max(22px, calc(23 * var(--unit))) max(24px, calc(40 * var(--unit))) max(30px, calc(40 * var(--unit))); list-style: none; font-size: var(--doctor-body); line-height: 1.5; color: var(--link); }
+.doctor-service-links { display: grid; grid-template-columns: minmax(0, 1fr); gap: 15px; padding: max(22px, calc(23 * var(--unit))) max(24px, calc(40 * var(--unit))) max(30px, calc(40 * var(--unit))); list-style: none; font-size: var(--doctor-body); line-height: 1.5; color: var(--link); }
 .doctor-service-links li { min-inline-size: 0; }
 .doctor-service-links a:hover { color: var(--link-hover); }
 .doctor-service-links a:focus-visible { outline-offset: 3px; }
 
-.doctor-appointment { position: relative; display: grid; grid-template-columns: minmax(0, 526fr) minmax(0, 602fr); min-block-size: calc(522 * var(--unit)); padding: 0; color: var(--ink); background: var(--panel); border-radius: var(--photo-radius); overflow: hidden; }
-.doctor-appointment-portrait { position: relative; align-self: stretch; min-inline-size: 0; }
+.doctor-appointment { position: relative; display: grid; grid-template-columns: minmax(0, 526fr) minmax(0, 602fr); min-block-size: calc(482 * var(--unit)); padding: 0; color: var(--ink); background: var(--panel); border-radius: var(--photo-radius); overflow: hidden; }
+.doctor-appointment-portrait { position: relative; align-self: stretch; min-inline-size: 0; margin-inline: calc(20 * var(--unit)); }
 .doctor-appointment-portrait img { object-fit: cover; }
-.doctor-appointment .appointment-content { inline-size: 100%; align-self: center; padding: max(30px, calc(60 * var(--unit))) max(24px, calc(77 * var(--unit))) max(30px, calc(60 * var(--unit))) max(24px, calc(61 * var(--unit))); }
+.doctor-appointment .appointment-content { inline-size: 100%; align-self: stretch; padding: max(30px, calc(60 * var(--unit))) max(24px, calc(70 * var(--unit))) max(30px, calc(75 * var(--unit))) max(24px, calc(68 * var(--unit))); }
 .doctor-appointment h2 { margin-block-end: max(24px, calc(40 * var(--unit))); }
 .doctor-appointment form { gap: 0; }
 .doctor-appointment .appointment-selection { margin-block-end: 15px; }
-.doctor-appointment .field { inline-size: 100%; min-block-size: max(60px, calc(92 * var(--unit))); border-radius: var(--popup-radius); background: var(--page); }
+.doctor-appointment .field { --field-pad: max(17px, calc(30 * var(--unit))); inline-size: 100%; min-block-size: max(60px, calc(92 * var(--unit))); border-radius: var(--popup-radius); background: var(--white); }
+.doctor-appointment .required-mark { font-size: max(11px, calc(14 * var(--unit))); }
 .doctor-appointment .field:focus-within { outline: 2px solid var(--link-hover); outline-offset: 3px; }
 .doctor-appointment .consent { margin-block-start: max(24px, calc(30 * var(--unit))); font-size: max(13px, calc(16 * var(--unit))); }
 .doctor-appointment .consent > div { max-inline-size: calc(279 * var(--unit)); }
-.doctor-appointment .consent input { background: #cfe8ff; }
+.doctor-appointment .consent input { background: var(--white); }
 .doctor-appointment .consent input:checked { background: var(--link); }
 .doctor-appointment .consent input:focus-visible { outline-color: var(--link-hover); }
 .doctor-appointment form > .button { min-block-size: max(45px, calc(55 * var(--unit))); margin-block-start: max(24px, calc(30 * var(--unit))); padding-block: max(12px, calc(13 * var(--unit))) max(15px, calc(18 * var(--unit))); }
-.doctor-appointment form > .button:disabled { cursor: default; }
-.doctor-reviews .section-heading { padding-inline: 0; }
-.doctor-reviews .carousel { margin-inline: 0; padding-inline: 0; scroll-padding-inline: 0; }
-.doctor-reviews .review-track { --card-width: max(285px, calc(560 * var(--unit))); }
-.doctor-reviews .review-card { clip-path: inset(0 var(--review-clip-right, 0px) 0 var(--review-clip-left, 0px) round var(--review-radius-tl, var(--radius)) var(--review-radius-tr, var(--radius)) var(--review-radius-br, var(--radius)) var(--review-radius-bl, var(--radius))); }
-.doctor-reviews .deck-more { margin-inline-start: 0; }
+.doctor-appointment form > .button:disabled { cursor: default; color: rgb(17 61 80 / 60%); }
 .doctor-page .site-footer { margin-block-start: var(--doctor-section-gap); }
 
 @media (max-width: 1100px) {
   .doctor-page { --doctor-column: 72%; }
-  .doctor-intro h1 { max-inline-size: 95%; }
   .doctor-education dl { max-inline-size: 100%; }
   .doctor-appointment .appointment-content { padding: 30px 24px; }
   .doctor-appointment .consent > div { max-inline-size: 100%; }
@@ -70,25 +66,26 @@
 @media (max-width: 780px) {
   .doctor-page { --doctor-column: calc(100% - 48px); }
   .doctor-back { font-size: 16px; }
-  .doctor-intro h1 { font-size: 30px; }
+  .doctor-intro h1 { max-inline-size: 56%; }
   .doctor-specialty { font-size: 15px; }
   .doctor-intro > .button { font-size: 15px; padding-inline: 18px; }
-  .doctor-service-links { grid-auto-flow: row; grid-template-rows: none; grid-template-columns: minmax(0, 1fr); }
   .doctor-appointment { grid-template-columns: minmax(0, 40fr) minmax(0, 60fr); }
 }
 @media (max-width: 600px) {
   .doctor-page { --doctor-column: calc(100% - 40px); --doctor-heading: 30px; --doctor-body: var(--body); --doctor-section-gap: 60px; }
   .doctor-shell { max-inline-size: none; }
-  .doctor-hero { display: flex; flex-direction: column; gap: 28px; padding-block-start: 115px; }
-  .doctor-brand { inset-block-start: 25px; inset-inline-start: 0; }
+  .doctor-hero-screen { padding: 0; }
+  .doctor-hero { min-block-size: max(650px, calc(var(--initial-viewport-height, 100svh) + 26px)); padding: clamp(112px, calc(var(--initial-viewport-height, 100svh) * .1722), 132px) var(--inside) 100px; }
+  .doctor-brand { z-index: 2; inset-block-start: 25px; inset-inline-start: var(--inside); }
   .doctor-brand img { filter: none; }
-  .doctor-back { inset-block-start: 75px; inset-inline-start: 0; }
-  .doctor-intro { padding: 0; }
+  .doctor-back { inset-block-start: 75px; inset-inline-start: var(--inside); }
+  .doctor-intro { block-size: auto; padding: 0; }
   .doctor-intro h1 { max-inline-size: 100%; font-size: clamp(30px, 9.167vw, 42px); }
   .doctor-specialty { margin-block-start: 20px; font-size: max(13px, var(--small)); }
   .doctor-specialty p + p { margin-block-start: 5px; }
   .doctor-intro > .button { display: none; }
-  .doctor-hero-slot { inline-size: 100%; aspect-ratio: 602 / 700; }
+  .doctor-hero-slot { inset: auto 0 0; inline-size: 100%; block-size: 58%; }
+  .doctor-hero-media img { inset-block-start: 0; block-size: 110%; }
   .doctor-layout { margin-block-start: 60px; }
   .doctor-about h2 + p, .doctor-education dl { margin-block-start: 24px; }
   .doctor-education dl { gap: 24px; }
@@ -97,15 +94,12 @@
   .doctor-direction-icon { transform: scale(.7); }
   .doctor-service-links { gap: 16px; padding: 4px 20px 24px; font-size: var(--body); }
   .doctor-appointment { display: block; min-block-size: 0; }
-  .doctor-appointment-portrait { inline-size: 100%; aspect-ratio: 1.4; }
+  .doctor-appointment-portrait { inline-size: 100%; margin: 0; aspect-ratio: 1.4; }
   .doctor-appointment-portrait img { object-position: center 22%; }
   .doctor-appointment .appointment-content { padding: 28px 20px 30px; }
   .doctor-appointment h2 { max-inline-size: none; font-size: var(--doctor-heading); }
   .doctor-appointment .consent { font-size: max(13px, var(--small)); }
   .doctor-appointment .consent > div { max-inline-size: 100%; }
-  .doctor-reviews #reviews-title { max-inline-size: none; }
-  .doctor-reviews .review-track { --card-width: min(300px, calc(100vw - 60px)); }
-  .doctor-reviews .review-card { min-block-size: 390px; }
   .doctor-page .mobile-booking .doctor-appointment { display: block; min-block-size: 0; margin: 0; padding: 0; }
   .doctor-page .mobile-booking .doctor-appointment-portrait { display: none; }
   .doctor-page .mobile-booking .appointment-content { inline-size: 100%; padding-block-start: 45px; }
