@@ -4,7 +4,7 @@
   "private": true,
   "description": "Адаптивная главная страница стоматологии Метелица",
   "scripts": {
-    "check": "node --check dist/site.js && node --check dist/doctor.js && node --check dist/catalog.js && node scripts/check.mjs",
+    "check": "node --check dist/site.js && node --check dist/catalog.js && node scripts/check.mjs",
     "dev": "python3 -m http.server 5173 --directory dist"
   }
 }

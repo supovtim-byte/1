@@ -8,10 +8,9 @@
   <title>Ходыкина Дарья Александровна — стоматология «Метелица»</title>
   <link rel="icon" href="assets/logo.png" type="image/png">
   <link rel="preload" href="assets/geologica.ttf" as="font" type="font/ttf" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=menus-sleep-20261119">
-  <link rel="stylesheet" href="doctor.css?v=top-20-20261117">
-  <script src="doctor.js?v=top-20-20261117" defer></script>
-  <script src="site.js?v=catalogs-20261117" defer></script>
+  <link rel="stylesheet" href="styles.css?v=mobile-card-padding-20261121-8">
+  <link rel="stylesheet" href="doctor.css?v=profile-fixes-20261122-3">
+  <script src="site.js?v=doctor-centered-20261122" defer></script>
 </head>
 <body class="doctor-page">
   <a class="skip-link" href="#main">Перейти к содержанию</a>
@@ -24,7 +23,7 @@
       <div class="primary-links">
         <a href="uslugi.html">Услуги</a>
         <a href="lechenie-vo-sne.html">Лечение во сне</a>
-        <a href="lechenie-molochnyh-zubov.html">Детям</a>
+        <a href="detyam.html">Детям</a>
         <a href="index.html#contacts">Контакты</a>
       </div>
       <div class="popover more-menu" data-popover>
@@ -73,20 +72,22 @@
   </header>
 
   <main id="main">
-    <section class="doctor-hero" id="top" aria-labelledby="doctor-title">
-      <div class="doctor-intro">
+    <section class="hero-screen doctor-hero-screen" id="top" aria-labelledby="doctor-title">
+      <div class="hero doctor-hero">
         <a class="mobile-brand doctor-brand" href="index.html" aria-label="Метелица — на главную"><img src="assets/logo.png" alt="Метелица"></a>
-        <a class="treatment-back" href="doctors.html"><picture><source media="(max-width: 600px)" srcset="assets/treatment-back-mobile.svg"><img src="assets/carousel-prev.svg" alt=""></picture>Врачи</a>
-        <h1 id="doctor-title">Ходыкина Дарья Александровна</h1>
-        <div class="doctor-specialty"><p>Врач-стоматолог-терапевт</p><p>Опыт работы — 16 лет</p></div>
-        <a class="button button-dark" href="#appointment" data-book="Ходыкина Дарья Александровна">записаться к врачу</a>
-      </div>
-      <div class="doctor-hero-slot">
-        <div class="doctor-hero-media"><img src="assets/doctor-daria.png" width="1594" height="1594" alt="Ходыкина Дарья Александровна" fetchpriority="high"></div>
+        <a class="doctor-back" href="doctors.html"><img src="assets/doctor-back.svg" width="8" height="12" alt="">все врачи</a>
+        <div class="doctor-intro">
+          <h1 id="doctor-title">Ходыкина Дарья Александровна</h1>
+          <div class="doctor-specialty"><p>Врач-стоматолог-терапевт</p><p>Опыт работы — 16 лет</p></div>
+          <a class="button doctor-profile-book" href="#appointment" data-book="Ходыкина Дарья Александровна">записаться к врачу</a>
+        </div>
+        <div class="doctor-hero-slot">
+          <div class="doctor-hero-media"><img class="cover" src="assets/doctor-daria.png" width="1594" height="1594" alt="Ходыкина Дарья Александровна" fetchpriority="high"></div>
+        </div>
       </div>
     </section>
 
-    <div class="doctor-layout">
+    <div class="doctor-layout doctor-shell">
       <div class="doctor-content">
         <section class="doctor-about" id="doctor-about" aria-labelledby="doctor-about-title">
           <h2 id="doctor-about-title">О враче</h2>
@@ -98,7 +99,7 @@
           <h2 id="education-title">Образование</h2>
           <dl>
             <div><dt>2010</dt><dd>Владивостокский государственный медицинский университет. Высшее образование по специальности «Стоматология»</dd></div>
-            <div><dt>2011</dt><dd>Владивостокский государственный медицинский университет. Интернатура по стоматологии общей практики.</dd></div>
+            <div><dt>2011</dt><dd>ВГМУ. Интернатура по стоматологии общей практики.</dd></div>
             <div><dt>2015</dt><dd>Тихоокеанский государственный медицинский университет. Профессиональная переподготовка по терапевтической стоматологии.</dd></div>
             <div><dt>2020</dt><dd>«Скай Дрим». Повышение квалификации по терапевтической стоматологии.</dd></div>
             <div><dt>2025</dt><dd>Институт стоматологии Урала. Повышение квалификации по терапевтической стоматологии.</dd></div>
@@ -108,19 +109,24 @@
         <section class="section faq doctor-directions" id="directions" aria-labelledby="directions-title">
           <h2 id="directions-title">Направления работы</h2>
           <div class="faq-list">
-            <details name="doctor-directions" open>
-              <summary>Диагностика<span class="faq-icon" aria-hidden="true"></span></summary>
+            <details name="doctor-directions">
+              <summary><span class="doctor-direction-label">Диагностика</span><span class="doctor-direction-icon" aria-hidden="true"><img class="doctor-direction-down" src="assets/doctor-direction-down.svg" width="21" height="13" alt=""><img class="doctor-direction-up" src="assets/doctor-direction-up.svg" width="21" height="13" alt=""></span></summary>
               <ul class="doctor-service-links">
-                <li><a href="lechenie-molochnyh-zubov.html">Лечение молочных зубов</a></li>
-                <li><a href="index.html#service-sleep">Лечение без боли и страха</a></li>
-                <li><a href="uslugi-i-ceny.html#caries">Лечение постоянных зубов</a></li>
-                <li><a href="uslugi-i-ceny.html#hygiene">Чистка и профилактика</a></li>
-                <li><a href="uslugi-i-ceny.html#gums">Лечение дёсен</a></li>
-                <li><a href="uslugi-i-ceny.html#diagnostics">Консультации и диагностика</a></li>
+                <li><a href="uslugi-i-ceny.html#consultations">Консультация стоматолога-терапевта</a></li>
+                <li><a href="uslugi-i-ceny.html#consultations">Осмотр и составление плана лечения</a></li>
+                <li><a href="uslugi-i-ceny.html#diagnostics">Оценка состояния зубов по снимкам</a></li>
               </ul>
             </details>
             <details name="doctor-directions">
-              <summary>Терапия<span class="faq-icon" aria-hidden="true"></span></summary>
+              <summary><span class="doctor-direction-label">Профилактика</span><span class="doctor-direction-icon" aria-hidden="true"><img class="doctor-direction-down" src="assets/doctor-direction-down.svg" width="21" height="13" alt=""><img class="doctor-direction-up" src="assets/doctor-direction-up.svg" width="21" height="13" alt=""></span></summary>
+              <ul class="doctor-service-links">
+                <li><a href="uslugi-i-ceny.html#hygiene">Профессиональная гигиена полости рта</a></li>
+                <li><a href="uslugi-i-ceny.html#hygiene">Укрепление эмали и снижение чувствительности</a></li>
+                <li><a href="uslugi-i-ceny.html#hygiene">Подбор средств домашнего ухода</a></li>
+              </ul>
+            </details>
+            <details name="doctor-directions">
+              <summary><span class="doctor-direction-label">Терапия</span><span class="doctor-direction-icon" aria-hidden="true"><img class="doctor-direction-down" src="assets/doctor-direction-down.svg" width="21" height="13" alt=""><img class="doctor-direction-up" src="assets/doctor-direction-up.svg" width="21" height="13" alt=""></span></summary>
               <ul class="doctor-service-links">
                 <li><a href="uslugi-i-ceny.html#caries">Лечение кариеса</a></li>
                 <li><a href="uslugi-i-ceny.html#root-canals">Лечение пульпита и периодонтита</a></li>
@@ -128,75 +134,59 @@
                 <li><a href="uslugi-i-ceny.html#gums">Лечение заболеваний дёсен</a></li>
               </ul>
             </details>
-            <details name="doctor-directions">
-              <summary>Профилактика<span class="faq-icon" aria-hidden="true"></span></summary>
-              <ul class="doctor-service-links">
-                <li><a href="uslugi-i-ceny.html#hygiene">Профессиональная гигиена полости рта</a></li>
-                <li><a href="uslugi-i-ceny.html#hygiene">Укрепление эмали и профилактика кариеса</a></li>
-                <li><a href="uslugi-i-ceny.html#consultations">Подбор домашнего ухода</a></li>
-              </ul>
-            </details>
           </div>
-        </section>
-
-        <section class="section deck doctor-reviews" id="reviews" aria-labelledby="reviews-title" data-carousel>
-          <div class="section-heading">
-            <h2 id="reviews-title">Отзывы</h2>
-            <div class="carousel-controls">
-              <button class="icon-button" type="button" data-prev aria-label="Предыдущие отзывы" aria-controls="reviews-track"><img src="assets/carousel-prev.svg" alt=""></button>
-              <button class="icon-button" type="button" data-next aria-label="Следующие отзывы" aria-controls="reviews-track"><img src="assets/carousel-next.svg" alt=""></button>
-            </div>
-          </div>
-          <div class="carousel review-track" id="reviews-track" tabindex="0" aria-label="Карточки отзывов">
-            <article class="review-card">
-              <h3>Наталья Иванова</h3>
-              <p>Лечимся в данной клинике, очень довольны. Очень нравится подход к детям! Лечили ребенку зубы в медикаментозном сне, все прошло отлично, вылечили сразу все зубы, перед процедурой все подробно объяснили и все прошло просто замечательно.</p>
-              <div class="review-meta"><time datetime="2022-08-24">24 августа 2022</time><img src="assets/doctor-review.png" alt="" width="90" height="90" loading="lazy" draggable="false"></div>
-            </article>
-            <article class="review-card">
-              <h3>Наталья Иванова</h3>
-              <p>Лечимся в данной клинике, очень довольны. Очень нравится подход к детям! Лечили ребенку зубы в медикаментозном сне, все прошло отлично.</p>
-              <div class="review-meta"><time datetime="2022-08-24">24 августа 2022</time></div>
-            </article>
-            <article class="review-card">
-              <h3>Наталья Иванова</h3>
-              <p>Лечимся в данной клинике, очень довольны. Очень нравится подход к детям! Лечили ребенку зубы в медикаментозном сне, все прошло отлично.</p>
-              <div class="review-meta"><time datetime="2022-08-24">24 августа 2022</time></div>
-            </article>
-          </div>
-          <a class="text-link deck-more" href="https://yandex.ru/maps/org/metelitsa/1132881772/reviews/" target="_blank" rel="noopener">Все отзывы</a>
         </section>
 
         <section class="section appointment doctor-appointment" id="appointment" aria-labelledby="appointment-title">
+          <div class="doctor-appointment-portrait" aria-hidden="true"><img class="cover" src="assets/doctor-daria.png" width="1594" height="1594" alt="" loading="lazy"></div>
           <div class="appointment-content">
-            <h2 id="appointment-title">Запись на прием</h2>
+            <h2 id="appointment-title">Запись на приём</h2>
             <form id="appointment-form">
               <p class="appointment-selection" id="appointment-selection" hidden></p>
               <label class="field phone-field">
                 <span class="sr-only">Ваш номер телефона</span>
                 <input id="appointment-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 000 000 00 00" pattern="\+7 \d{3} \d{3} \d{2} \d{2}" required aria-label="Ваш номер телефона" aria-describedby="phone-hint">
-                <span class="phone-mask" aria-hidden="true">
-                  <span data-mask-prefix>+7 000 000 00 00</span><span data-mask-tail></span><span class="required-mark">*</span>
-                </span>
+                <span class="phone-mask" aria-hidden="true"><span data-mask-prefix>+7 000 000 00 00</span><span data-mask-tail></span><sup class="required-mark">*</sup></span>
               </label>
               <span id="phone-hint" class="sr-only">Введите десять цифр российского номера после +7.</span>
               <div class="consent">
                 <input type="checkbox" id="appointment-consent" name="consent" required>
                 <div><label for="appointment-consent">Даю согласие на обработку персональных данных</label> <a class="text-link" href="https://metelitsa-dent.ru/agreement/" aria-label="Политика обработки персональных данных" target="_blank" rel="noopener">(?)</a></div>
               </div>
-              <button class="button button-primary" type="submit" disabled>позвоните мне</button>
+              <button class="button doctor-profile-book" type="submit" disabled>позвоните мне</button>
             </form>
           </div>
         </section>
-      </div>
 
-      <aside class="doctor-sidebar" aria-label="Ваш врач">
-        <div class="doctor-sticky">
-          <div class="doctor-portrait-target"><img src="assets/doctor-daria.png" width="1594" height="1594" alt="" loading="lazy"></div>
-          <div class="doctor-caption"><p>Ходыкина Дарья Александровна</p><p>Врач-стоматолог-терапевт</p></div>
-        </div>
-      </aside>
+      </div>
     </div>
+    <section class="section deck section-shell doctor-reviews" id="reviews" aria-labelledby="reviews-title" data-carousel>
+      <div class="section-heading">
+        <h2 id="reviews-title">Отзывы о враче</h2>
+        <div class="carousel-controls">
+          <button class="icon-button" type="button" data-prev aria-label="Предыдущие отзывы" aria-controls="reviews-track"><img src="assets/carousel-prev.svg" alt=""></button>
+          <button class="icon-button" type="button" data-next aria-label="Следующие отзывы" aria-controls="reviews-track"><img src="assets/carousel-next.svg" alt=""></button>
+        </div>
+      </div>
+      <div class="carousel review-track" id="reviews-track" tabindex="0" aria-label="Карточки отзывов">
+        <article class="review-card">
+          <h3>Наталья Иванова</h3>
+          <p>Лечимся в данной клинике, очень довольны. Очень нравится подход к детям! Лечили ребенку зубы в медикаментозном сне, все прошло отлично, вылечили сразу все зубы, перед процедурой все подробно объяснили и все прошло просто замечательно.</p>
+          <div class="review-meta"><time datetime="2022-08-24">24 августа 2022</time><img src="assets/doctor-review.png" alt="" width="90" height="90" loading="lazy" draggable="false"></div>
+        </article>
+        <article class="review-card">
+          <h3>Наталья Иванова</h3>
+          <p>Лечимся в данной клинике, очень довольны. Очень нравится подход к детям! Лечили ребенку зубы в медикаментозном сне, все прошло отлично.</p>
+          <div class="review-meta"><time datetime="2022-08-24">24 августа 2022</time></div>
+        </article>
+        <article class="review-card">
+          <h3>Наталья Иванова</h3>
+          <p>Лечимся в данной клинике, очень довольны. Очень нравится подход к детям! Лечили ребенку зубы в медикаментозном сне, все прошло отлично.</p>
+          <div class="review-meta"><time datetime="2022-08-24">24 августа 2022</time></div>
+        </article>
+      </div>
+      <a class="text-link deck-more" href="https://yandex.ru/maps/org/metelitsa/1132881772/reviews/" target="_blank" rel="noopener">Все отзывы</a>
+    </section>
   </main>
 
   <footer class="site-footer section-shell">
@@ -248,7 +238,7 @@
       <nav class="mobile-menu-links" aria-label="Разделы сайта">
         <a href="uslugi.html">Услуги</a>
         <a href="uslugi-i-ceny.html">Цены</a>
-        <a href="lechenie-molochnyh-zubov.html">Детям</a>
+        <a href="detyam.html">Детям</a>
         <a href="index.html#contacts">Контакты</a>
         <a href="lechenie-vo-sne.html">Лечение во сне</a>
         <a href="doctors.html">Врачи</a>

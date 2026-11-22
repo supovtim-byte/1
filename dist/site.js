@@ -586,7 +586,8 @@ for (const details of disclosures) {
 
 const selectedAppointment = document.querySelector("#appointment-selection");
 const appointmentSection = document.querySelector("#appointment");
-const appointmentHome = appointmentSection.parentElement;
+const appointmentMarker = document.createComment("appointment position");
+appointmentSection.before(appointmentMarker);
 const mobileBooking = document.querySelector("#mobile-booking");
 const mobileMenu = document.querySelector("#mobile-navigation");
 
@@ -599,7 +600,7 @@ function openMobileBooking(event) {
 }
 
 mobileBooking.addEventListener("close", () => {
-  if (!mobileBooking.open) appointmentHome.append(appointmentSection);
+  if (!mobileBooking.open) appointmentMarker.after(appointmentSection);
 });
 
 function selectAppointment(subject) {
