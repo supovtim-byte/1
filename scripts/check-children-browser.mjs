@@ -69,6 +69,7 @@ async function checkGeometry(page, label) {
   for (const split of result.splits) {
     assert.ok(split.photo.right <= split.copy.x + 1 || split.photo.bottom <= split.copy.y + 1, `${label}: photo overlaps text`);
     assert.ok(split.photo.right <= split.section.right + 1, `${label}: photo escapes grid`);
+    if (result.width >= 961) assert.ok(split.copy.height <= split.photo.height + 1, `${label}: text is taller than its photo`);
     if (result.width >= 601 && result.width <= 960) {
       assert.ok(split.photo.bottom <= split.copy.y, `${label}: stacked tablet photo`);
       assert.ok(Math.abs(split.photo.height - split.photo.width * 75 / 127) < 1, `${label}: tablet photo must be 25% shorter`);
@@ -113,7 +114,7 @@ async function checkDisclosures(page, selector) {
 
 try {
   browser = await chromium.launch({ executablePath: process.env.CHROMIUM_EXECUTABLE || '/usr/bin/chromium', headless: true, args: ['--no-sandbox'] });
-  const widths = [320, 390, 599, 600, 601, 622, 744, 768, 780, 781, 834, 960, 961, 1000, 1024, 1080, 1081, 1133, 1200, 1280, 1440, 1920, 2560];
+  const widths = [320, 390, 599, 600, 601, 622, 744, 768, 780, 781, 834, 960, 961, 1000, 1024, 1080, 1081, 1100, 1122, 1133, 1200, 1280, 1366, 1440, 1441, 1654, 1920, 2560];
   for (const width of widths) {
     const page = await openPage({ width, height: width < 1000 ? 1000 : 800 });
     const result = await checkGeometry(page, `${width}px`);
@@ -125,13 +126,14 @@ try {
       });
       assert.ok(images.every(Boolean), 'Every local page image must load');
     }
-    if (screenshots && [390, 744, 834, 1440].includes(width)) {
+    if (screenshots && [390, 744, 834, 1122, 1440, 1654].includes(width)) {
       for (const selector of ['#top', '#children-comfort', '#first-visit', '#sleep', '#contacts', '#how-to-get']) {
         await page.locator(selector).scrollIntoViewIfNeeded();
         await page.locator(selector + ' img').evaluateAll(images => Promise.all(images.map(i => { i.loading = 'eager'; return i.decode().catch(() => {}); })));
         await page.locator(selector).screenshot({ path: path.join(screenshots, `${width}-${selector.slice(1)}.png`) });
       }
     }
+    if (width >= 601) assert.ok(Math.abs(result.copyFont - Math.max(16, Math.min(26, 26 * width / 1920))) < .05, `${width}px: proportional copy scale`);
     report.push(result);
     await page.close();
   }
