@@ -1,142 +1,92 @@
-/* Children page components use one spacing and type scale across tablet widths. */
-.children-page {
-  --children-text-inset: clamp(12px, 2.083333vw, 40px);
-  --children-copy-gap: clamp(24px, 3.125vw, 60px);
-  --children-heading-gap: clamp(24px, 2.083333vw, 40px);
-  --intro-section-gap: clamp(60px, 5.208333vw, 100px);
-  --section-gap: clamp(70px, 6.770833vw, 130px);
-}
-.children-page :is(main, .site-footer, .detail-dialog) { font-size: var(--body); }
-.children-page .section-heading { padding-inline: var(--children-text-inset); }
+/* Page-specific layout; shared sections retain styles.css and site.js. */
 .children-page .hero h1 { max-inline-size: max(350px, calc(800 * var(--unit))); line-height: 1; }
 .children-page .hero-photo { object-position: center; }
 .children-page .hero-shade { background: none; }
-.children-page .rating-popover .popover-panel { left: auto; right: 0; }
-@media (max-width: 780px) {
-  .children-page .rating-popover .popover-panel { left: 0; right: auto; }
-}
-
-/* Photos are confined to their grid tracks, including between breakpoints. */
-.children-split { display: grid; grid-template-columns: minmax(0, 1158fr) minmax(0, 722fr); margin-block-start: var(--section-gap); }
-.children-familiarity { margin-block-start: var(--intro-section-gap); }
-.children-photo { position: relative; min-inline-size: 0; inline-size: 100%; overflow: hidden; border-radius: var(--photo-radius); background: var(--photo-background); }
+.children-split { display: grid; grid-template-columns: minmax(0, 1158fr) minmax(0, 722fr); margin-block-start: max(64px, calc(106 * var(--unit))); }
+.children-photo { position: relative; overflow: hidden; border-radius: var(--photo-radius); background: var(--photo-background); }
 .children-playroom { aspect-ratio: 1158 / 759; }
-.children-copy { min-inline-size: 0; align-self: center; padding-inline: var(--children-copy-gap) var(--children-text-inset); }
-.children-copy h2 { max-inline-size: 650px; }
-.children-benefits { list-style: none; padding: 0; display: grid; gap: clamp(20px, 1.5625vw, 30px); max-inline-size: 549px; margin-block-start: var(--children-heading-gap); }
-.children-benefits li { display: grid; grid-template-columns: clamp(30px, 2.34375vw, 45px) minmax(0, 1fr); gap: clamp(16px, 1.770833vw, 34px); align-items: start; }
+.children-playroom img { object-position: center; }
+.children-copy { min-inline-size: 0; align-self: center; padding-inline: max(28px, calc(60 * var(--unit))) max(20px, calc(65 * var(--unit))); }
+.children-copy h2 { max-inline-size: calc(650 * var(--unit)); }
+.children-benefits { list-style: none; padding: 0; display: grid; gap: max(20px, calc(30 * var(--unit))); max-inline-size: max(280px, calc(549 * var(--unit))); margin-block-start: max(24px, calc(45 * var(--unit))); margin-inline-start: calc(7 * var(--unit)); }
+.children-benefits li { display: grid; grid-template-columns: max(30px, calc(45 * var(--unit))) minmax(0, 1fr); gap: max(16px, calc(34 * var(--unit))); align-items: start; }
 .children-benefits p, .children-first-visit .children-copy > p { font-size: var(--large); line-height: 1.5; }
-.children-benefit-icon { display: block; inline-size: 100%; aspect-ratio: 1; overflow: hidden; }
+.children-benefit-icon { position: relative; display: block; inline-size: max(30px, calc(45 * var(--unit))); aspect-ratio: 1; overflow: hidden; }
 .children-benefit-icon img { inline-size: 100%; block-size: 100%; object-fit: contain; }
-
-.children-services { margin-block-start: var(--intro-section-gap); }
+.children-services { margin-block-start: max(64px, calc(100 * var(--unit))); }
 .children-services .service-option { white-space: normal; }
 .children-services .service-list::before, .children-sleep-card { background: var(--panel); }
 .children-services .service-media { border-radius: var(--radius); }
-.children-first-visit { grid-template-columns: minmax(0, 1118fr) minmax(0, 762fr); }
+.children-first-visit { grid-template-columns: minmax(0, 1118fr) minmax(0, 762fr); margin-block-start: max(64px, calc(100 * var(--unit))); }
 .children-first-visit .children-photo { aspect-ratio: 1118 / 795; }
-.children-first-visit h2 { margin-block-end: var(--children-heading-gap); }
-.children-first-visit .children-copy > p { max-inline-size: 570px; }
-.children-first-visit .children-copy > p + p { margin-block-start: 20px; }
-.children-first-visit .button { margin-block-start: var(--children-heading-gap); white-space: normal; text-align: center; max-inline-size: 100%; }
-
+.children-first-visit .children-copy { padding-inline-start: max(24px, calc(60 * var(--unit))); padding-inline-end: max(20px, calc(40 * var(--unit))); }
+.children-first-visit h2 { margin-block-end: max(24px, calc(30 * var(--unit))); }
+.children-first-visit .children-copy > p { max-inline-size: max(280px, calc(570 * var(--unit))); }
+.children-first-visit .children-copy > p + p { margin-block-start: max(16px, calc(20 * var(--unit))); }
+.children-first-visit .button { margin-block-start: max(24px, calc(40 * var(--unit))); white-space: normal; text-align: center; }
+.children-sleep { margin-block-start: max(64px, calc(140 * var(--unit))); }
 .children-sleep-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gap); }
-.children-sleep-intro { max-inline-size: 1405px; margin: 0 var(--children-text-inset) var(--children-copy-gap); font-size: var(--large); line-height: 1.5; }
-.children-sleep-card { display: grid; grid-template-columns: minmax(0, 1fr) 35%; gap: clamp(16px, 1.5625vw, 30px); padding: var(--card-inset, clamp(8px, .520833vw, 10px)); border-radius: var(--radius); min-inline-size: 0; }
-.children-sleep-card > div { min-inline-size: 0; display: flex; flex-direction: column; align-items: flex-start; padding: clamp(16px, 1.302083vw, 25px) 0 clamp(16px, 1.302083vw, 25px) clamp(16px, 1.5625vw, 30px); }
-.children-sleep-card h3 { font-size: clamp(20px, calc(14px + .833333vw), 30px); line-height: 1.2; letter-spacing: -.03em; }
-.children-sleep-card p { margin-block-start: 24px; line-height: 1.6; color: #424242; overflow-wrap: break-word; }
+.children-sleep-intro { max-inline-size: calc(1405 * var(--unit)); margin: 0 var(--inside) max(28px, calc(60 * var(--unit))); font-size: var(--large); line-height: 1.5; }
+.children-sleep-card { display: grid; grid-template-columns: minmax(0, 1fr) 35%; gap: max(16px, calc(30 * var(--unit))); padding: max(8px, calc(10 * var(--unit))); border-radius: var(--radius); }
+.children-sleep-card > div { display: flex; flex-direction: column; align-items: flex-start; padding: max(16px, calc(25 * var(--unit))) 0 max(16px, calc(25 * var(--unit))) max(16px, calc(30 * var(--unit))); }
+.children-sleep-card h3 { font-size: max(20px, calc(30 * var(--unit))); line-height: 1.1; letter-spacing: -.03em; }
+.children-sleep-card p { margin-block-start: max(18px, calc(30 * var(--unit))); line-height: 1.6; color: #424242; }
 .children-sleep-card > picture { display: block; min-inline-size: 0; }
 .children-sleep-card > picture img { width: 100%; height: 100%; aspect-ratio: 320 / 376; object-fit: cover; border-radius: max(16px, calc(30 * var(--unit))); }
-.children-sleep-arrow { margin-block-start: auto; padding-block-start: 24px; }
+.children-sleep-arrow { margin-block-start: auto; padding-block-start: max(24px, calc(30 * var(--unit))); }
 .children-sleep-card:hover h3 { color: var(--link-hover); }
+.high-contrast .children-sleep-card, .high-contrast .children-services .service-list::before { background: var(--panel); }
 .high-contrast .children-sleep-card p { color: var(--ink); }
-
-/* Keep the phone design; scale smoothly from 601px to the desktop design. */
-@media (min-width: 601px) {
-  .children-page {
-    --body: clamp(16px, 1.041667vw, 20px);
-    --large: clamp(16px, calc(26 * var(--unit)), 26px);
-    --small: clamp(13px, calc(11.633px + .227445vw), 16px);
-    --title: clamp(36px, calc(50 * var(--unit)), 50px);
-    --display: clamp(48px, calc(70 * var(--unit)), 70px);
-  }
-}
 @media (min-width: 601px) and (max-width: 1080px) {
   .children-page .hero h1 { max-inline-size: 98%; }
   .children-page .hero-photo { object-position: 75% center; }
   .children-page .hero-shade { background: linear-gradient(0deg, rgb(2 29 43 / 78%), rgb(2 29 43 / 50%) 22%, transparent 63%); }
-  .children-split { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .children-photo, .children-first-visit .children-photo { min-block-size: 320px; aspect-ratio: auto; }
-  .children-copy h2, .children-first-visit .children-copy > p { max-inline-size: none; }
-  .children-benefits { max-inline-size: none; }
+  .children-split { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .children-copy h2 { max-inline-size: none; }
+  .children-benefits { gap: 16px; max-inline-size: none; margin-inline-start: 0; }
+  .children-benefits li { gap: 12px; }
+  .children-copy { padding-inline: 24px 8px; }
+  .children-first-visit .children-copy { padding-inline: 24px 8px; }
+  .children-photo { min-inline-size: 0; inline-size: 100%; min-block-size: 320px; aspect-ratio: auto; }
+  .children-first-visit .children-photo { aspect-ratio: auto; }
+  .children-first-visit .children-copy > p { max-inline-size: none; }
   .children-sleep-intro { max-inline-size: none; }
-  .children-services .service-content h2 { margin-inline: var(--children-text-inset); }
-
+  .children-sleep-card { grid-template-columns: minmax(0, 1fr) 34%; gap: 12px; }
+  .children-sleep-card > div { padding: 16px 0 16px 12px; }
 }
-@media (min-width: 601px) and (max-width: 1080px), (min-width: 601px) and (pointer: coarse) and (max-width: 1366px) {
-  /* Map, address and routes form one contiguous tablet contact block. */
-  .children-page .contacts { grid-template-columns: minmax(0, 1fr); gap: 0; }
-  .children-page .contact-card { display: contents; }
-  .children-page .contact-card h2 { grid-row: 1; margin: 0 var(--children-text-inset) var(--children-heading-gap); }
-  .children-page .contacts .map { grid-row: 2; z-index: 1; min-block-size: 0; aspect-ratio: 16 / 9; }
-  .children-page .contact-card address { grid-row: 3; margin-block-start: calc(-1 * var(--radius)); padding: calc(var(--radius) + var(--inside)) var(--inside) var(--inside); border-radius: var(--radius) var(--radius) 0 0; background: var(--panel); }
-  .children-page .contact-map-link { grid-row: 4; margin: 0; padding: 0 var(--inside) var(--inside); border-radius: 0 0 var(--radius) var(--radius); background: var(--panel); }
-  .children-page .arrival-collapsible { margin-block-start: var(--gap); }
-  .children-page .arrival-collapsible > .section-heading, .children-page .arrival-collapsible > .directions-grid { display: none; }
-  .children-page .mobile-routes { display: grid; gap: var(--gap); margin: 0; }
-  .children-page .mobile-routes details { overflow: clip; border-radius: var(--radius); background: var(--panel); }
-  .children-page .mobile-routes details[open] { padding-block-end: var(--inside); }
-  .children-page .mobile-routes summary { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-block-size: 64px; padding: 18px var(--inside); font-size: var(--large); list-style: none; cursor: pointer; }
-  .children-page .mobile-routes summary::-webkit-details-marker { display: none; }
-  .children-page .mobile-routes summary img { flex: none; inline-size: 16px; }
-  .children-page .mobile-routes details[open] summary img { transform: rotate(180deg); }
-  .children-page .mobile-routes details p, .children-page .mobile-route-link { margin-inline: var(--inside); line-height: 1.6; }
-  .children-page .mobile-route-link { display: block; inline-size: fit-content; margin-block-start: 16px; }
-}
-@media (min-width: 601px) and (max-width: 960px) {
-  .children-split { grid-template-columns: minmax(0, 1fr); gap: var(--children-heading-gap); }
-  /* 127/75 makes a stacked tablet photo 25% shorter than the old 127/100. */
-  .children-photo, .children-first-visit .children-photo { min-block-size: 0; aspect-ratio: 127 / 75; }
-  .children-copy { padding-inline: var(--children-text-inset); }
-}
-/* Compact two-column blocks give copy half the width before stacking. */
-@media (min-width: 961px) and (max-width: 1440px) {
-  .children-split { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-}
-@media (min-width: 961px) {
-  /* Reserve space above and below copy so the photo is visibly taller. */
-  .children-copy { margin-block: clamp(24px, 2.083333vw, 40px); }
-  .children-photo, .children-first-visit .children-photo { min-block-size: 0; aspect-ratio: auto; align-self: stretch; }
-  .children-photo::before { content: ""; display: block; aspect-ratio: 1158 / 759; }
-  .children-first-visit .children-photo::before { aspect-ratio: 1118 / 795; }
-}
-@media (min-width: 961px) {
-  .children-first-visit .children-copy > p + p { margin-block-start: clamp(12px, calc(20 * var(--unit)), 20px); }
-  .children-sleep-card h3 { font-size: clamp(20px, calc(30 * var(--unit)), 30px); }
-  .children-sleep-card p { margin-block-start: clamp(16px, calc(30 * var(--unit)), 30px); }
-  .children-sleep-arrow { padding-block-start: clamp(16px, calc(30 * var(--unit)), 30px); }
-}
-/* Two readable treatment cards on tablets; the full-width photo is above text. */
-@media (max-width: 1200px), (pointer: coarse) and (max-width: 1366px) {
-  .children-sleep-card { --card-inset: 8px; display: flex; flex-direction: column; gap: 0; }
-  .children-sleep-card > picture { order: -1; inline-size: 100%; }
-  .children-sleep-card > picture img { height: auto; aspect-ratio: 16 / 9; object-position: center; }
-  .children-sleep-card > div { flex: 1; padding: 24px calc(var(--inside) - var(--card-inset)) 20px; }
+@media (min-width: 601px) and (max-width: 780px) {
+  .children-split { grid-template-columns: minmax(0, 1fr); gap: 21px; }
+  .children-photo, .children-first-visit .children-photo { min-block-size: 0; aspect-ratio: 1.27; }
+  .children-copy, .children-first-visit .children-copy { padding: 0; }
+  .children-sleep-grid { grid-template-columns: minmax(0, 1fr); }
+  .children-sleep-intro { margin-inline: 6px; }
 }
 @media (max-width: 600px) {
+  .children-page .hero { min-block-size: max(540px, var(--initial-viewport-height, 100svh)); }
   .children-page .hero h1 { max-inline-size: 100%; line-height: 1.1; }
-  .children-page .hero-photo { object-position: 75% center; }
+  .children-page .hero-photo { object-position: 65% center; }
   .children-page .hero-shade { background: linear-gradient(180deg, rgb(0 36 51 / 75%), rgb(0 36 51 / 45%) 42%, transparent 70%); }
-  .children-split { display: flex; flex-direction: column; gap: var(--children-heading-gap); }
-  .children-photo { aspect-ratio: 1.3; }
-  .children-copy { padding-inline: var(--children-text-inset); }
-  .children-copy h2, .children-first-visit .children-copy > p { max-inline-size: none; }
-  .children-benefits { max-inline-size: none; }
+  .children-split { display: flex; flex-direction: column; gap: 28px; margin-block-start: 60px; }
+  .children-photo { inline-size: 100%; }
+  .children-playroom { aspect-ratio: 1.3; }
+  .children-copy, .children-first-visit .children-copy { padding-inline: 5px; }
+  .children-copy h2 { max-inline-size: 100%; }
+  .children-benefits { gap: 24px; max-inline-size: none; margin-block-start: 28px; margin-inline-start: 0; }
   .children-benefits li { grid-template-columns: 36px minmax(0, 1fr); gap: 18px; }
-  .children-services .service-content h2 { margin-inline: var(--children-text-inset); }
+  .children-benefit-icon { inline-size: 36px; }
+  .children-services { margin-block-start: 60px; }
   .children-first-visit .children-photo { aspect-ratio: 1.2; }
+  .children-first-visit { gap: 20px; }
+  .children-first-visit .children-copy > p { max-inline-size: none; }
+  .children-first-visit h2 { margin-block-end: 24px; }
   .children-first-visit .button { width: 100%; }
+  .children-sleep { margin-block-start: 60px; }
   .children-sleep-grid { grid-template-columns: minmax(0, 1fr); gap: 16px; }
-  .children-page .contacts h2 { margin-inline: var(--children-text-inset); }
+  .children-sleep-intro { max-inline-size: none; margin: 0 var(--mobile-gutter) 28px; }
+  .children-sleep-card { --card-inset: max(8px, calc(10 * var(--unit))); padding: var(--card-inset); display: flex; flex-direction: column; gap: 0; min-block-size: 0; border-radius: var(--photo-radius); }
+  .children-sleep-card > picture { order: -1; inline-size: 100%; }
+  .children-sleep-card > picture img { height: auto; aspect-ratio: 16 / 9; object-position: center; }
+  .children-sleep-card > div { padding: 24px calc(var(--inside) - var(--card-inset)) 20px; }
+  .children-sleep-card h3 { font-size: 20px; }
+  .children-sleep-card p { font-size: var(--body); margin-block-start: 18px; }
 }

@@ -5,10 +5,6 @@
   "description": "Адаптивная главная страница стоматологии Метелица",
   "scripts": {
     "check": "node --check dist/site.js && node --check dist/catalog.js && node scripts/check.mjs",
-    "dev": "python3 -m http.server 5173 --directory dist",
-    "check:children:browser": "node scripts/check-children-browser.mjs"
-  },
-  "devDependencies": {
-    "playwright-core": "1.65.1"
+    "dev": "python3 -m http.server 5173 --directory dist"
   }
 }

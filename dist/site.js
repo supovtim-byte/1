@@ -1,14 +1,5 @@
 // Keep mobile hero images stable when browser chrome changes the viewport.
-let initialViewportWidth = window.innerWidth;
-function rememberViewportHeight() {
-  initialViewportWidth = window.innerWidth;
-  document.documentElement.style.setProperty("--initial-viewport-height", window.innerHeight + "px");
-}
-rememberViewportHeight();
-window.addEventListener("resize", () => {
-  // Keyboard and browser bars change height only; rotation also changes width.
-  if (window.innerWidth !== initialViewportWidth) rememberViewportHeight();
-});
+document.documentElement.style.setProperty("--initial-viewport-height", window.innerHeight + "px");
 
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const mobileLayout = window.matchMedia("(max-width: 600px)");
@@ -467,14 +458,7 @@ function enableCarousel(section) {
 
   track.addEventListener("keydown", event => {
     if (event.target !== track) return;
-    if (event.key === "Home" || event.key === "End") {
-      event.preventDefault();
-      stopGlide();
-      track.scrollTo({
-        left: event.key === "Home" ? 0 : track.scrollWidth - track.clientWidth,
-        behavior: reduceMotion.matches ? "instant" : "smooth"
-      });
-    } else if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+    if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
       event.preventDefault();
       step(event.key === "ArrowLeft" ? -1 : 1);
     }
@@ -726,9 +710,6 @@ const searchCatalog = [
     service: link.dataset.showService
   })),
   ...serviceOptions.map(option => ({ title: option.textContent.trim(), href: "#" + option.id, service: option.dataset.service })),
-  ...[...document.querySelectorAll("main [id][data-search-title]")].map(section => ({
-    title: section.dataset.searchTitle, href: "#" + section.id
-  })),
   ...[...document.querySelectorAll(".doctors-grid .doctor-card")].map(card => ({
     title: card.querySelector("h3").textContent.trim() + " — " + card.querySelector("p").textContent.trim(),
     href: "doctors.html#" + card.id
