@@ -26,6 +26,10 @@
   --radius: max(18px, calc(40 * var(--unit)));
   --photo-radius: max(22px, calc(50 * var(--unit)));
   --popup-radius: max(16px, calc(30 * var(--unit)));
+  --button-height: max(44px, calc(56 * var(--unit)));
+  --button-font-size: max(14px, calc(20 * var(--unit)));
+  --button-padding-block: max(10px, calc(14 * var(--unit)));
+  --button-padding-inline: max(20px, calc(30 * var(--unit)));
   --body: max(13px, calc(20 * var(--unit)));
   --large: max(16px, calc(26 * var(--unit)));
   --small: max(11px, calc(16 * var(--unit)));
@@ -96,7 +100,9 @@ address { font-style: normal; }
   justify-content: center;
   gap: 5px;
   border-radius: 999px;
-  padding: max(8px, calc(12 * var(--unit))) max(16px, calc(30 * var(--unit))) max(11px, calc(19 * var(--unit)));
+  min-block-size: var(--button-height);
+  padding: var(--button-padding-block) var(--button-padding-inline);
+  font-size: var(--button-font-size);
   line-height: 1.2;
   white-space: nowrap;
   transition: color .16s ease, background-color .16s ease, opacity .18s ease, transform .18s var(--ease-out);
@@ -130,8 +136,8 @@ address { font-style: normal; }
 .primary-links { white-space: nowrap; }
 .primary-links a:hover { color: var(--link-hover); }
 .header-actions { margin-inline-start: auto; gap: max(12px, calc(42 * var(--unit))); }
-.header-book { min-block-size: max(40px, calc(55 * var(--unit))); }
-.header-book > span { display: inline-block; transform: translateY(2px); }
+.header-book { flex: none; }
+.header-book > span { display: inline-block; }
 .compact-menu { display: none; }
 
 .popover { position: relative; }
@@ -516,9 +522,7 @@ address { font-style: normal; }
 }
 .consent input:focus-visible { outline: 2px solid white; outline-offset: 4px; }
 .appointment form > .button {
-  min-block-size: max(42px, calc(67 * var(--unit)));
   margin-block-start: max(7px, calc(37 * var(--unit)));
-  padding-block: max(9px, calc(15 * var(--unit))) max(12px, calc(22 * var(--unit)));
 }
 
 .site-footer { margin-block: var(--section-gap) max(18px, calc(20 * var(--unit))); }
@@ -577,7 +581,7 @@ address { font-style: normal; }
 @media (max-width: 1024px) {
   .site-header {
     --tablet-book-padding: 25px;
-    --compact-control-size: 42px;
+    --compact-control-size: var(--button-height);
     gap: clamp(8px, 1.4vw, 14px);
     padding-inline: max(16px, calc(40 * var(--unit)));
   }
@@ -585,8 +589,6 @@ address { font-style: normal; }
   .navigation { display: none; }
   .header-actions { gap: 0; }
   .header-book {
-    min-block-size: var(--compact-control-size);
-    padding-inline: var(--tablet-book-padding);
     margin-inline-start: var(--tablet-book-padding);
   }
   .compact-menu {
@@ -656,7 +658,7 @@ address { font-style: normal; }
 
 @media (max-width: 560px) {
   .site-header {
-    --compact-control-size: 38px;
+    --compact-control-size: var(--button-height);
     --tablet-book-padding: 18px;
     padding-block-end: 0;
     container: compact-header / inline-size;
@@ -664,7 +666,6 @@ address { font-style: normal; }
   .brand { inline-size: clamp(104px, 24vw, 132px); }
   .header-book {
     margin-inline-start: 0;
-    font-size: 12px;
   }
   .phone-popover { display: none; }
 }
@@ -704,6 +705,10 @@ address { font-style: normal; }
     --mobile-radius: calc(25 * var(--mobile-unit));
     --mobile-gutter: calc(10 * var(--mobile-unit));
     --mobile-control-size: max(44px, calc(50 * var(--mobile-unit)));
+    --button-height: var(--mobile-control-size);
+    --button-font-size: var(--body);
+    --button-padding-block: 12px;
+    --button-padding-inline: 20px;
     scrollbar-width: none;
   }
   :root.mobile-large-text { --body: 19px; --small: 14px; --title: clamp(32px, 9.5vw, 42px); }
@@ -890,7 +895,7 @@ address { font-style: normal; }
     inset: auto 0 0;
   }
   :root:has(.mobile-menu[open]) .mobile-dock { visibility: hidden; }
-  .mobile-actions .button { flex: 1; min-inline-size: 0; min-block-size: var(--mobile-control-size); padding-inline: 5px; text-align: center; font-size: clamp(13px, 4.45vw, 16px); white-space: normal; }
+  .mobile-actions .button { flex: 1; min-inline-size: 0; min-block-size: var(--mobile-control-size); padding-inline: 5px; text-align: center; font-size: var(--button-font-size); white-space: normal; }
   .mobile-action-icon { display: grid; place-items: center; inline-size: var(--mobile-control-size); block-size: var(--mobile-control-size); border-radius: 50%; flex: none; }
   .mobile-action-icon img { inline-size: 100%; block-size: 100%; }
   .mobile-action-close { background: #103646; }
@@ -1271,7 +1276,7 @@ address { font-style: normal; }
   .treatment-price-body dt { min-inline-size: 0; }
   .treatment-content > .appointment { display: none; }
   .treatment-page .mobile-actions { gap: 8px; padding: 10px 10px calc(var(--treatment-dock-bottom-padding) + var(--dock-safe-area)) 15px; }
-  .treatment-page .mobile-actions .button { min-block-size: var(--treatment-dock-control-size); padding-block: 12px 18px; font-size: 16px; line-height: 20px; }
+  .treatment-page .mobile-actions .button { min-block-size: var(--treatment-dock-control-size); padding-block: 15px; font-size: var(--button-font-size); line-height: 20px; }
   .treatment-page .mobile-action-icon { inline-size: 50px; block-size: var(--treatment-dock-control-size); }
   .treatment-page .mobile-home, .treatment-page [data-mobile-menu] { inline-size: 51px; }
   .treatment-page .mobile-action-icon img { inline-size: auto; block-size: auto; max-inline-size: none; }
@@ -1443,7 +1448,7 @@ address { font-style: normal; }
 .service-prices .treatment-price-body dl > div { padding-block-end: max(18px, calc(26 * var(--unit))); }
 .service-prices .treatment-price-body dl > div:last-child { padding-block-end: 0; }
 .service-prices .treatment-price-body dl > div::after { inset-block-end: max(8px, calc(12 * var(--unit))); }
-.service-prices .treatment-price-book { display: inline-flex; margin-block-start: max(30px, calc(60 * var(--unit))); color: var(--ink); font-size: max(16px, calc(20 * var(--unit))); }
+.service-prices .treatment-price-book { display: inline-flex; margin-block-start: max(30px, calc(60 * var(--unit))); color: var(--ink); font-size: var(--button-font-size); }
 .service-prices .treatment-price-book:hover { color: var(--white); }
 .service-price-note { margin-block-start: 8px; font-size: max(14px, calc(16 * var(--unit))); color: var(--muted); }
 .service-faq summary { min-block-size: max(72px, calc(92 * var(--unit))); font-size: var(--service-copy-size); }

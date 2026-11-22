@@ -55,7 +55,7 @@
 .doctor-appointment .consent input { background: var(--white); }
 .doctor-appointment .consent input:checked { background: var(--link); }
 .doctor-appointment .consent input:focus-visible { outline-color: var(--link-hover); }
-.doctor-appointment form > .button { min-block-size: max(45px, calc(55 * var(--unit))); margin-block-start: max(24px, calc(30 * var(--unit))); padding-block: max(12px, calc(13 * var(--unit))) max(15px, calc(18 * var(--unit))); }
+.doctor-appointment form > .button { margin-block-start: max(24px, calc(30 * var(--unit))); }
 .doctor-appointment form > .button:disabled { cursor: default; color: rgb(17 61 80 / 60%); }
 .doctor-page .site-footer { margin-block-start: var(--doctor-section-gap); }
 
@@ -70,7 +70,6 @@
   .doctor-back { font-size: 16px; }
   .doctor-intro h1 { max-inline-size: 56%; }
   .doctor-specialty { font-size: 15px; }
-  .doctor-intro > .button { font-size: 15px; padding-inline: 18px; }
   .doctor-appointment { grid-template-columns: minmax(0, 40fr) minmax(0, 60fr); }
 }
 @media (max-width: 600px) {
