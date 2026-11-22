@@ -9,7 +9,7 @@
   <link rel="icon" href="assets/logo.png" type="image/png">
   <link rel="preload" href="assets/geologica.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="stylesheet" href="styles.css?v=mobile-card-padding-20261121-8">
-  <link rel="stylesheet" href="doctor.css?v=wide-20261122-2">
+  <link rel="stylesheet" href="doctor.css?v=profile-fixes-20261122-3">
   <script src="site.js?v=doctor-centered-20261122" defer></script>
 </head>
 <body class="doctor-page">
@@ -110,38 +110,28 @@
           <h2 id="directions-title">Направления работы</h2>
           <div class="faq-list">
             <details name="doctor-directions">
-              <summary>Диагностика<span class="doctor-direction-icon" aria-hidden="true"><img class="doctor-direction-down" src="assets/doctor-direction-down.svg" width="21" height="13" alt=""><img class="doctor-direction-up" src="assets/doctor-direction-up.svg" width="21" height="13" alt=""></span></summary>
+              <summary><span class="doctor-direction-label">Диагностика</span><span class="doctor-direction-icon" aria-hidden="true"><img class="doctor-direction-down" src="assets/doctor-direction-down.svg" width="21" height="13" alt=""><img class="doctor-direction-up" src="assets/doctor-direction-up.svg" width="21" height="13" alt=""></span></summary>
               <ul class="doctor-service-links">
-                <li><a href="lechenie-molochnyh-zubov-v2.html">Лечение молочных зубов</a></li>
-                <li><a href="lechenie-vo-sne.html">Лечение без боли и страха</a></li>
-                <li><a href="uslugi-i-ceny.html#caries">Лечение постоянных зубов</a></li>
-                <li><a href="uslugi-i-ceny.html#hygiene">Чистка и профилактика</a></li>
-                <li><a href="uslugi-i-ceny.html#gums">Лечение дёсен</a></li>
-                <li><a href="uslugi-i-ceny.html#diagnostics">Консультации и диагностика</a></li>
+                <li><a href="uslugi-i-ceny.html#consultations">Консультация стоматолога-терапевта</a></li>
+                <li><a href="uslugi-i-ceny.html#consultations">Осмотр и составление плана лечения</a></li>
+                <li><a href="uslugi-i-ceny.html#diagnostics">Оценка состояния зубов по снимкам</a></li>
               </ul>
             </details>
             <details name="doctor-directions">
-              <summary>Коронки на молочные зубы<span class="doctor-direction-icon" aria-hidden="true"><img class="doctor-direction-down" src="assets/doctor-direction-down.svg" width="21" height="13" alt=""><img class="doctor-direction-up" src="assets/doctor-direction-up.svg" width="21" height="13" alt=""></span></summary>
+              <summary><span class="doctor-direction-label">Профилактика</span><span class="doctor-direction-icon" aria-hidden="true"><img class="doctor-direction-down" src="assets/doctor-direction-down.svg" width="21" height="13" alt=""><img class="doctor-direction-up" src="assets/doctor-direction-up.svg" width="21" height="13" alt=""></span></summary>
               <ul class="doctor-service-links">
-                <li><a href="lechenie-molochnyh-zubov-v2.html#prices">Металлические коронки на молочные зубы</a></li>
-                <li><a href="lechenie-molochnyh-zubov-v2.html#prices">Циркониевые коронки на молочные зубы</a></li>
+                <li><a href="uslugi-i-ceny.html#hygiene">Профессиональная гигиена полости рта</a></li>
+                <li><a href="uslugi-i-ceny.html#hygiene">Укрепление эмали и снижение чувствительности</a></li>
+                <li><a href="uslugi-i-ceny.html#hygiene">Подбор средств домашнего ухода</a></li>
               </ul>
             </details>
             <details name="doctor-directions">
-              <summary>Терапия<span class="doctor-direction-icon" aria-hidden="true"><img class="doctor-direction-down" src="assets/doctor-direction-down.svg" width="21" height="13" alt=""><img class="doctor-direction-up" src="assets/doctor-direction-up.svg" width="21" height="13" alt=""></span></summary>
+              <summary><span class="doctor-direction-label">Терапия</span><span class="doctor-direction-icon" aria-hidden="true"><img class="doctor-direction-down" src="assets/doctor-direction-down.svg" width="21" height="13" alt=""><img class="doctor-direction-up" src="assets/doctor-direction-up.svg" width="21" height="13" alt=""></span></summary>
               <ul class="doctor-service-links">
                 <li><a href="uslugi-i-ceny.html#caries">Лечение кариеса</a></li>
                 <li><a href="uslugi-i-ceny.html#root-canals">Лечение пульпита и периодонтита</a></li>
                 <li><a href="uslugi-i-ceny.html#restoration">Восстановление зубов</a></li>
                 <li><a href="uslugi-i-ceny.html#gums">Лечение заболеваний дёсен</a></li>
-              </ul>
-            </details>
-            <details name="doctor-directions">
-              <summary>Профилактика<span class="doctor-direction-icon" aria-hidden="true"><img class="doctor-direction-down" src="assets/doctor-direction-down.svg" width="21" height="13" alt=""><img class="doctor-direction-up" src="assets/doctor-direction-up.svg" width="21" height="13" alt=""></span></summary>
-              <ul class="doctor-service-links">
-                <li><a href="uslugi-i-ceny.html#hygiene">Профессиональная гигиена полости рта</a></li>
-                <li><a href="uslugi-i-ceny.html#hygiene">Укрепление эмали и профилактика кариеса</a></li>
-                <li><a href="uslugi-i-ceny.html#consultations">Подбор домашнего ухода</a></li>
               </ul>
             </details>
           </div>
@@ -156,9 +146,7 @@
               <label class="field phone-field">
                 <span class="sr-only">Ваш номер телефона</span>
                 <input id="appointment-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 000 000 00 00" pattern="\+7 \d{3} \d{3} \d{2} \d{2}" required aria-label="Ваш номер телефона" aria-describedby="phone-hint">
-                <span class="phone-mask" aria-hidden="true">
-                  <span data-mask-prefix>+7 000 000 00 00</span><span data-mask-tail></span><span class="required-mark">*</span>
-                </span>
+                <span class="phone-mask" aria-hidden="true"><span data-mask-prefix>+7 000 000 00 00</span><span data-mask-tail></span><sup class="required-mark">*</sup></span>
               </label>
               <span id="phone-hint" class="sr-only">Введите десять цифр российского номера после +7.</span>
               <div class="consent">
