@@ -855,6 +855,9 @@ address { font-style: normal; }
   .contact-card address { grid-row: 3; margin-block-start: -25px; padding: 41px var(--inside) 16px; border-radius: var(--mobile-radius) var(--mobile-radius) 0 0; background: var(--arrival-panel); }
   .contact-map-link { grid-row: 4; margin: 0; padding: 0 var(--inside) 20px; border-radius: 0 0 var(--mobile-radius) var(--mobile-radius); background: var(--arrival-panel); }
   .arrival-directions { margin-block-start: var(--section-gap); }
+  .arrival-collapsible { margin-block-start: 8px; }
+  .arrival-collapsible > .section-heading, .arrival-collapsible > .directions-grid { display: none; }
+  .arrival-collapsible > .mobile-routes { margin-block-start: 0; }
   .directions-card { min-block-size: 0; padding: 20px var(--inside) 24px; }
   .mobile-routes { display: grid; margin-block-start: 8px; }
   .mobile-routes details { overflow: clip; border-radius: var(--mobile-radius); background: var(--panel); }

@@ -8,9 +8,9 @@
   <title>Детям — стоматология «Метелица»</title>
   <link rel="icon" href="assets/logo.png" type="image/png">
   <link rel="preload" href="assets/geologica.ttf" as="font" type="font/ttf" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=home-directions-20261122-4">
+  <link rel="stylesheet" href="styles.css?v=20261122-mobile-2">
   <script src="site.js?v=catalogs-20261117" defer></script>
-  <link rel="stylesheet" href="children.css?v=20261122">
+  <link rel="stylesheet" href="children.css?v=20261122-mobile-2">
 </head>
 <body class="children-page">
   <a class="skip-link" href="#main">Перейти к содержанию</a>
@@ -138,20 +138,21 @@
         <h2 id="first-visit-title">Первый визит можно посвятить знакомству</h2>
         <p>Если ребёнок впервые идёт к стоматологу или волнуется перед посещением, можно начать с адаптационного приёма.</p>
         <p>На нём ребёнок знакомится с врачом и кабинетом. Если он готов, врач может провести осмотр. Если нет, посещение может ограничиться знакомством.</p>
-        <a class="button button-primary" href="#appointment" data-book="Адаптационный приём ребёнка">записаться на адаптационный приём</a>
+        <a class="button button-primary" href="#appointment" data-book="Первый приём ребёнка">записаться на первый приём</a>
       </div>
     </section>
 
     <section class="section children-sleep section-shell" id="sleep" aria-labelledby="children-sleep-title">
-      <div class="section-heading"><h2 id="children-sleep-title">Лечение во сне и седация</h2></div>
+      <div class="section-heading"><h2 id="children-sleep-title">Если ребёнку сложно пройти лечение</h2></div>
+      <p class="children-sleep-intro">Ребёнок может тревожиться или испытывать трудности с тем, чтобы долго оставаться в кресле. Врач поможет разобраться в ситуации и оценит возможность лечения с седацией или под общей анестезией</p>
       <div class="children-sleep-grid">
         <a class="children-sleep-card" href="lechenie-vo-sne.html">
-          <div><h3>Лечение во сне</h3><p>Лечение зубов под общей анестезией с участием анестезиолога.</p></div>
-          <img src="assets/children-sleep.png" alt="Ребёнок с анестезиологической маской" loading="lazy">
+          <div><h3>Лечение во сне</h3><p>Ребёнок спит, а за его состоянием следит анестезиолог-реаниматолог. Перед лечением предусмотрено обследование, после — комната пробуждения, где рядом может находиться сопровождающий взрослый.</p><img class="children-sleep-arrow" src="assets/prices-category-arrow.svg" alt=""></div>
+          <picture><source media="(max-width: 600px)" srcset="assets/service-sleep.jpg"><img src="assets/children-sleep.png" alt="Ребёнок с анестезиологической маской" loading="lazy"></picture>
         </a>
         <a class="children-sleep-card" href="#appointment" data-book="Седация закисью азота">
-          <div><h3>Седация закисью азота</h3><p>Ребёнок остаётся в сознании. Во время приёма используется газовая смесь, которую он вдыхает через носовую маску.</p></div>
-          <img src="assets/children-sedation.png" alt="Мальчик в стоматологическом кресле" loading="lazy">
+          <div><h3>Седация закисью азота</h3><p>Ребёнок дышит смесью кислорода и закиси азота через носовую маску, остаётся в сознании и может общаться с врачом.</p><img class="children-sleep-arrow" src="assets/prices-category-arrow.svg" alt=""></div>
+          <picture><source media="(max-width: 600px)" srcset="assets/service-sleep.jpg"><img src="assets/children-sleep.png" alt="Ребёнок с анестезиологической маской" loading="lazy"></picture>
         </a>
       </div>
     </section>
@@ -279,7 +280,7 @@
       </div>
     </section>
 
-    <section class="section arrival-directions section-shell" id="how-to-get" aria-labelledby="how-to-get-title">
+    <section class="section arrival-directions arrival-collapsible section-shell" id="how-to-get" aria-labelledby="how-to-get-title">
       <div class="section-heading"><h2 id="how-to-get-title">Как добраться</h2></div>
       <div class="directions-grid">
         <article class="directions-card" aria-labelledby="metro-route-title">
@@ -292,6 +293,10 @@
           <p>Трамваи № 24 и 27 останавливаются у БЦ «Обуховъ» на проспекте Обуховской Обороны, между станциями «Пролетарская» и «Рыбацкое».</p>
           <a class="text-link" href="https://yandex.ru/maps/2/saint-petersburg/?mode=routes&amp;rtext=~59.852033%2C30.478653&amp;rtt=mt" target="_blank" rel="noopener" aria-label="Показать на картах маршрут общественным транспортом">Показать на картах</a>
         </article>
+      </div>
+      <div class="mobile-routes">
+        <details><summary>Путь от метро Обухово<img src="assets/mobile-chevron.svg" alt=""></summary><p>В будни от метро «Обухово» ходит бесплатный автобус до бизнес-центра «Обуховъ». Поездка занимает несколько минут.</p><a class="text-link mobile-route-link" href="https://yandex.ru/maps/2/saint-petersburg/?mode=routes&amp;rtext=59.848668%2C30.457634~59.852033%2C30.478653&amp;rtt=pd" target="_blank" rel="noopener" aria-label="Показать на картах путь от метро Обухово">Показать на картах</a></details>
+        <details><summary>Общественным транспортом<img src="assets/mobile-chevron.svg" alt=""></summary><p>Трамваи № 24 и 27 останавливаются у БЦ «Обуховъ» на проспекте Обуховской Обороны, между станциями «Пролетарская» и «Рыбацкое».</p><a class="text-link mobile-route-link" href="https://yandex.ru/maps/2/saint-petersburg/?mode=routes&amp;rtext=~59.852033%2C30.478653&amp;rtt=mt" target="_blank" rel="noopener" aria-label="Показать на картах маршрут общественным транспортом">Показать на картах</a></details>
       </div>
     </section>
 
