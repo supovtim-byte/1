@@ -14,9 +14,15 @@ for (const photo of document.querySelectorAll(".hero-photo, .appointment-photo")
 }
 
 const compactMenu = header.querySelector("#compact-menu-panel");
-for (const link of header.querySelectorAll(".primary-links a, #more-panel a")) {
+for (const link of header.querySelectorAll(".primary-links a, #more-panel a, #more-panel [data-accessibility]")) {
   compactMenu.append(link.cloneNode(true));
 }
+
+// Keep contacts reachable in the compact navigation after simplifying the desktop row.
+const compactContacts = document.createElement("a");
+compactContacts.href = "index.html#contacts";
+compactContacts.textContent = "Контакты";
+compactMenu.insertBefore(compactContacts, compactMenu.querySelector("[data-accessibility]"));
 
 const popovers = [...document.querySelectorAll("[data-popover]")].map(element => ({
   element,
