@@ -43,12 +43,6 @@ for (const link of header.querySelectorAll(".primary-links a, #more-panel a, #mo
   compactMenu.append(link.cloneNode(true));
 }
 
-// Keep contacts reachable in the compact navigation after simplifying the desktop row.
-const compactContacts = document.createElement("a");
-compactContacts.href = "contacts.html";
-compactContacts.textContent = "Контакты";
-compactMenu.insertBefore(compactContacts, compactMenu.querySelector("[data-accessibility]"));
-
 const popovers = [...document.querySelectorAll("[data-popover]")].map(element => ({
   element,
   trigger: element.querySelector(".popover-trigger"),
