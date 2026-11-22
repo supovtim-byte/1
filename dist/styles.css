@@ -365,8 +365,8 @@ address { font-style: normal; }
 }
 .doctor-book:hover { background: var(--link-hover); color: var(--white); }
 .doctor-card h3, .doctor-card p { padding-inline: var(--inside); font-size: var(--body); color: var(--ink); }
-.doctor-card h3 { margin-block-start: 15px; }
-.doctor-card p { color: var(--ink); font-size: 16px; font-weight: 400; line-height: 1.5; }
+.doctor-card h3 { margin-block-start: 15px; font-size: var(--large); line-height: 1.2; }
+.doctor-card p { color: var(--ink); font-size: var(--small); font-weight: 400; line-height: 1.5; }
 .doctor-card h3 + p { margin-block-start: 10px; }
 .doctor-card .doctor-experience { margin-block-start: 5px; }
 .doctor-profile-link:hover { color: var(--link-hover); }
@@ -687,6 +687,19 @@ address { font-style: normal; }
 
 .mobile-brand, .mobile-rating, .mobile-routes, .mobile-actions, .mobile-menu, .service-card-photo { display: none; }
 
+/* Touch tablets use the same service cards as phones, without hover. */
+@media (min-width: 601px) and (max-width: 1080px), (min-width: 601px) and (hover: none), (min-width: 601px) and (pointer: coarse) {
+  .services { display: block; }
+  .services .service-content { padding: 0; }
+  .services .service-content h2 { margin: 0 var(--inside) 24px; }
+  .services .service-list { display: grid; grid-auto-flow: column; grid-auto-columns: clamp(240px, 35vw, 320px); grid-auto-rows: auto; inline-size: auto; min-inline-size: 0; max-inline-size: none; gap: var(--gap); overflow-x: auto; margin-inline: calc(-1 * var(--edge)); padding-inline: var(--edge); scroll-snap-type: x mandatory; scroll-padding-inline: var(--edge); scrollbar-width: none; }
+  .services .service-list::before, .services .service-media, .services .service-arrow { display: none; }
+  .services .service-list li { scroll-snap-align: start; }
+  .services .service-option { display: flex; flex-direction: column; justify-content: flex-start; align-items: stretch; gap: 0; min-block-size: 0; padding: 0 0 20px; border-radius: var(--radius); background: var(--panel); }
+  .services .service-card-photo { display: block; inline-size: 100%; aspect-ratio: 213 / 189; object-fit: cover; border-radius: var(--radius); }
+  .services .service-option span { padding: 16px var(--inside) 0; }
+  .services .service-more { margin: 20px var(--inside) 0; }
+}
 @media (max-width: 600px) {
   :root {
     --mobile-unit: calc(clamp(320px, 100vw, 600px) / 360);
@@ -832,7 +845,7 @@ address { font-style: normal; }
   .doctor-track { --card-width: calc(290 * var(--mobile-unit)); }
   .doctor-card { border-radius: var(--mobile-radius); background: var(--panel); }
   .doctor-card h3, .doctor-card p { padding-inline: var(--inside); }
-  .doctor-card h3 { margin-block-start: 15px; }
+  .doctor-card h3 { margin-block-start: 15px; line-height: 1.5; }
   .doctor-card p { margin-block-start: 10px; padding-block-end: 0; color: var(--ink); font-size: max(13px, var(--small)); }
   .doctor-card p:last-child { padding-block-end: 20px; }
   .review-track { --card-width: calc(300 * var(--mobile-unit)); }
