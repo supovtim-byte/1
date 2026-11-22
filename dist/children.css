@@ -100,10 +100,13 @@
   .children-photo, .children-first-visit .children-photo { min-block-size: 0; aspect-ratio: 127 / 75; }
   .children-copy { padding-inline: var(--children-text-inset); }
 }
-/* Compact two-column blocks give copy half the width before stacking.
-   The photo keeps its natural minimum ratio and fills a taller text row. */
+/* Compact two-column blocks give copy half the width before stacking. */
 @media (min-width: 961px) and (max-width: 1440px) {
   .children-split { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 961px) {
+  /* Reserve space above and below copy so the photo is visibly taller. */
+  .children-copy { margin-block: clamp(24px, 2.083333vw, 40px); }
   .children-photo, .children-first-visit .children-photo { min-block-size: 0; aspect-ratio: auto; align-self: stretch; }
   .children-photo::before { content: ""; display: block; aspect-ratio: 1158 / 759; }
   .children-first-visit .children-photo::before { aspect-ratio: 1118 / 795; }
