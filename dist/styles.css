@@ -10,8 +10,8 @@
   color-scheme: light;
   --page: #e8f5ff;
   --panel: #d9edff;
-  --arrival-panel: #cfe8ff;
-  --photo-background: #dcecf9;
+  --arrival-panel: var(--panel);
+  --photo-background: var(--panel);
   --field: #f8fcff;
   --ink: #113d50;
   --muted: rgb(17 61 80 / 65%);
@@ -852,9 +852,9 @@ address { font-style: normal; }
   .contacts h2 { grid-row: 1; margin: 0 var(--mobile-gutter) 20px; }
   .contacts .map { grid-row: 2; z-index: 1; aspect-ratio: 330 / 276; min-block-size: 0; }
   .contact-card { display: contents; }
-  .contact-card address { grid-row: 3; margin-block-start: -25px; padding: 41px var(--inside) 16px; border-radius: var(--mobile-radius) var(--mobile-radius) 0 0; background: var(--arrival-panel); }
+  .contact-card address { grid-row: 3; margin-block-start: -25px; padding: 41px var(--inside) 20px; border-radius: var(--mobile-radius); background: var(--arrival-panel); }
   .contact-map-link { grid-row: 4; margin: 0; padding: 0 var(--inside) 20px; border-radius: 0 0 var(--mobile-radius) var(--mobile-radius); background: var(--arrival-panel); }
-  .arrival-directions { margin-block-start: var(--section-gap); }
+  .arrival-directions, .contact-map-link { display: none; }
   .directions-card { min-block-size: 0; padding: 20px var(--inside) 24px; }
   .mobile-routes { display: grid; margin-block-start: 8px; }
   .mobile-routes details { overflow: clip; border-radius: var(--mobile-radius); background: var(--panel); }
