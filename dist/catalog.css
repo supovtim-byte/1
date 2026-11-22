@@ -103,6 +103,7 @@
   line-height: 1.2;
   letter-spacing: -.03em;
 }
+.direction-copy h2 a:hover { color: var(--link-hover); }
 .direction-copy > p { margin-block: 14px 24px; font-size: max(15px, var(--body)); color: var(--muted); }
 .direction-details { margin-block-start: auto; border-block-start: 1px solid rgb(17 61 80 / 12%); }
 .direction-details summary {

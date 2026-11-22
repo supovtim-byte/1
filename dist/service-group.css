@@ -1,0 +1,10 @@
+.group-template-label { font-size: max(16px, var(--body)); }
+.group-template-intro { max-inline-size: 42ch; font-size: var(--large); }
+.service-group-template .service-hero-bottom { gap: 20px; }
+.service-group-template .service-hero-book { margin-block-start: 10px; }
+.group-template-steps { display: grid; gap: 28px; padding-inline-start: 1.4em; }
+.group-template-steps h3 { margin-block-end: 8px; font-weight: 500; font-size: inherit; }
+@media (max-width: 600px) {
+  .service-group-template .hero-screen { min-block-size: 620px; }
+  .service-group-template .service-hero-bottom { gap: 16px; }
+}
