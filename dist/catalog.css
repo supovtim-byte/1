@@ -53,7 +53,7 @@
   opacity: 0;
   pointer-events: none;
   transform: translateY(5px);
-  min-block-size: 44px;
+  min-block-size: var(--button-height);
 }
 .doctor-card:focus-within .catalog-book,
 .direction-card:focus-within .catalog-book {

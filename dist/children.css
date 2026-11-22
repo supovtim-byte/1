@@ -92,7 +92,7 @@
   .children-first-visit { gap: 20px; }
   .children-first-visit .children-copy > p { max-inline-size: none; }
   .children-first-visit h2 { margin-block-end: 24px; }
-  .children-first-visit .button { width: 100%; min-block-size: 54px; padding: 16px 20px; }
+  .children-first-visit .button { width: 100%; }
   .children-sleep { margin-block-start: 60px; }
   .children-sleep-grid { grid-template-columns: minmax(0, 1fr); gap: 16px; }
   .children-sleep-intro { max-inline-size: none; margin: 0 var(--mobile-gutter) 28px; }
