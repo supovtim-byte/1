@@ -69,7 +69,7 @@ async function checkGeometry(page, label) {
   for (const split of result.splits) {
     assert.ok(split.photo.right <= split.copy.x + 1 || split.photo.bottom <= split.copy.y + 1, `${label}: photo overlaps text`);
     assert.ok(split.photo.right <= split.section.right + 1, `${label}: photo escapes grid`);
-    if (result.width >= 961) assert.ok(split.copy.height <= split.photo.height + 1, `${label}: text is taller than its photo`);
+    if (result.width >= 961) assert.ok(split.photo.height >= split.copy.height + 47, `${label}: photo needs at least 24px above and below text`);
     if (result.width >= 601 && result.width <= 960) {
       assert.ok(split.photo.bottom <= split.copy.y, `${label}: stacked tablet photo`);
       assert.ok(Math.abs(split.photo.height - split.photo.width * 75 / 127) < 1, `${label}: tablet photo must be 25% shorter`);
