@@ -36,7 +36,7 @@
   --title: max(28px, calc(50 * var(--unit)));
   --display: max(36px, calc(70 * var(--unit)));
   --section-gap: max(64px, calc(130 * var(--unit)));
-  --header-height: max(60px, calc(101 * var(--unit)));
+  --header-height: max(76px, calc(101 * var(--unit)));
   --header-space: calc(var(--header-height) + max(8px, calc(8 * var(--unit))));
   --ease-out: cubic-bezier(.2, .75, .25, 1);
   font-family: Geologica, "Segoe UI", sans-serif;
@@ -115,6 +115,7 @@ address { font-style: normal; }
 .section { margin-block-start: var(--section-gap); }
 
 .site-header {
+  --header-control-size: max(var(--button-height), calc(1.25em + 20px));
   position: absolute;
   z-index: 10;
   inset: calc(var(--header-document-top, 0px) + var(--accessibility-toolbar-height, 0px)) 0 auto;
@@ -123,7 +124,7 @@ address { font-style: normal; }
   align-items: center;
   gap: max(18px, calc(60 * var(--unit)));
   padding-inline: var(--inside);
-  padding-block-end: calc(5 * var(--unit));
+  padding-block: 0;
   background: var(--page);
   border-radius: 0 0 var(--radius) var(--radius);
   font-size: max(14px, calc(19 * var(--unit)));
@@ -140,8 +141,9 @@ address { font-style: normal; }
 .header-actions { margin-inline-start: auto; gap: max(18px, calc(35 * var(--unit))); }
 .header-book {
   flex: none;
-  min-block-size: max(44px, calc(55 * var(--unit)));
-  padding: max(10px, calc(12 * var(--unit))) max(20px, calc(30 * var(--unit))) max(10px, calc(19 * var(--unit)));
+  min-block-size: var(--header-control-size);
+  block-size: var(--header-control-size);
+  padding: 0 max(20px, calc(30 * var(--unit)));
   font-size: inherit;
   line-height: 1.25;
 }
@@ -150,12 +152,12 @@ address { font-style: normal; }
   display: grid;
   place-items: center;
   flex: none;
-  inline-size: 55px;
-  block-size: 55px;
+  inline-size: var(--header-control-size);
+  block-size: var(--header-control-size);
   margin-inline-start: calc(-25 * var(--unit));
   border-radius: 50%;
 }
-.header-telegram img { flex: none; max-inline-size: none; }
+.header-telegram img { flex: none; inline-size: 100%; block-size: 100%; max-inline-size: none; }
 .header-telegram:hover { opacity: .8; }
 .compact-menu { display: none; }
 
