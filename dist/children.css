@@ -1,0 +1,82 @@
+/* Page-specific layout; shared sections retain styles.css and site.js. */
+.children-hero-screen { height: auto; padding-block-end: 0; }
+.children-page .hero { min-block-size: max(430px, calc(787 * var(--unit))); }
+.children-page .hero h1 { max-inline-size: calc(800 * var(--unit)); line-height: 1; }
+.children-page .hero-photo { object-position: center; }
+.children-page .hero-shade { background: none; }
+.children-split { display: grid; grid-template-columns: minmax(0, 1158fr) minmax(0, 722fr); margin-block-start: max(64px, calc(106 * var(--unit))); }
+.children-photo { position: relative; overflow: hidden; border-radius: var(--photo-radius); background: var(--photo-background); }
+.children-playroom { aspect-ratio: 1158 / 759; }
+.children-playroom img { object-position: center; }
+.children-copy { min-inline-size: 0; align-self: center; padding-inline: max(28px, calc(60 * var(--unit))) max(20px, calc(65 * var(--unit))); }
+.children-copy h2 { max-inline-size: calc(650 * var(--unit)); }
+.children-benefits { list-style: none; padding: 0; display: grid; gap: max(20px, calc(30 * var(--unit))); max-inline-size: max(280px, calc(549 * var(--unit))); margin-block-start: max(24px, calc(45 * var(--unit))); margin-inline-start: calc(7 * var(--unit)); }
+.children-benefits li { display: grid; grid-template-columns: max(30px, calc(45 * var(--unit))) minmax(0, 1fr); gap: max(16px, calc(34 * var(--unit))); align-items: start; }
+.children-benefits p, .children-first-visit .children-copy > p { font-size: var(--large); line-height: 1.5; }
+.children-benefit-icon { position: relative; display: block; inline-size: max(30px, calc(45 * var(--unit))); aspect-ratio: 1; overflow: hidden; }
+.children-benefit-icon img { inline-size: 100%; block-size: 100%; object-fit: contain; }
+.children-services { margin-block-start: max(64px, calc(100 * var(--unit))); }
+.children-services .service-option { white-space: normal; }
+.children-services .service-list::before, .children-sleep-card { background: #cfe8ff; }
+.children-services .service-media { border-radius: var(--radius); }
+.children-first-visit { grid-template-columns: minmax(0, 1118fr) minmax(0, 762fr); margin-block-start: max(64px, calc(100 * var(--unit))); }
+.children-first-visit .children-photo { aspect-ratio: 1118 / 795; }
+.children-first-visit .children-copy { padding-inline-start: max(28px, calc(112 * var(--unit))); padding-inline-end: max(20px, calc(40 * var(--unit))); }
+.children-first-visit h2 { margin-block-end: max(24px, calc(40 * var(--unit))); }
+.children-first-visit .children-copy > p + p { margin-block-start: max(16px, calc(20 * var(--unit))); }
+.children-first-visit .button { margin-block-start: max(24px, calc(40 * var(--unit))); white-space: normal; text-align: center; }
+.children-sleep { margin-block-start: max(64px, calc(140 * var(--unit))); }
+.children-sleep-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gap); }
+.children-sleep-card { display: grid; grid-template-columns: minmax(0, 1fr) 35%; gap: max(16px, calc(30 * var(--unit))); padding: max(8px, calc(10 * var(--unit))); border-radius: var(--radius); }
+.children-sleep-card > div { padding: max(16px, calc(25 * var(--unit))) 0 max(16px, calc(25 * var(--unit))) max(16px, calc(30 * var(--unit))); }
+.children-sleep-card h3 { font-size: var(--large); line-height: 1.2; }
+.children-sleep-card p { margin-block-start: max(18px, calc(30 * var(--unit))); line-height: 1.4; color: #424242; }
+.children-sleep-card > img { width: 100%; height: 100%; aspect-ratio: 320 / 376; object-fit: cover; border-radius: max(16px, calc(30 * var(--unit))); }
+.children-sleep-card:first-child > img { object-position: left center; }
+.children-sleep-card:last-child > img { object-position: 72% center; }
+.children-sleep-card:hover h3 { color: var(--link-hover); }
+.high-contrast .children-sleep-card, .high-contrast .children-services .service-list::before { background: var(--panel); }
+.high-contrast .children-sleep-card p { color: var(--ink); }
+@media (min-width: 601px) and (max-width: 1000px) {
+  .children-split { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .children-copy h2 { max-inline-size: none; }
+  .children-benefits { gap: 16px; max-inline-size: none; margin-inline-start: 0; }
+  .children-benefits li { gap: 12px; }
+  .children-copy { padding-inline: 24px 8px; }
+  .children-first-visit .children-copy { padding-inline: 24px 8px; }
+  .children-photo { min-block-size: 430px; }
+  .children-sleep-card { grid-template-columns: minmax(0, 1fr) 34%; gap: 12px; }
+  .children-sleep-card > div { padding: 16px 0 16px 12px; }
+}
+@media (max-width: 600px) {
+  .children-page .hero { min-block-size: max(540px, var(--initial-viewport-height, 100svh)); }
+  .children-page .hero h1 { max-inline-size: 100%; line-height: 1.1; }
+  .children-page .hero-photo { object-position: 65% center; }
+  .children-page .hero-shade { background: linear-gradient(180deg, rgb(0 36 51 / 75%), rgb(0 36 51 / 45%) 42%, transparent 70%); }
+  .children-split { display: flex; flex-direction: column; gap: 28px; margin-block-start: 60px; }
+  .children-photo { inline-size: 100%; }
+  .children-playroom { aspect-ratio: 1.3; }
+  .children-copy, .children-first-visit .children-copy { padding-inline: 5px; }
+  .children-copy h2 { max-inline-size: 100%; }
+  .children-benefits { gap: 24px; max-inline-size: none; margin-block-start: 28px; margin-inline-start: 0; }
+  .children-benefits li { grid-template-columns: 36px minmax(0, 1fr); gap: 18px; }
+  .children-benefit-icon { inline-size: 36px; }
+  .children-services { display: flex; flex-direction: column; gap: 24px; margin-block-start: 60px; }
+  .children-services .service-content h2 { padding-inline: 5px; }
+  .children-services .service-list { display: grid; grid-auto-flow: row; grid-auto-columns: auto; inline-size: 100%; margin: 0; padding: 0; overflow: visible; }
+  .children-services .service-option { display: flex; flex-direction: row; align-items: center; justify-content: space-between; gap: 16px; min-block-size: 56px; padding: 14px 20px; border-radius: 30px; font-size: var(--body); background: transparent; }
+  .children-services .service-option.is-current { background: #cfe8ff; }
+  .children-services .service-option span { padding: 0; max-inline-size: none; }
+  .children-services .service-option .service-arrow { display: block; width: 16px; height: 19px; }
+  .children-services .service-media { display: block; }
+  .children-services .service-media::before { aspect-ratio: 1.35; }
+  .children-first-visit .children-photo { aspect-ratio: 1.2; }
+  .children-first-visit h2 { margin-block-end: 24px; }
+  .children-first-visit .button { width: 100%; min-block-size: 54px; padding: 16px 20px; }
+  .children-sleep { margin-block-start: 60px; }
+  .children-sleep-grid { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  .children-sleep-card { grid-template-columns: minmax(0, 1fr) 34%; gap: 14px; min-block-size: 230px; border-radius: var(--photo-radius); }
+  .children-sleep-card > div { padding: 18px 0 18px 12px; }
+  .children-sleep-card h3 { font-size: 20px; }
+  .children-sleep-card p { font-size: var(--body); margin-block-start: 18px; }
+}
