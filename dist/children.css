@@ -17,7 +17,7 @@
 .children-benefit-icon img { inline-size: 100%; block-size: 100%; object-fit: contain; }
 .children-services { margin-block-start: max(64px, calc(100 * var(--unit))); }
 .children-services .service-option { white-space: normal; }
-.children-services .service-list::before, .children-sleep-card { background: #cfe8ff; }
+.children-services .service-list::before, .children-sleep-card { background: var(--panel); }
 .children-services .service-media { border-radius: var(--radius); }
 .children-first-visit { grid-template-columns: minmax(0, 1118fr) minmax(0, 762fr); margin-block-start: max(64px, calc(100 * var(--unit))); }
 .children-first-visit .children-photo { aspect-ratio: 1118 / 795; }
@@ -63,15 +63,7 @@
   .children-benefits { gap: 24px; max-inline-size: none; margin-block-start: 28px; margin-inline-start: 0; }
   .children-benefits li { grid-template-columns: 36px minmax(0, 1fr); gap: 18px; }
   .children-benefit-icon { inline-size: 36px; }
-  .children-services { display: flex; flex-direction: column; gap: 24px; margin-block-start: 60px; }
-  .children-services .service-content h2 { padding-inline: 5px; }
-  .children-services .service-list { display: grid; grid-auto-flow: row; grid-auto-columns: auto; inline-size: 100%; margin: 0; padding: 0; overflow: visible; }
-  .children-services .service-option { display: flex; flex-direction: row; align-items: center; justify-content: space-between; gap: 16px; min-block-size: 56px; padding: 14px 20px; border-radius: 30px; font-size: var(--body); background: transparent; }
-  .children-services .service-option.is-current { background: #cfe8ff; }
-  .children-services .service-option span { padding: 0; max-inline-size: none; }
-  .children-services .service-option .service-arrow { display: block; width: 16px; height: 19px; }
-  .children-services .service-media { display: block; }
-  .children-services .service-media::before { aspect-ratio: 1.35; }
+  .children-services { margin-block-start: 60px; }
   .children-first-visit .children-photo { aspect-ratio: 1.2; }
   .children-first-visit { gap: 20px; }
   .children-first-visit .children-copy > p { max-inline-size: none; }
@@ -79,11 +71,11 @@
   .children-first-visit .button { width: 100%; min-block-size: 54px; padding: 16px 20px; }
   .children-sleep { margin-block-start: 60px; }
   .children-sleep-grid { grid-template-columns: minmax(0, 1fr); gap: 16px; }
-  .children-sleep-intro { max-inline-size: none; margin: 0 5px 28px; }
-  .children-sleep-card { display: flex; flex-direction: column; gap: 0; min-block-size: 0; border-radius: var(--photo-radius); }
+  .children-sleep-intro { max-inline-size: none; margin: 0 var(--mobile-gutter) 28px; }
+  .children-sleep-card { --card-inset: max(8px, calc(10 * var(--unit))); padding: var(--card-inset); display: flex; flex-direction: column; gap: 0; min-block-size: 0; border-radius: var(--photo-radius); }
   .children-sleep-card > picture { order: -1; inline-size: 100%; }
   .children-sleep-card > picture img { height: auto; aspect-ratio: 16 / 9; object-position: center; }
-  .children-sleep-card > div { padding: 24px 16px 20px; }
+  .children-sleep-card > div { padding: 24px calc(var(--inside) - var(--card-inset)) 20px; }
   .children-sleep-card h3 { font-size: 20px; }
   .children-sleep-card p { font-size: var(--body); margin-block-start: 18px; }
 }
