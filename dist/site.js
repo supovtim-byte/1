@@ -202,7 +202,7 @@ if (treatmentNav) {
   const sections = [...treatmentNav.querySelectorAll('a[href^="#"]')]
     .map(link => ({ link, section: document.getElementById(link.hash.slice(1)) }))
     .filter(item => item.section);
-  const horizontalNav = window.matchMedia(document.body.classList.contains("prices-page") ? "(max-width: 1000px)" : "(max-width: 780px)");
+  const horizontalNav = window.matchMedia("(max-width: 780px)");
   let activeLink;
   let pendingFrame = false;
   const alignedHeading = !document.body.classList.contains("prices-page")
@@ -258,7 +258,7 @@ if (treatmentNav) {
   }
 
   function revealActiveLink() {
-    if (!activeLink || activeLink.hidden) return;
+    if (!activeLink || activeLink.hidden || getComputedStyle(treatmentNav).display === "none") return;
     const navBox = treatmentNav.getBoundingClientRect();
     const linkBox = activeLink.getBoundingClientRect();
     const behavior = reduceMotion.matches ? "instant" : "smooth";
