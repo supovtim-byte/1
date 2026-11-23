@@ -1,0 +1,21 @@
+/* Shared phone heroes — Figma 441:3927 (360 × 697 photo, text starts at 388px). */
+@media (max-width: 600px) {
+  :is(.home-page, .children-page) .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    gap: 20px;
+    min-block-size: max(540px, calc(var(--initial-viewport-height, 100svh) + 26px));
+    padding: 100px var(--inside) calc(145 * var(--mobile-unit) + var(--dock-safe-area));
+    overflow: hidden;
+  }
+  :is(.home-page, .children-page) .hero h1 { max-inline-size: 100%; }
+  :is(.home-page, .children-page) .hero-aside { margin: 0; }
+  :is(.home-page, .children-page) .hero-address { font-weight: 500; }
+  :is(.home-page, .children-page) .hero-shade {
+    background:
+      radial-gradient(ellipse 110.278% 37.95% at 50% 29.484%, rgb(0 36 51 / 0%) 5.9718%, rgb(0 36 51 / 50%) 100%),
+      linear-gradient(180deg, rgb(0 36 51 / 0%) 57.974%, rgb(0 36 51 / 90%) 100%);
+  }
+}
