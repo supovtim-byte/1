@@ -917,7 +917,7 @@ address { font-style: normal; }
   .mobile-routes summary { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 11px var(--inside) 13px; list-style: none; cursor: pointer; }
   .mobile-routes summary::-webkit-details-marker, .mobile-accessibility summary::-webkit-details-marker { display: none; }
   .mobile-routes summary img { flex: none; inline-size: 16px; }
-  .mobile-routes details[open] summary img, .mobile-accessibility[open] summary img:last-child { transform: rotate(180deg); }
+  .mobile-routes details[open] summary img { transform: rotate(180deg); }
   .mobile-routes details p, .mobile-route-link { margin-inline: var(--inside); }
   .mobile-route-link { display: block; inline-size: fit-content; margin-block-start: 10px; }
   .site-footer { margin-block-end: calc(var(--mobile-control-size) + 2 * var(--mobile-gutter) + 15px + var(--dock-safe-area)); }
@@ -948,105 +948,6 @@ address { font-style: normal; }
   .mobile-action-close { background: #103646; }
   .mobile-action-close img { inline-size: calc(16 * var(--mobile-unit)); block-size: auto; }
 
-  .mobile-menu[open] {
-    position: fixed;
-    display: flex;
-    flex-direction: column;
-    inset: auto 0 0;
-    inline-size: 100%;
-    max-inline-size: none;
-    max-block-size: calc(100dvh - 10px);
-    margin: 0;
-    border: 0;
-    padding: 0;
-    background: transparent;
-    color: var(--ink);
-    overflow: hidden;
-  }
-  .mobile-menu-actions { position: relative; flex: none; }
-  .mobile-menu-actions > * { position: relative; z-index: 1; }
-  .mobile-dock::before, .mobile-menu-actions::before {
-    content: "";
-    position: absolute;
-    z-index: -2;
-    inset: 0;
-    pointer-events: none;
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-    -webkit-mask-image: linear-gradient(to bottom, transparent, #000);
-    mask-image: linear-gradient(to bottom, transparent, #000);
-  }
-  .mobile-menu[open]:not(.is-searching)::before {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    inset: 0;
-    border-radius: var(--mobile-radius);
-    background: var(--page);
-    pointer-events: none;
-  }
-  .mobile-menu::backdrop { background: transparent; }
-  .mobile-menu[open].is-opening::before { animation: mobile-sheet-open .29s var(--ease-out) both; }
-  .mobile-menu[open].is-opening > :not(.mobile-menu-actions) { animation: mobile-menu-reveal .18s ease-out .29s both; }
-  @keyframes mobile-sheet-open {
-    from {
-      clip-path: inset(
-        calc(100% - var(--mobile-control-size) - var(--mobile-gutter) - var(--dock-safe-area))
-        var(--mobile-gutter)
-        calc(var(--mobile-gutter) + var(--dock-safe-area))
-        calc(100% - var(--mobile-control-size) - var(--mobile-gutter))
-        round var(--mobile-radius)
-      );
-    }
-    to { clip-path: inset(0 round var(--mobile-radius)); }
-  }
-  @keyframes mobile-menu-reveal { from { opacity: 0; } to { opacity: 1; } }
-  .mobile-menu[open]:not(.is-searching)::before, .mobile-menu-handle, .mobile-menu-content {
-    transform: translateY(var(--menu-drag-y, 0px));
-    transition: transform .18s var(--ease-out);
-  }
-  .mobile-menu.is-dragging::before, .mobile-menu.is-dragging :is(.mobile-menu-handle, .mobile-menu-content) { transition: none; }
-  .mobile-menu.is-dragging { user-select: none; }
-  .mobile-menu-handle {
-    display: grid;
-    justify-items: center;
-    align-content: start;
-    flex: none;
-    block-size: 20px;
-    padding-block-start: 5px;
-    touch-action: none;
-    cursor: grab;
-  }
-  .mobile-menu-handle::before { content: ""; inline-size: calc(70 * var(--mobile-unit)); block-size: 3px; border-radius: 9px; background: var(--panel); }
-  .mobile-menu-content { padding: 0 var(--inside) 12px; overflow: auto; overscroll-behavior: contain; }
-  .mobile-search { display: flex; align-items: center; gap: var(--mobile-gutter); }
-  .mobile-search input {
-    flex: 1;
-    min-inline-size: 0;
-    min-block-size: 50px;
-    padding: 10px calc(25 * var(--mobile-unit)) 12px;
-    border: 0;
-    border-radius: 35px;
-    background: var(--panel);
-    font-size: max(16px, var(--body));
-  }
-  .mobile-search input::placeholder { color: var(--link-hover); }
-  .mobile-search input:focus { outline: 2px solid var(--link-hover); outline-offset: -2px; }
-  .mobile-search input::-webkit-search-cancel-button { -webkit-appearance: none; }
-  .mobile-search-cancel { flex: none; inline-size: 44px; block-size: 44px; color: var(--ink); font-size: 28px; line-height: 1; }
-  .mobile-menu-links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px var(--edge); margin-block: 28px 39px; }
-  .mobile-accessibility summary { display: flex; align-items: center; gap: calc(12 * var(--mobile-unit)); inline-size: fit-content; padding: 5px var(--mobile-gutter); list-style: none; cursor: pointer; }
-  .mobile-accessibility summary img { flex: none; }
-  .mobile-accessibility-controls { display: flex; flex-wrap: wrap; gap: 8px; margin-block-start: 10px; }
-  .mobile-accessibility-controls button { padding: 7px calc(11 * var(--mobile-unit)); border-radius: 20px; background: var(--panel); }
-  .mobile-accessibility-controls button[aria-pressed="true"] { background: var(--ink); color: var(--page); }
-  .mobile-menu.is-searching { inset: var(--search-top, 0px) 0 auto; max-block-size: var(--search-height, 100dvh); border-radius: 0 0 var(--mobile-radius) var(--mobile-radius); background: var(--page); }
-  .mobile-menu.is-searching .mobile-menu-content { padding-block: max(12px, env(safe-area-inset-top, 0px)) 14px; }
-  .mobile-menu.is-searching :is(.mobile-menu-handle, .mobile-menu-links, .mobile-accessibility, .mobile-menu-actions) { display: none; }
-  .mobile-search-results { margin-block-start: 8px; }
-  .mobile-search-results p { color: var(--muted); font-size: var(--small); }
-  .mobile-search-results ul { padding: 0; list-style: none; }
-  .mobile-search-results a { display: block; padding: 9px 4px; border-block-end: 1px solid var(--panel); }
   .detail-dialog { inline-size: calc(100% - 2 * var(--inside)); }
   .mobile-booking { inline-size: min(500px, 100% - 2 * var(--edge)); }
   .mobile-booking .appointment { display: flex; inline-size: 100%; margin: 0; min-block-size: min(480px, 100dvh - 40px); }
@@ -1056,7 +957,6 @@ address { font-style: normal; }
 @media (prefers-reduced-motion: reduce) {
   *, *::after, *::before { scroll-behavior: auto !important; transition-duration: 0s !important; }
   .about-photo-strip.is-looping { animation: none; }
-  .mobile-menu[open].is-opening::before, .mobile-menu[open].is-opening > :not(.mobile-menu-actions) { animation: none; }
 }
 
 .treatment-page {

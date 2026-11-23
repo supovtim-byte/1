@@ -790,6 +790,8 @@ largeTextButton.addEventListener("click", () => {
 
 const mobileMenuButton = document.querySelector("[data-mobile-menu]");
 const menuClose = mobileMenu.querySelector(".mobile-action-close");
+const menuContent = mobileMenu.querySelector(".mobile-menu-content");
+const searchOpen = mobileMenu.querySelector(".mobile-search-open");
 const searchForm = mobileMenu.querySelector(".mobile-search");
 const searchField = searchForm.querySelector("input");
 const searchCancel = searchForm.querySelector(".mobile-search-cancel");
@@ -859,14 +861,18 @@ function resetSearch() {
   searchField.value = "";
   renderSearch();
   searchCancel.hidden = true;
+  searchForm.hidden = true;
+  searchOpen.setAttribute("aria-expanded", "false");
   mobileMenu.classList.remove("is-searching");
   mobileMenu.style.removeProperty("--search-top");
   mobileMenu.style.removeProperty("--search-height");
+  menuContent.scrollTop = 0;
 }
 
 mobileMenuButton.addEventListener("click", () => {
   mobileMenu.classList.add("is-opening");
   mobileMenu.showModal();
+  menuContent.scrollTop = 0;
   mobileMenuButton.setAttribute("aria-expanded", "true");
 });
 mobileMenu.addEventListener("close", () => {
@@ -875,14 +881,16 @@ mobileMenu.addEventListener("close", () => {
   menuDismissTimer = undefined;
   menuSwipe = null;
   pressedMenuBackdrop = false;
-  mobileMenu.classList.remove("is-opening", "is-dragging");
-  mobileMenu.style.removeProperty("--menu-drag-y");
+  mobileMenu.classList.remove("is-opening", "is-dragging", "is-dismissing");
+  mobileMenu.style.removeProperty("--menu-drag-x");
   mobileMenuButton.setAttribute("aria-expanded", "false");
   resetSearch();
 });
 mobileMenu.addEventListener("pointerdown", event => {
-  const bounds = mobileMenu.getBoundingClientRect();
-  pressedMenuBackdrop = event.target === mobileMenu && (event.clientY < bounds.top || event.clientY > bounds.bottom);
+  const panel = menuContent.getBoundingClientRect();
+  const actions = mobileMenu.querySelector(".mobile-menu-actions").getBoundingClientRect();
+  const inside = box => event.clientX >= box.left && event.clientX <= box.right && event.clientY >= box.top && event.clientY <= box.bottom;
+  pressedMenuBackdrop = event.target === mobileMenu && !inside(panel) && !inside(actions);
 });
 mobileMenu.addEventListener("click", event => {
   if (event.detail && performance.now() - lastMenuSwipe < 220) {
@@ -901,22 +909,47 @@ mobileMenu.addEventListener("click", event => {
     }
     return;
   }
-  if (pressedMenuBackdrop && event.target === mobileMenu) mobileMenu.close();
+  if (pressedMenuBackdrop && event.target === mobileMenu) requestMenuClose();
   pressedMenuBackdrop = false;
 });
 
-function startMenuSwipe(id, x, y) {
-  if (pressedMenuBackdrop || menuDismissTimer || mobileMenu.classList.contains("is-searching")) return;
+function requestMenuClose() {
+  if (!mobileMenu.open || menuDismissTimer) return;
+  mobileMenu.classList.remove("is-opening", "is-dragging");
+  if (reduceMotion.matches) {
+    mobileMenu.close();
+    return;
+  }
+  mobileMenu.classList.add("is-dismissing");
+  mobileMenu.style.setProperty("--menu-drag-x", menuContent.offsetWidth + "px");
+  menuDismissTimer = setTimeout(() => mobileMenu.close(), 180);
+}
+
+menuClose.addEventListener("click", event => {
+  event.preventDefault();
+  requestMenuClose();
+});
+mobileMenu.addEventListener("cancel", event => {
+  event.preventDefault();
+  requestMenuClose();
+});
+menuContent.addEventListener("animationend", event => {
+  if (event.target === menuContent && event.animationName === "mobile-menu-slide-in") mobileMenu.classList.remove("is-opening");
+});
+
+function startMenuSwipe(id, x, y, target) {
+  if (pressedMenuBackdrop || menuDismissTimer || target?.closest("input, textarea, select")) return;
   menuSwipe = { id, x, y, active: false };
 }
 
 function moveMenuSwipe(id, x, y, onStart) {
   if (id !== menuSwipe?.id) return false;
-  const distance = y - menuSwipe.y;
+  const distance = x - menuSwipe.x;
   if (!menuSwipe.active) {
-    const across = Math.abs(x - menuSwipe.x);
-    if (Math.max(across, Math.abs(distance)) < 8) return false;
-    if (distance <= across) {
+    const vertical = Math.abs(y - menuSwipe.y);
+    if (Math.max(Math.abs(distance), vertical) < 8) return false;
+    // Only a rightward horizontal gesture dismisses the drawer; vertical motion scrolls it.
+    if (distance <= vertical) {
       menuSwipe = null;
       return false;
     }
@@ -925,32 +958,26 @@ function moveMenuSwipe(id, x, y, onStart) {
     mobileMenu.classList.remove("is-opening");
     mobileMenu.classList.add("is-dragging");
   }
-  mobileMenu.style.setProperty("--menu-drag-y", Math.max(0, distance) + "px");
+  mobileMenu.style.setProperty("--menu-drag-x", Math.max(0, distance) + "px");
   return true;
 }
 
-function finishMenuSwipe(id, y, released) {
+function finishMenuSwipe(id, x, released) {
   if (id !== menuSwipe?.id) return;
   const start = menuSwipe;
   menuSwipe = null;
   if (!start.active) return;
   lastMenuSwipe = performance.now();
-  const threshold = Math.max(18, Math.min(60, (window.innerHeight - start.y) * .7));
-  const shouldDismiss = released && y - start.y >= threshold;
+  const threshold = Math.max(18, Math.min(80, menuContent.offsetWidth * .22, (window.innerWidth - start.x) * .7));
+  const shouldDismiss = released && x - start.x >= threshold;
   mobileMenu.classList.remove("is-dragging");
-  if (!shouldDismiss) {
-    mobileMenu.style.removeProperty("--menu-drag-y");
-  } else if (reduceMotion.matches) {
-    mobileMenu.close();
-  } else {
-    mobileMenu.style.setProperty("--menu-drag-y", mobileMenu.offsetHeight + "px");
-    menuDismissTimer = setTimeout(() => mobileMenu.close(), 180);
-  }
+  if (shouldDismiss) requestMenuClose();
+  else mobileMenu.style.removeProperty("--menu-drag-x");
 }
 
 mobileMenu.addEventListener("pointerdown", event => {
   if (event.isPrimary && event.button === 0 && event.pointerType !== "touch") {
-    startMenuSwipe(event.pointerId, event.clientX, event.clientY);
+    startMenuSwipe(event.pointerId, event.clientX, event.clientY, event.target);
   }
 });
 mobileMenu.addEventListener("pointermove", event => {
@@ -961,7 +988,7 @@ mobileMenu.addEventListener("pointermove", event => {
 });
 for (const type of ["pointerup", "pointercancel", "lostpointercapture"]) {
   mobileMenu.addEventListener(type, event => {
-    if (event.pointerType !== "touch") finishMenuSwipe(event.pointerId, event.clientY, type === "pointerup");
+    if (event.pointerType !== "touch") finishMenuSwipe(event.pointerId, event.clientX, type === "pointerup");
   });
 }
 
@@ -971,7 +998,7 @@ mobileMenu.addEventListener("touchstart", event => {
     return;
   }
   const touch = event.changedTouches[0];
-  startMenuSwipe(touch.identifier, touch.clientX, touch.clientY);
+  startMenuSwipe(touch.identifier, touch.clientX, touch.clientY, event.target);
 }, { passive: true });
 mobileMenu.addEventListener("touchmove", event => {
   const touch = event.changedTouches[0];
@@ -980,9 +1007,15 @@ mobileMenu.addEventListener("touchmove", event => {
 for (const type of ["touchend", "touchcancel"]) {
   mobileMenu.addEventListener(type, event => {
     const touch = event.changedTouches[0];
-    finishMenuSwipe(touch.identifier, touch.clientY, type === "touchend");
+    finishMenuSwipe(touch.identifier, touch.clientX, type === "touchend");
   });
 }
+
+searchOpen.addEventListener("click", () => {
+  searchForm.hidden = false;
+  searchOpen.setAttribute("aria-expanded", "true");
+  searchField.focus();
+});
 
 searchField.addEventListener("mousedown", event => {
   if (!mobileMenu.classList.contains("is-searching")) event.preventDefault();
@@ -1001,7 +1034,7 @@ searchForm.addEventListener("submit", event => {
 });
 searchCancel.addEventListener("click", () => {
   resetSearch();
-  menuClose.focus({ preventScroll: true });
+  searchOpen.focus({ preventScroll: true });
 });
 visualViewport?.addEventListener("resize", positionSearch);
 visualViewport?.addEventListener("scroll", positionSearch);
