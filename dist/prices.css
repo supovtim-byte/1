@@ -1,4 +1,4 @@
-.prices-page { --prices-text-size: 20px; }
+.prices-page { --prices-scale: 1px; --prices-text-size: calc(20 * var(--prices-scale)); }
 /* Prices — Figma 130:76. Content stays in the HTML price list. */
 .prices-heading {
   margin-inline: max(24px, calc(70 * var(--unit)));
@@ -39,10 +39,11 @@
   font-size: max(16px, calc(20 * var(--unit)));
 }
 .prices-layout {
-  --treatment-rail: 320px;
-  --treatment-gap: clamp(40px, calc((100vw - 1200px) * .3), 200px);
-  max-inline-size: 1577px;
-  margin-inline: clamp(24px, calc((100vw - 1280px) / 2), 70px);
+  --treatment-rail: 377px;
+  --treatment-gap: clamp(123.09375px, calc(123.09375px + (100vw - 1521px) * 166.90625 / 399), 290px);
+  grid-template-columns: var(--treatment-rail) 910px;
+  max-inline-size: none;
+  margin-inline: calc(70 * var(--unit));
   margin-block-start: max(48px, calc(61 * var(--unit)));
 }
 .prices-page .treatment-nav {
@@ -86,23 +87,37 @@
 .accessibility-mode .prices-page .treatment-nav { line-height: 1.5; }
 .accessibility-mode .prices-page :is(.prices-filter, .prices-search input) { font-size: var(--body); }
 .accessibility-dark .prices-search img { filter: brightness(0) invert(1); }
-@media (max-width: 1100px) {
-  .prices-page { --prices-text-size: 18px; }
-  .prices-layout { --treatment-rail: 260px; --treatment-gap: 32px; margin-inline: 24px; }
-}
-@media (max-width: 1000px) {
-  .prices-layout { grid-template-columns: minmax(0, 1fr); row-gap: 32px; }
-  .prices-page .treatment-nav {
-    position: static;
-    flex-direction: row;
-    max-block-size: none;
-    margin: 0;
-    padding: 0 0 12px;
-    overflow-x: auto;
-    overflow-y: hidden;
-    font-size: var(--prices-text-size);
+/* Compact composition uses the site gutters (70 / 1920 of the viewport).
+   At 1521 px they leave 377 + 123.09375 + 910 px for the two columns. */
+@media (min-width: 781px) and (max-width: 1520px) {
+  .prices-page { --prices-scale: calc(100vw / 1521); }
+  .prices-layout {
+    --treatment-rail: calc(377 * var(--prices-scale));
+    --treatment-gap: calc(123.09375 * var(--prices-scale));
+    grid-template-columns: var(--treatment-rail) calc(910 * var(--prices-scale));
+    margin-inline: calc(70 * var(--unit));
   }
-  .prices-page .treatment-nav a { inline-size: max-content; white-space: nowrap; }
+}
+@media (min-width: 781px) {
+  .prices-heading { margin-inline: calc(70 * var(--unit)); padding-block-start: calc(164 * var(--prices-scale)); }
+  .prices-heading h1 { font-size: calc(70 * var(--prices-scale)); }
+  .prices-layout { margin-block-start: calc(61 * var(--prices-scale)); }
+  .prices-tools { margin-block-start: calc(40 * var(--prices-scale)); gap: calc(16 * var(--prices-scale)) calc(40 * var(--prices-scale)); }
+  .prices-filters { gap: calc(10 * var(--prices-scale)); }
+  .prices-page .prices-filter { font-size: var(--prices-text-size); min-block-size: calc(53 * var(--prices-scale)); padding: calc(9 * var(--prices-scale)) calc(20 * var(--prices-scale)) calc(14 * var(--prices-scale)); border-radius: calc(17 * var(--prices-scale)); }
+  .prices-search { inline-size: calc(230 * var(--prices-scale)); min-block-size: calc(53 * var(--prices-scale)); border-radius: calc(17 * var(--prices-scale)); }
+  .prices-search input { font-size: var(--prices-text-size); padding-block: calc(9 * var(--prices-scale)) calc(14 * var(--prices-scale)); }
+  .prices-page .treatment-nav { line-height: calc(30 * var(--prices-scale)); margin-block-start: calc(13 * var(--prices-scale)); gap: calc(20 * var(--prices-scale)); }
+  .prices-page .treatment-nav a { min-block-size: calc(30 * var(--prices-scale)); }
+  .prices-category h2 { font-size: calc(45 * var(--prices-scale)); }
+  .prices-list { margin-block-start: calc(27.5 * var(--prices-scale)); }
+  .prices-list > div { min-block-size: calc(69 * var(--prices-scale)); padding-block: calc(22.5 * var(--prices-scale)); column-gap: calc(40 * var(--prices-scale)); }
+  .prices-category:not([hidden]) ~ .prices-category:not([hidden]) { margin-block-start: calc(87.5 * var(--prices-scale)); }
+}
+@media (max-width: 780px) {
+  .prices-page { --prices-text-size: 18px; }
+  .prices-layout { grid-template-columns: minmax(0, 1fr); margin-inline: 24px; }
+  .prices-page .treatment-nav { display: none; }
 }
 @media (max-width: 600px) {
   .prices-heading { position: relative; margin-inline: var(--mobile-text-edge); padding: 100px 0 0; }
