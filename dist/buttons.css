@@ -1,0 +1,39 @@
+/* One geometry for CTA pills; labels have an independent optical adjustment. */
+:root { --button-optical-shift: 1px; }
+.button.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-block-size: var(--button-height);
+  block-size: var(--button-height);
+  padding: 0 var(--button-padding-inline);
+  font-size: var(--button-font-size);
+  line-height: 1.2;
+  text-align: center;
+}
+.button-label {
+  display: block;
+  min-inline-size: 0;
+  transform: translateY(calc(-1 * var(--button-optical-shift)));
+}
+@media (max-width: 600px) {
+  :root {
+    --button-optical-shift: 2px;
+    --mobile-control-size: max(50px, calc(2.6 * var(--button-font-size)));
+    --button-height: var(--mobile-control-size);
+  }
+  .treatment-page { --treatment-dock-control-size: var(--mobile-control-size); }
+  .mobile-menu { --menu-action-size: var(--mobile-control-size); }
+  .mobile-actions .button.button,
+  .treatment-page .mobile-actions .button,
+  .mobile-menu .mobile-menu-actions .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-block-size: var(--mobile-control-size);
+    block-size: var(--mobile-control-size);
+    padding: 0 5px;
+    font-size: var(--button-font-size);
+    line-height: 1.2;
+  }
+}
