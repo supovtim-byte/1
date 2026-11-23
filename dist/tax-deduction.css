@@ -1,0 +1,66 @@
+/* Tax deduction form — Figma 441:3840. All styles are scoped to this page. */
+.tax-page { --tax-font: max(16px, calc(26 * var(--unit))); --tax-label: max(12px, calc(19 * var(--unit))); }
+.tax-main { padding: max(132px, calc(201 * var(--unit))) var(--edge) max(110px, calc(160 * var(--unit))); }
+.tax-shell { max-inline-size: calc(1128 * var(--unit)); margin-inline: auto; }
+.tax-shell h1 { margin: 0 0 max(40px, calc(70 * var(--unit))); font-size: var(--title); line-height: 1; letter-spacing: -.03em; text-align: center; }
+.tax-shell h2 { margin: 0 0 max(20px, calc(23 * var(--unit))); font-size: var(--tax-font); font-weight: 400; line-height: 1.5; letter-spacing: normal; text-align: center; }
+.tax-fields { display: grid; gap: max(12px, calc(18 * var(--unit))); }
+.tax-field { position: relative; min-inline-size: 0; block-size: max(76px, calc(100 * var(--unit))); border-radius: var(--popup-radius); background: var(--panel); }
+.tax-field label { position: absolute; inset-inline: max(20px, calc(35 * var(--unit))); top: 50%; transform: translateY(-50%); font-size: var(--tax-font); line-height: 1.5; pointer-events: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tax-field input, .tax-field select { width: 100%; height: 100%; min-inline-size: 0; padding: 0 max(20px, calc(35 * var(--unit))); border: 0; border-radius: inherit; background: transparent; color: var(--ink); font: 400 var(--tax-font)/1.5 Geologica, sans-serif; outline: none; }
+.tax-field input { caret-color: var(--ink); }
+.tax-field:focus-within { outline: 2px solid var(--link); outline-offset: 3px; }
+.tax-field.is-filled { background: #f3fff9; }
+.tax-field:is(.is-filled, :focus-within) label { top: max(10px, calc(14 * var(--unit))); transform: none; color: var(--muted); font-size: var(--tax-label); }
+.tax-field:is(.is-filled, :focus-within) :is(input, select) { padding-block-start: max(20px, calc(28 * var(--unit))); }
+.tax-field.is-invalid { outline: 2px solid #a33333; outline-offset: 2px; }
+.tax-date input { padding-inline-end: max(60px, calc(90 * var(--unit))); }
+.tax-date:not(.is-filled):not(:focus-within) input { color: transparent; }
+.tax-date input::-webkit-calendar-picker-indicator { display: none; }
+.tax-calendar { position: absolute; inset-inline-end: max(12px, calc(26 * var(--unit))); top: 50%; transform: translateY(-50%); display: grid; place-items: center; width: 48px; height: 48px; border-radius: 8px; color: var(--ink); }
+.tax-calendar span { display: block; width: max(24px, calc(34 * var(--unit))); height: max(24px, calc(34 * var(--unit))); background: currentColor; mask: url('assets/tax-calendar.svg') center / contain no-repeat; -webkit-mask: url('assets/tax-calendar.svg') center / contain no-repeat; }
+.tax-choice, .tax-patient { margin: max(36px, calc(55 * var(--unit))) 0 0; padding: 0; border: 0; min-inline-size: 0; }
+.tax-choice legend, .tax-patient legend { margin: 0 0 max(12px, calc(14 * var(--unit))); padding: 0; font-size: var(--tax-font); line-height: 1.5; }
+.tax-options { display: flex; flex-wrap: wrap; gap: max(8px, calc(10 * var(--unit))); }
+.tax-options label { position: relative; cursor: pointer; }
+.tax-options input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.tax-options span { display: grid; place-items: center; min-width: max(82px, calc(135 * var(--unit))); min-height: max(56px, calc(92 * var(--unit))); padding: 12px 20px; border-radius: var(--popup-radius); background: var(--panel); font-size: var(--tax-font); line-height: 1.5; text-align: center; }
+.tax-options input:checked + span { background: var(--ink); color: var(--page); }
+.tax-options input:focus-visible + span { outline: 2px solid var(--link); outline-offset: 3px; }
+.tax-delivery { margin-block-start: max(40px, calc(70 * var(--unit))); }
+.tax-select select { appearance: none; padding-inline-end: max(50px, calc(75 * var(--unit))); text-overflow: ellipsis; cursor: pointer; }
+.tax-select::after { content: ''; position: absolute; right: max(20px, calc(35 * var(--unit))); top: calc(50% - 4px); width: 18px; height: 12px; background: var(--ink); mask: url('assets/header-phone-chevron.svg') center / contain no-repeat; -webkit-mask: url('assets/header-phone-chevron.svg') center / contain no-repeat; pointer-events: none; }
+.tax-select:not(.is-filled) select { color: transparent; }
+.tax-select select option { color: var(--ink); background: var(--page); }
+.tax-select:not(.is-filled):focus-within label { top: 50%; transform: translateY(-50%); font-size: var(--tax-font); color: var(--ink); }
+.tax-select-hint { margin-inline-start: 20px; color: var(--muted); }
+.tax-select.is-filled .tax-select-hint { display: none; }
+.tax-select.is-filled { background: var(--panel); }
+.tax-document-grid { display: grid; grid-template-columns: 1fr 1fr; gap: max(12px, calc(18 * var(--unit))); }
+.tax-submit { margin-block-start: max(32px, calc(59 * var(--unit))); background: var(--link); color: #fff; }
+.tax-submit:disabled { background: #fff; color: rgb(17 61 80 / 60%); cursor: default; }
+.tax-submit:not(:disabled):hover { background: var(--link-hover); }
+.tax-notice { margin-block-start: max(40px, calc(60 * var(--unit))); font-size: var(--body); line-height: 1.5; }
+.tax-notice p + p { margin-block-start: 30px; }
+.tax-notice a { overflow-wrap: anywhere; }
+.tax-notice a:hover { text-decoration: underline; }
+.tax-status { margin-block-start: 24px; font-size: var(--body); line-height: 1.5; }
+.tax-patient[hidden], .tax-delivery [hidden], .tax-status[hidden] { display: none; }
+.tax-brand { display: none; }
+.accessibility-mode .tax-page { --tax-font: var(--body); --tax-label: var(--small); }
+.accessibility-dark .tax-field.is-filled { background: var(--panel); }
+@media (max-width: 1100px) { .tax-shell { max-inline-size: 80%; } }
+@media (max-width: 780px) { .tax-shell { max-inline-size: 100%; } }
+@media (max-width: 600px) {
+ .tax-main { padding: 100px var(--mobile-text-edge) 110px; }
+ .tax-brand { display: block; top: 25px; left: var(--mobile-text-edge); }
+ .tax-brand img { filter: none; }
+ .tax-shell h1 { font-size: var(--title); line-height: 1.1; text-align: left; margin-block-end: 32px; }
+ .tax-shell h2 { font-size: 20px; text-align: left; }
+ .tax-field { height: 76px; }
+ .tax-field label { inset-inline: 20px; }
+ .tax-field input, .tax-field select { padding-inline-start: 20px; }
+ .tax-document-grid { grid-template-columns: minmax(0, 1fr); }
+ .tax-options span { min-width: 76px; padding: 12px 18px; }
+ .tax-notice { font-size: 13px; }
+}
