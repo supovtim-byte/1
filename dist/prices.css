@@ -63,7 +63,7 @@
 .prices-page .treatment-nav a { flex: 0 0 auto; min-block-size: 30px; }
 .prices-page .treatment-nav a:hover { color: var(--link); }
 .prices-page .treatment-content { padding-inline-end: 0; }
-.prices-category { padding: 0; background: transparent; border-radius: 0; }
+.prices-page .prices-category { margin-block-start: 0; padding: 0; background: transparent; border-radius: 0; }
 .prices-category:not([hidden]) ~ .prices-category:not([hidden]) { margin-block-start: max(64px, calc(87.5 * var(--unit))); }
 .prices-category h2 { font-weight: 400; letter-spacing: -.03em; }
 .prices-category-link:hover, .prices-category-link:focus-visible { color: var(--link); }
