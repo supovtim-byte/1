@@ -43,6 +43,9 @@
   .unified-service .treatment-content { inline-size: 100%; }
 }
 @media (max-width: 600px) {
+  /* More specific than buttons.css so the shared CTA display cannot restore these. */
+  .treatment-intro > .button.treatment-book,
+  .service-hero .button.service-hero-book { display: none; }
   /* Hero, heading, photo and price cards use the canonical treatment-page rules. */
   .unified-service .treatment-content { inline-size: auto; }
   .unified-service .service-copy { font-size: var(--body); }
