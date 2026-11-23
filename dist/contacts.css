@@ -63,11 +63,14 @@
 @media (max-width: 600px) {
   .contacts-main { padding-block: 100px calc(var(--mobile-control-size) + 2 * var(--mobile-gutter) + 30px + var(--dock-safe-area)); }
   .contacts-mobile-brand { display: block; inset-block-start: 25px; inset-inline-start: calc(var(--edge) + var(--mobile-gutter)); }
+  .contacts-mobile-brand img { filter: none; }
   .contacts-intro-copy { padding: 0 var(--mobile-gutter) 20px; }
   .contacts-intro h1 { font-size: var(--display); }
   .contacts-address br { display: none; }
   .contacts-actions { gap: 14px; }
-  .contacts-tax { padding-inline: 20px; }
+  .contacts-tax { min-block-size: var(--mobile-control-size); block-size: var(--mobile-control-size); padding: 0 var(--button-padding-inline); font-size: var(--button-font-size); line-height: 1.2; }
+  .contacts-social { inline-size: var(--mobile-control-size); block-size: var(--mobile-control-size); }
+  .contacts-social img { inline-size: 100%; block-size: 100%; transform: none; }
   .contacts-main h2 { margin-inline: var(--mobile-gutter); }
   .contacts-route-card { padding: 24px var(--inside); }
   .contacts-chief-card { grid-template-columns: minmax(0, 1fr); }
