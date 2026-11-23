@@ -134,3 +134,8 @@
 - `children-service-extraction.jpg` — https://images.unsplash.com/photo-1629909615957-be38d48fbbe6 (Unsplash, стоматологический кабинет).
 
 Фотографии из интернета используются как иллюстрации направлений услуг.
+
+
+## Статическая Geologica — 23 ноября 2026
+
+На сайте подключены `geologica-light.woff2` (300), `geologica-regular.woff2` (400), `geologica-medium.woff2` (500) и `geologica-semibold.woff2` (600). Это статические экземпляры исходного `geologica.ttf`, полученные fontTools.varLib.instancer с полностью закреплёнными осями: wght = соответствующий вес, CRSV = 0, SHRP = 0, slnt = 0. В выходных файлах отсутствуют fvar/gvar; сохранены кириллица, метрики и лицензия `geologica-OFL.txt`. Исходный TTF оставлен для воспроизводимости, браузер его не загружает.
