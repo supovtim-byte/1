@@ -37,7 +37,7 @@
 }
 .services-page .direction-copy { margin-block-start: max(28px, calc(40 * var(--unit))); }
 .services-page .direction-copy h2 {
-  color: #000;
+  color: var(--ink);
   font-size: max(22px, calc(28 * var(--unit)));
   line-height: 1.2;
   letter-spacing: 0;
