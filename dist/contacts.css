@@ -1,0 +1,77 @@
+.contacts-page { --contacts-text: max(16px, calc(24 * var(--unit))); --contacts-copy-color: #424242; }
+.contacts-main { position: relative; padding-block: calc(var(--header-height) + max(20px, calc(28 * var(--unit)))) max(40px, calc(56 * var(--unit))); font-size: var(--contacts-text); line-height: 1.5; }
+.contacts-intro { display: grid; grid-template-columns: minmax(0, 688fr) minmax(0, 1172fr); gap: max(16px, calc(20 * var(--unit))); }
+.contacts-intro-copy { display: flex; flex-direction: column; align-items: flex-start; min-inline-size: 0; padding: max(24px, calc(40 * var(--unit))) var(--inside) max(24px, calc(46 * var(--unit))); }
+.contacts-page h1, .contacts-main h2 { font-size: var(--title); font-weight: 500; line-height: 1.1; letter-spacing: -.03em; }
+.contacts-intro h1 { margin-block-end: max(24px, calc(40 * var(--unit))); }
+.contacts-address { max-inline-size: 100%; }
+.contacts-map-link { margin-block-start: max(4px, calc(5 * var(--unit))); }
+.contacts-map-link, .contacts-route-card > .text-link { font-size: max(14px, calc(20 * var(--unit))); }
+.contacts-communication { display: grid; gap: max(3px, calc(5 * var(--unit))); margin-block-start: max(24px, calc(40 * var(--unit))); }
+.contacts-communication a, .contacts-chief-copy a { overflow-wrap: anywhere; }
+.contacts-communication a:hover, .contacts-chief-copy a:hover { color: var(--link-hover); }
+.contacts-hours { margin-block-start: max(24px, calc(40 * var(--unit))); }
+.contacts-actions { display: flex; align-items: center; flex-wrap: wrap; gap: max(12px, calc(25 * var(--unit))); margin-block-start: auto; padding-block-start: 30px; }
+.contacts-tax { font-size: max(14px, calc(20 * var(--unit))); }
+.contacts-social { display: flex; align-items: center; justify-content: center; flex: none; inline-size: 56px; block-size: 56px; border-radius: 50%; }
+.contacts-social:hover { opacity: .75; }
+.contacts-social img { flex: none; max-inline-size: none; }
+.contacts-building { min-inline-size: 0; min-block-size: 0; overflow: hidden; border-radius: var(--photo-radius); background: var(--photo-background); }
+.contacts-building img { display: block; inline-size: 100%; block-size: 100%; aspect-ratio: 1172 / 807; object-fit: cover; }
+.contacts-routes, .contacts-chief { margin-block-start: max(64px, calc(120 * var(--unit))); }
+.contacts-main h2 { margin: 0 var(--inside) max(24px, calc(40 * var(--unit))); }
+.contacts-route-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: max(16px, calc(20 * var(--unit))); }
+.contacts-route-card { display: flex; flex-direction: column; align-items: flex-start; min-inline-size: 0; min-block-size: calc(439 * var(--unit)); padding: max(24px, calc(40 * var(--unit))) var(--inside); border-radius: var(--radius); background: var(--panel); }
+.contacts-route-card h3, .contacts-chief-card h3 { font-size: max(22px, calc(32 * var(--unit))); font-weight: 500; line-height: 1.1; letter-spacing: -.03em; }
+.contacts-route-copy { max-inline-size: calc(810 * var(--unit)); margin-block-start: max(24px, calc(37 * var(--unit))); line-height: 1.6; color: var(--contacts-copy-color); }
+.contacts-route-copy p + p { margin-block-start: max(20px, calc(30 * var(--unit))); }
+.contacts-route-card > .text-link { margin-block-start: auto; padding-block-start: max(24px, calc(30 * var(--unit))); }
+.contacts-chief-card { display: grid; grid-template-columns: 490fr 638fr; inline-size: calc(1128 * var(--unit)); max-inline-size: 100%; min-inline-size: 0; overflow: hidden; border-radius: var(--radius); background: var(--panel); }
+.contacts-chief-photo { display: block; align-self: end; inline-size: 100%; block-size: auto; aspect-ratio: 490 / 491; object-fit: contain; object-position: center bottom; }
+.contacts-chief-copy { min-inline-size: 0; padding: max(24px, calc(47 * var(--unit))) max(24px, calc(40 * var(--unit))) max(28px, calc(60 * var(--unit))) max(24px, calc(40 * var(--unit))); color: var(--contacts-copy-color); }
+.contacts-chief-copy h3 { color: var(--ink); }
+.contacts-chief-phones { display: grid; gap: max(3px, calc(5 * var(--unit))); margin-block-start: max(24px, calc(38 * var(--unit))); }
+.contacts-chief-email { margin-block-start: max(24px, calc(40 * var(--unit))); }
+.contacts-chief-email p, .contacts-chief-hours { font-size: max(14px, calc(20 * var(--unit))); line-height: 1.7; }
+.contacts-chief-hours { margin-block-start: max(24px, calc(49 * var(--unit))); }
+.contacts-page .mobile-booking[open] .appointment { display: block; min-height: 520px; margin: 0; border-radius: 0; padding: 80px 30px 40px; }
+.contacts-page .mobile-booking .appointment-content { inline-size: 100%; max-inline-size: 410px; }
+.contacts-page .mobile-booking .appointment-shade { background: rgb(0 36 51 / 85%); }
+.high-contrast .contacts-page { --contacts-copy-color: var(--ink); }
+.accessibility-mode .contacts-main { font-size: var(--body); }
+.accessibility-mode :is(.contacts-map-link, .contacts-route-card > .text-link, .contacts-chief-email p, .contacts-chief-hours, .contacts-tax) { font-size: var(--body); }
+.accessibility-mode .contacts-chief-card { inline-size: min(1128px, 100%); }
+.accessibility-mode .contacts-route-copy { max-inline-size: none; }
+.accessibility-mode :is(.contacts-route-card h3, .contacts-chief-copy h3) { font-size: var(--large); }
+@media (max-width: 1500px) {
+  .contacts-social { inline-size: 44px; block-size: 44px; }
+  .contacts-social img { transform: scale(.785714); }
+}
+@media (max-width: 1100px) {
+  .contacts-chief-card { inline-size: min(850px, 100%); }
+  .contacts-chief-photo { align-self: stretch; block-size: 100%; }
+}
+@media (max-width: 780px) {
+  .contacts-intro { grid-template-columns: minmax(0, 1fr); }
+  .contacts-intro-copy { padding-block: 24px 30px; }
+  .contacts-actions { margin-block-start: 24px; padding-block-start: 0; }
+  .contacts-route-grid { grid-template-columns: minmax(0, 1fr); }
+  .contacts-route-copy { max-inline-size: none; }
+  .contacts-building img { block-size: auto; }
+  .contacts-chief-card { grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); }
+}
+@media (max-width: 600px) {
+  .contacts-main { padding-block: 100px calc(var(--mobile-control-size) + 2 * var(--mobile-gutter) + 30px + var(--dock-safe-area)); }
+  .contacts-mobile-brand { display: block; inset-block-start: 25px; inset-inline-start: calc(var(--edge) + var(--mobile-gutter)); }
+  .contacts-intro-copy { padding: 0 var(--mobile-gutter) 20px; }
+  .contacts-intro h1 { font-size: var(--display); }
+  .contacts-address br { display: none; }
+  .contacts-actions { gap: 14px; }
+  .contacts-tax { padding-inline: 20px; }
+  .contacts-main h2 { margin-inline: var(--mobile-gutter); }
+  .contacts-route-card { padding: 24px var(--inside); }
+  .contacts-chief-card { grid-template-columns: minmax(0, 1fr); }
+  .contacts-chief-photo { inline-size: min(100%, 340px); block-size: auto; max-block-size: 340px; justify-self: center; }
+  .contacts-chief-copy { padding: 24px var(--inside) 30px; }
+  .mobile-large-text .contacts-main { font-size: var(--body); }
+}
