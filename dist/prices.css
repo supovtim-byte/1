@@ -103,13 +103,13 @@
   .prices-page .treatment-nav a { inline-size: max-content; white-space: nowrap; }
 }
 @media (max-width: 600px) {
-  .prices-heading { margin-inline: var(--edge); padding: 100px 5px 0; }
-  .prices-heading .mobile-brand { inset-inline-start: 5px; }
+  .prices-heading { position: relative; margin-inline: var(--mobile-text-edge); padding: 100px 0 0; }
+  .prices-heading .mobile-brand { inset-inline-start: 0; }
   .prices-heading .mobile-brand img { filter: none; }
   .prices-tools { margin-block-start: 26px; gap: 16px; }
   .prices-filter { padding-inline: 16px; font-size: var(--body); }
   .prices-search { inline-size: 100%; }
-  .prices-layout { margin: 32px var(--edge) 0; }
+  .prices-layout { margin: 32px var(--mobile-text-edge) 0; }
   .prices-category h2 { font-size: var(--title); }
   .prices-list > div { font-size: var(--body); line-height: 1.5; gap: 16px; }
   .prices-category + .prices-category { margin-block-start: 52px; }
