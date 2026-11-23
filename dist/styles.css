@@ -172,17 +172,20 @@ address { font-style: normal; }
 .site-header .compact-menu-trigger {
   display: grid;
   place-items: center;
-  inline-size: var(--compact-control-size);
-  min-block-size: var(--compact-control-size);
+  flex: none;
+  inline-size: var(--header-control-size);
+  block-size: var(--header-control-size);
+  min-block-size: var(--header-control-size);
+  padding: 0;
+  overflow: hidden;
   border-radius: 50%;
-  background: var(--panel);
+  background: #cfe8ff;
 }
 .menu-icon {
-  inline-size: 15px;
-  block-size: 2px;
-  border-radius: 2px;
-  background: currentColor;
-  box-shadow: 0 -5px currentColor, 0 5px currentColor;
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  background: url("assets/mobile-menu.svg") center / contain no-repeat;
 }
 .popover-panel {
   position: absolute;
@@ -405,8 +408,8 @@ address { font-style: normal; }
 }
 .doctor-book:hover { background: var(--link-hover); color: var(--white); }
 .doctor-card h3, .doctor-card p { padding-inline: var(--inside); font-size: var(--body); color: var(--ink); }
-.doctor-card h3 { margin-block-start: 15px; font-size: var(--large); line-height: 1.2; }
-.doctor-card p { color: var(--ink); font-size: var(--small); font-weight: 400; line-height: 1.5; }
+.doctor-card h3 { margin-block-start: 15px; font-size: max(16px, calc(20 * var(--unit))); line-height: 1.2; }
+.doctor-card p { color: var(--ink); font-size: max(11px, calc(17 * var(--unit))); font-weight: 400; line-height: 1.5; }
 .doctor-card h3 + p { margin-block-start: 10px; }
 .doctor-card .doctor-experience { margin-block-start: 5px; }
 .doctor-profile-link:hover { color: var(--link-hover); }
@@ -622,7 +625,6 @@ address { font-style: normal; }
 @media (max-width: 1024px) {
   .site-header {
     --tablet-book-padding: 25px;
-    --compact-control-size: var(--button-height);
     gap: clamp(8px, 1.4vw, 14px);
     padding-inline: max(16px, calc(40 * var(--unit)));
   }
@@ -674,6 +676,7 @@ address { font-style: normal; }
   .doctor-track { --card-width: min(79vw, 320px); }
   .review-track { --card-width: min(81vw, 330px); }
   .doctor-card h3, .doctor-card p { padding-inline: 6px; }
+  .doctor-card p { font-size: var(--small); }
   .deck-more { margin-inline-start: 8px; }
   .faq details > p { max-inline-size: 100%; }
   .contacts { gap: 12px; }
@@ -699,7 +702,6 @@ address { font-style: normal; }
 
 @media (max-width: 560px) {
   .site-header {
-    --compact-control-size: var(--button-height);
     --tablet-book-padding: 18px;
     padding-block-end: 0;
     container: compact-header / inline-size;
@@ -888,7 +890,7 @@ address { font-style: normal; }
   .doctor-track { --card-width: calc(290 * var(--mobile-unit)); }
   .doctor-card { border-radius: var(--mobile-radius); background: var(--panel); }
   .doctor-card h3, .doctor-card p { padding-inline: var(--inside); }
-  .doctor-card h3 { margin-block-start: 15px; line-height: 1.5; }
+  .doctor-card h3 { margin-block-start: 15px; font-size: var(--large); line-height: 1.5; }
   .doctor-card p { margin-block-start: 10px; padding-block-end: 0; color: var(--ink); font-size: max(13px, var(--small)); }
   .doctor-card p:last-child { padding-block-end: 20px; }
   .review-track { --card-width: calc(300 * var(--mobile-unit)); }
