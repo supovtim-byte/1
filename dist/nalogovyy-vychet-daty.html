@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Заявка на справку для налогового вычета за лечение зубов в стоматологии Метелица.">
+  <meta name="theme-color" content="#e8f5ff">
+  <title>Налоговый вычет — другой вариант ввода дат</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="assets/logo.png" type="image/png">
+  <link rel="preload" href="assets/geologica-regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/geologica-medium.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles.css?v=static-geologica-20261123">
+  <link rel="stylesheet" href="tax-deduction.css?v=20261124">
+  <link rel="stylesheet" href="mobile-menu.css?v=dock-blur-20261123">
+  <link rel="stylesheet" href="buttons.css?v=20261123">
+  <link rel="stylesheet" href="tax-date-alternative.css?v=20261124">
+  <link rel="stylesheet" href="accessibility.css?v=20261123-layout">
+  <script src="site.js?v=mobile-menu-20261123" defer></script>
+  <script src="tax-date-alternative.js?v=20261124" defer></script>
+  <script src="tax-deduction.js?v=20261124" defer></script>
+</head>
+<body class="tax-page tax-date-alternative">
+  <a class="skip-link" href="#main">Перейти к содержанию</a>
+  <header class="site-header" id="header">
+    <a class="brand" href="index.html" aria-label="Метелица — на главную">
+      <img src="assets/logo.png" alt="Метелица">
+    </a>
+
+    <nav class="navigation" aria-label="Главное меню">
+      <div class="primary-links">
+        <a href="uslugi.html">Услуги</a>
+        <a href="lechenie-vo-sne.html">Лечение во сне</a>
+        <a href="detyam.html">Детям</a>
+      </div>
+      <div class="popover more-menu" data-popover>
+        <button class="popover-trigger icon-button" type="button" aria-label="Ещё разделы" aria-expanded="false" aria-controls="more-panel">
+          <img src="assets/more.svg" alt="">
+        </button>
+        <div class="popover-panel" id="more-panel" inert>
+          <a href="doctors.html">Врачи</a>
+          <a href="uslugi-i-ceny.html">Цены</a>
+          <a href="index.html#reviews">Отзывы</a>
+          <a href="index.html#about">О клинике</a>
+          <a href="contacts.html">Контакты</a>
+          <a href="nalogovyy-vychet.html" aria-current="page">Налоговый вычет</a>
+          <button class="header-accessibility" type="button" data-accessibility aria-pressed="false"><img src="assets/header-eye.svg" alt="">для слабовидящих</button>
+        </div>
+      </div>
+    </nav>
+
+    <div class="header-actions">
+      <div class="popover phone-popover" data-popover>
+        <button class="popover-trigger phone-trigger" type="button" aria-label="Телефон +7 931 399 05 80" aria-expanded="false" aria-controls="phone-panel">
+          <span class="phone-label">+7 931 399 05 80</span>
+          <img src="assets/header-phone-chevron.svg" alt="">
+        </button>
+        <div class="popover-panel" id="phone-panel" inert>
+          <p>Работаем с 9 до 21</p>
+          <a class="text-link" href="tel:+79313990580">Позвонить</a>
+          <button class="text-link copy-number" type="button" data-copy-phone>Скопировать номер</button>
+          <span class="sr-only" role="status" data-copy-status></span>
+        </div>
+      </div>
+      <a class="button button-primary header-book" href="#appointment" data-book><span class="button-label"><span>записаться</span></span></a>
+      <a class="header-telegram" href="https://t.me/stom_metelitsa" aria-label="Метелица в Telegram" target="_blank" rel="noopener">
+        <img src="assets/header-telegram.svg" alt="" width="55" height="55">
+      </a>
+      <div class="popover compact-menu" data-popover>
+        <button class="popover-trigger compact-menu-trigger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="compact-menu-panel">
+          <span class="menu-icon" aria-hidden="true"></span>
+        </button>
+        <nav class="popover-panel" id="compact-menu-panel" aria-label="Меню для планшета и телефона" inert></nav>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="tax-main">
+<a class="mobile-brand tax-brand" href="index.html" aria-label="Метелица — на главную"><img src="assets/logo.png" alt="Метелица"></a>
+<section class="tax-shell" id="top" aria-labelledby="tax-title">
+<h1 id="tax-title">Вычет НДФЛ на лечение зубов</h1>
+<p class="date-comparison">Другой вариант: день, месяц и год в отдельных полях. <a class="text-link" href="nalogovyy-vychet.html">Сравнить с основной формой</a>.</p>
+<form id="tax-form" method="post" novalidate>
+<h2>Данные налогоплательщика</h2>
+<div class="tax-fields"><div class="tax-field"><label for="tax-name">ФИО</label><input id="tax-name" name="tax-name" type="text" autocomplete="name" maxlength="150" required></div><div class="tax-field"><label for="tax-inn">ИНН</label><input id="tax-inn" name="tax-inn" type="text" inputmode="numeric" pattern="[0-9]{12}" maxlength="12" title="12 цифр ИНН" required></div><fieldset class="split-date" data-date-value="tax-birth" aria-describedby="tax-birth-hint tax-birth-error"><legend>Дата рождения</legend><p class="split-date-hint" id="tax-birth-hint">Например, 12.11.1991. Можно вставить дату целиком.</p><div class="split-date-parts"><div><label for="tax-birth-day">День</label><input type="text" inputmode="numeric" id="tax-birth-day" name="tax-birth-day" data-date-part="day" maxlength="2" autocomplete="section-tax-birth bday-day" pattern="[0-9]{1,2}" required aria-describedby="tax-birth-hint tax-birth-error"></div><div><label for="tax-birth-month">Месяц</label><input type="text" inputmode="numeric" id="tax-birth-month" name="tax-birth-month" data-date-part="month" maxlength="2" autocomplete="section-tax-birth bday-month" pattern="[0-9]{1,2}" required aria-describedby="tax-birth-hint tax-birth-error"></div><div><label for="tax-birth-year">Год</label><input type="text" inputmode="numeric" id="tax-birth-year" name="tax-birth-year" data-date-part="year" maxlength="4" autocomplete="section-tax-birth bday-year" pattern="[0-9]{4,4}" required aria-describedby="tax-birth-hint tax-birth-error"></div></div><input id="tax-birth" name="tax-birth" type="date" autocomplete="bday" required hidden tabindex="-1" aria-hidden="true" class="split-date-value"><p class="split-date-error" id="tax-birth-error" aria-live="polite" hidden></p></fieldset><div class="tax-field"><label for="tax-passport">Номер паспорта</label><input id="tax-passport" name="tax-passport" type="text" inputmode="numeric" pattern="[0-9 ]{10,11}" maxlength="11" title="Серия и номер паспорта: 10 цифр" required></div><fieldset class="split-date" data-date-value="tax-issued" aria-describedby="tax-issued-hint tax-issued-error"><legend>Дата выдачи паспорта</legend><p class="split-date-hint" id="tax-issued-hint">Например, 12.11.1991. Можно вставить дату целиком.</p><div class="split-date-parts"><div><label for="tax-issued-day">День</label><input type="text" inputmode="numeric" id="tax-issued-day" name="tax-issued-day" data-date-part="day" maxlength="2" autocomplete="off" pattern="[0-9]{1,2}" required aria-describedby="tax-issued-hint tax-issued-error"></div><div><label for="tax-issued-month">Месяц</label><input type="text" inputmode="numeric" id="tax-issued-month" name="tax-issued-month" data-date-part="month" maxlength="2" autocomplete="off" pattern="[0-9]{1,2}" required aria-describedby="tax-issued-hint tax-issued-error"></div><div><label for="tax-issued-year">Год</label><input type="text" inputmode="numeric" id="tax-issued-year" name="tax-issued-year" data-date-part="year" maxlength="4" autocomplete="off" pattern="[0-9]{4,4}" required aria-describedby="tax-issued-hint tax-issued-error"></div></div><input id="tax-issued" name="tax-issued" type="date"  required hidden tabindex="-1" aria-hidden="true" class="split-date-value"><p class="split-date-error" id="tax-issued-error" aria-live="polite" hidden></p></fieldset></div>
+<fieldset class="tax-choice"><legend>Налогоплательщик и пациент являются одним лицом?</legend><div class="tax-options"><label><input type="radio" name="same-person" value="yes" required><span>Да</span></label><label><input type="radio" name="same-person" value="no" required><span>Нет</span></label></div></fieldset>
+<fieldset class="tax-patient" hidden disabled><legend>Данные пациента</legend><div class="tax-fields"><div class="tax-field"><label for="patient-name">ФИО пациента</label><input id="patient-name" name="patient-name" type="text" maxlength="150" required></div><div class="tax-field"><label for="patient-inn">ИНН пациента</label><input id="patient-inn" name="patient-inn" type="text" inputmode="numeric" pattern="[0-9]{12}" maxlength="12" required></div><fieldset class="split-date" data-date-value="patient-birth" aria-describedby="patient-birth-hint patient-birth-error"><legend>Дата рождения пациента</legend><p class="split-date-hint" id="patient-birth-hint">Например, 12.11.1991. Можно вставить дату целиком.</p><div class="split-date-parts"><div><label for="patient-birth-day">День</label><input type="text" inputmode="numeric" id="patient-birth-day" name="patient-birth-day" data-date-part="day" maxlength="2" autocomplete="section-patient-birth bday-day" pattern="[0-9]{1,2}" required aria-describedby="patient-birth-hint patient-birth-error"></div><div><label for="patient-birth-month">Месяц</label><input type="text" inputmode="numeric" id="patient-birth-month" name="patient-birth-month" data-date-part="month" maxlength="2" autocomplete="section-patient-birth bday-month" pattern="[0-9]{1,2}" required aria-describedby="patient-birth-hint patient-birth-error"></div><div><label for="patient-birth-year">Год</label><input type="text" inputmode="numeric" id="patient-birth-year" name="patient-birth-year" data-date-part="year" maxlength="4" autocomplete="section-patient-birth bday-year" pattern="[0-9]{4,4}" required aria-describedby="patient-birth-hint patient-birth-error"></div></div><input id="patient-birth" name="patient-birth" type="date"  required hidden tabindex="-1" aria-hidden="true" class="split-date-value"><p class="split-date-error" id="patient-birth-error" aria-live="polite" hidden></p></fieldset><fieldset class="tax-choice"><legend>Документ пациента</legend><div class="tax-options"><label><input type="radio" name="patient-document" value="passport" required><span>Паспорт</span></label><label><input type="radio" name="patient-document" value="birth" required><span>Свидетельство о рождении</span></label></div></fieldset><div class="tax-document-grid"><div class="tax-field"><label for="patient-series">Серия документа</label><input id="patient-series" name="patient-series" type="text" maxlength="20" required></div><div class="tax-field"><label for="patient-number">Номер документа</label><input id="patient-number" name="patient-number" type="text" maxlength="20" required></div></div><fieldset class="split-date" data-date-value="patient-issued" aria-describedby="patient-issued-hint patient-issued-error"><legend>Дата выдачи документа</legend><p class="split-date-hint" id="patient-issued-hint">Например, 12.11.1991. Можно вставить дату целиком.</p><div class="split-date-parts"><div><label for="patient-issued-day">День</label><input type="text" inputmode="numeric" id="patient-issued-day" name="patient-issued-day" data-date-part="day" maxlength="2" autocomplete="off" pattern="[0-9]{1,2}" required aria-describedby="patient-issued-hint patient-issued-error"></div><div><label for="patient-issued-month">Месяц</label><input type="text" inputmode="numeric" id="patient-issued-month" name="patient-issued-month" data-date-part="month" maxlength="2" autocomplete="off" pattern="[0-9]{1,2}" required aria-describedby="patient-issued-hint patient-issued-error"></div><div><label for="patient-issued-year">Год</label><input type="text" inputmode="numeric" id="patient-issued-year" name="patient-issued-year" data-date-part="year" maxlength="4" autocomplete="off" pattern="[0-9]{4,4}" required aria-describedby="patient-issued-hint patient-issued-error"></div></div><input id="patient-issued" name="patient-issued" type="date"  required hidden tabindex="-1" aria-hidden="true" class="split-date-value"><p class="split-date-error" id="patient-issued-error" aria-live="polite" hidden></p></fieldset></div></fieldset>
+<fieldset class="tax-choice"><legend>Период</legend><div class="tax-options"><label><input type="checkbox" name="period" value="2023" ><span>2023</span></label><label><input type="checkbox" name="period" value="2024" ><span>2024</span></label><label><input type="checkbox" name="period" value="2025" ><span>2025</span></label></div></fieldset>
+<div class="tax-delivery tax-fields">
+<div class="tax-field tax-select"><label for="tax-method">Способ получения<span class="tax-select-hint">Онлайн на электронную почту</span></label><select id="tax-method" name="method" required><option value="">Выберите способ получения</option><option value="online">Онлайн на электронную почту</option><option value="in_person">Лично по адресу клиники</option><option value="in_fns">Отправить сведения в ФНС напрямую</option></select></div>
+<div data-method="online" hidden><div class="tax-field"><label for="tax-email">E-mail для документов</label><input id="tax-email" name="tax-email" type="email" autocomplete="email" maxlength="254" required></div></div>
+<div data-method="in_fns" hidden><div class="tax-field"><label for="tax-fns">Код ФНС плательщика</label><input id="tax-fns" name="tax-fns" type="text" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" title="Четыре цифры кода ФНС" required></div></div>
+<div class="tax-field"><label for="tax-phone">Номер телефона для связи</label><input id="tax-phone" name="tax-phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="18" pattern="\+7 [0-9]{3} [0-9]{3} [0-9]{2} [0-9]{2}" title="Номер в формате +7 999 123 45 67" required></div>
+</div>
+<button class="button tax-submit" type="submit" disabled><span class="button-label">Оставить заявку</span></button>
+<div class="tax-status" role="status" tabindex="-1" hidden>Заявка не отправлена. Для получения справки воспользуйтесь <a class="text-link" href="https://metelitsa-dent.ru/nalogovyy-vychet/" target="_blank" rel="noopener">формой на действующем сайте клиники</a> или напишите на <a class="text-link" href="mailto:nalog@metelitsa-dent.ru">nalog@metelitsa-dent.ru</a>.</div>
+</form>
+<div class="tax-notice"><p>Обработка персональных данных, указанных в настоящей форме, осуществляется на законных основаниях в целях осуществления и выполнения возложенных законодательством РФ на оператора функций, полномочий и обязанностей п. 2 ч. 1 ст. 6 Федерального закона от 27.07.2006 № 152-ФЗ «О персональных данных».</p><p>По вопросам выдачи справок об оплате медицинских услуг — <a href="mailto:nalog@metelitsa-dent.ru">nalog@metelitsa-dent.ru</a></p></div>
+</section></main>
+
+  <div hidden data-contacts-booking-source>
+      <section class="appointment" id="appointment" aria-labelledby="appointment-title">
+          <img class="cover appointment-photo" src="assets/appointment-room.jpg" alt="" loading="lazy">
+          <div class="appointment-shade" aria-hidden="true"></div>
+          <div class="appointment-content">
+            <h2 id="appointment-title">Записаться на консультацию</h2>
+            <p class="service-appointment-intro">Позвоните нам или оставьте номер телефона, чтобы обсудить удобное время приёма.</p>
+            <form id="appointment-form">
+              <p class="appointment-selection" id="appointment-selection" hidden></p>
+              <label class="field phone-field">
+                <span class="sr-only">Ваш номер телефона</span>
+                <input id="appointment-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 000 000 00 00" pattern="\+7 \d{3} \d{3} \d{2} \d{2}" required aria-label="Ваш номер телефона" aria-describedby="phone-hint">
+                <span class="phone-mask" aria-hidden="true">
+                  <span data-mask-prefix>+7 000 000 00 00</span><span data-mask-tail></span><span class="required-mark">*</span>
+                </span>
+              </label>
+              <span id="phone-hint" class="sr-only">Введите десять цифр российского номера после +7.</span>
+              <div class="consent">
+                <input type="checkbox" id="appointment-consent" name="consent" required>
+                <div><label for="appointment-consent">Даю согласие на обработку персональных данных</label> <a class="text-link" href="https://metelitsa-dent.ru/agreement/" aria-label="Политика обработки персональных данных" target="_blank" rel="noopener">(?)</a></div>
+              </div>
+              <button class="button button-primary" type="submit" disabled><span class="button-label">позвоните мне</span></button>
+            </form>
+          </div>
+        </section>
+  </div>
+
+
+
+  <div class="mobile-actions mobile-dock" aria-label="Быстрые действия">
+    <a class="mobile-action-icon mobile-home" href="index.html" aria-label="На главную"><img src="assets/mobile-home.svg" alt=""></a>
+    <a class="button button-primary" href="#appointment" data-book><span class="button-label">записаться</span></a>
+    <a class="mobile-action-icon" href="https://t.me/stom_metelitsa" target="_blank" rel="noopener" aria-label="Написать в Telegram"><img src="assets/mobile-telegram.svg" alt=""></a>
+    <button class="mobile-action-icon" type="button" data-mobile-menu aria-label="Открыть меню" aria-haspopup="dialog" aria-expanded="false" aria-controls="mobile-navigation">
+      <img src="assets/mobile-menu.svg" alt="">
+    </button>
+  </div>
+
+  <dialog class="mobile-menu" id="mobile-navigation" aria-label="Меню">
+    <div class="mobile-menu-content">
+      <div class="mobile-menu-toolbar">
+        <details class="mobile-accessibility">
+          <summary aria-label="Для слабовидящих"><img src="assets/mobile-menu-accessibility.svg" width="46" height="16" alt=""><span class="sr-only">Для слабовидящих</span></summary>
+          <div class="mobile-accessibility-controls">
+            <button type="button" data-large-text aria-pressed="false">Крупный текст</button>
+            <button type="button" data-accessibility aria-pressed="false">Высокий контраст</button>
+          </div>
+        </details>
+        <button class="mobile-search-open" type="button" aria-label="Открыть поиск" aria-expanded="false" aria-controls="mobile-search-form"><img src="assets/mobile-menu-search.svg" width="19" height="19" alt=""></button>
+      </div>
+      <form class="mobile-search" id="mobile-search-form" role="search" hidden>
+        <input type="search" placeholder="поиск по сайту" aria-label="Поиск по сайту" autocomplete="off" enterkeyhint="search">
+        <button class="mobile-search-cancel" type="button" aria-label="Закрыть поиск" hidden><span aria-hidden="true">×</span></button>
+      </form>
+      <nav class="mobile-menu-links" aria-label="Разделы сайта">
+        <a href="uslugi.html">Услуги</a>
+        <a href="detyam.html">Детям</a>
+        <a href="lechenie-vo-sne.html">Лечение во сне</a>
+        <a href="contacts.html">Контакты</a>
+        <a href="doctors.html">Врачи</a>
+        <a href="uslugi-i-ceny.html">Цены</a>
+        <a href="index.html#reviews">Отзывы</a>
+        <a href="nalogovyy-vychet.html" aria-current="page">Налоговый вычет</a>
+        <a href="index.html#about">О клинике</a>
+      </nav>
+      <div class="mobile-search-results" hidden>
+        <p role="status"></p>
+        <ul></ul>
+      </div>
+      <div class="mobile-menu-contact">
+        <a class="text-link" href="tel:+79313990580">+7 931 399 05 80</a>
+        <p>ежедневно с 9 до 21</p>
+      </div>
+    </div>
+    <div class="mobile-actions mobile-menu-actions">
+      <a class="button button-primary" href="#appointment" data-book><span class="button-label">записаться на приём</span></a>
+      <a class="mobile-action-icon" href="https://t.me/stom_metelitsa" target="_blank" rel="noopener" aria-label="Написать в Telegram"><img src="assets/mobile-telegram.svg" alt=""></a>
+      <form method="dialog">
+        <button class="mobile-action-icon mobile-action-close" type="submit" aria-label="Закрыть меню" autofocus><img src="assets/mobile-close.svg" alt=""></button>
+      </form>
+    </div>
+  </dialog>
+
+  <dialog class="detail-dialog mobile-booking" id="mobile-booking" aria-labelledby="appointment-title">
+    <form method="dialog"><button class="dialog-close icon-button" aria-label="Закрыть">×</button></form>
+  </dialog>
+
+  <dialog id="appointment-dialog" class="detail-dialog appointment-dialog" aria-labelledby="appointment-dialog-title">
+    <form method="dialog"><button class="dialog-close icon-button" aria-label="Закрыть">×</button></form>
+    <div class="dialog-copy">
+      <h2 id="appointment-dialog-title">Свяжитесь с клиникой</h2>
+      <p>Онлайн-отправка заявки пока не подключена. Для записи позвоните администратору или напишите в Telegram.</p>
+      <div class="dialog-actions">
+        <a class="button button-primary" href="tel:+79313990580"><span class="button-label">+7 931 399 05 80</span></a>
+        <a class="text-link" href="https://t.me/stom_metelitsa" target="_blank" rel="noopener">Написать в Telegram</a>
+      </div>
+    </div>
+  </dialog>
+</body>
+</html>

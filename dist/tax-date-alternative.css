@@ -1,0 +1,22 @@
+/* Scoped comparison page: memorable/document dates without a calendar. */
+.tax-date-alternative .tax-shell h1 { margin-block-end: 24px; }
+.date-comparison { margin-block-end: max(32px, calc(50 * var(--unit))); font-size: var(--body); line-height: 1.5; text-align: center; }
+.split-date { min-inline-size: 0; margin: 0; padding: max(20px, calc(28 * var(--unit))) max(20px, calc(35 * var(--unit))); border: 0; border-radius: var(--popup-radius); background: var(--panel); }
+.split-date legend { float: left; width: 100%; padding: 0; margin: 0 0 5px; font-size: var(--tax-font); line-height: 1.5; }
+.split-date-hint { clear: both; margin-block-end: 18px; color: var(--muted); font-size: var(--tax-label); line-height: 1.5; }
+.split-date-parts { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.5fr); gap: 12px; max-width: 400px; }
+.split-date-parts label { display: block; margin-bottom: 6px; font-size: max(14px, var(--tax-label)); line-height: 1.5; }
+.split-date-parts input { display: block; width: 100%; min-width: 0; height: max(52px, calc(64 * var(--unit))); padding: 8px 12px; border: 1px solid transparent; border-radius: 12px; background: var(--white); color: var(--ink); font: 400 var(--tax-font)/1.2 Geologica, sans-serif; }
+.split-date-parts input:focus-visible { outline: 2px solid var(--link); outline-offset: 3px; }
+.split-date.is-valid-date { background: #f3fff9; }
+.split-date-parts input[aria-invalid=true] { border: 2px solid #a33333; }
+.split-date-error { margin-top: 14px; color: #a33333; font-size: max(14px, var(--tax-label)); line-height: 1.5; }
+.split-date-error[hidden], .split-date-value[hidden] { display: none; }
+.accessibility-dark .split-date.is-valid-date { background: var(--panel); }
+.accessibility-dark .split-date-parts input { background: var(--field); color: var(--ink); }
+.accessibility-dark .split-date-error { color: #ffb8b8; }
+@media (max-width: 600px) {
+ .date-comparison { text-align: left; font-size: 14px; }
+ .split-date-parts { gap: 10px; }
+ .split-date-parts input { padding-inline: 10px; }
+}
