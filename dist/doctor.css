@@ -76,17 +76,42 @@
   .doctor-page { --doctor-column: calc(100% - 40px); --doctor-heading: 30px; --doctor-body: var(--body); --doctor-section-gap: 60px; }
   .doctor-shell { max-inline-size: none; }
   .doctor-hero-screen { padding: 0; }
-  .doctor-hero { min-block-size: max(650px, calc(var(--initial-viewport-height, 100svh) + 26px)); padding: clamp(112px, calc(var(--initial-viewport-height, 100svh) * .1722), 132px) var(--inside) 100px; }
+  .doctor-hero {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    min-block-size: 0;
+    block-size: auto;
+    padding: 112px var(--edge) 0;
+    border-radius: 0;
+    background: transparent;
+  }
   .doctor-brand { z-index: 2; inset-block-start: 25px; inset-inline-start: var(--inside); }
   .doctor-brand img { filter: none; }
   .doctor-back { inset-block-start: 75px; inset-inline-start: var(--inside); }
-  .doctor-intro { block-size: auto; padding: 0; }
+  .doctor-intro { block-size: auto; padding: 0 var(--mobile-copy-gutter); }
   .doctor-intro h1 { max-inline-size: 100%; font-size: clamp(30px, 9.167vw, 42px); }
   .doctor-specialty { margin-block-start: 20px; font-size: max(13px, var(--small)); }
   .doctor-specialty p + p { margin-block-start: 5px; }
   .doctor-intro > .button { display: none; }
-  .doctor-hero-slot { inset: auto 0 0; inline-size: 100%; block-size: 58%; }
-  .doctor-hero-media img { inset-block-start: 0; block-size: 110%; }
+  .doctor-hero-slot {
+    position: relative;
+    inset: auto;
+    inline-size: 100%;
+    block-size: auto;
+    aspect-ratio: 330 / 320;
+    border-radius: calc(30 * var(--mobile-unit));
+    overflow: hidden;
+    background: radial-gradient(ellipse at 50% 75%, rgb(120 191 255 / 60%), var(--panel));
+  }
+  .doctor-hero-media { border-radius: inherit; }
+  .doctor-hero-media img {
+    inset: 0;
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: contain;
+    object-position: center bottom;
+  }
   .doctor-layout { margin-block-start: 60px; }
   .doctor-about h2 + p, .doctor-education dl { margin-block-start: 24px; }
   .doctor-education dl { gap: 24px; }
