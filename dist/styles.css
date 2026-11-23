@@ -1229,8 +1229,6 @@ address { font-style: normal; }
   .treatment-page .mobile-action-icon { inline-size: 50px; block-size: var(--treatment-dock-control-size); }
   .treatment-page .mobile-home, .treatment-page [data-mobile-menu] { inline-size: 51px; }
   .treatment-page .mobile-action-icon img { inline-size: auto; block-size: auto; max-inline-size: none; }
-  .treatment-page .mobile-dock { background: rgb(232 245 255 / 1%); -webkit-backdrop-filter: blur(5px); backdrop-filter: blur(5px); }
-  .treatment-page .mobile-dock::before { display: none; }
   .mobile-large-text .treatment-intro h1 { font-size: var(--title); }
 }
 
