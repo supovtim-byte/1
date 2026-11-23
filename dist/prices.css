@@ -64,7 +64,7 @@
 .prices-page .treatment-nav a:hover { color: var(--link); }
 .prices-page .treatment-content { padding-inline-end: 0; }
 .prices-category { padding: 0; background: transparent; border-radius: 0; }
-.prices-category + .prices-category { margin-block-start: max(64px, calc(87.5 * var(--unit))); }
+.prices-category:not([hidden]) ~ .prices-category:not([hidden]) { margin-block-start: max(64px, calc(87.5 * var(--unit))); }
 .prices-category h2 { font-weight: 400; letter-spacing: -.03em; }
 .prices-category-link:hover, .prices-category-link:focus-visible { color: var(--link); }
 .prices-list { margin-block-start: max(20px, calc(27.5 * var(--unit))); }
@@ -126,7 +126,7 @@
   .prices-list .prices-amount:has(.price-range-start) { display: block; white-space: normal; font-size: 0; }
   .price-range-start, .price-range-end { display: block; white-space: nowrap; font-size: calc(var(--body) - 2px); line-height: 1.2; }
   .mobile-large-text .prices-category h2 { font-size: var(--title); }
-  .prices-category + .prices-category { margin-block-start: 52px; }
+  .prices-category:not([hidden]) ~ .prices-category:not([hidden]) { margin-block-start: 52px; }
   .prices-source { margin-inline: 0; }
 }
 
