@@ -1,7 +1,31 @@
 @font-face {
   font-family: Geologica;
-  src: url("assets/geologica.ttf") format("truetype");
-  font-weight: 100 900;
+  src: url("assets/geologica-light.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Geologica;
+  src: url("assets/geologica-regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Geologica;
+  src: url("assets/geologica-medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Geologica;
+  src: url("assets/geologica-semibold.woff2") format("woff2");
+  font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
@@ -40,7 +64,6 @@
   --header-space: calc(var(--header-height) + max(8px, calc(8 * var(--unit))));
   --ease-out: cubic-bezier(.2, .75, .25, 1);
   font-family: Geologica, "Segoe UI", sans-serif;
-  font-variation-settings: "CRSV" 0, "SHRP" 0;
   font-weight: 400;
   font-size: var(--body);
   line-height: 1.5;
