@@ -9,9 +9,11 @@
   <link rel="icon" href="assets/logo.png" type="image/png">
   <link rel="preload" href="assets/geologica.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="stylesheet" href="styles.css?v=mobile-menu-20261123">
+  <link rel="stylesheet" href="prices.css?v=figma-130-76-20261123">
   <link rel="stylesheet" href="mobile-menu.css?v=20261123">
   <link rel="stylesheet" href="accessibility.css?v=20261123-layout">
-  <script src="site.js?v=mobile-menu-20261123" defer></script>
+  <script src="site.js?v=prices-20261123" defer></script>
+  <script src="prices.js?v=20261123" defer></script>
 </head>
 <body class="treatment-page prices-page">
   <a class="skip-link" href="#main">Перейти к содержанию</a>
@@ -71,7 +73,20 @@
   <main id="main">
     <div class="prices-heading section-shell" id="top">
       <a class="mobile-brand treatment-brand" href="index.html" aria-label="Метелица — на главную"><img src="assets/logo.png" alt="Метелица"></a>
-      <h1>Цены</h1>
+      <h1>Стоимость услуг</h1>
+      <div class="prices-tools">
+        <div class="prices-filters" role="group" aria-label="Возраст пациента">
+          <button class="prices-filter" type="button" data-price-filter="all" aria-pressed="true">все</button>
+          <button class="prices-filter" type="button" data-price-filter="children" aria-pressed="false">детские</button>
+          <button class="prices-filter" type="button" data-price-filter="adults" aria-pressed="false">взрослые</button>
+        </div>
+        <form class="prices-search" role="search">
+          <img src="assets/prices-search.svg" width="22" height="23" alt="">
+          <label class="sr-only" for="prices-search">Поиск по прайсу</label>
+          <input id="prices-search" type="search" name="price-search" data-price-search autocomplete="off">
+        </form>
+      </div>
+      <p class="sr-only" role="status" data-price-status></p>
     </div>
 
     <div class="treatment-layout prices-layout section-shell">
@@ -95,286 +110,287 @@
       </nav>
 
       <div class="treatment-content">
+        <p class="prices-empty" data-price-empty hidden>По вашему запросу ничего не найдено. Попробуйте изменить запрос или выбрать «все».</p>
         <section class="prices-category" id="consultations" aria-labelledby="consultations-title">
           <h2 id="consultations-title"><a class="prices-category-link" href="lechenie-molochnyh-zubov.html"><span>Консультации и знакомство с клиникой</span></a></h2>
           <dl class="prices-list">
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Консультация стоматолога для взрослого</a></dt><dd><span class="prices-amount">1 900 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Консультация детского стоматолога</a></dt><dd><span class="prices-amount">1 900 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Консультация ортодонта</a></dt><dd><span class="prices-amount">2 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Консультация хирурга</a></dt><dd><span class="prices-amount">1 900 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Консультация по коронкам и протезированию</a></dt><dd><span class="prices-amount">1 900 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Консультация специалиста по заболеваниям дёсен</a></dt><dd><span class="prices-amount">1 900 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Консультация стоматологического гигиениста</a></dt><dd><span class="prices-amount">1 500 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Консультация анестезиолога</a></dt><dd><span class="prices-amount">3 500 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Совместная консультация нескольких стоматологов</a></dt><dd><span class="prices-amount">3 100 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Знакомство ребёнка со стоматологом без инструментов</a></dt><dd><span class="prices-amount">1 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Адаптационный приём ребёнка</a></dt><dd><span class="prices-amount">2 300 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Повторная консультация стоматолога в течение года после последнего визита</a></dt><dd><span class="prices-amount">650 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Повторная консультация стоматологического гигиениста в течение года после последнего визита</a></dt><dd><span class="prices-amount">500 ₽</span></dd></div>
+            <div data-price-audience="adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Консультация стоматолога для взрослого</a></dt><dd><span class="prices-amount">1 900 ₽</span></dd></div>
+            <div data-price-audience="children"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Консультация детского стоматолога</a></dt><dd><span class="prices-amount">1 900 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Консультация ортодонта</a></dt><dd><span class="prices-amount">2 000 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Консультация хирурга</a></dt><dd><span class="prices-amount">1 900 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Консультация по коронкам и протезированию</a></dt><dd><span class="prices-amount">1 900 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Консультация специалиста по заболеваниям дёсен</a></dt><dd><span class="prices-amount">1 900 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Консультация стоматологического гигиениста</a></dt><dd><span class="prices-amount">1 500 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Консультация анестезиолога</a></dt><dd><span class="prices-amount">3 500 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Совместная консультация нескольких стоматологов</a></dt><dd><span class="prices-amount">3 100 ₽</span></dd></div>
+            <div data-price-audience="children"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Знакомство ребёнка со стоматологом без инструментов</a></dt><dd><span class="prices-amount">1 000 ₽</span></dd></div>
+            <div data-price-audience="children"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Адаптационный приём ребёнка</a></dt><dd><span class="prices-amount">2 300 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Повторная консультация стоматолога в течение года после последнего визита</a></dt><dd><span class="prices-amount">650 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Повторная консультация стоматологического гигиениста в течение года после последнего визита</a></dt><dd><span class="prices-amount">500 ₽</span></dd></div>
           </dl>
         </section>
         <section class="prices-category" id="diagnostics" aria-labelledby="diagnostics-title">
           <h2 id="diagnostics-title"><a class="prices-category-link" href="lechenie-molochnyh-zubov.html"><span>Снимки и диагностика</span></a></h2>
           <dl class="prices-list">
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Прицельный снимок зуба</a></dt><dd><span class="prices-amount">700 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Комплект из 3–5 снимков для детской диагностики</a></dt><dd><span class="prices-amount">2 200 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Панорамный снимок зубов</a></dt><dd><span class="prices-amount">1 700 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Снимок челюстей для оценки прикуса — ТРГ</a></dt><dd><span class="prices-amount">1 700 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">КТ участка челюсти</a></dt><dd><span class="prices-amount">1 900 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">КТ одной челюсти</a></dt><dd><span class="prices-amount">2 400 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">КТ обеих челюстей</a></dt><dd><span class="prices-amount">4 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">КТ обеих челюстей и челюстных суставов</a></dt><dd><span class="prices-amount">4 300 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">КТ с дополнительным 3D-анализом для ортодонта</a></dt><dd><span class="prices-amount">7 500 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Цифровое сканирование одной челюсти</a></dt><dd><span class="prices-amount">3 200 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Прицельный снимок зуба</a></dt><dd><span class="prices-amount">700 ₽</span></dd></div>
+            <div data-price-audience="children"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Комплект из 3–5 снимков для детской диагностики</a></dt><dd><span class="prices-amount">2 200 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Панорамный снимок зубов</a></dt><dd><span class="prices-amount">1 700 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Снимок челюстей для оценки прикуса — ТРГ</a></dt><dd><span class="prices-amount">1 700 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">КТ участка челюсти</a></dt><dd><span class="prices-amount">1 900 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">КТ одной челюсти</a></dt><dd><span class="prices-amount">2 400 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">КТ обеих челюстей</a></dt><dd><span class="prices-amount">4 000 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">КТ обеих челюстей и челюстных суставов</a></dt><dd><span class="prices-amount">4 300 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">КТ с дополнительным 3D-анализом для ортодонта</a></dt><dd><span class="prices-amount">7 500 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Цифровое сканирование одной челюсти</a></dt><dd><span class="prices-amount">3 200 ₽</span></dd></div>
           </dl>
         </section>
         <section class="prices-category" id="hygiene" aria-labelledby="hygiene-title">
           <h2 id="hygiene-title"><a class="prices-category-link" href="lechenie-molochnyh-zubov.html"><span>Чистка зубов и профилактика</span></a></h2>
           <dl class="prices-list">
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Профессиональная чистка постоянных зубов, обе челюсти</a></dt><dd><span class="prices-amount">9 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Профессиональная чистка постоянных зубов, одна челюсть</a></dt><dd><span class="prices-amount">6 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Чистка молочных зубов и обучение уходу, до 3 лет</a></dt><dd><span class="prices-amount">5 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Чистка молочных зубов и обучение уходу</a></dt><dd><span class="prices-amount">6 500 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Чистка зубов и обучение уходу в период смены зубов</a></dt><dd><span class="prices-amount">7 500 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Индивидуальное обучение ребёнка чистке зубов</a></dt><dd><span class="prices-amount">2 100 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Чистка одного зуба</a></dt><dd><span class="prices-amount">750 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Чистка в области одного импланта</a></dt><dd><span class="prices-amount">750 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Защита бороздок молочного зуба от кариеса — герметизация фиссур</a></dt><dd><span class="prices-amount">3 100 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Защита бороздок постоянного зуба от кариеса — герметизация фиссур</a></dt><dd><span class="prices-amount">4 500 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Укрепление эмали одного зуба реминерализирующим препаратом</a></dt><dd><span class="prices-amount">400 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Глубокое фторирование зубов, одно посещение</a></dt><dd><span class="prices-amount">1 500 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Глубокое фторирование зубов одной челюсти</a></dt><dd><span class="prices-amount">3 100 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Обработка зубов при повышенной чувствительности</a></dt><dd><span class="prices-amount">2 000 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Профессиональная чистка постоянных зубов, обе челюсти</a></dt><dd><span class="prices-amount">9 000 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Профессиональная чистка постоянных зубов, одна челюсть</a></dt><dd><span class="prices-amount">6 000 ₽</span></dd></div>
+            <div data-price-audience="children"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Чистка молочных зубов и обучение уходу, до 3 лет</a></dt><dd><span class="prices-amount">5 000 ₽</span></dd></div>
+            <div data-price-audience="children"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Чистка молочных зубов и обучение уходу</a></dt><dd><span class="prices-amount">6 500 ₽</span></dd></div>
+            <div data-price-audience="children"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Чистка зубов и обучение уходу в период смены зубов</a></dt><dd><span class="prices-amount">7 500 ₽</span></dd></div>
+            <div data-price-audience="children"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Индивидуальное обучение ребёнка чистке зубов</a></dt><dd><span class="prices-amount">2 100 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Чистка одного зуба</a></dt><dd><span class="prices-amount">750 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Чистка в области одного импланта</a></dt><dd><span class="prices-amount">750 ₽</span></dd></div>
+            <div data-price-audience="children"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Защита бороздок молочного зуба от кариеса — герметизация фиссур</a></dt><dd><span class="prices-amount">3 100 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Защита бороздок постоянного зуба от кариеса — герметизация фиссур</a></dt><dd><span class="prices-amount">4 500 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Укрепление эмали одного зуба реминерализирующим препаратом</a></dt><dd><span class="prices-amount">400 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Глубокое фторирование зубов, одно посещение</a></dt><dd><span class="prices-amount">1 500 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Глубокое фторирование зубов одной челюсти</a></dt><dd><span class="prices-amount">3 100 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Обработка зубов при повышенной чувствительности</a></dt><dd><span class="prices-amount">2 000 ₽</span></dd></div>
           </dl>
         </section>
         <section class="prices-category" id="caries" aria-labelledby="caries-title">
           <h2 id="caries-title"><a class="prices-category-link" href="lechenie-molochnyh-zubov.html"><span>Лечение кариеса</span></a></h2>
           <dl class="prices-list">
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Лечение начального кариеса одного зуба без сверления — ICON</a></dt><dd><span class="prices-amount">6 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Лечение поверхностного кариеса одного зуба</a></dt><dd><span class="prices-amount">5 700 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Лечение среднего кариеса одного зуба</a></dt><dd><span class="prices-amount">7 100 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Лечение глубокого кариеса одного зуба</a></dt><dd><span class="prices-amount">8 200 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Пломба при поражении двух и более поверхностей зуба</a></dt><dd><span class="prices-amount">9 900 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Восстановление зуба, разрушенного примерно наполовину</a></dt><dd><span class="prices-amount">10 500 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Лечение зуба мудрости с трудным доступом</a></dt><dd><span class="prices-amount">19 100 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Восстановление зуба с клиновидным дефектом</a></dt><dd><span class="prices-amount">6 100 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Доплата за использование микроскопа при лечении кариеса, одно посещение</a></dt><dd><span class="prices-amount">1 900 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Лечение начального кариеса одного зуба без сверления — ICON</a></dt><dd><span class="prices-amount">6 000 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Лечение поверхностного кариеса одного зуба</a></dt><dd><span class="prices-amount">5 700 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Лечение среднего кариеса одного зуба</a></dt><dd><span class="prices-amount">7 100 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Лечение глубокого кариеса одного зуба</a></dt><dd><span class="prices-amount">8 200 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Пломба при поражении двух и более поверхностей зуба</a></dt><dd><span class="prices-amount">9 900 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Восстановление зуба, разрушенного примерно наполовину</a></dt><dd><span class="prices-amount">10 500 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Лечение зуба мудрости с трудным доступом</a></dt><dd><span class="prices-amount">19 100 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Восстановление зуба с клиновидным дефектом</a></dt><dd><span class="prices-amount">6 100 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Доплата за использование микроскопа при лечении кариеса, одно посещение</a></dt><dd><span class="prices-amount">1 900 ₽</span></dd></div>
           </dl>
         </section>
         <section class="prices-category" id="milk-teeth" aria-labelledby="milk-teeth-title">
           <h2 id="milk-teeth-title"><a class="prices-category-link" href="lechenie-molochnyh-zubov.html"><span>Лечение молочных зубов</span></a></h2>
           <dl class="prices-list">
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Лечение поверхностного кариеса молочного зуба</a></dt><dd><span class="prices-amount">4 900 – 5 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Лечение среднего кариеса молочного зуба</a></dt><dd><span class="prices-amount">5 400 – 5 800 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Лечение глубокого кариеса молочного зуба</a></dt><dd><span class="prices-amount">6 300 – 6 700 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Восстановление молочного зуба, разрушенного примерно наполовину</a></dt><dd><span class="prices-amount">9 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Эстетическое восстановление переднего молочного зуба</a></dt><dd><span class="prices-amount">11 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Лечение пульпита методом пульпотомии с восстановлением зуба</a></dt><dd><span class="prices-amount">8 500 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Лечение пульпита молочного зуба за одно посещение, с восстановлением</a></dt><dd><span class="prices-amount">14 800 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Лечение пульпита за два посещения, с восстановлением на втором</a></dt><dd><span class="prices-amount">14 800 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Лечение пульпита за три посещения</a></dt><dd><span class="prices-amount">14 800 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Лечение пульпита после лечения в другой клинике, с восстановлением</a></dt><dd><span class="prices-amount">11 500 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Металлическая коронка на молочный зуб после лечения кариеса</a></dt><dd><span class="prices-amount">6 500 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Циркониевая коронка на передний молочный зуб</a></dt><dd><span class="prices-amount">14 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Повторная фиксация детской металлической коронки</a></dt><dd><span class="prices-amount">1 300 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Серебрение молочного зуба, одно посещение</a></dt><dd><span class="prices-amount">600 ₽</span></dd></div>
+            <div data-price-audience="children"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Лечение поверхностного кариеса молочного зуба</a></dt><dd><span class="prices-amount">4 900 – 5 000 ₽</span></dd></div>
+            <div data-price-audience="children"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Лечение среднего кариеса молочного зуба</a></dt><dd><span class="prices-amount">5 400 – 5 800 ₽</span></dd></div>
+            <div data-price-audience="children"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Лечение глубокого кариеса молочного зуба</a></dt><dd><span class="prices-amount">6 300 – 6 700 ₽</span></dd></div>
+            <div data-price-audience="children"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Восстановление молочного зуба, разрушенного примерно наполовину</a></dt><dd><span class="prices-amount">9 000 ₽</span></dd></div>
+            <div data-price-audience="children"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Эстетическое восстановление переднего молочного зуба</a></dt><dd><span class="prices-amount">11 000 ₽</span></dd></div>
+            <div data-price-audience="children"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Лечение пульпита методом пульпотомии с восстановлением зуба</a></dt><dd><span class="prices-amount">8 500 ₽</span></dd></div>
+            <div data-price-audience="children"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Лечение пульпита молочного зуба за одно посещение, с восстановлением</a></dt><dd><span class="prices-amount">14 800 ₽</span></dd></div>
+            <div data-price-audience="children"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Лечение пульпита за два посещения, с восстановлением на втором</a></dt><dd><span class="prices-amount">14 800 ₽</span></dd></div>
+            <div data-price-audience="children"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Лечение пульпита за три посещения</a></dt><dd><span class="prices-amount">14 800 ₽</span></dd></div>
+            <div data-price-audience="children"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Лечение пульпита после лечения в другой клинике, с восстановлением</a></dt><dd><span class="prices-amount">11 500 ₽</span></dd></div>
+            <div data-price-audience="children"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Металлическая коронка на молочный зуб после лечения кариеса</a></dt><dd><span class="prices-amount">6 500 ₽</span></dd></div>
+            <div data-price-audience="children"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Циркониевая коронка на передний молочный зуб</a></dt><dd><span class="prices-amount">14 000 ₽</span></dd></div>
+            <div data-price-audience="children"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Повторная фиксация детской металлической коронки</a></dt><dd><span class="prices-amount">1 300 ₽</span></dd></div>
+            <div data-price-audience="children"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Серебрение молочного зуба, одно посещение</a></dt><dd><span class="prices-amount">600 ₽</span></dd></div>
           </dl>
         </section>
         <section class="prices-category" id="root-canals" aria-labelledby="root-canals-title">
           <h2 id="root-canals-title"><a class="prices-category-link" href="lechenie-molochnyh-zubov.html"><span>Лечение каналов зуба</span></a></h2>
           <dl class="prices-list">
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Лечение зуба с одним каналом — два основных этапа, без восстановления зуба</a></dt><dd><span class="prices-amount">16 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Лечение зуба с двумя каналами — два основных этапа, без восстановления зуба</a></dt><dd><span class="prices-amount">18 500 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Лечение зуба с тремя каналами — два основных этапа, без восстановления зуба</a></dt><dd><span class="prices-amount">22 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Лечение зуба с четырьмя каналами — два основных этапа, без восстановления зуба</a></dt><dd><span class="prices-amount">25 500 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Перелечивание зуба с одним каналом — два основных этапа, без восстановления зуба</a></dt><dd><span class="prices-amount">19 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Перелечивание зуба с двумя каналами — два основных этапа, без восстановления зуба</a></dt><dd><span class="prices-amount">21 500 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Перелечивание зуба с тремя каналами — два основных этапа, без восстановления зуба</a></dt><dd><span class="prices-amount">25 500 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Перелечивание зуба с четырьмя каналами — два основных этапа, без восстановления зуба</a></dt><dd><span class="prices-amount">28 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Доплата за использование микроскопа при лечении каналов, одно посещение</a></dt><dd><span class="prices-amount">4 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Дополнительное посещение для обработки каналов</a></dt><dd><span class="prices-amount">4 700 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Извлечение инородного тела из канала</a></dt><dd><span class="prices-amount">3 800 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Временная пломба</a></dt><dd><span class="prices-amount">1 400 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Восстановление зуба под коронку со штифтом</a></dt><dd><span class="prices-amount">14 500 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Лечение зуба с одним каналом — два основных этапа, без восстановления зуба</a></dt><dd><span class="prices-amount">16 000 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Лечение зуба с двумя каналами — два основных этапа, без восстановления зуба</a></dt><dd><span class="prices-amount">18 500 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Лечение зуба с тремя каналами — два основных этапа, без восстановления зуба</a></dt><dd><span class="prices-amount">22 000 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Лечение зуба с четырьмя каналами — два основных этапа, без восстановления зуба</a></dt><dd><span class="prices-amount">25 500 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Перелечивание зуба с одним каналом — два основных этапа, без восстановления зуба</a></dt><dd><span class="prices-amount">19 000 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Перелечивание зуба с двумя каналами — два основных этапа, без восстановления зуба</a></dt><dd><span class="prices-amount">21 500 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Перелечивание зуба с тремя каналами — два основных этапа, без восстановления зуба</a></dt><dd><span class="prices-amount">25 500 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Перелечивание зуба с четырьмя каналами — два основных этапа, без восстановления зуба</a></dt><dd><span class="prices-amount">28 000 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Доплата за использование микроскопа при лечении каналов, одно посещение</a></dt><dd><span class="prices-amount">4 000 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Дополнительное посещение для обработки каналов</a></dt><dd><span class="prices-amount">4 700 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Извлечение инородного тела из канала</a></dt><dd><span class="prices-amount">3 800 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Временная пломба</a></dt><dd><span class="prices-amount">1 400 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Восстановление зуба под коронку со штифтом</a></dt><dd><span class="prices-amount">14 500 ₽</span></dd></div>
           </dl>
         </section>
         <section class="prices-category" id="restoration" aria-labelledby="restoration-title">
           <h2 id="restoration-title"><a class="prices-category-link" href="lechenie-molochnyh-zubov.html"><span>Восстановление зубов и эстетика улыбки</span></a></h2>
           <dl class="prices-list">
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Восстановление небольшого скола зуба или пломбы</a></dt><dd><span class="prices-amount">4 800 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Прикрепление сохранившегося фрагмента зуба после травмы</a></dt><dd><span class="prices-amount">6 900 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Эстетическое восстановление формы зуба пломбировочным материалом</a></dt><dd><span class="prices-amount">13 500 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Восстановление сильно разрушенного зуба</a></dt><dd><span class="prices-amount">18 300 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Коррекция контура одного зуба</a></dt><dd><span class="prices-amount">2 200 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Отбеливание BEYOND, обе челюсти</a></dt><dd><span class="prices-amount">32 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Отбеливание BEYOND, одна челюсть</a></dt><dd><span class="prices-amount">20 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Отбеливание одного зуба BEYOND</a></dt><dd><span class="prices-amount">3 500 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Изготовление каппы для домашнего отбеливания</a></dt><dd><span class="prices-amount">12 500 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Установка украшения на зуб — скайса</a></dt><dd><span class="prices-amount">1 600 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Восстановление небольшого скола зуба или пломбы</a></dt><dd><span class="prices-amount">4 800 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Прикрепление сохранившегося фрагмента зуба после травмы</a></dt><dd><span class="prices-amount">6 900 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Эстетическое восстановление формы зуба пломбировочным материалом</a></dt><dd><span class="prices-amount">13 500 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Восстановление сильно разрушенного зуба</a></dt><dd><span class="prices-amount">18 300 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Коррекция контура одного зуба</a></dt><dd><span class="prices-amount">2 200 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Отбеливание BEYOND, обе челюсти</a></dt><dd><span class="prices-amount">32 000 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Отбеливание BEYOND, одна челюсть</a></dt><dd><span class="prices-amount">20 000 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Отбеливание одного зуба BEYOND</a></dt><dd><span class="prices-amount">3 500 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Изготовление каппы для домашнего отбеливания</a></dt><dd><span class="prices-amount">12 500 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Установка украшения на зуб — скайса</a></dt><dd><span class="prices-amount">1 600 ₽</span></dd></div>
           </dl>
         </section>
         <section class="prices-category" id="gums" aria-labelledby="gums-title">
           <h2 id="gums-title"><a class="prices-category-link" href="lechenie-molochnyh-zubov.html"><span>Лечение дёсен</span></a></h2>
           <dl class="prices-list">
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Обследование десневых карманов</a></dt><dd><span class="prices-amount">1 500 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Профессиональная чистка при заболеваниях дёсен, один зуб</a></dt><dd><span class="prices-amount">1 100 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Профессиональная чистка при заболеваниях дёсен, обе челюсти</a></dt><dd><span class="prices-amount">12 800 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Глубокая чистка десневого кармана без разреза — закрытый кюретаж, один зуб</a></dt><dd><span class="prices-amount">2 600 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Глубокая чистка десневого кармана с хирургическим доступом — открытый кюретаж, один зуб</a></dt><dd><span class="prices-amount">7 400 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Лечение дёсен аппаратом Vector в области одного зуба или импланта</a></dt><dd><span class="prices-amount">2 400 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Лечение дёсен аппаратом Vector, обе челюсти</a></dt><dd><span class="prices-amount">25 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Укрепление подвижных зубов — шинирование</a></dt><dd><span class="prices-amount">3 000 – 4 500 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Хирургическое лечение дёсен в области одного зуба</a></dt><dd><span class="prices-amount">15 500 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Закрытие оголённого корня одного зуба собственными тканями</a></dt><dd><span class="prices-amount">19 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Закрытие оголённых корней 1–3 зубов собственными тканями</a></dt><dd><span class="prices-amount">31 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Закрытие оголённого корня с использованием заменителя тканей</a></dt><dd><span class="prices-amount">15 500 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Обследование десневых карманов</a></dt><dd><span class="prices-amount">1 500 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Профессиональная чистка при заболеваниях дёсен, один зуб</a></dt><dd><span class="prices-amount">1 100 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Профессиональная чистка при заболеваниях дёсен, обе челюсти</a></dt><dd><span class="prices-amount">12 800 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Глубокая чистка десневого кармана без разреза — закрытый кюретаж, один зуб</a></dt><dd><span class="prices-amount">2 600 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Глубокая чистка десневого кармана с хирургическим доступом — открытый кюретаж, один зуб</a></dt><dd><span class="prices-amount">7 400 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Лечение дёсен аппаратом Vector в области одного зуба или импланта</a></dt><dd><span class="prices-amount">2 400 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Лечение дёсен аппаратом Vector, обе челюсти</a></dt><dd><span class="prices-amount">25 000 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Укрепление подвижных зубов — шинирование</a></dt><dd><span class="prices-amount">3 000 – 4 500 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Хирургическое лечение дёсен в области одного зуба</a></dt><dd><span class="prices-amount">15 500 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Закрытие оголённого корня одного зуба собственными тканями</a></dt><dd><span class="prices-amount">19 000 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Закрытие оголённых корней 1–3 зубов собственными тканями</a></dt><dd><span class="prices-amount">31 000 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Закрытие оголённого корня с использованием заменителя тканей</a></dt><dd><span class="prices-amount">15 500 ₽</span></dd></div>
           </dl>
         </section>
         <section class="prices-category" id="surgery" aria-labelledby="surgery-title">
           <h2 id="surgery-title"><a class="prices-category-link" href="lechenie-molochnyh-zubov.html"><span>Удаление зубов и небольшие операции</span></a></h2>
           <dl class="prices-list">
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Удаление молочного зуба</a></dt><dd><span class="prices-amount">2 100 – 3 900 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Удаление фрагмента молочного зуба</a></dt><dd><span class="prices-amount">1 650 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Простое удаление постоянного зуба</a></dt><dd><span class="prices-amount">5 500 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Сложное удаление постоянного зуба</a></dt><dd><span class="prices-amount">7 500 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Удаление непрорезавшегося или неправильно расположенного зуба</a></dt><dd><span class="prices-amount">10 500 – 13 800 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Удаление фрагмента постоянного зуба</a></dt><dd><span class="prices-amount">3 200 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Пластика уздечки языка</a></dt><dd><span class="prices-amount">6 900 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Пластика уздечки языка у грудного ребёнка</a></dt><dd><span class="prices-amount">4 400 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Пластика уздечки верхней или нижней губы</a></dt><dd><span class="prices-amount">6 900 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Удаление кисты</a></dt><dd><span class="prices-amount">7 500 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Операция на верхушке корня зуба (не все этапы лечения каналов включены)</a></dt><dd><span class="prices-amount">16 500 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Лечение воспаления вокруг прорезывающегося зуба</a></dt><dd><span class="prices-amount">4 100 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Коррекция формы десны, удаление разросшихся тканей</a></dt><dd><span class="prices-amount">5 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Хирургическое открытие зуба для ортодонтического лечения</a></dt><dd><span class="prices-amount">7 800 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Удаление костного выступа — экзостоза</a></dt><dd><span class="prices-amount">3 400 ₽</span></dd></div>
+            <div data-price-audience="children"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Удаление молочного зуба</a></dt><dd><span class="prices-amount">2 100 – 3 900 ₽</span></dd></div>
+            <div data-price-audience="children"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Удаление фрагмента молочного зуба</a></dt><dd><span class="prices-amount">1 650 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Простое удаление постоянного зуба</a></dt><dd><span class="prices-amount">5 500 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Сложное удаление постоянного зуба</a></dt><dd><span class="prices-amount">7 500 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Удаление непрорезавшегося или неправильно расположенного зуба</a></dt><dd><span class="prices-amount">10 500 – 13 800 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Удаление фрагмента постоянного зуба</a></dt><dd><span class="prices-amount">3 200 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Пластика уздечки языка</a></dt><dd><span class="prices-amount">6 900 ₽</span></dd></div>
+            <div data-price-audience="children"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Пластика уздечки языка у грудного ребёнка</a></dt><dd><span class="prices-amount">4 400 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Пластика уздечки верхней или нижней губы</a></dt><dd><span class="prices-amount">6 900 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Удаление кисты</a></dt><dd><span class="prices-amount">7 500 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Операция на верхушке корня зуба (не все этапы лечения каналов включены)</a></dt><dd><span class="prices-amount">16 500 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Лечение воспаления вокруг прорезывающегося зуба</a></dt><dd><span class="prices-amount">4 100 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Коррекция формы десны, удаление разросшихся тканей</a></dt><dd><span class="prices-amount">5 000 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Хирургическое открытие зуба для ортодонтического лечения</a></dt><dd><span class="prices-amount">7 800 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Удаление костного выступа — экзостоза</a></dt><dd><span class="prices-amount">3 400 ₽</span></dd></div>
           </dl>
         </section>
         <section class="prices-category" id="implants" aria-labelledby="implants-title">
           <h2 id="implants-title"><a class="prices-category-link" href="lechenie-molochnyh-zubov.html"><span>Имплантация и восстановление костной ткани</span></a></h2>
           <dl class="prices-list">
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Установка импланта INNO (без протезирования)</a></dt><dd><span class="prices-amount">42 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Установка импланта Osstem (без протезирования)</a></dt><dd><span class="prices-amount">42 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Установка импланта Straumann (без протезирования)</a></dt><dd><span class="prices-amount">79 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Установка четырёх имплантов INNO или Osstem при полном отсутствии зубов (без протезирования)</a></dt><dd><span class="prices-amount">180 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Установка четырёх имплантов Straumann при полном отсутствии зубов (без протезирования)</a></dt><dd><span class="prices-amount">330 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Установка формирователя десны INNO или Osstem</a></dt><dd><span class="prices-amount">6 700 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Установка формирователя десны Straumann</a></dt><dd><span class="prices-amount">7 300 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Закрытый синус-лифтинг (без костного материала)</a></dt><dd><span class="prices-amount">32 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Открытый синус-лифтинг (без костного материала)</a></dt><dd><span class="prices-amount">53 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Наращивание костной ткани в области одного зуба (без костного материала)</a></dt><dd><span class="prices-amount">37 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Наращивание костной ткани в области 2–3 зубов (без костного материала)</a></dt><dd><span class="prices-amount">55 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Наращивание костной ткани в области более трёх зубов (без костного материала)</a></dt><dd><span class="prices-amount">74 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Костная пластика с пересадкой костных блоков</a></dt><dd><span class="prices-amount">95 000 ₽</span></dd></div>
+            <div data-price-audience="adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Установка импланта INNO (без протезирования)</a></dt><dd><span class="prices-amount">42 000 ₽</span></dd></div>
+            <div data-price-audience="adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Установка импланта Osstem (без протезирования)</a></dt><dd><span class="prices-amount">42 000 ₽</span></dd></div>
+            <div data-price-audience="adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Установка импланта Straumann (без протезирования)</a></dt><dd><span class="prices-amount">79 000 ₽</span></dd></div>
+            <div data-price-audience="adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Установка четырёх имплантов INNO или Osstem при полном отсутствии зубов (без протезирования)</a></dt><dd><span class="prices-amount">180 000 ₽</span></dd></div>
+            <div data-price-audience="adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Установка четырёх имплантов Straumann при полном отсутствии зубов (без протезирования)</a></dt><dd><span class="prices-amount">330 000 ₽</span></dd></div>
+            <div data-price-audience="adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Установка формирователя десны INNO или Osstem</a></dt><dd><span class="prices-amount">6 700 ₽</span></dd></div>
+            <div data-price-audience="adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Установка формирователя десны Straumann</a></dt><dd><span class="prices-amount">7 300 ₽</span></dd></div>
+            <div data-price-audience="adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Закрытый синус-лифтинг (без костного материала)</a></dt><dd><span class="prices-amount">32 000 ₽</span></dd></div>
+            <div data-price-audience="adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Открытый синус-лифтинг (без костного материала)</a></dt><dd><span class="prices-amount">53 000 ₽</span></dd></div>
+            <div data-price-audience="adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Наращивание костной ткани в области одного зуба (без костного материала)</a></dt><dd><span class="prices-amount">37 000 ₽</span></dd></div>
+            <div data-price-audience="adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Наращивание костной ткани в области 2–3 зубов (без костного материала)</a></dt><dd><span class="prices-amount">55 000 ₽</span></dd></div>
+            <div data-price-audience="adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Наращивание костной ткани в области более трёх зубов (без костного материала)</a></dt><dd><span class="prices-amount">74 000 ₽</span></dd></div>
+            <div data-price-audience="adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Костная пластика с пересадкой костных блоков</a></dt><dd><span class="prices-amount">95 000 ₽</span></dd></div>
           </dl>
         </section>
         <section class="prices-category" id="crowns" aria-labelledby="crowns-title">
           <h2 id="crowns-title"><a class="prices-category-link" href="lechenie-molochnyh-zubov.html"><span>Коронки, виниры и вкладки</span></a></h2>
           <dl class="prices-list">
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Композитная вкладка или накладка на зуб</a></dt><dd><span class="prices-amount">34 500 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Керамическая вкладка</a></dt><dd><span class="prices-amount">36 500 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Керамическая накладка с перекрытием жевательной поверхности</a></dt><dd><span class="prices-amount">47 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Временная коронка, изготовленная в кабинете</a></dt><dd><span class="prices-amount">4 200 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Временная коронка, изготовленная в лаборатории</a></dt><dd><span class="prices-amount">6 800 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Временная коронка CAD/CAM</a></dt><dd><span class="prices-amount">13 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Металлокерамическая коронка — подготовка и завершающий этап (без подготовительного лечения и временных конструкций)</a></dt><dd><span class="prices-amount">38 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Безметалловая коронка или накладка из циркония / E.max — два этапа (без подготовительного лечения и временных конструкций)</a></dt><dd><span class="prices-amount">45 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Керамический винир на рефракторе — два этапа (без подготовительного лечения и временных конструкций)</a></dt><dd><span class="prices-amount">57 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Люминир — два этапа (без подготовительного лечения и временных конструкций)</a></dt><dd><span class="prices-amount">66 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Металлокерамическая коронка на импланте — два этапа, с абатментом (без подготовительного лечения и временных конструкций)</a></dt><dd><span class="prices-amount">55 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Безметалловая коронка на импланте — два этапа, с абатментом (без подготовительного лечения и временных конструкций)</a></dt><dd><span class="prices-amount">65 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Повторная фиксация коронки</a></dt><dd><span class="prices-amount">1 500 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Ремонт металлокерамической коронки</a></dt><dd><span class="prices-amount">5 000 – 8 000 ₽</span></dd></div>
+            <div data-price-audience="adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Композитная вкладка или накладка на зуб</a></dt><dd><span class="prices-amount">34 500 ₽</span></dd></div>
+            <div data-price-audience="adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Керамическая вкладка</a></dt><dd><span class="prices-amount">36 500 ₽</span></dd></div>
+            <div data-price-audience="adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Керамическая накладка с перекрытием жевательной поверхности</a></dt><dd><span class="prices-amount">47 000 ₽</span></dd></div>
+            <div data-price-audience="adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Временная коронка, изготовленная в кабинете</a></dt><dd><span class="prices-amount">4 200 ₽</span></dd></div>
+            <div data-price-audience="adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Временная коронка, изготовленная в лаборатории</a></dt><dd><span class="prices-amount">6 800 ₽</span></dd></div>
+            <div data-price-audience="adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Временная коронка CAD/CAM</a></dt><dd><span class="prices-amount">13 000 ₽</span></dd></div>
+            <div data-price-audience="adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Металлокерамическая коронка — подготовка и завершающий этап (без подготовительного лечения и временных конструкций)</a></dt><dd><span class="prices-amount">38 000 ₽</span></dd></div>
+            <div data-price-audience="adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Безметалловая коронка или накладка из циркония / E.max — два этапа (без подготовительного лечения и временных конструкций)</a></dt><dd><span class="prices-amount">45 000 ₽</span></dd></div>
+            <div data-price-audience="adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Керамический винир на рефракторе — два этапа (без подготовительного лечения и временных конструкций)</a></dt><dd><span class="prices-amount">57 000 ₽</span></dd></div>
+            <div data-price-audience="adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Люминир — два этапа (без подготовительного лечения и временных конструкций)</a></dt><dd><span class="prices-amount">66 000 ₽</span></dd></div>
+            <div data-price-audience="adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Металлокерамическая коронка на импланте — два этапа, с абатментом (без подготовительного лечения и временных конструкций)</a></dt><dd><span class="prices-amount">55 000 ₽</span></dd></div>
+            <div data-price-audience="adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Безметалловая коронка на импланте — два этапа, с абатментом (без подготовительного лечения и временных конструкций)</a></dt><dd><span class="prices-amount">65 000 ₽</span></dd></div>
+            <div data-price-audience="adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Повторная фиксация коронки</a></dt><dd><span class="prices-amount">1 500 ₽</span></dd></div>
+            <div data-price-audience="adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Ремонт металлокерамической коронки</a></dt><dd><span class="prices-amount">5 000 – 8 000 ₽</span></dd></div>
           </dl>
         </section>
         <section class="prices-category" id="dentures" aria-labelledby="dentures-title">
           <h2 id="dentures-title"><a class="prices-category-link" href="lechenie-molochnyh-zubov.html"><span>Съёмные протезы и протезирование всей челюсти</span></a></h2>
           <dl class="prices-list">
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Небольшой акриловый протез для замещения 1–3 зубов</a></dt><dd><span class="prices-amount">23 500 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Небольшой протез Nylon / Acry Free для замещения до трёх зубов</a></dt><dd><span class="prices-amount">41 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Частичный съёмный пластиночный протез</a></dt><dd><span class="prices-amount">31 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Частичный съёмный протез Nylon / Acry Free</a></dt><dd><span class="prices-amount">55 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Полный съёмный акриловый протез</a></dt><dd><span class="prices-amount">38 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Полный съёмный протез Nylon / Acry Free</a></dt><dd><span class="prices-amount">69 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Бюгельный протез, одна челюсть</a></dt><dd><span class="prices-amount">81 000 – 120 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Адаптационный несъёмный протез на шести имплантах, одна челюсть (без установки имплантов)</a></dt><dd><span class="prices-amount">150 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Постоянный условно-съёмный протез на имплантах, одна челюсть (без установки имплантов)</a></dt><dd><span class="prices-amount">277 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Постоянный балочный протез на имплантах, одна челюсть (без установки имплантов)</a></dt><dd><span class="prices-amount">324 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Протез на имплантах с кнопочной фиксацией, одна челюсть (без установки имплантов)</a></dt><dd><span class="prices-amount">118 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Коррекция съёмного протеза</a></dt><dd><span class="prices-amount">900 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Ремонт протеза</a></dt><dd><span class="prices-amount">12 000 – 15 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Лабораторная перебазировка — изменение прилегания протеза</a></dt><dd><span class="prices-amount">17 500 ₽</span></dd></div>
+            <div data-price-audience="adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Небольшой акриловый протез для замещения 1–3 зубов</a></dt><dd><span class="prices-amount">23 500 ₽</span></dd></div>
+            <div data-price-audience="adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Небольшой протез Nylon / Acry Free для замещения до трёх зубов</a></dt><dd><span class="prices-amount">41 000 ₽</span></dd></div>
+            <div data-price-audience="adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Частичный съёмный пластиночный протез</a></dt><dd><span class="prices-amount">31 000 ₽</span></dd></div>
+            <div data-price-audience="adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Частичный съёмный протез Nylon / Acry Free</a></dt><dd><span class="prices-amount">55 000 ₽</span></dd></div>
+            <div data-price-audience="adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Полный съёмный акриловый протез</a></dt><dd><span class="prices-amount">38 000 ₽</span></dd></div>
+            <div data-price-audience="adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Полный съёмный протез Nylon / Acry Free</a></dt><dd><span class="prices-amount">69 000 ₽</span></dd></div>
+            <div data-price-audience="adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Бюгельный протез, одна челюсть</a></dt><dd><span class="prices-amount">81 000 – 120 000 ₽</span></dd></div>
+            <div data-price-audience="adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Адаптационный несъёмный протез на шести имплантах, одна челюсть (без установки имплантов)</a></dt><dd><span class="prices-amount">150 000 ₽</span></dd></div>
+            <div data-price-audience="adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Постоянный условно-съёмный протез на имплантах, одна челюсть (без установки имплантов)</a></dt><dd><span class="prices-amount">277 000 ₽</span></dd></div>
+            <div data-price-audience="adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Постоянный балочный протез на имплантах, одна челюсть (без установки имплантов)</a></dt><dd><span class="prices-amount">324 000 ₽</span></dd></div>
+            <div data-price-audience="adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Протез на имплантах с кнопочной фиксацией, одна челюсть (без установки имплантов)</a></dt><dd><span class="prices-amount">118 000 ₽</span></dd></div>
+            <div data-price-audience="adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Коррекция съёмного протеза</a></dt><dd><span class="prices-amount">900 ₽</span></dd></div>
+            <div data-price-audience="adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Ремонт протеза</a></dt><dd><span class="prices-amount">12 000 – 15 000 ₽</span></dd></div>
+            <div data-price-audience="adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Лабораторная перебазировка — изменение прилегания протеза</a></dt><dd><span class="prices-amount">17 500 ₽</span></dd></div>
           </dl>
         </section>
         <section class="prices-category" id="child-orthodontics" aria-labelledby="child-orthodontics-title">
           <h2 id="child-orthodontics-title"><a class="prices-category-link" href="lechenie-molochnyh-zubov.html"><span>Исправление прикуса у детей</span></a></h2>
           <dl class="prices-list">
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Съёмная пластинка на одну челюсть</a></dt><dd><span class="prices-amount">35 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Аппарат Twin Block</a></dt><dd><span class="prices-amount">51 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Аппарат Френкеля</a></dt><dd><span class="prices-amount">51 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Трейнер, LM-активатор или эластопозиционер</a></dt><dd><span class="prices-amount">24 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Несъёмный аппарат для быстрого расширения верхней челюсти</a></dt><dd><span class="prices-amount">60 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Аппарат MARPE для расширения верхней челюсти</a></dt><dd><span class="prices-amount">75 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Аппарат для сохранения места после потери зуба</a></dt><dd><span class="prices-amount">16 800 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Частичная брекет-система 2×4 на одну челюсть</a></dt><dd><span class="prices-amount">41 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Частичная эстетическая брекет-система на одну челюсть</a></dt><dd><span class="prices-amount">50 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Контрольный приём со съёмным аппаратом</a></dt><dd><span class="prices-amount">800 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Контрольный приём с трейнером или несъёмным аппаратом</a></dt><dd><span class="prices-amount">1 050 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Активация съёмного аппарата</a></dt><dd><span class="prices-amount">1 050 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Ремонт съёмного аппарата</a></dt><dd><span class="prices-amount">12 300 ₽</span></dd></div>
+            <div data-price-audience="children"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Съёмная пластинка на одну челюсть</a></dt><dd><span class="prices-amount">35 000 ₽</span></dd></div>
+            <div data-price-audience="children"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Аппарат Twin Block</a></dt><dd><span class="prices-amount">51 000 ₽</span></dd></div>
+            <div data-price-audience="children"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Аппарат Френкеля</a></dt><dd><span class="prices-amount">51 000 ₽</span></dd></div>
+            <div data-price-audience="children"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Трейнер, LM-активатор или эластопозиционер</a></dt><dd><span class="prices-amount">24 000 ₽</span></dd></div>
+            <div data-price-audience="children"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Несъёмный аппарат для быстрого расширения верхней челюсти</a></dt><dd><span class="prices-amount">60 000 ₽</span></dd></div>
+            <div data-price-audience="children"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Аппарат MARPE для расширения верхней челюсти</a></dt><dd><span class="prices-amount">75 000 ₽</span></dd></div>
+            <div data-price-audience="children"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Аппарат для сохранения места после потери зуба</a></dt><dd><span class="prices-amount">16 800 ₽</span></dd></div>
+            <div data-price-audience="children"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Частичная брекет-система 2×4 на одну челюсть</a></dt><dd><span class="prices-amount">41 000 ₽</span></dd></div>
+            <div data-price-audience="children"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Частичная эстетическая брекет-система на одну челюсть</a></dt><dd><span class="prices-amount">50 000 ₽</span></dd></div>
+            <div data-price-audience="children"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Контрольный приём со съёмным аппаратом</a></dt><dd><span class="prices-amount">800 ₽</span></dd></div>
+            <div data-price-audience="children"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Контрольный приём с трейнером или несъёмным аппаратом</a></dt><dd><span class="prices-amount">1 050 ₽</span></dd></div>
+            <div data-price-audience="children"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Активация съёмного аппарата</a></dt><dd><span class="prices-amount">1 050 ₽</span></dd></div>
+            <div data-price-audience="children"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Ремонт съёмного аппарата</a></dt><dd><span class="prices-amount">12 300 ₽</span></dd></div>
           </dl>
         </section>
         <section class="prices-category" id="braces" aria-labelledby="braces-title">
           <h2 id="braces-title"><a class="prices-category-link" href="lechenie-molochnyh-zubov.html"><span>Брекеты и элайнеры</span></a></h2>
           <dl class="prices-list">
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Комплексная диагностика перед ортодонтическим лечением</a></dt><dd><span class="prices-amount">15 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Установка металлической брекет-системы</a></dt><dd><span class="prices-amount">60 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Установка металлических лигатурных брекетов</a></dt><dd><span class="prices-amount">75 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Установка самолигирующих металлических брекетов Damon</a></dt><dd><span class="prices-amount">82 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Установка комбинированных самолигирующих брекетов</a></dt><dd><span class="prices-amount">95 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Установка эстетических самолигирующих брекетов</a></dt><dd><span class="prices-amount">99 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Активация брекетов на одной челюсти</a></dt><dd><span class="prices-amount">5 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Активация брекетов на обеих челюстях</a></dt><dd><span class="prices-amount">8 700 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Снятие брекетов с одной челюсти</a></dt><dd><span class="prices-amount">9 500 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Установка несъёмного ретейнера на одну челюсть</a></dt><dd><span class="prices-amount">7 800 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Изготовление удерживающей каппы после лечения</a></dt><dd><span class="prices-amount">12 500 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">3D-диагностика для планирования лечения элайнерами</a></dt><dd><span class="prices-amount">50 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Изготовление элайнеров и фиксация аттачментов, курс Mini</a></dt><dd><span class="prices-amount">90 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Изготовление элайнеров и фиксация аттачментов, курс One</a></dt><dd><span class="prices-amount">120 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Изготовление элайнеров и фиксация аттачментов, курс Two</a></dt><dd><span class="prices-amount">140 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Изготовление элайнеров и фиксация аттачментов, курс Three</a></dt><dd><span class="prices-amount">170 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Изготовление элайнеров и фиксация аттачментов, курс Unlimited</a></dt><dd><span class="prices-amount">198 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Ортодонтическое лечение на элайнерах — отдельная позиция по сложности</a></dt><dd><span class="prices-amount">160 000 – 290 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Ежемесячный платёж за этап лечения элайнерами</a></dt><dd><span class="prices-amount">10 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Замена сломанного или потерянного элайнера</a></dt><dd><span class="prices-amount">11 000 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Комплексная диагностика перед ортодонтическим лечением</a></dt><dd><span class="prices-amount">15 000 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Установка металлической брекет-системы</a></dt><dd><span class="prices-amount">60 000 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Установка металлических лигатурных брекетов</a></dt><dd><span class="prices-amount">75 000 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Установка самолигирующих металлических брекетов Damon</a></dt><dd><span class="prices-amount">82 000 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Установка комбинированных самолигирующих брекетов</a></dt><dd><span class="prices-amount">95 000 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Установка эстетических самолигирующих брекетов</a></dt><dd><span class="prices-amount">99 000 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Активация брекетов на одной челюсти</a></dt><dd><span class="prices-amount">5 000 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Активация брекетов на обеих челюстях</a></dt><dd><span class="prices-amount">8 700 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Снятие брекетов с одной челюсти</a></dt><dd><span class="prices-amount">9 500 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Установка несъёмного ретейнера на одну челюсть</a></dt><dd><span class="prices-amount">7 800 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Изготовление удерживающей каппы после лечения</a></dt><dd><span class="prices-amount">12 500 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">3D-диагностика для планирования лечения элайнерами</a></dt><dd><span class="prices-amount">50 000 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Изготовление элайнеров и фиксация аттачментов, курс Mini</a></dt><dd><span class="prices-amount">90 000 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Изготовление элайнеров и фиксация аттачментов, курс One</a></dt><dd><span class="prices-amount">120 000 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Изготовление элайнеров и фиксация аттачментов, курс Two</a></dt><dd><span class="prices-amount">140 000 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Изготовление элайнеров и фиксация аттачментов, курс Three</a></dt><dd><span class="prices-amount">170 000 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Изготовление элайнеров и фиксация аттачментов, курс Unlimited</a></dt><dd><span class="prices-amount">198 000 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Ортодонтическое лечение на элайнерах — отдельная позиция по сложности</a></dt><dd><span class="prices-amount">160 000 – 290 000 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Ежемесячный платёж за этап лечения элайнерами</a></dt><dd><span class="prices-amount">10 000 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Замена сломанного или потерянного элайнера</a></dt><dd><span class="prices-amount">11 000 ₽</span></dd></div>
           </dl>
         </section>
         <section class="prices-category" id="sedation" aria-labelledby="sedation-title">
           <h2 id="sedation-title"><a class="prices-category-link" href="lechenie-molochnyh-zubov.html"><span>Обезболивание, седация и лечение во сне</span></a></h2>
           <dl class="prices-list">
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Местная анестезия</a></dt><dd><span class="prices-amount">900 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Дополнительная доза местной анестезии</a></dt><dd><span class="prices-amount">600 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Поверхностное обезболивание перед уколом</a></dt><dd><span class="prices-amount">450 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Седация закисью азота, 30 минут (лечение зубов отдельно)</a></dt><dd><span class="prices-amount">2 900 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Седация закисью азота, 1 час (лечение зубов отдельно)</a></dt><dd><span class="prices-amount">4 900 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Общая анестезия с ранним послеоперационным наблюдением, 1 час (лечение зубов отдельно)</a></dt><dd><span class="prices-amount">19 500 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Общая анестезия, последующие 30 минут (лечение зубов отдельно)</a></dt><dd><span class="prices-amount">7 500 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Местная анестезия</a></dt><dd><span class="prices-amount">900 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Дополнительная доза местной анестезии</a></dt><dd><span class="prices-amount">600 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Поверхностное обезболивание перед уколом</a></dt><dd><span class="prices-amount">450 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Седация закисью азота, 30 минут (лечение зубов отдельно)</a></dt><dd><span class="prices-amount">2 900 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Седация закисью азота, 1 час (лечение зубов отдельно)</a></dt><dd><span class="prices-amount">4 900 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Общая анестезия с ранним послеоперационным наблюдением, 1 час (лечение зубов отдельно)</a></dt><dd><span class="prices-amount">19 500 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Общая анестезия, последующие 30 минут (лечение зубов отдельно)</a></dt><dd><span class="prices-amount">7 500 ₽</span></dd></div>
           </dl>
         </section>
         <section class="prices-category" id="offers" aria-labelledby="offers-title">
           <h2 id="offers-title"><a class="prices-category-link" href="lechenie-molochnyh-zubov.html"><span>Специальные предложения</span></a></h2>
           <dl class="prices-list">
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Чистка постоянных зубов, обе челюсти</a></dt><dd><span class="prices-amount">7 500 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Чистка перед ортодонтическим лечением или имплантацией</a></dt><dd><span class="prices-amount">6 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Чистка молочных зубов с обучением, до 3 лет</a></dt><dd><span class="prices-amount">3 500 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Чистка молочных зубов с обучением</a></dt><dd><span class="prices-amount">5 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Чистка в период смены зубов с обучением</a></dt><dd><span class="prices-amount">6 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Установка импланта INNO (без протезирования)</a></dt><dd><span class="prices-amount">37 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Установка импланта Straumann (без протезирования)</a></dt><dd><span class="prices-amount">74 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Лечение Vector, обе челюсти</a></dt><dd><span class="prices-amount">19 800 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Две процедуры отбеливания BEYOND обеих челюстей, интервал до трёх месяцев</a></dt><dd><span class="prices-amount">38 000 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Общая анестезия, первый час (лечение зубов отдельно)</a></dt><dd><span class="prices-amount">16 500 ₽</span></dd></div>
-            <div><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Общая анестезия, каждый последующий час (лечение зубов отдельно)</a></dt><dd><span class="prices-amount">14 500 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Чистка постоянных зубов, обе челюсти</a></dt><dd><span class="prices-amount">7 500 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Чистка перед ортодонтическим лечением или имплантацией</a></dt><dd><span class="prices-amount">6 000 ₽</span></dd></div>
+            <div data-price-audience="children"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Чистка молочных зубов с обучением, до 3 лет</a></dt><dd><span class="prices-amount">3 500 ₽</span></dd></div>
+            <div data-price-audience="children"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Чистка молочных зубов с обучением</a></dt><dd><span class="prices-amount">5 000 ₽</span></dd></div>
+            <div data-price-audience="children"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Чистка в период смены зубов с обучением</a></dt><dd><span class="prices-amount">6 000 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Установка импланта INNO (без протезирования)</a></dt><dd><span class="prices-amount">37 000 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Установка импланта Straumann (без протезирования)</a></dt><dd><span class="prices-amount">74 000 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Лечение Vector, обе челюсти</a></dt><dd><span class="prices-amount">19 800 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Две процедуры отбеливания BEYOND обеих челюстей, интервал до трёх месяцев</a></dt><dd><span class="prices-amount">38 000 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Общая анестезия, первый час (лечение зубов отдельно)</a></dt><dd><span class="prices-amount">16 500 ₽</span></dd></div>
+            <div data-price-audience="children adults"><dt><a class="prices-service-link" href="lechenie-molochnyh-zubov.html">Общая анестезия, каждый последующий час (лечение зубов отдельно)</a></dt><dd><span class="prices-amount">14 500 ₽</span></dd></div>
           </dl>
         </section>
         <p class="prices-source">Цены из прайса клиники от 1 мая 2026 года. Итоговый план и стоимость лечения врач определяет после осмотра.</p>

@@ -232,18 +232,23 @@ if (treatmentNav) {
 
   function updateActiveSection() {
     pendingFrame = false;
-    if (!sections.length) return;
-    const anchorOffset = parseFloat(getComputedStyle(sections[0].section).scrollMarginTop) || 0;
+    const visibleSections = sections.filter(item => !item.section.hidden);
+    if (!visibleSections.length) {
+      activeLink?.removeAttribute("aria-current");
+      activeLink = null;
+      return;
+    }
+    const anchorOffset = parseFloat(getComputedStyle(visibleSections[0].section).scrollMarginTop) || 0;
     const readingTop = Math.max(anchorOffset, horizontalNav.matches
       ? Math.max(0, treatmentNav.getBoundingClientRect().bottom) + 20
       : visibleHeaderHeight + 20);
-    let current = sections[0]?.link;
-    for (const { link, section } of sections) {
+    let current = visibleSections[0]?.link;
+    for (const { link, section } of visibleSections) {
       if (section.getBoundingClientRect().top > readingTop + 1) break;
       current = link;
     }
     if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2) {
-      current = sections.at(-1).link;
+      current = visibleSections.at(-1).link;
     }
     if (current === activeLink) return;
     activeLink?.removeAttribute("aria-current");
@@ -253,7 +258,7 @@ if (treatmentNav) {
   }
 
   function revealActiveLink() {
-    if (!activeLink) return;
+    if (!activeLink || activeLink.hidden) return;
     const navBox = treatmentNav.getBoundingClientRect();
     const linkBox = activeLink.getBoundingClientRect();
     const behavior = reduceMotion.matches ? "instant" : "smooth";
