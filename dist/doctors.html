@@ -10,10 +10,11 @@
   <link rel="preload" href="assets/geologica.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="stylesheet" href="styles.css?v=mobile-menu-20261123">
   <link rel="stylesheet" href="catalog.css?v=20261122-buttons">
+  <link rel="stylesheet" href="filter-tags.css?v=20261123">
   <link rel="stylesheet" href="mobile-menu.css?v=20261123">
   <link rel="stylesheet" href="accessibility.css?v=20261123-layout">
   <script src="site.js?v=mobile-menu-20261123" defer></script>
-  <script src="catalog.js?v=doctor-counts-20261119" defer></script>
+  <script src="catalog.js?v=filter-tags-20261123" defer></script>
 </head>
 <body class="catalog-page doctors-page">
   <a class="skip-link" href="#main">Перейти к содержанию</a>
@@ -76,14 +77,14 @@
       <h1 id="catalog-title">Врачи</h1>
       <div class="catalog-toolbar">
         <div class="catalog-filters" role="group" aria-label="Специализация и направления работы врача" data-doctor-filters hidden>
-          <button class="catalog-filter" type="button" data-specialty="all" aria-pressed="true" aria-controls="doctors-grid">Все врачи <span class="catalog-filter-count" data-filter-count>12</span></button>
-          <button class="catalog-filter" type="button" data-specialty="therapy" aria-pressed="false" aria-controls="doctors-grid">Терапевты <span class="catalog-filter-count" data-filter-count hidden></span></button>
-          <button class="catalog-filter" type="button" data-specialty="surgery" aria-pressed="false" aria-controls="doctors-grid">Хирурги <span class="catalog-filter-count" data-filter-count hidden></span></button>
-          <button class="catalog-filter" type="button" data-specialty="children" aria-pressed="false" aria-controls="doctors-grid">Детские стоматологи <span class="catalog-filter-count" data-filter-count hidden></span></button>
-          <button class="catalog-filter" type="button" data-specialty="chief" aria-pressed="false" aria-controls="doctors-grid">Главный врач <span class="catalog-filter-count" data-filter-count hidden></span></button>
-          <button class="catalog-filter" type="button" data-specialty="caries" aria-pressed="false" aria-controls="doctors-grid">Лечение кариеса <span class="catalog-filter-count" data-filter-count hidden></span></button>
-          <button class="catalog-filter" type="button" data-specialty="endodontics" aria-pressed="false" aria-controls="doctors-grid">Лечение каналов <span class="catalog-filter-count" data-filter-count hidden></span></button>
-          <button class="catalog-filter" type="button" data-specialty="prevention" aria-pressed="false" aria-controls="doctors-grid">Профилактика <span class="catalog-filter-count" data-filter-count hidden></span></button>
+          <button class="catalog-filter" type="button" data-specialty="all" aria-pressed="true" aria-controls="doctors-grid">Все врачи</button>
+          <button class="catalog-filter" type="button" data-specialty="therapy" aria-pressed="false" aria-controls="doctors-grid">Терапевты</button>
+          <button class="catalog-filter" type="button" data-specialty="surgery" aria-pressed="false" aria-controls="doctors-grid">Хирурги</button>
+          <button class="catalog-filter" type="button" data-specialty="children" aria-pressed="false" aria-controls="doctors-grid">Детские стоматологи</button>
+          <button class="catalog-filter" type="button" data-specialty="chief" aria-pressed="false" aria-controls="doctors-grid">Главный врач</button>
+          <button class="catalog-filter" type="button" data-specialty="caries" aria-pressed="false" aria-controls="doctors-grid">Лечение кариеса</button>
+          <button class="catalog-filter" type="button" data-specialty="endodontics" aria-pressed="false" aria-controls="doctors-grid">Лечение каналов</button>
+          <button class="catalog-filter" type="button" data-specialty="prevention" aria-pressed="false" aria-controls="doctors-grid">Профилактика</button>
         </div>
         <p class="sr-only" role="status" aria-live="polite" aria-atomic="true" data-doctor-status>Показано: 12 врачей</p>
       </div>
