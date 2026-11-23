@@ -21,7 +21,7 @@
   margin-inline: calc(30 * var(--unit));
   margin-block-start: calc(50 * var(--unit));
   gap: var(--gap);
-  align-items: start;
+  align-items: stretch;
 }
 .services-page .direction-card {
   min-block-size: max(340px, calc(431 * var(--unit)));
