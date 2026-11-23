@@ -1,0 +1,56 @@
+/* Shared service shell: centered desktop content and the original treatment mobile layout. */
+.unified-service { --treatment-trailing: 0px; }
+.unified-service .service-copy { font-size: var(--large); line-height: 1.5; }
+.unified-service .treatment-layout { display: block; }
+.unified-service .treatment-layout > .treatment-nav { display: none; }
+.unified-service .treatment-content { margin-inline: auto; }
+.unified-service .treatment-content .carousel { margin-inline: 0; padding-inline: 0; }
+.unified-service .service-copy p + p { margin-block-start: 20px; }
+.unified-service .treatment-about .service-copy { margin-block-start: 20px; }
+.unified-service .treatment-hero-media img { object-position: 65% center; }
+@media (min-width: 601px) {
+  .unified-service .treatment-hero {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    block-size: 100svh;
+    min-block-size: calc(var(--header-space) + 440px);
+    padding: calc(var(--header-space) + var(--inside)) calc(var(--edge) + var(--inside)) calc(var(--edge) + var(--inside));
+  }
+  .unified-service .treatment-hero-media {
+    position: absolute;
+    inset: var(--header-space) var(--edge) var(--edge);
+    border-radius: var(--photo-radius);
+    overflow: hidden;
+  }
+  .unified-service .treatment-hero-media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgb(2 29 43 / 20%), rgb(2 29 43 / 15%) 40%, rgb(2 29 43 / 65%));
+    pointer-events: none;
+  }
+  .unified-service .treatment-intro { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: flex-start; gap: 32px; padding: 0; color: var(--white); }
+  .unified-service .treatment-intro h1 { max-inline-size: 15ch; font-size: var(--display); line-height: 1.1; }
+  .unified-service .treatment-back { color: var(--white); }
+  .unified-service .treatment-back img { filter: brightness(0) invert(1); }
+  .unified-service .treatment-book { background: var(--white); color: var(--ink); }
+  .unified-service .treatment-book:hover { background: var(--link); color: var(--white); }
+  .unified-service .treatment-content { inline-size: min(1128px, 72vw); }
+  .unified-service .treatment-about { padding-block-start: 0; }
+}
+@media (min-width: 601px) and (max-width: 780px) {
+  .unified-service .treatment-content { inline-size: 100%; }
+}
+@media (max-width: 600px) {
+  /* Hero, heading, photo and price cards use the canonical treatment-page rules. */
+  .unified-service .treatment-content { inline-size: auto; }
+  .unified-service .service-copy { font-size: var(--body); }
+  .unified-service .treatment-content .carousel {
+    margin-inline: calc(-1 * var(--edge));
+    padding-inline: var(--edge);
+    scroll-padding-inline: var(--edge);
+  }
+  .unified-service .service-adaptation { padding-inline: calc(5 * var(--mobile-unit)); }
+  .unified-service .service-adaptation .section-heading { padding-inline: 0; }
+}

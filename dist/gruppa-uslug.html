@@ -10,11 +10,12 @@
   <link rel="preload" href="assets/geologica.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="stylesheet" href="styles.css?v=mobile-dock-blur-20261123">
   <link rel="stylesheet" href="service-group.css?v=20261123">
+  <link rel="stylesheet" href="service-layout.css?v=20261123">
   <link rel="stylesheet" href="mobile-menu.css?v=dock-blur-20261123">
   <link rel="stylesheet" href="accessibility.css?v=20261123-layout">
   <script src="site.js?v=mobile-menu-20261123" defer></script>
 </head>
-<body class="service-page service-centered service-group-template">
+<body class="treatment-page unified-service">
   <a class="skip-link" href="#main">Перейти к содержанию</a>
   <header class="site-header" id="header">
     <a class="brand" href="index.html" aria-label="Метелица — на главную">
@@ -70,22 +71,18 @@
   </header>
 
   <main id="main" class="service-main">
-    <section class="hero-screen" id="top" aria-labelledby="service-title">
-      <div class="hero service-hero">
-        <img class="cover hero-photo" src="assets/about-2.jpg" alt="Вход в клинику «Метелица»" fetchpriority="high">
-        <div class="hero-shade" aria-hidden="true"></div>
-        <a class="mobile-brand service-mobile-brand" href="index.html" aria-label="Метелица — на главную"><img src="assets/logo.png" alt="Метелица"></a>
-        <a class="service-back" href="uslugi.html"><img src="assets/service-back.svg" width="8" height="12" alt="">услуги</a>
-        <div class="service-hero-bottom">
-          <p class="group-template-label">Шаблон страницы направления</p>
-          <h1 id="service-title">Название<br>группы услуг</h1>
-          <p class="group-template-intro">Короткое описание направления: кому оно подходит и какие задачи помогает решить.</p>
-          <a class="button service-button service-hero-book" href="#appointment" data-book>записаться</a>
-        </div>
+    <section class="treatment-hero" id="top" aria-labelledby="service-title">
+      <div class="treatment-intro">
+        <a class="mobile-brand treatment-brand" href="index.html" aria-label="Метелица — на главную"><img src="assets/logo.png" alt="Метелица"></a>
+        <a class="treatment-back" href="uslugi.html"><picture><source media="(max-width: 600px)" srcset="assets/treatment-back-mobile.svg"><img src="assets/carousel-prev.svg" alt=""></picture>Услуги</a>
+        <h1 id="service-title">Название группы услуг</h1>
+        <a class="button treatment-book" href="#appointment" data-book>записаться</a>
       </div>
+      <div class="treatment-hero-media"><img class="cover" src="assets/about-2.jpg" alt="Вход в клинику «Метелица»" fetchpriority="high"></div>
     </section>
+    <div class="treatment-layout section-shell"><div class="treatment-content">
 
-    <section class="service-section service-about" id="treatment-about" aria-labelledby="treatment-about-title">
+    <section class="treatment-about" id="treatment-about" aria-labelledby="treatment-about-title">
       <h2 id="treatment-about-title">О направлении</h2>
       <div class="service-copy">
         <p>Здесь будет описание группы услуг. Расскажите, что объединяет это направление, с какими вопросами обращаются пациенты и чем может помочь врач.</p>
@@ -94,25 +91,25 @@
       </div>
     </section>
 
-    <section class="service-section service-prices faq treatment-prices" id="prices" aria-labelledby="prices-title">
-      <h2 id="prices-title">Услуги этого направления</h2>
+    <section class="section faq treatment-prices" id="prices" aria-labelledby="prices-title">
+      <div class="section-heading"><h2 id="prices-title">Услуги этого направления</h2></div>
       <div class="faq-list">
         <details name="group-services">
-          <summary><span>Название услуги 1</span><span class="treatment-price">Укажите стоимость</span><span class="treatment-price-chevron" aria-hidden="true"><img src="assets/service-price-down.svg" width="20" height="12" alt=""></span></summary>
+          <summary><span>Название услуги 1</span><span class="treatment-price">Укажите стоимость</span><span class="treatment-price-chevron" aria-hidden="true"><img src="assets/price-caries-chevron.svg" width="22" height="13" alt=""></span></summary>
           <div class="treatment-price-body">
             <p>Здесь опишите, в каких случаях нужна эта услуга, что в неё входит и как проходит приём. Укажите, от чего зависит стоимость и нужна ли предварительная консультация.</p>
             <a class="button service-button treatment-price-book" href="#appointment" data-book>записаться</a>
           </div>
         </details>
         <details name="group-services">
-          <summary><span>Название услуги 2</span><span class="treatment-price">Укажите стоимость</span><span class="treatment-price-chevron" aria-hidden="true"><img src="assets/service-price-down.svg" width="20" height="12" alt=""></span></summary>
+          <summary><span>Название услуги 2</span><span class="treatment-price">Укажите стоимость</span><span class="treatment-price-chevron" aria-hidden="true"><img src="assets/price-pulpitis-chevron.svg" width="22" height="13" alt=""></span></summary>
           <div class="treatment-price-body">
             <p>Здесь опишите, в каких случаях нужна эта услуга, что в неё входит и как проходит приём. Укажите, от чего зависит стоимость и нужна ли предварительная консультация.</p>
             <a class="button service-button treatment-price-book" href="#appointment" data-book>записаться</a>
           </div>
         </details>
         <details name="group-services">
-          <summary><span>Название услуги 3</span><span class="treatment-price">Укажите стоимость</span><span class="treatment-price-chevron" aria-hidden="true"><img src="assets/service-price-down.svg" width="20" height="12" alt=""></span></summary>
+          <summary><span>Название услуги 3</span><span class="treatment-price">Укажите стоимость</span><span class="treatment-price-chevron" aria-hidden="true"><img src="assets/price-restoration-chevron.svg" width="22" height="13" alt=""></span></summary>
           <div class="treatment-price-body">
             <p>Здесь опишите, в каких случаях нужна эта услуга, что в неё входит и как проходит приём. Укажите, от чего зависит стоимость и нужна ли предварительная консультация.</p>
             <a class="button service-button treatment-price-book" href="#appointment" data-book>записаться</a>
@@ -121,8 +118,8 @@
       </div>
     </section>
 
-    <section class="service-section" id="treatment-steps" aria-labelledby="steps-title">
-      <h2 id="steps-title">Как проходит лечение</h2>
+    <section class="section" id="treatment-steps" aria-labelledby="steps-title">
+      <div class="section-heading"><h2 id="steps-title">Как проходит лечение</h2></div>
       <ol class="group-template-steps service-copy">
         <li><h3>Знакомство и диагностика</h3><p>Опишите первый приём: какие вопросы задаёт врач, что оценивает на осмотре и какие обследования могут понадобиться.</p></li>
         <li><h3>План лечения</h3><p>Расскажите, как обсуждают варианты, последовательность приёмов, сроки и стоимость.</p></li>
@@ -130,16 +127,16 @@
       </ol>
     </section>
 
-    <section class="service-section" id="doctors" aria-labelledby="group-doctors-title">
-      <h2 id="group-doctors-title">Врачи направления</h2>
+    <section class="section" id="doctors" aria-labelledby="group-doctors-title">
+      <div class="section-heading"><h2 id="group-doctors-title">Врачи направления</h2></div>
       <div class="service-copy">
         <p>Здесь разместите карточки специалистов, которые ведут приём по этому направлению: фотографию, имя, специализацию и опыт работы.</p>
         <p><a class="text-link" href="doctors.html">Посмотреть врачей клиники</a></p>
       </div>
     </section>
 
-    <section class="service-section service-faq faq" id="faq" aria-labelledby="faq-title">
-      <h2 id="faq-title">Вопросы о направлении</h2>
+    <section class="section faq" id="faq" aria-labelledby="faq-title">
+      <div class="section-heading"><h2 id="faq-title">Вопросы о направлении</h2></div>
       <div class="faq-list">
         <details name="group-faq"><summary>Как подготовиться к первому приёму?<img src="assets/faq-down.svg" alt=""></summary><p>Здесь укажите рекомендации по подготовке, необходимые документы и материалы предыдущих обследований.</p></details>
         <details name="group-faq"><summary>Сколько времени занимает лечение?<img src="assets/faq-down.svg" alt=""></summary><p>Здесь расскажите, от чего зависят сроки и количество посещений. Добавьте сведения для выбранной группы услуг.</p></details>
@@ -147,7 +144,7 @@
       </div>
     </section>
 
-      <section class="service-appointment appointment" id="appointment" aria-labelledby="appointment-title">
+      <section class="section appointment" id="appointment" aria-labelledby="appointment-title">
           <img class="cover appointment-photo" src="assets/service-child.jpg" alt="Врач знакомит ребёнка с осмотром у стоматолога" loading="lazy">
           <div class="appointment-shade" aria-hidden="true"></div>
           <div class="appointment-content">
@@ -171,6 +168,7 @@
             </form>
           </div>
         </section>
+    </div></div>
   </main>
 
   <footer class="site-footer section-shell">

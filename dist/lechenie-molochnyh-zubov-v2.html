@@ -9,11 +9,12 @@
   <link rel="icon" href="assets/logo.png" type="image/png">
   <link rel="preload" href="assets/geologica.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="stylesheet" href="styles.css?v=mobile-dock-blur-20261123">
+  <link rel="stylesheet" href="service-layout.css?v=20261123">
   <link rel="stylesheet" href="mobile-menu.css?v=dock-blur-20261123">
   <link rel="stylesheet" href="accessibility.css?v=20261123-layout">
   <script src="site.js?v=mobile-menu-20261123" defer></script>
 </head>
-<body class="service-page service-centered">
+<body class="treatment-page unified-service">
   <a class="skip-link" href="#main">Перейти к содержанию</a>
   <header class="site-header" id="header">
     <a class="brand" href="index.html" aria-label="Метелица — на главную">
@@ -69,20 +70,18 @@
   </header>
 
   <main id="main" class="service-main">
-      <section class="hero-screen" id="top" aria-labelledby="service-title">
-        <div class="hero service-hero">
-        <img class="cover hero-photo" src="assets/about-1.jpg" width="1536" height="1024" alt="Ребёнок улыбается в стоматологическом кресле" fetchpriority="high">
-        <div class="hero-shade" aria-hidden="true"></div>
-        <a class="mobile-brand service-mobile-brand" href="index.html" aria-label="Метелица — на главную"><img src="assets/logo.png" alt="Метелица"></a>
-        <a class="service-back" href="uslugi.html"><img src="assets/service-back.svg" width="8" height="12" alt="">услуги</a>
-        <div class="service-hero-bottom">
-          <h1 id="service-title">Лечение<br>молочных зубов</h1>
-          <a class="button service-button service-hero-book" href="#appointment" data-book="Лечение молочных зубов">записать ребёнка</a>
-        </div>
-        </div>
-      </section>
+      <section class="treatment-hero" id="top" aria-labelledby="service-title">
+      <div class="treatment-intro">
+        <a class="mobile-brand treatment-brand" href="index.html" aria-label="Метелица — на главную"><img src="assets/logo.png" alt="Метелица"></a>
+        <a class="treatment-back" href="uslugi.html"><picture><source media="(max-width: 600px)" srcset="assets/treatment-back-mobile.svg"><img src="assets/carousel-prev.svg" alt=""></picture>Услуги</a>
+        <h1 id="service-title">Лечение молочных зубов</h1>
+        <a class="button treatment-book" href="#appointment" data-book="Лечение молочных зубов">записать ребёнка</a>
+      </div>
+      <div class="treatment-hero-media"><img class="cover" src="assets/about-1.jpg" width="1536" height="1024" alt="Ребёнок улыбается в стоматологическом кресле" fetchpriority="high"></div>
+    </section>
+    <div class="treatment-layout section-shell"><div class="treatment-content">
 
-      <section class="service-section service-about" id="treatment-about" aria-labelledby="treatment-about-title">
+      <section class="treatment-about" id="treatment-about" aria-labelledby="treatment-about-title">
         <h2 id="treatment-about-title">Почему важно лечить молочные зубы</h2>
         <div class="service-copy">
           <p>Молочные зубы важно сохранять до их естественной смены. Кариес может быстро развиваться, вызывать боль и мешать ребёнку есть и спать. А преждевременная потеря зуба иногда влияет на положение постоянных зубов.</p>
@@ -91,11 +90,11 @@
         </div>
       </section>
 
-      <section class="service-section service-prices faq treatment-prices" id="prices" aria-labelledby="prices-title">
-          <h2 id="prices-title">Направления и цены</h2>
+      <section class="section faq treatment-prices" id="prices" aria-labelledby="prices-title">
+          <div class="section-heading"><h2 id="prices-title">Направления и цены</h2></div>
           <div class="faq-list">
             <details name="treatment-prices">
-              <summary><span>Лечение кариеса молочного зуба</span><span class="treatment-price">от 4 900 ₽</span><span class="treatment-price-chevron treatment-price-chevron-up" aria-hidden="true"><img src="assets/service-price-up.svg" width="20" height="12" alt=""></span></summary>
+              <summary><span>Лечение кариеса молочного зуба</span><span class="treatment-price">от 4 900 ₽</span><span class="treatment-price-chevron" aria-hidden="true"><img src="assets/price-caries-chevron.svg" width="22" height="13" alt=""></span></summary>
               <div class="treatment-price-body">
                 <p>Кариес может развиваться незаметно и долго не вызывать боли. На осмотре врач определит глубину поражения, расскажет, какое лечение потребуется, и уточнит его стоимость.</p>
                 <dl>
@@ -107,7 +106,7 @@
               </div>
             </details>
             <details name="treatment-prices">
-              <summary><span>Лечение пульпита</span><span class="treatment-price">от 8 500 ₽</span><span class="treatment-price-chevron" aria-hidden="true"><img src="assets/service-price-down.svg" width="20" height="12" alt=""></span></summary>
+              <summary><span>Лечение пульпита</span><span class="treatment-price">от 8 500 ₽</span><span class="treatment-price-chevron" aria-hidden="true"><img src="assets/price-pulpitis-chevron.svg" width="22" height="13" alt=""></span></summary>
               <div class="treatment-price-body">
                 <p>Если кариес затронул ткани внутри зуба, может потребоваться лечение пульпита. Врач оценит, можно ли сохранить зуб, подберёт метод лечения и объяснит, сколько посещений понадобится. В указанные варианты входит восстановление зуба.</p>
                 <dl>
@@ -119,7 +118,7 @@
               </div>
             </details>
             <details name="treatment-prices">
-              <summary><span>Восстановление зубов</span><span class="treatment-price">от 9 000 ₽</span><span class="treatment-price-chevron" aria-hidden="true"><img src="assets/service-price-down.svg" width="20" height="12" alt=""></span></summary>
+              <summary><span>Восстановление зубов</span><span class="treatment-price">от 9 000 ₽</span><span class="treatment-price-chevron" aria-hidden="true"><img src="assets/price-restoration-chevron.svg" width="22" height="13" alt=""></span></summary>
               <div class="treatment-price-body">
                 <p>При сколе или значительном разрушении восстанавливаем форму молочного зуба пломбировочным материалом. Для передних зубов также учитываем внешний вид улыбки. На осмотре врач проверит, достаточно ли тканей для надёжного восстановления, и предложит подходящий вариант.</p>
                 <dl>
@@ -130,7 +129,7 @@
               </div>
             </details>
             <details name="treatment-prices">
-              <summary><span>Коронки на молочные зубы</span><span class="treatment-price">от 6 500 ₽</span><span class="treatment-price-chevron" aria-hidden="true"><img src="assets/service-price-down.svg" width="20" height="12" alt=""></span></summary>
+              <summary><span>Коронки на молочные зубы</span><span class="treatment-price">от 6 500 ₽</span><span class="treatment-price-chevron" aria-hidden="true"><img src="assets/treatment-price-chevron.svg" width="22" height="13" alt=""></span></summary>
               <div class="treatment-price-body">
                 <p>Когда молочный зуб сильно разрушен и пломбы может быть недостаточно, врач может предложить коронку. Она закрывает зуб целиком и помогает защитить его при жевании. Материал подбираем с учётом расположения зуба, его состояния и внешнего вида.</p>
                 <dl>
@@ -193,8 +192,8 @@
           <a class="text-link deck-more" href="doctors.html">Все врачи</a>
         </section>
 
-      <section class="service-section service-faq faq" id="faq" aria-labelledby="faq-title">
-        <h2 id="faq-title">Ответы на вопросы</h2>
+      <section class="section faq" id="faq" aria-labelledby="faq-title">
+        <div class="section-heading"><h2 id="faq-title">Ответы на вопросы</h2></div>
         <div class="faq-list">
           <details name="service-faq"><summary>Чем общий наркоз отличается от седации?<span class="faq-icon" aria-hidden="true"></span></summary><p>При седации ребёнок расслаблен, а степень контакта зависит от её глубины и выбранного метода. При общем наркозе ребёнок спит и не реагирует на происходящее. Какой вариант подходит, врач и анестезиолог определяют после оценки здоровья и объёма лечения. Подробнее — на странице <a class="text-link" href="lechenie-vo-sne.html">лечения во сне</a>.</p></details>
           <details name="service-faq"><summary>Какие обследования нужны?<span class="faq-icon" aria-hidden="true"></span></summary><p>Начинаем с осмотра. Если нужно уточнить состояние зуба и окружающих тканей, врач назначит снимок по показаниям. Перед лечением под наркозом список обследований и консультаций определяет анестезиолог.</p></details>
@@ -239,7 +238,7 @@
           <a class="text-link deck-more" href="https://yandex.ru/maps/org/metelitsa/1132881772/reviews/" target="_blank" rel="noopener">Все отзывы</a>
         </section>
 
-      <section class="service-appointment appointment" id="appointment" aria-labelledby="appointment-title">
+      <section class="section appointment" id="appointment" aria-labelledby="appointment-title">
           <img class="cover appointment-photo" src="assets/service-child.jpg" alt="Врач знакомит ребёнка с осмотром у стоматолога" loading="lazy">
           <div class="appointment-shade" aria-hidden="true"></div>
           <div class="appointment-content">
@@ -263,6 +262,7 @@
             </form>
           </div>
         </section>
+    </div></div>
   </main>
 
   <footer class="site-footer section-shell">
