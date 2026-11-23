@@ -31,6 +31,8 @@
 .services-page .direction-photo {
   inline-size: max(80px, calc(110 * var(--unit)));
   block-size: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
   border-radius: 50%;
 }
 .services-page .direction-copy { margin-block-start: max(28px, calc(40 * var(--unit))); }
