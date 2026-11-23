@@ -75,7 +75,19 @@
   .mobile-menu-contact > p { margin-block-start: 5px; font-size: var(--small); line-height: 1.5; }
   .mobile-menu .mobile-menu-actions { position: relative; flex: none; gap: calc(8 * var(--mobile-unit)); padding: var(--mobile-gutter) var(--mobile-gutter) calc(var(--mobile-gutter) + var(--dock-safe-area)); }
   .mobile-menu-actions > * { position: relative; z-index: 1; }
-  .mobile-dock::before, .mobile-menu-actions::before { content: ""; position: absolute; z-index: -2; inset: 0; pointer-events: none; -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); -webkit-mask-image: linear-gradient(to bottom, transparent, #000); mask-image: linear-gradient(to bottom, transparent, #000); }
+  .mobile-dock, .mobile-menu-actions { isolation: isolate; background: transparent; }
+  .mobile-dock::before, .mobile-menu-actions::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    pointer-events: none;
+    background: transparent;
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 85%, #000 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, #000 85%, #000 100%);
+  }
   .mobile-menu .mobile-menu-actions .button { min-block-size: var(--menu-action-size); block-size: var(--menu-action-size); padding: 0 5px; font-size: var(--button-font-size); line-height: 1.2; }
   .mobile-menu .mobile-action-icon { inline-size: var(--menu-action-size); block-size: var(--menu-action-size); }
   .mobile-menu .mobile-action-icon img { inline-size: 100%; block-size: 100%; max-inline-size: none; }
