@@ -750,6 +750,8 @@ address { font-style: normal; }
     --dock-safe-area: env(safe-area-inset-bottom, 0px);
     --mobile-radius: calc(25 * var(--mobile-unit));
     --mobile-gutter: calc(10 * var(--mobile-unit));
+    --mobile-copy-gutter: calc(5 * var(--mobile-unit));
+    --mobile-text-edge: calc(var(--edge) + var(--mobile-copy-gutter));
     --mobile-control-size: max(44px, calc(50 * var(--mobile-unit)));
     --button-height: var(--mobile-control-size);
     --button-font-size: var(--body);
@@ -1468,4 +1470,13 @@ address { font-style: normal; }
   .mobile-booking .service-appointment { display: flex; min-block-size: min(560px, 100dvh - 40px); }
   .service-appointment h2 { font-size: 36px; }
   .service-page .site-footer { margin-block-start: 64px; }
+}
+
+/* One text inset on the mobile homepage; card rails keep their own gutters. */
+@media (max-width: 600px) {
+  .home-page .about-content { padding-inline: var(--mobile-copy-gutter); }
+  .home-page .services .service-content h2 { margin-inline: var(--mobile-copy-gutter); }
+  .home-page .section-heading { padding-inline: var(--mobile-copy-gutter); }
+  .home-page :is(.service-more, .deck-more) { margin-inline-start: var(--mobile-copy-gutter); }
+  .home-page .contacts h2 { margin-inline: var(--mobile-copy-gutter); }
 }
