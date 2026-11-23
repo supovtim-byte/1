@@ -14,9 +14,6 @@ if (doctorFilters) {
     for (const button of buttons) {
       const active = button.dataset.specialty === selected;
       button.setAttribute('aria-pressed', String(active));
-      const count = button.querySelector('[data-filter-count]');
-      count.hidden = button.dataset.specialty !== 'all' && !active;
-      count.textContent = button.dataset.specialty === 'all' ? cards.length : visible;
     }
     status.textContent = `Показано: ${visible} ${doctorWord(visible)}`;
   }
