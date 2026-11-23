@@ -1,0 +1,64 @@
+/* Fixed soft gradients are composited with transforms; no animated blur or paint properties. */
+.doctor-hero-slot { isolation: isolate; }
+.doctor-hero-slot::before, .doctor-hero-slot::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: -8% -10%;
+  pointer-events: none;
+  background: radial-gradient(ellipse 42% 48% at 50% 62%, rgb(120 191 255 / 38%), rgb(169 214 255 / 24%) 48%, rgb(217 237 255 / 0%) 76%);
+  transform-origin: 52% 65%;
+  animation: doctor-aura-drift-a 19s ease-in-out -7s infinite;
+  animation-play-state: paused;
+}
+.doctor-hero-slot::after {
+  background: radial-gradient(ellipse 37% 52% at 57% 58%, rgb(120 191 255 / 28%), rgb(169 214 255 / 18%) 50%, rgb(217 237 255 / 0%) 77%);
+  transform-origin: 46% 56%;
+  animation-name: doctor-aura-drift-b;
+  animation-duration: 27s;
+  animation-delay: -13s;
+}
+.doctor-hero-slot.is-aura-visible::before, .doctor-hero-slot.is-aura-visible::after { animation-play-state: running; }
+.doctor-hero-media { z-index: 1; }
+@keyframes doctor-aura-drift-a {
+  0%, 100% { transform: translate(-3%, 2%) rotate(-9deg) skew(3deg, -2deg) scale(1.03, .98); }
+  29% { transform: translate(4%, -4%) rotate(8deg) skew(-5deg, 3deg) scale(.96, 1.07); }
+  63% { transform: translate(-1%, -6%) rotate(-3deg) skew(6deg, 1deg) scale(1.08, .95); }
+  82% { transform: translate(-5%, -1%) rotate(6deg) skew(-2deg, -3deg) scale(1.01, 1.04); }
+}
+@keyframes doctor-aura-drift-b {
+  0%, 100% { transform: translate(4%, -2%) rotate(11deg) skew(-4deg, 2deg) scale(.98, 1.05); }
+  37% { transform: translate(-4%, 3%) rotate(-7deg) skew(4deg, -3deg) scale(1.07, .96); }
+  72% { transform: translate(1%, -5%) rotate(4deg) skew(-2deg, 5deg) scale(1.03, 1.08); }
+}
+/* Touch cards allocate no animated layers. Profile motion remains available on mobile. */
+@media (min-width: 601px) and (hover: hover) and (pointer: fine) {
+  .doctor-photo::before, .doctor-photo::after {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    inset: -8% -10%;
+    pointer-events: none;
+    opacity: 0;
+    background: radial-gradient(ellipse 43% 48% at 50% 61%, rgb(120 191 255 / 60%), rgb(169 214 255 / 40%) 48%, rgb(217 237 255 / 0%) 77%);
+    animation: doctor-aura-drift-a 19s ease-in-out -7s infinite paused;
+    transition: opacity .65s ease;
+  }
+  .doctor-photo::after {
+    background: radial-gradient(ellipse 37% 52% at 57% 58%, rgb(120 191 255 / 42%), rgb(169 214 255 / 28%) 50%, rgb(217 237 255 / 0%) 77%);
+    animation-name: doctor-aura-drift-b;
+    animation-duration: 27s;
+    animation-delay: -13s;
+  }
+  .doctor-card:hover .doctor-photo::before, .doctor-card:hover .doctor-photo::after,
+  .doctor-card:focus-within .doctor-photo::before, .doctor-card:focus-within .doctor-photo::after {
+    opacity: 1;
+    animation-play-state: running;
+  }
+  .doctor-photo .doctor-profile-photo { z-index: 1; }
+  .doctor-photo .doctor-book { z-index: 2; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .doctor-hero-slot::before, .doctor-hero-slot::after,
+  .doctor-photo::before, .doctor-photo::after { animation: none; transition: none; }
+}
