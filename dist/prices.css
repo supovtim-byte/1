@@ -1,0 +1,117 @@
+/* Prices — Figma 130:76. Content stays in the HTML price list. */
+.prices-heading {
+  margin-inline: max(24px, calc(70 * var(--unit)));
+  padding-inline: 0;
+  padding-block-start: max(112px, calc(164 * var(--unit)));
+}
+.prices-heading h1 { font-weight: 500; }
+.prices-tools {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px max(24px, calc(40 * var(--unit)));
+  margin-block-start: calc(40 * var(--unit));
+}
+.prices-filters { display: flex; flex-wrap: wrap; gap: 10px; }
+.prices-filter, .prices-search {
+  min-block-size: max(48px, calc(53 * var(--unit)));
+  border-radius: max(12px, calc(17 * var(--unit)));
+  background: var(--panel);
+}
+.prices-filter {
+  padding: 9px 20px 14px;
+  font-size: max(16px, calc(20 * var(--unit)));
+  line-height: 1.5;
+}
+.prices-filter[aria-pressed="true"] { background: var(--ink); color: var(--page); }
+.prices-filter:hover { box-shadow: inset 0 0 0 1px var(--ink); }
+.prices-search { position: relative; inline-size: max(200px, calc(230 * var(--unit))); }
+.prices-search img { position: absolute; inset-inline-start: 20px; top: 50%; transform: translateY(-50%); pointer-events: none; }
+.prices-search input {
+  display: block;
+  inline-size: 100%;
+  min-block-size: inherit;
+  border: 0;
+  border-radius: inherit;
+  padding: 9px 12px 14px 54px;
+  background: transparent;
+  font-size: max(16px, calc(20 * var(--unit)));
+}
+.prices-layout {
+  --treatment-rail: max(240px, calc(377 * var(--unit)));
+  --treatment-gap: max(48px, calc(290 * var(--unit)));
+  margin-inline: max(24px, calc(70 * var(--unit))) max(24px, calc(273 * var(--unit)));
+  margin-block-start: max(48px, calc(61 * var(--unit)));
+}
+.prices-page .treatment-nav {
+  --nav-sticky-gap: 24px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  gap: 20px;
+  block-size: auto;
+  max-block-size: calc(100dvh - var(--visible-header-height, 0px) - 48px);
+  margin-block-start: calc(13 * var(--unit));
+  padding: 0 12px 0 0;
+  font-size: 20px;
+  line-height: 30px;
+  letter-spacing: 0;
+  overscroll-behavior: contain;
+}
+.prices-page .treatment-nav a { flex: 0 0 auto; min-block-size: 30px; }
+.prices-page .treatment-nav a:hover { color: var(--link); }
+.prices-page .treatment-content { padding-inline-end: 0; }
+.prices-category { padding: 0; background: transparent; border-radius: 0; }
+.prices-category + .prices-category { margin-block-start: max(64px, calc(87.5 * var(--unit))); }
+.prices-category h2 { font-weight: 400; letter-spacing: -.03em; }
+.prices-category-link:hover, .prices-category-link:focus-visible { color: var(--link); }
+.prices-list { margin-block-start: max(20px, calc(27.5 * var(--unit))); }
+.prices-list > div {
+  grid-template-columns: minmax(0, 1fr) max-content;
+  min-block-size: max(60px, calc(69 * var(--unit)));
+  padding-block: max(18px, calc(22.5 * var(--unit)));
+  gap: 12px max(20px, calc(40 * var(--unit)));
+  font-size: max(16px, calc(20 * var(--unit)));
+  background: url("assets/prices-row-divider.svg") left bottom repeat-x;
+}
+.prices-list > div:last-child { background-image: none; }
+.prices-list :is(dt, dd, .prices-service-link) { transition: color .16s ease; }
+.prices-page .prices-list > div:is(:hover, :focus-within) :is(dt, dd, .prices-service-link) { color: var(--link); }
+.prices-list dt { min-inline-size: 0; overflow-wrap: anywhere; }
+.prices-list dd { white-space: nowrap; }
+.prices-page [hidden] { display: none !important; }
+.prices-empty { font-size: var(--large); }
+.accessibility-mode .prices-page .treatment-nav { line-height: 1.5; }
+.accessibility-mode .prices-page :is(.prices-filter, .prices-search input) { font-size: var(--body); }
+.accessibility-dark .prices-search img { filter: brightness(0) invert(1); }
+@media (max-width: 1100px) {
+  .prices-layout { --treatment-rail: 240px; --treatment-gap: 40px; margin-inline: 24px; }
+  .prices-page .treatment-nav { font-size: 18px; }
+}
+@media (max-width: 780px) {
+  .prices-layout { grid-template-columns: minmax(0, 1fr); row-gap: 32px; }
+  .prices-page .treatment-nav {
+    position: static;
+    flex-direction: row;
+    max-block-size: none;
+    margin: 0;
+    padding: 0 0 12px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    font-size: 16px;
+  }
+  .prices-page .treatment-nav a { inline-size: max-content; white-space: nowrap; }
+}
+@media (max-width: 600px) {
+  .prices-heading { margin-inline: var(--edge); padding: 100px 5px 0; }
+  .prices-heading .mobile-brand { inset-inline-start: 5px; }
+  .prices-heading .mobile-brand img { filter: none; }
+  .prices-tools { margin-block-start: 26px; gap: 16px; }
+  .prices-filter { padding-inline: 16px; font-size: var(--body); }
+  .prices-search { inline-size: 100%; }
+  .prices-layout { margin: 32px var(--edge) 0; }
+  .prices-category h2 { font-size: var(--title); }
+  .prices-list > div { font-size: var(--body); line-height: 1.5; gap: 16px; }
+  .prices-category + .prices-category { margin-block-start: 52px; }
+  .prices-source { margin-inline: 0; }
+}
