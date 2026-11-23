@@ -17,5 +17,12 @@
 }
 .doctors-page .catalog-filters { gap: 10px; }
 @media (max-width: 600px) {
-  .prices-filter, .doctors-page .catalog-filter { padding-inline: 16px; font-size: var(--body); }
+  .prices-page .prices-filter, .doctors-page .catalog-filter {
+    min-block-size: 38px;
+    padding: 6px 14px 10px;
+    border-radius: 12px;
+    font-size: calc(var(--body) - 2px);
+    line-height: 1.5;
+  }
+  .prices-filters, .doctors-page .catalog-filters { gap: 8px; }
 }
