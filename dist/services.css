@@ -1,0 +1,77 @@
+/* Services catalog — Figma 361:2271. Shared navigation and booking stay in styles.css. */
+.services-catalog {
+  min-block-size: calc(1528 * var(--unit));
+  padding-block-end: max(48px, calc(80 * var(--unit)));
+}
+.services-page .catalog-heading {
+  display: flex;
+  align-items: flex-start;
+  gap: max(18px, calc(26 * var(--unit)));
+  margin-inline: calc(30 * var(--unit));
+  padding: max(112px, calc(164 * var(--unit))) var(--inside) 0;
+}
+.services-page .catalog-heading h1 { font-weight: 500; letter-spacing: -.03em; }
+.services-page .catalog-price-link {
+  margin-block-start: calc(7 * var(--unit));
+  padding-block: 0 12px;
+  font-size: max(16px, calc(20 * var(--unit)));
+  line-height: 1.5;
+}
+.services-page .directions-grid {
+  margin-inline: calc(30 * var(--unit));
+  margin-block-start: calc(50 * var(--unit));
+  gap: var(--gap);
+  align-items: start;
+}
+.services-page .direction-card {
+  min-block-size: max(340px, calc(431 * var(--unit)));
+  padding: var(--inside);
+}
+.direction-image-link { display: block; align-self: flex-start; border-radius: 50%; }
+.services-page .direction-photo {
+  inline-size: max(80px, calc(110 * var(--unit)));
+  block-size: auto;
+  border-radius: 50%;
+}
+.services-page .direction-copy { margin-block-start: max(28px, calc(40 * var(--unit))); }
+.services-page .direction-copy h2 {
+  color: #000;
+  font-size: max(22px, calc(28 * var(--unit)));
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+.services-page .direction-copy > p {
+  max-inline-size: calc(395 * var(--unit));
+  margin-block: max(14px, calc(20 * var(--unit))) max(24px, calc(50 * var(--unit)));
+  color: var(--ink);
+  font-size: max(16px, calc(19 * var(--unit)));
+  line-height: 1.5;
+}
+.services-page .direction-details { border: 0; }
+.services-page .direction-details summary {
+  justify-content: flex-start;
+  gap: 12px;
+  min-block-size: 29px;
+  font-size: max(16px, calc(19 * var(--unit)));
+  line-height: 1.5;
+}
+.services-page .direction-chevron { inline-size: auto; max-inline-size: none; }
+.services-page .direction-details ul { padding-block: 20px 0; font-size: max(16px, var(--body)); }
+.accessibility-mode .services-page .direction-copy h2 { color: var(--ink); }
+.accessibility-mode .services-page :is(.catalog-price-link, .direction-copy > p, .direction-details summary) { font-size: var(--body); }
+@media (max-width: 1100px) {
+  .services-page .direction-copy > p { max-inline-size: 36ch; }
+}
+@media (max-width: 600px) {
+  .services-catalog { min-block-size: 0; padding-block-end: 0; }
+  .services-page .catalog-heading { margin-inline: var(--edge); padding: 100px 5px 0; gap: 18px; }
+  .services-page .catalog-price-link { margin-block-start: 4px; font-size: var(--body); }
+  .services-page .directions-grid { margin-inline: var(--edge); margin-block-start: 28px; gap: 15px; }
+  .services-page .direction-card { min-block-size: 340px; padding: 28px; }
+  .services-page .direction-photo { inline-size: 90px; }
+  .services-page .direction-copy { margin-block-start: 30px; }
+  .services-page .direction-copy h2 { font-size: max(22px, calc(24 * var(--mobile-unit))); }
+  .services-page .direction-copy > p { margin-block: 16px 28px; font-size: var(--body); }
+  .services-page .direction-details summary { min-block-size: 44px; font-size: var(--body); }
+  .services-page .direction-details ul { font-size: var(--body); }
+}
