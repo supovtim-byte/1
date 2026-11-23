@@ -1,21 +1,30 @@
-/* Shared phone heroes — Figma 441:3927 (360 × 697 photo, text starts at 388px). */
+/* Isolated phone heroes — Figma 443:4071 and 443:4101. */
+:is(.home-page, .children-page) :is(.hero-title-mobile, .hero-metro-mobile) { display: none; }
 @media (max-width: 600px) {
   :is(.home-page, .children-page) .hero {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-end;
-    gap: 20px;
+    gap: 10px;
     min-block-size: max(540px, calc(var(--initial-viewport-height, 100svh) + 26px));
-    padding: 100px var(--inside) calc(145 * var(--mobile-unit) + var(--dock-safe-area));
+    padding: 100px var(--inside) max(calc(var(--hero-copy-bottom) * var(--mobile-unit) + var(--dock-safe-area)), calc(540px - var(--initial-viewport-height, 100svh) + var(--mobile-control-size) + 2 * var(--mobile-gutter) + 20px + var(--dock-safe-area)));
     overflow: hidden;
   }
-  :is(.home-page, .children-page) .hero h1 { max-inline-size: 100%; }
+  .home-page .hero { --hero-copy-bottom: 152; --hero-light-x: 57.7778%; --hero-light-y: 29.484%; --hero-light-rx: 102.5%; --hero-light-ry: 35.2726%; }
+  .children-page .hero { --hero-copy-bottom: 133; --hero-light-x: 48.0556%; --hero-light-y: 39.2396%; --hero-light-rx: 107.9167%; --hero-light-ry: 37.1363%; }
+  :is(.home-page, .children-page) .hero h1 { max-inline-size: 100%; font-size: clamp(33px, calc(37 * var(--mobile-unit)), 46px); line-height: 1.05; letter-spacing: -.04em; }
+  :is(.home-page, .children-page) :is(.hero-title-desktop, .hero-address-desktop) { display: none; }
+  :is(.home-page, .children-page) .hero-title-mobile { display: block; }
+  :is(.home-page, .children-page) .hero-metro-mobile { display: flex; flex-wrap: wrap; gap: 4px 20px; }
+  .hero-metro-mobile > span { white-space: nowrap; }
   :is(.home-page, .children-page) .hero-aside { margin: 0; }
-  :is(.home-page, .children-page) .hero-address { font-weight: 500; }
+  :is(.home-page, .children-page) .hero-address { font-weight: 400; }
+  .children-page .hero-photo { object-position: 78% center; }
   :is(.home-page, .children-page) .hero-shade {
     background:
-      radial-gradient(ellipse 110.278% 37.95% at 50% 29.484%, rgb(0 36 51 / 0%) 5.9718%, rgb(0 36 51 / 50%) 100%),
-      linear-gradient(180deg, rgb(0 36 51 / 0%) 57.974%, rgb(0 36 51 / 90%) 100%);
+      radial-gradient(ellipse var(--hero-light-rx) var(--hero-light-ry) at var(--hero-light-x) var(--hero-light-y), rgb(0 36 51 / 0%) 5.9718%, rgb(0 36 51 / 50%) 100%),
+      linear-gradient(180deg, rgb(0 36 51 / 0%) 55.023%, rgb(0 36 51 / 60%) 100%);
   }
+  .mobile-large-text :is(.home-page, .children-page) .hero h1 { font-size: clamp(40px, calc(43 * var(--mobile-unit)), 54px); }
 }
