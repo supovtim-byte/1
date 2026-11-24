@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: read
+  actions: read
   pages: write
   id-token: write
 
@@ -40,6 +41,21 @@ jobs:
         with:
           path: dist
           name: github-pages-${{ github.run_attempt }}
+      - name: Wait for Pages artifact metadata
+        env:
+          GH_TOKEN: ${{ github.token }}
+        # The upload can finish before the artifact is visible to the deployment API.
+        run: |
+          for pages_artifact_attempt in {1..20}; do
+            pages_artifact_count=$(gh api "repos/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}/artifacts?name=github-pages-${GITHUB_RUN_ATTEMPT}" --jq '.total_count')
+            if [ "$pages_artifact_count" = "1" ]; then
+              echo "Pages artifact metadata is available."
+              exit 0
+            fi
+            sleep 3
+          done
+          echo "Pages artifact metadata did not become available."
+          exit 1
       - name: Deploy static site
         id: deployment
         # v4.0.0 discovers uploaded artifacts through the REST API.
