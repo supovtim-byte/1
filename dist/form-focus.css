@@ -1,0 +1,7 @@
+/* Text-entry fields keep their caret, labels and validation styling without focus rings. */
+:is(input:not([type="checkbox"]):not([type="radio"]):not([type="button"]):not([type="submit"]), select, textarea):is(:focus, :focus-visible) {
+  outline: none;
+  box-shadow: none;
+}
+.tax-field:focus-within:not(.is-invalid),
+.doctor-appointment .field:focus-within { outline: none; }
