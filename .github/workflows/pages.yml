@@ -23,6 +23,12 @@ jobs:
     steps:
       - name: Check out source
         uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Generate doctor pages and catalogue
+        run: npm run build
       - name: Verify local resources and JavaScript
         run: npm run check
       - name: Configure GitHub Pages

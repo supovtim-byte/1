@@ -1,0 +1,126 @@
+{
+  "schemaVersion": 1,
+  "id": "nikitenok",
+  "order": 32,
+  "name": "Никитенок Даниил Николаевич",
+  "aliases": [],
+  "specialties": [
+    "Врач-анестезиолог-реаниматолог"
+  ],
+  "filterTags": [
+    "anesthesia"
+  ],
+  "publication": {
+    "catalog": false,
+    "bookable": false
+  },
+  "availabilityLabel": null,
+  "photo": null,
+  "documents": [],
+  "about": [
+    {
+      "text": "Никитенок Даниил Николаевич — врач-анестезиолог-реаниматолог.",
+      "sourceRefs": [
+        "education"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "year": 2009,
+      "text": "Санкт-Петербургская государственная педиатрическая медицинская академия. Педиатрия.",
+      "sourceRefs": [
+        "education"
+      ]
+    },
+    {
+      "year": 2010,
+      "text": "Санкт-Петербургская государственная педиатрическая медицинская академия. Интернатура, анестезиология-реаниматология.",
+      "sourceRefs": [
+        "education"
+      ]
+    },
+    {
+      "year": 2020,
+      "text": "НМИЦ им. В. А. Алмазова. Повышение квалификации.",
+      "sourceRefs": [
+        "education"
+      ]
+    }
+  ],
+  "experience": {
+    "years": 17,
+    "asOf": "2026-11-24",
+    "sourceRefs": [
+      "profile"
+    ]
+  },
+  "directions": [],
+  "reviews": {
+    "links": [
+      {
+        "sourceRef": "reviews"
+      }
+    ]
+  },
+  "deferred": {
+    "achievements": [
+      {
+        "title": "Выбор пациентов",
+        "organizer": "LikeDoctor",
+        "year": 2025,
+        "kind": "platform_award",
+        "sourceRefs": [
+          "like-doctor"
+        ]
+      },
+      {
+        "title": "3 года подряд в ТОП-3",
+        "organizer": "LikeDoctor",
+        "kind": "platform_badge",
+        "sourceRefs": [
+          "like-doctor"
+        ]
+      }
+    ],
+    "publications": [],
+    "clinicalCases": [],
+    "employment": [
+      {
+        "organization": "Гильдия стоматологов на Типанова",
+        "position": "Анестезиолог-реаниматолог",
+        "fromYear": 2023,
+        "sourceRefs": [
+          "like-doctor"
+        ]
+      }
+    ],
+    "experienceHistory": []
+  },
+  "sources": {
+    "education": {
+      "label": "Сведения об образовании медицинских работников",
+      "url": "https://metelitsa-dent.ru/files/Информация_об_образовании_медицинских_работников.pdf#page=14",
+      "kind": "official_document",
+      "checkedAt": "2026-11-24"
+    },
+    "profile": {
+      "label": "Профессиональная карточка врача",
+      "url": "https://doctu.ru/spb/doctor/nikitenok-daniil-nikolaevich",
+      "kind": "professional_profile",
+      "checkedAt": "2026-11-24"
+    },
+    "like-doctor": {
+      "label": "LikeDoctor",
+      "url": "https://like.doctor/sankt-peterburg/vrachi/nikitenok-daniil-nikolaevich",
+      "kind": "medical_directory",
+      "checkedAt": "2026-11-24"
+    },
+    "reviews": {
+      "label": "LikeDoctor",
+      "url": "https://like.doctor/sankt-peterburg/vrachi/nikitenok-daniil-nikolaevich",
+      "kind": "review_platform",
+      "checkedAt": "2026-11-24"
+    }
+  }
+}

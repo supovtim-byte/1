@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "id": "shamarina",
+  "order": 31,
+  "name": "Шамарина Анастасия Александровна",
+  "aliases": [],
+  "specialties": [
+    "Врач-стоматолог"
+  ],
+  "filterTags": [
+    "general"
+  ],
+  "publication": {
+    "catalog": false,
+    "bookable": false
+  },
+  "availabilityLabel": null,
+  "photo": null,
+  "documents": [],
+  "about": [
+    {
+      "text": "Шамарина Анастасия Александровна — врач-стоматолог.",
+      "sourceRefs": [
+        "education"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "year": 2014,
+      "text": "Первый Санкт-Петербургский государственный медицинский университет им. акад. И. П. Павлова. Стоматология.",
+      "sourceRefs": [
+        "education"
+      ]
+    },
+    {
+      "year": 2015,
+      "text": "Первый Санкт-Петербургский государственный медицинский университет им. акад. И. П. Павлова. Интернатура, стоматология общей практики.",
+      "sourceRefs": [
+        "education"
+      ]
+    }
+  ],
+  "experience": {
+    "years": 12,
+    "asOf": "2026-11-24",
+    "sourceRefs": [
+      "profile"
+    ]
+  },
+  "directions": [],
+  "reviews": {
+    "links": [
+      {
+        "sourceRef": "reviews"
+      }
+    ]
+  },
+  "deferred": {
+    "achievements": [],
+    "publications": [],
+    "clinicalCases": [],
+    "employment": [
+      {
+        "organization": "Витаника",
+        "position": "Врач-стоматолог",
+        "sourceRefs": [
+          "employment"
+        ]
+      }
+    ],
+    "experienceHistory": []
+  },
+  "sources": {
+    "education": {
+      "label": "Сведения об образовании медицинских работников",
+      "url": "https://metelitsa-dent.ru/files/Информация_об_образовании_медицинских_работников.pdf#page=13",
+      "kind": "official_document",
+      "checkedAt": "2026-11-24"
+    },
+    "profile": {
+      "label": "Профессиональная карточка врача",
+      "url": "https://www.vitanika.com/stomatologi/",
+      "kind": "professional_profile",
+      "checkedAt": "2026-11-24"
+    },
+    "employment": {
+      "label": "Профессиональная карточка врача",
+      "url": "https://www.vitanika.com/stomatologi/",
+      "kind": "professional_profile",
+      "checkedAt": "2026-11-24"
+    },
+    "reviews": {
+      "label": "ПроДокторов",
+      "url": "https://prodoctorov.ru/spb/vrach/580804-shamarina/",
+      "kind": "review_platform",
+      "checkedAt": "2026-11-24"
+    }
+  }
+}

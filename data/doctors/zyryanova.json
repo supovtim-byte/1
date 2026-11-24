@@ -1,0 +1,153 @@
+{
+  "schemaVersion": 1,
+  "id": "zyryanova",
+  "order": 5,
+  "name": "Зырянова Оксана Сергеевна",
+  "aliases": [
+    "Зырянова Оксана"
+  ],
+  "specialties": [
+    "Врач-стоматолог-терапевт",
+    "Врач-стоматолог детский"
+  ],
+  "filterTags": [
+    "therapy",
+    "children"
+  ],
+  "publication": {
+    "catalog": true,
+    "bookable": true
+  },
+  "availabilityLabel": null,
+  "photo": {
+    "path": "assets/doctors/zyryanova/doctor-4.png",
+    "alt": "Зырянова Оксана Сергеевна",
+    "width": 784,
+    "height": 784
+  },
+  "documents": [],
+  "about": [
+    {
+      "text": "Зырянова Оксана Сергеевна — врач-стоматолог-терапевт, врач-стоматолог детский.",
+      "sourceRefs": [
+        "staff"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "year": 2011,
+      "text": "Дальневосточный государственный медицинский университет. Стоматология.",
+      "sourceRefs": [
+        "education"
+      ]
+    },
+    {
+      "year": 2012,
+      "text": "Дальневосточный государственный медицинский университет. Интернатура общей практики.",
+      "sourceRefs": [
+        "education"
+      ]
+    },
+    {
+      "year": 2013,
+      "text": "Санкт-Петербургский институт стоматологии. Терапия.",
+      "sourceRefs": [
+        "education"
+      ]
+    },
+    {
+      "year": 2014,
+      "text": "Северо-Западный государственный медицинский университет им. И. И. Мечникова. Хирургия.",
+      "sourceRefs": [
+        "education"
+      ]
+    },
+    {
+      "year": 2016,
+      "text": "Санкт-Петербургский институт стоматологии последипломного образования. Детская стоматология.",
+      "sourceRefs": [
+        "education"
+      ]
+    }
+  ],
+  "experience": {
+    "years": 15,
+    "asOf": "2026-11-24",
+    "sourceRefs": [
+      "profile"
+    ]
+  },
+  "directions": [
+    {
+      "title": "Терапевтическая стоматология",
+      "items": [
+        {
+          "label": "Консультация стоматолога-терапевта",
+          "href": "uslugi-i-ceny.html#consultations",
+          "sourceRefs": [
+            "staff"
+          ]
+        }
+      ],
+      "sourceRefs": [
+        "staff"
+      ]
+    },
+    {
+      "title": "Детская стоматология",
+      "items": [
+        {
+          "label": "Консультация детского стоматолога",
+          "href": "uslugi-i-ceny.html#consultations",
+          "sourceRefs": [
+            "staff"
+          ]
+        }
+      ],
+      "sourceRefs": [
+        "staff"
+      ]
+    }
+  ],
+  "reviews": {
+    "links": [
+      {
+        "sourceRef": "reviews"
+      }
+    ]
+  },
+  "deferred": {
+    "achievements": [],
+    "publications": [],
+    "clinicalCases": [],
+    "employment": [],
+    "experienceHistory": []
+  },
+  "sources": {
+    "education": {
+      "label": "Сведения об образовании медицинских работников",
+      "url": "https://metelitsa-dent.ru/files/Информация_об_образовании_медицинских_работников.pdf#page=10",
+      "kind": "official_document",
+      "checkedAt": "2026-11-24"
+    },
+    "staff": {
+      "label": "Специалисты клиники Метелица",
+      "url": "https://metelitsa-dent.ru/about/personal/",
+      "kind": "official_staff",
+      "checkedAt": "2026-11-24"
+    },
+    "profile": {
+      "label": "Профессиональная карточка врача",
+      "url": "https://prodoctorov.ru/spb/vrach/346596-zyryanova/",
+      "kind": "professional_profile",
+      "checkedAt": "2026-11-24"
+    },
+    "reviews": {
+      "label": "Startsmile",
+      "url": "https://spb.startsmile.ru/stomatologi/zyryanova_oksana_sergeevna.html",
+      "kind": "review_platform",
+      "checkedAt": "2026-11-24"
+    }
+  }
+}

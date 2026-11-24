@@ -1,0 +1,190 @@
+{
+  "schemaVersion": 1,
+  "id": "sizonec",
+  "order": 1,
+  "name": "Сизонец Александра Игоревна",
+  "aliases": [
+    "Сизонец Александра"
+  ],
+  "specialties": [
+    "Главный врач",
+    "Врач-стоматолог детский",
+    "Врач-стоматолог-терапевт",
+    "Врач-стоматолог-хирург"
+  ],
+  "filterTags": [
+    "chief",
+    "children",
+    "therapy",
+    "surgery"
+  ],
+  "publication": {
+    "catalog": true,
+    "bookable": true
+  },
+  "availabilityLabel": null,
+  "photo": {
+    "path": "assets/doctors/sizonec/doctor-1.png",
+    "alt": "Сизонец Александра Игоревна",
+    "width": 784,
+    "height": 784
+  },
+  "documents": [],
+  "about": [
+    {
+      "text": "Сизонец Александра Игоревна — главный врач, врач-стоматолог детский, врач-стоматолог-терапевт, врач-стоматолог-хирург.",
+      "sourceRefs": [
+        "staff"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "year": 2013,
+      "text": "Санкт-Петербургский государственный университет. Стоматология.",
+      "sourceRefs": [
+        "education"
+      ]
+    },
+    {
+      "year": 2014,
+      "text": "Санкт-Петербургский государственный университет. Интернатура, стоматология общей практики.",
+      "sourceRefs": [
+        "education"
+      ]
+    },
+    {
+      "year": 2015,
+      "text": "Северо-Западный государственный медицинский университет им. И. И. Мечникова. Переподготовка, терапевтическая стоматология.",
+      "sourceRefs": [
+        "education"
+      ]
+    },
+    {
+      "year": 2018,
+      "text": "Санкт-Петербургский институт стоматологии последипломного образования. Детская стоматология.",
+      "sourceRefs": [
+        "education"
+      ]
+    },
+    {
+      "year": 2019,
+      "text": "Санкт-Петербургский институт стоматологии последипломного образования. Хирургическая стоматология и организация здравоохранения.",
+      "sourceRefs": [
+        "education"
+      ]
+    }
+  ],
+  "experience": null,
+  "directions": [
+    {
+      "title": "Детская стоматология",
+      "items": [
+        {
+          "label": "Консультация детского стоматолога",
+          "href": "uslugi-i-ceny.html#consultations",
+          "sourceRefs": [
+            "staff"
+          ]
+        }
+      ],
+      "sourceRefs": [
+        "staff"
+      ]
+    },
+    {
+      "title": "Терапевтическая стоматология",
+      "items": [
+        {
+          "label": "Консультация стоматолога-терапевта",
+          "href": "uslugi-i-ceny.html#consultations",
+          "sourceRefs": [
+            "staff"
+          ]
+        }
+      ],
+      "sourceRefs": [
+        "staff"
+      ]
+    },
+    {
+      "title": "Хирургическая стоматология",
+      "items": [
+        {
+          "label": "Консультация стоматолога-хирурга",
+          "href": "uslugi-i-ceny.html#consultations",
+          "sourceRefs": [
+            "staff"
+          ]
+        }
+      ],
+      "sourceRefs": [
+        "staff"
+      ]
+    }
+  ],
+  "reviews": {
+    "links": [
+      {
+        "sourceRef": "reviews"
+      }
+    ]
+  },
+  "deferred": {
+    "achievements": [
+      {
+        "title": "Первое место в номинации «Лучший пародонтолог»",
+        "organizer": "Startsmile TOP",
+        "year": 2026,
+        "kind": "professional_award",
+        "sourceRefs": [
+          "award"
+        ]
+      }
+    ],
+    "publications": [],
+    "clinicalCases": [],
+    "employment": [],
+    "experienceHistory": [
+      {
+        "label": "8 лет",
+        "asOf": "2022-12-17",
+        "sourceRefs": [
+          "profile"
+        ]
+      }
+    ]
+  },
+  "sources": {
+    "education": {
+      "label": "Сведения об образовании медицинских работников",
+      "url": "https://metelitsa-dent.ru/files/Информация_об_образовании_медицинских_работников.pdf#page=1",
+      "kind": "official_document",
+      "checkedAt": "2026-11-24"
+    },
+    "staff": {
+      "label": "Специалисты клиники Метелица",
+      "url": "https://metelitsa-dent.ru/about/personal/",
+      "kind": "official_staff",
+      "checkedAt": "2026-11-24"
+    },
+    "profile": {
+      "label": "Профессиональная карточка врача",
+      "url": "https://www.otzovik.com/review_14078340.html",
+      "kind": "professional_profile",
+      "checkedAt": "2026-11-24"
+    },
+    "award": {
+      "label": "Startsmile TOP — результаты 2026",
+      "url": "https://startsmileaward.ru/moscow",
+      "kind": "award",
+      "checkedAt": "2026-11-24"
+    },
+    "reviews": {
+      "label": "Startsmile",
+      "url": "https://spb.startsmile.ru/stomatologi/sizonets_aleksandra_igorevna.html",
+      "kind": "review_platform",
+      "checkedAt": "2026-11-24"
+    }
+  }
+}

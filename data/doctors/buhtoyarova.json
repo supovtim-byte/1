@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "id": "buhtoyarova",
+  "order": 28,
+  "name": "Бухтоярова Анастасия Александровна",
+  "aliases": [],
+  "specialties": [
+    "Врач-стоматолог детский",
+    "Врач-стоматолог"
+  ],
+  "filterTags": [
+    "children",
+    "general"
+  ],
+  "publication": {
+    "catalog": true,
+    "bookable": false
+  },
+  "availabilityLabel": "Приём временно недоступен",
+  "photo": null,
+  "documents": [],
+  "about": [
+    {
+      "text": "Бухтоярова Анастасия Александровна — врач-стоматолог детский, врач-стоматолог.",
+      "sourceRefs": [
+        "staff"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "year": 2018,
+      "text": "Дальневосточный государственный медицинский университет. Стоматология.",
+      "sourceRefs": [
+        "education"
+      ]
+    },
+    {
+      "year": 2023,
+      "text": "Санкт-Петербургский государственный университет. Ординатура, детская стоматология.",
+      "sourceRefs": [
+        "education"
+      ]
+    }
+  ],
+  "experience": null,
+  "directions": [
+    {
+      "title": "Детская стоматология",
+      "items": [
+        {
+          "label": "Консультация детского стоматолога",
+          "href": "uslugi-i-ceny.html#consultations",
+          "sourceRefs": [
+            "staff"
+          ]
+        }
+      ],
+      "sourceRefs": [
+        "staff"
+      ]
+    }
+  ],
+  "reviews": {
+    "links": [
+      {
+        "sourceRef": "reviews"
+      }
+    ]
+  },
+  "deferred": {
+    "achievements": [],
+    "publications": [],
+    "clinicalCases": [],
+    "employment": [],
+    "experienceHistory": []
+  },
+  "sources": {
+    "education": {
+      "label": "Сведения об образовании медицинских работников",
+      "url": "https://metelitsa-dent.ru/files/Информация_об_образовании_медицинских_работников.pdf#page=5",
+      "kind": "official_document",
+      "checkedAt": "2026-11-24"
+    },
+    "staff": {
+      "label": "Специалисты клиники Метелица",
+      "url": "https://metelitsa-dent.ru/about/personal/",
+      "kind": "official_staff",
+      "checkedAt": "2026-11-24"
+    },
+    "reviews": {
+      "label": "ПроДокторов",
+      "url": "https://prodoctorov.ru/spb/vrach/994488-buhtoyarova/",
+      "kind": "review_platform",
+      "checkedAt": "2026-11-24"
+    }
+  }
+}

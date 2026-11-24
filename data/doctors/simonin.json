@@ -1,0 +1,198 @@
+{
+  "schemaVersion": 1,
+  "id": "simonin",
+  "order": 13,
+  "name": "Симонин Дмитрий Геннадьевич",
+  "aliases": [],
+  "specialties": [
+    "Врач-стоматолог-терапевт",
+    "Врач-стоматолог"
+  ],
+  "filterTags": [
+    "therapy",
+    "general",
+    "endodontics"
+  ],
+  "publication": {
+    "catalog": true,
+    "bookable": true
+  },
+  "availabilityLabel": null,
+  "photo": null,
+  "documents": [],
+  "about": [
+    {
+      "text": "Симонин Дмитрий Геннадьевич — врач-стоматолог-терапевт, врач-стоматолог.",
+      "sourceRefs": [
+        "staff"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "year": 2007,
+      "text": "Санкт-Петербургский государственный университет. Стоматология.",
+      "sourceRefs": [
+        "education"
+      ]
+    },
+    {
+      "year": 2008,
+      "text": "СПбМАПО. Интернатура общей практики.",
+      "sourceRefs": [
+        "education"
+      ]
+    },
+    {
+      "year": 2011,
+      "text": "Военно-медицинская академия им. С. М. Кирова. Переподготовка, хирургическая стоматология.",
+      "sourceRefs": [
+        "education"
+      ]
+    },
+    {
+      "year": 2021,
+      "text": "МУЦ «Образовательный стандарт». Переподготовка, терапевтическая стоматология.",
+      "sourceRefs": [
+        "education"
+      ]
+    }
+  ],
+  "experience": {
+    "years": 19,
+    "asOf": "2026-11-24",
+    "sourceRefs": [
+      "profile"
+    ]
+  },
+  "directions": [
+    {
+      "title": "Терапевтическая стоматология",
+      "items": [
+        {
+          "label": "Консультация стоматолога-терапевта",
+          "href": "uslugi-i-ceny.html#consultations",
+          "sourceRefs": [
+            "staff"
+          ]
+        }
+      ],
+      "sourceRefs": [
+        "staff"
+      ]
+    },
+    {
+      "title": "Эндодонтия",
+      "items": [
+        {
+          "label": "Лечение корневых каналов",
+          "href": "uslugi-i-ceny.html#root-canals",
+          "sourceRefs": [
+            "profile"
+          ]
+        }
+      ],
+      "sourceRefs": [
+        "profile"
+      ]
+    }
+  ],
+  "reviews": {
+    "links": [
+      {
+        "sourceRef": "reviews"
+      }
+    ]
+  },
+  "deferred": {
+    "achievements": [
+      {
+        "title": "Второе место в номинации «Лучший эндодонтист»",
+        "organizer": "Startsmile TOP",
+        "year": 2026,
+        "kind": "professional_award",
+        "sourceRefs": [
+          "award"
+        ]
+      },
+      {
+        "title": "Один из лидеров клиники по числу пациентов, пришедших по рекомендации",
+        "organizer": "Super Smile",
+        "year": 2018,
+        "kind": "clinic_achievement",
+        "sourceRefs": [
+          "super-smile"
+        ]
+      }
+    ],
+    "publications": [],
+    "clinicalCases": [],
+    "employment": [
+      {
+        "organization": "ИП Щесняк",
+        "position": "Стоматолог-терапевт, хирург",
+        "fromYear": 2007,
+        "toYear": 2010,
+        "sourceRefs": [
+          "profile"
+        ]
+      },
+      {
+        "organization": "АНО «Мир Здоровья»",
+        "position": "Врач-стоматолог",
+        "fromYear": 2010,
+        "toYear": 2013,
+        "sourceRefs": [
+          "profile"
+        ]
+      },
+      {
+        "organization": "ООО «Асгард-Мед»",
+        "position": "Эндодонтист",
+        "fromYear": 2014,
+        "sourceRefs": [
+          "profile"
+        ]
+      }
+    ],
+    "experienceHistory": []
+  },
+  "sources": {
+    "education": {
+      "label": "Сведения об образовании медицинских работников",
+      "url": "https://metelitsa-dent.ru/files/Информация_об_образовании_медицинских_работников.pdf#page=7",
+      "kind": "official_document",
+      "checkedAt": "2026-11-24"
+    },
+    "staff": {
+      "label": "Специалисты клиники Метелица",
+      "url": "https://metelitsa-dent.ru/about/personal/",
+      "kind": "official_staff",
+      "checkedAt": "2026-11-24"
+    },
+    "profile": {
+      "label": "Профессиональная карточка врача",
+      "url": "https://prodoctorov.ru/spb/vrach/194834-simonin/",
+      "kind": "professional_profile",
+      "checkedAt": "2026-11-24"
+    },
+    "award": {
+      "label": "Startsmile TOP — результаты 2026",
+      "url": "https://startsmileaward.ru/moscow",
+      "kind": "award",
+      "checkedAt": "2026-11-24"
+    },
+    "super-smile": {
+      "label": "Super Smile — итоги 2018 года",
+      "url": "https://smilestom.spb.ru/vazhny-e-dostizheniya-super-smajl-za-2018-god-05-02-2019-3994/",
+      "kind": "clinic_publication",
+      "checkedAt": "2026-11-24"
+    },
+    "reviews": {
+      "label": "ПроДокторов",
+      "url": "https://prodoctorov.ru/spb/vrach/194834-simonin/",
+      "kind": "review_platform",
+      "checkedAt": "2026-11-24"
+    }
+  }
+}

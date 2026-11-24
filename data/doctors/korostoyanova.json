@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "id": "korostoyanova",
+  "order": 22,
+  "name": "Коростоянова Елизавета Андреевна",
+  "aliases": [],
+  "specialties": [
+    "Врач-стоматолог"
+  ],
+  "filterTags": [
+    "general"
+  ],
+  "publication": {
+    "catalog": true,
+    "bookable": true
+  },
+  "availabilityLabel": null,
+  "photo": null,
+  "documents": [],
+  "about": [
+    {
+      "text": "Коростоянова Елизавета Андреевна — врач-стоматолог.",
+      "sourceRefs": [
+        "staff"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "year": 2023,
+      "text": "Читинская государственная медицинская академия. Стоматология.",
+      "sourceRefs": [
+        "education"
+      ]
+    }
+  ],
+  "experience": null,
+  "directions": [
+    {
+      "title": "Стоматология общей практики",
+      "items": [
+        {
+          "label": "Консультация стоматолога",
+          "href": "uslugi-i-ceny.html#consultations",
+          "sourceRefs": [
+            "staff"
+          ]
+        }
+      ],
+      "sourceRefs": [
+        "staff"
+      ]
+    }
+  ],
+  "reviews": {
+    "links": [
+      {
+        "sourceRef": "reviews"
+      }
+    ]
+  },
+  "deferred": {
+    "achievements": [],
+    "publications": [],
+    "clinicalCases": [],
+    "employment": [],
+    "experienceHistory": []
+  },
+  "sources": {
+    "education": {
+      "label": "Сведения об образовании медицинских работников",
+      "url": "https://metelitsa-dent.ru/files/Информация_об_образовании_медицинских_работников.pdf#page=13",
+      "kind": "official_document",
+      "checkedAt": "2026-11-24"
+    },
+    "staff": {
+      "label": "Специалисты клиники Метелица",
+      "url": "https://metelitsa-dent.ru/about/personal/",
+      "kind": "official_staff",
+      "checkedAt": "2026-11-24"
+    },
+    "reviews": {
+      "label": "Startsmile",
+      "url": "https://spb.startsmile.ru/stomatologi/korostoyanova_elizaveta_andreevna.html",
+      "kind": "review_platform",
+      "checkedAt": "2026-11-24"
+    }
+  }
+}

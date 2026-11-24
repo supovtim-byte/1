@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 1,
+  "id": "cvirko",
+  "order": 15,
+  "name": "Цвирко Карина Викторовна",
+  "aliases": [],
+  "specialties": [
+    "Врач-стоматолог"
+  ],
+  "filterTags": [
+    "general"
+  ],
+  "publication": {
+    "catalog": true,
+    "bookable": true
+  },
+  "availabilityLabel": null,
+  "photo": null,
+  "documents": [],
+  "about": [
+    {
+      "text": "Цвирко Карина Викторовна — врач-стоматолог.",
+      "sourceRefs": [
+        "staff"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "year": 2021,
+      "text": "Санкт-Петербургский медико-социальный институт. Стоматология.",
+      "sourceRefs": [
+        "education"
+      ]
+    }
+  ],
+  "experience": {
+    "years": 5,
+    "asOf": "2026-11-24",
+    "sourceRefs": [
+      "profile"
+    ]
+  },
+  "directions": [
+    {
+      "title": "Стоматология общей практики",
+      "items": [
+        {
+          "label": "Консультация стоматолога",
+          "href": "uslugi-i-ceny.html#consultations",
+          "sourceRefs": [
+            "staff"
+          ]
+        }
+      ],
+      "sourceRefs": [
+        "staff"
+      ]
+    }
+  ],
+  "reviews": {
+    "links": [
+      {
+        "sourceRef": "reviews"
+      }
+    ]
+  },
+  "deferred": {
+    "achievements": [],
+    "publications": [],
+    "clinicalCases": [],
+    "employment": [],
+    "experienceHistory": []
+  },
+  "sources": {
+    "education": {
+      "label": "Сведения об образовании медицинских работников",
+      "url": "https://metelitsa-dent.ru/files/Информация_об_образовании_медицинских_работников.pdf#page=9",
+      "kind": "official_document",
+      "checkedAt": "2026-11-24"
+    },
+    "staff": {
+      "label": "Специалисты клиники Метелица",
+      "url": "https://metelitsa-dent.ru/about/personal/",
+      "kind": "official_staff",
+      "checkedAt": "2026-11-24"
+    },
+    "profile": {
+      "label": "Профессиональная карточка врача",
+      "url": "https://prodoctorov.ru/spb/vrach/985608-cvirko/",
+      "kind": "professional_profile",
+      "checkedAt": "2026-11-24"
+    },
+    "reviews": {
+      "label": "ПроДокторов",
+      "url": "https://prodoctorov.ru/spb/vrach/985608-cvirko/",
+      "kind": "review_platform",
+      "checkedAt": "2026-11-24"
+    }
+  }
+}

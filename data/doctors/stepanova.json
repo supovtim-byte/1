@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 1,
+  "id": "stepanova",
+  "order": 20,
+  "name": "Степанова Аделина Витальевна",
+  "aliases": [],
+  "specialties": [
+    "Врач-стоматолог"
+  ],
+  "filterTags": [
+    "general"
+  ],
+  "publication": {
+    "catalog": true,
+    "bookable": true
+  },
+  "availabilityLabel": null,
+  "photo": null,
+  "documents": [],
+  "about": [
+    {
+      "text": "Степанова Аделина Витальевна — врач-стоматолог.",
+      "sourceRefs": [
+        "staff"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "year": 2021,
+      "text": "Казанский государственный медицинский университет. Стоматология.",
+      "sourceRefs": [
+        "education"
+      ]
+    },
+    {
+      "year": 2023,
+      "text": "Казанский государственный медицинский университет. Ординатура, стоматология общей практики.",
+      "sourceRefs": [
+        "education"
+      ]
+    }
+  ],
+  "experience": null,
+  "directions": [
+    {
+      "title": "Стоматология общей практики",
+      "items": [
+        {
+          "label": "Консультация стоматолога",
+          "href": "uslugi-i-ceny.html#consultations",
+          "sourceRefs": [
+            "staff"
+          ]
+        }
+      ],
+      "sourceRefs": [
+        "staff"
+      ]
+    }
+  ],
+  "reviews": {
+    "links": [
+      {
+        "sourceRef": "reviews"
+      }
+    ]
+  },
+  "deferred": {
+    "achievements": [],
+    "publications": [],
+    "clinicalCases": [],
+    "employment": [],
+    "experienceHistory": []
+  },
+  "sources": {
+    "education": {
+      "label": "Сведения об образовании медицинских работников",
+      "url": "https://metelitsa-dent.ru/files/Информация_об_образовании_медицинских_работников.pdf#page=12",
+      "kind": "official_document",
+      "checkedAt": "2026-11-24"
+    },
+    "staff": {
+      "label": "Специалисты клиники Метелица",
+      "url": "https://metelitsa-dent.ru/about/personal/",
+      "kind": "official_staff",
+      "checkedAt": "2026-11-24"
+    },
+    "reviews": {
+      "label": "Startsmile",
+      "url": "https://spb.startsmile.ru/stomatologi/stepanova_adelina_vitalevna.html",
+      "kind": "review_platform",
+      "checkedAt": "2026-11-24"
+    }
+  }
+}

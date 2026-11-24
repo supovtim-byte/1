@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "id": "kovaleva",
+  "order": 30,
+  "name": "Ковалева Анна Александровна",
+  "aliases": [],
+  "specialties": [
+    "Врач-стоматолог"
+  ],
+  "filterTags": [
+    "general"
+  ],
+  "publication": {
+    "catalog": false,
+    "bookable": false
+  },
+  "availabilityLabel": null,
+  "photo": null,
+  "documents": [],
+  "about": [
+    {
+      "text": "Ковалева Анна Александровна — врач-стоматолог.",
+      "sourceRefs": [
+        "education"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "year": 2025,
+      "text": "Ивановский государственный медицинский университет. Стоматология.",
+      "sourceRefs": [
+        "education"
+      ]
+    }
+  ],
+  "experience": null,
+  "directions": [],
+  "reviews": {
+    "links": [
+      {
+        "sourceRef": "reviews"
+      }
+    ]
+  },
+  "deferred": {
+    "achievements": [],
+    "publications": [],
+    "clinicalCases": [],
+    "employment": [],
+    "experienceHistory": []
+  },
+  "sources": {
+    "education": {
+      "label": "Сведения об образовании медицинских работников",
+      "url": "https://metelitsa-dent.ru/files/Информация_об_образовании_медицинских_работников.pdf#page=12",
+      "kind": "official_document",
+      "checkedAt": "2026-11-24"
+    },
+    "reviews": {
+      "label": "Startsmile",
+      "url": "https://spb.startsmile.ru/stomatologi/kovaleva_anna_aleksandrovna.html",
+      "kind": "review_platform",
+      "checkedAt": "2026-11-24"
+    }
+  }
+}

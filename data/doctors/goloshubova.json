@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "id": "goloshubova",
+  "order": 35,
+  "name": "Голошубова Анна Михайловна",
+  "aliases": [],
+  "specialties": [
+    "Гигиенист стоматологический"
+  ],
+  "filterTags": [
+    "prevention"
+  ],
+  "publication": {
+    "catalog": false,
+    "bookable": false
+  },
+  "availabilityLabel": null,
+  "photo": null,
+  "documents": [],
+  "about": [
+    {
+      "text": "Голошубова Анна Михайловна — гигиенист стоматологический.",
+      "sourceRefs": [
+        "education"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "year": 2024,
+      "text": "Нижегородский медицинский колледж. Стоматология профилактическая.",
+      "sourceRefs": [
+        "education"
+      ]
+    }
+  ],
+  "experience": null,
+  "directions": [],
+  "reviews": {
+    "links": []
+  },
+  "deferred": {
+    "achievements": [],
+    "publications": [],
+    "clinicalCases": [],
+    "employment": [],
+    "experienceHistory": []
+  },
+  "sources": {
+    "education": {
+      "label": "Сведения об образовании медицинских работников",
+      "url": "https://metelitsa-dent.ru/files/Информация_об_образовании_медицинских_работников.pdf#page=16",
+      "kind": "official_document",
+      "checkedAt": "2026-11-24"
+    }
+  }
+}

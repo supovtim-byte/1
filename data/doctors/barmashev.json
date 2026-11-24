@@ -1,0 +1,134 @@
+{
+  "schemaVersion": 1,
+  "id": "barmashev",
+  "order": 3,
+  "name": "Бармашев Филипп Сергеевич",
+  "aliases": [
+    "Филипп Бармашев"
+  ],
+  "specialties": [
+    "Врач-стоматолог-хирург"
+  ],
+  "filterTags": [
+    "surgery"
+  ],
+  "publication": {
+    "catalog": true,
+    "bookable": true
+  },
+  "availabilityLabel": null,
+  "photo": {
+    "path": "assets/doctors/barmashev/doctor-3.png",
+    "alt": "Бармашев Филипп Сергеевич",
+    "width": 784,
+    "height": 784
+  },
+  "documents": [],
+  "about": [
+    {
+      "text": "Бармашев Филипп Сергеевич — врач-стоматолог-хирург.",
+      "sourceRefs": [
+        "staff"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "year": 2019,
+      "text": "Первый Санкт-Петербургский государственный медицинский университет им. акад. И. П. Павлова. Стоматология.",
+      "sourceRefs": [
+        "education"
+      ]
+    },
+    {
+      "year": 2021,
+      "text": "Военно-медицинская академия им. С. М. Кирова. Ординатура, стоматология хирургическая.",
+      "sourceRefs": [
+        "education"
+      ]
+    }
+  ],
+  "experience": null,
+  "directions": [
+    {
+      "title": "Хирургическая стоматология",
+      "items": [
+        {
+          "label": "Консультация стоматолога-хирурга",
+          "href": "uslugi-i-ceny.html#consultations",
+          "sourceRefs": [
+            "staff"
+          ]
+        }
+      ],
+      "sourceRefs": [
+        "staff"
+      ]
+    }
+  ],
+  "reviews": {
+    "links": [
+      {
+        "sourceRef": "reviews"
+      }
+    ]
+  },
+  "deferred": {
+    "achievements": [
+      {
+        "title": "Диплом II степени второго тура олимпиады по биологии",
+        "organizer": "ПСПбГМУ им. И. П. Павлова",
+        "year": 2014,
+        "kind": "academic_achievement",
+        "sourceRefs": [
+          "olympiad"
+        ]
+      }
+    ],
+    "publications": [],
+    "clinicalCases": [
+      {
+        "title": "Восстановление двух отсутствующих зубов имплантами и циркониевыми коронками",
+        "publishedAt": "2026-11-19",
+        "role": "Хирургический этап",
+        "sourceRefs": [
+          "clinical-feed"
+        ]
+      }
+    ],
+    "employment": [],
+    "experienceHistory": []
+  },
+  "sources": {
+    "education": {
+      "label": "Сведения об образовании медицинских работников",
+      "url": "https://metelitsa-dent.ru/files/Информация_об_образовании_медицинских_работников.pdf#page=5",
+      "kind": "official_document",
+      "checkedAt": "2026-11-24"
+    },
+    "staff": {
+      "label": "Специалисты клиники Метелица",
+      "url": "https://metelitsa-dent.ru/about/personal/",
+      "kind": "official_staff",
+      "checkedAt": "2026-11-24"
+    },
+    "olympiad": {
+      "label": "ПСПбГМУ — олимпиада по биологии",
+      "url": "https://1spbgmu.ru/universitet/media/novosti/1261-pozdravlyaem-pobeditelej-2-go-tura-olimpiady-po-biologii",
+      "kind": "university",
+      "checkedAt": "2026-11-24"
+    },
+    "clinical-feed": {
+      "label": "Сообщения клиники Метелица",
+      "url": "https://peterburg2.ru/restplaces/detskaya-stomatologiya-metelica-18225.html",
+      "kind": "clinic_publication",
+      "checkedAt": "2026-11-24"
+    },
+    "reviews": {
+      "label": "Startsmile",
+      "url": "https://spb.startsmile.ru/stomatologi/barmashev_filipp_sergeevich.html",
+      "kind": "review_platform",
+      "checkedAt": "2026-11-24"
+    }
+  }
+}

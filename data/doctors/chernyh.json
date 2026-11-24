@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "id": "chernyh",
+  "order": 4,
+  "name": "Черных Александра Дмитриевна",
+  "aliases": [],
+  "specialties": [
+    "Врач-стоматолог-терапевт",
+    "Врач-стоматолог детский"
+  ],
+  "filterTags": [
+    "therapy",
+    "children"
+  ],
+  "publication": {
+    "catalog": true,
+    "bookable": true
+  },
+  "availabilityLabel": null,
+  "photo": null,
+  "documents": [],
+  "about": [
+    {
+      "text": "Черных Александра Дмитриевна — врач-стоматолог-терапевт, врач-стоматолог детский.",
+      "sourceRefs": [
+        "staff"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "year": 2014,
+      "text": "Первый Санкт-Петербургский государственный медицинский университет им. акад. И. П. Павлова. Стоматология.",
+      "sourceRefs": [
+        "education"
+      ]
+    },
+    {
+      "year": 2015,
+      "text": "Первый Санкт-Петербургский государственный медицинский университет им. акад. И. П. Павлова. Интернатура общей практики.",
+      "sourceRefs": [
+        "education"
+      ]
+    },
+    {
+      "year": 2016,
+      "text": "Первый Санкт-Петербургский государственный медицинский университет им. акад. И. П. Павлова. Переподготовка, терапевтическая стоматология.",
+      "sourceRefs": [
+        "education"
+      ]
+    },
+    {
+      "year": 2017,
+      "text": "Первый Санкт-Петербургский государственный медицинский университет им. акад. И. П. Павлова. Детская стоматология.",
+      "sourceRefs": [
+        "education"
+      ]
+    }
+  ],
+  "experience": null,
+  "directions": [
+    {
+      "title": "Терапевтическая стоматология",
+      "items": [
+        {
+          "label": "Консультация стоматолога-терапевта",
+          "href": "uslugi-i-ceny.html#consultations",
+          "sourceRefs": [
+            "staff"
+          ]
+        }
+      ],
+      "sourceRefs": [
+        "staff"
+      ]
+    },
+    {
+      "title": "Детская стоматология",
+      "items": [
+        {
+          "label": "Консультация детского стоматолога",
+          "href": "uslugi-i-ceny.html#consultations",
+          "sourceRefs": [
+            "staff"
+          ]
+        }
+      ],
+      "sourceRefs": [
+        "staff"
+      ]
+    }
+  ],
+  "reviews": {
+    "links": [
+      {
+        "sourceRef": "reviews"
+      }
+    ]
+  },
+  "deferred": {
+    "achievements": [],
+    "publications": [],
+    "clinicalCases": [],
+    "employment": [],
+    "experienceHistory": [
+      {
+        "label": "8 лет",
+        "asOf": "2022-12-17",
+        "sourceRefs": [
+          "profile"
+        ]
+      }
+    ]
+  },
+  "sources": {
+    "education": {
+      "label": "Сведения об образовании медицинских работников",
+      "url": "https://metelitsa-dent.ru/files/Информация_об_образовании_медицинских_работников.pdf#page=2",
+      "kind": "official_document",
+      "checkedAt": "2026-11-24"
+    },
+    "staff": {
+      "label": "Специалисты клиники Метелица",
+      "url": "https://metelitsa-dent.ru/about/personal/",
+      "kind": "official_staff",
+      "checkedAt": "2026-11-24"
+    },
+    "profile": {
+      "label": "Профессиональная карточка врача",
+      "url": "https://www.otzovik.com/review_14078340.html",
+      "kind": "professional_profile",
+      "checkedAt": "2026-11-24"
+    },
+    "reviews": {
+      "label": "Startsmile",
+      "url": "https://spb.startsmile.ru/stomatologi/chernykh_aleksandra_dmitrievna.html",
+      "kind": "review_platform",
+      "checkedAt": "2026-11-24"
+    }
+  }
+}

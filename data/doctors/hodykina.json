@@ -1,0 +1,149 @@
+{
+  "schemaVersion": 1,
+  "id": "hodykina",
+  "order": 6,
+  "name": "Ходыкина Дарья Александровна",
+  "aliases": [],
+  "specialties": [
+    "Врач-стоматолог-терапевт"
+  ],
+  "filterTags": [
+    "therapy"
+  ],
+  "publication": {
+    "catalog": true,
+    "bookable": true
+  },
+  "availabilityLabel": null,
+  "photo": {
+    "path": "assets/doctors/hodykina/doctor-daria.png",
+    "alt": "Ходыкина Дарья Александровна",
+    "width": 1594,
+    "height": 1594
+  },
+  "documents": [],
+  "about": [
+    {
+      "text": "Ходыкина Дарья Александровна — врач-стоматолог-терапевт.",
+      "sourceRefs": [
+        "staff"
+      ]
+    },
+    {
+      "text": "В 2025 году прошла повышение квалификации по терапевтической стоматологии в Институте стоматологии Урала.",
+      "sourceRefs": [
+        "education"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "year": 2010,
+      "text": "Владивостокский государственный медицинский университет. Стоматология (ныне Тихоокеанский ГМУ).",
+      "sourceRefs": [
+        "education"
+      ]
+    },
+    {
+      "year": 2011,
+      "text": "Владивостокский государственный медицинский университет. Интернатура общей практики.",
+      "sourceRefs": [
+        "education"
+      ]
+    },
+    {
+      "year": 2015,
+      "text": "Тихоокеанский ГМУ. Переподготовка, терапевтическая стоматология.",
+      "sourceRefs": [
+        "education"
+      ]
+    },
+    {
+      "year": 2020,
+      "text": "«Скай Дрим». Повышение квалификации по терапевтической стоматологии.",
+      "sourceRefs": [
+        "education"
+      ]
+    },
+    {
+      "year": 2025,
+      "text": "Институт стоматологии Урала. Повышение квалификации по терапевтической стоматологии.",
+      "sourceRefs": [
+        "education"
+      ]
+    }
+  ],
+  "experience": {
+    "years": 16,
+    "asOf": "2026-11-24",
+    "sourceRefs": [
+      "profile"
+    ]
+  },
+  "directions": [
+    {
+      "title": "Терапевтическая стоматология",
+      "items": [
+        {
+          "label": "Консультация стоматолога-терапевта",
+          "href": "uslugi-i-ceny.html#consultations",
+          "sourceRefs": [
+            "staff"
+          ]
+        }
+      ],
+      "sourceRefs": [
+        "staff"
+      ]
+    }
+  ],
+  "reviews": {
+    "links": [
+      {
+        "sourceRef": "reviews"
+      },
+      {
+        "sourceRef": "reviews-startsmile"
+      }
+    ]
+  },
+  "deferred": {
+    "achievements": [],
+    "publications": [],
+    "clinicalCases": [],
+    "employment": [],
+    "experienceHistory": []
+  },
+  "sources": {
+    "education": {
+      "label": "Сведения об образовании медицинских работников",
+      "url": "https://metelitsa-dent.ru/files/Информация_об_образовании_медицинских_работников.pdf#page=10",
+      "kind": "official_document",
+      "checkedAt": "2026-11-24"
+    },
+    "staff": {
+      "label": "Специалисты клиники Метелица",
+      "url": "https://metelitsa-dent.ru/about/personal/",
+      "kind": "official_staff",
+      "checkedAt": "2026-11-24"
+    },
+    "profile": {
+      "label": "Профессиональная карточка врача",
+      "url": "https://prodoctorov.ru/spb/vrach/259492-hodykina/",
+      "kind": "professional_profile",
+      "checkedAt": "2026-11-24"
+    },
+    "reviews": {
+      "label": "ПроДокторов",
+      "url": "https://prodoctorov.ru/spb/vrach/259492-hodykina/",
+      "kind": "review_platform",
+      "checkedAt": "2026-11-24"
+    },
+    "reviews-startsmile": {
+      "label": "Startsmile",
+      "url": "https://spb.startsmile.ru/stomatologi/khodykina_darya_aleksandrovna.html",
+      "kind": "review_platform",
+      "checkedAt": "2026-11-24"
+    }
+  }
+}

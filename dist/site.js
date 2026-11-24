@@ -817,7 +817,7 @@ const searchCatalog = [
   ...serviceOptions.map(option => ({ title: option.textContent.trim(), href: "#" + option.id, service: option.dataset.service })),
   ...[...document.querySelectorAll(".doctors-grid .doctor-card")].map(card => ({
     title: card.querySelector("h3").textContent.trim() + " — " + card.querySelector("p").textContent.trim(),
-    href: "doctors.html#" + card.id
+    href: card.querySelector(".doctor-profile-link")?.getAttribute("href") || "doctors.html#" + card.id
   })),
   ...[...document.querySelectorAll(".direction-card")].map(card => ({
     title: card.querySelector("h2").textContent.trim(), href: card.querySelector("h2 a")?.getAttribute("href") || "uslugi.html#" + card.id

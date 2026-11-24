@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 1,
+  "id": "lyubchenko",
+  "order": 8,
+  "name": "Любченко Любовь Олеговна",
+  "aliases": [],
+  "specialties": [
+    "Врач-стоматолог-ортопед"
+  ],
+  "filterTags": [
+    "orthopedics"
+  ],
+  "publication": {
+    "catalog": true,
+    "bookable": true
+  },
+  "availabilityLabel": null,
+  "photo": null,
+  "documents": [],
+  "about": [
+    {
+      "text": "Любченко Любовь Олеговна — врач-стоматолог-ортопед.",
+      "sourceRefs": [
+        "staff"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "year": 2016,
+      "text": "Санкт-Петербургский государственный университет. Стоматология.",
+      "sourceRefs": [
+        "education"
+      ]
+    },
+    {
+      "year": 2018,
+      "text": "Санкт-Петербургский государственный университет. Ординатура, стоматология ортопедическая.",
+      "sourceRefs": [
+        "education"
+      ]
+    }
+  ],
+  "experience": {
+    "years": 10,
+    "asOf": "2026-11-24",
+    "sourceRefs": [
+      "profile"
+    ]
+  },
+  "directions": [
+    {
+      "title": "Ортопедическая стоматология",
+      "items": [
+        {
+          "label": "Консультация стоматолога-ортопеда",
+          "href": "uslugi-i-ceny.html#consultations",
+          "sourceRefs": [
+            "staff"
+          ]
+        }
+      ],
+      "sourceRefs": [
+        "staff"
+      ]
+    }
+  ],
+  "reviews": {
+    "links": [
+      {
+        "sourceRef": "reviews"
+      }
+    ]
+  },
+  "deferred": {
+    "achievements": [],
+    "publications": [],
+    "clinicalCases": [
+      {
+        "title": "Восстановление двух отсутствующих зубов имплантами и циркониевыми коронками",
+        "publishedAt": "2026-11-19",
+        "role": "Ортопедический этап",
+        "sourceRefs": [
+          "clinical-feed"
+        ]
+      }
+    ],
+    "employment": [
+      {
+        "organization": "Orident",
+        "position": "Стоматолог-терапевт, ортопед",
+        "fromYear": 2020,
+        "sourceRefs": [
+          "employment"
+        ]
+      }
+    ],
+    "experienceHistory": []
+  },
+  "sources": {
+    "education": {
+      "label": "Сведения об образовании медицинских работников",
+      "url": "https://metelitsa-dent.ru/files/Информация_об_образовании_медицинских_работников.pdf#page=8",
+      "kind": "official_document",
+      "checkedAt": "2026-11-24"
+    },
+    "staff": {
+      "label": "Специалисты клиники Метелица",
+      "url": "https://metelitsa-dent.ru/about/personal/",
+      "kind": "official_staff",
+      "checkedAt": "2026-11-24"
+    },
+    "profile": {
+      "label": "Профессиональная карточка врача",
+      "url": "https://orident.ru/doctors/lyubchenko-lyubov-olegovna",
+      "kind": "professional_profile",
+      "checkedAt": "2026-11-24"
+    },
+    "employment": {
+      "label": "Профессиональная карточка врача",
+      "url": "https://prodoctorov.ru/spb/vrach/1312103-lyubchenko/",
+      "kind": "professional_profile",
+      "checkedAt": "2026-11-24"
+    },
+    "clinical-feed": {
+      "label": "Сообщения клиники Метелица",
+      "url": "https://peterburg2.ru/restplaces/detskaya-stomatologiya-metelica-18225.html",
+      "kind": "clinic_publication",
+      "checkedAt": "2026-11-24"
+    },
+    "reviews": {
+      "label": "ПроДокторов",
+      "url": "https://prodoctorov.ru/spb/vrach/1312103-lyubchenko/",
+      "kind": "review_platform",
+      "checkedAt": "2026-11-24"
+    }
+  }
+}

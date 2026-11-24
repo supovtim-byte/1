@@ -1,0 +1,158 @@
+{
+  "schemaVersion": 1,
+  "id": "maslenok",
+  "order": 2,
+  "name": "Маслёнок Ольга Борисовна",
+  "aliases": [
+    "Маслёнок Ольга"
+  ],
+  "specialties": [
+    "Врач-стоматолог-терапевт",
+    "Врач-стоматолог детский",
+    "Врач-стоматолог-хирург"
+  ],
+  "filterTags": [
+    "therapy",
+    "children",
+    "surgery"
+  ],
+  "publication": {
+    "catalog": true,
+    "bookable": true
+  },
+  "availabilityLabel": null,
+  "photo": {
+    "path": "assets/doctors/maslenok/doctor-2.png",
+    "alt": "Маслёнок Ольга Борисовна",
+    "width": 784,
+    "height": 784
+  },
+  "documents": [],
+  "about": [
+    {
+      "text": "Маслёнок Ольга Борисовна — врач-стоматолог-терапевт, врач-стоматолог детский, врач-стоматолог-хирург.",
+      "sourceRefs": [
+        "staff"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "year": 1997,
+      "text": "Ижевская государственная медицинская академия. Стоматология.",
+      "sourceRefs": [
+        "education"
+      ]
+    },
+    {
+      "year": 1998,
+      "text": "Ижевская государственная медицинская академия. Интернатура, детская стоматология.",
+      "sourceRefs": [
+        "education"
+      ]
+    },
+    {
+      "year": 2019,
+      "text": "Санкт-Петербургский институт стоматологии последипломного образования. Переподготовка, хирургическая стоматология.",
+      "sourceRefs": [
+        "education"
+      ]
+    }
+  ],
+  "experience": null,
+  "directions": [
+    {
+      "title": "Терапевтическая стоматология",
+      "items": [
+        {
+          "label": "Консультация стоматолога-терапевта",
+          "href": "uslugi-i-ceny.html#consultations",
+          "sourceRefs": [
+            "staff"
+          ]
+        }
+      ],
+      "sourceRefs": [
+        "staff"
+      ]
+    },
+    {
+      "title": "Детская стоматология",
+      "items": [
+        {
+          "label": "Консультация детского стоматолога",
+          "href": "uslugi-i-ceny.html#consultations",
+          "sourceRefs": [
+            "staff"
+          ]
+        }
+      ],
+      "sourceRefs": [
+        "staff"
+      ]
+    },
+    {
+      "title": "Хирургическая стоматология",
+      "items": [
+        {
+          "label": "Консультация стоматолога-хирурга",
+          "href": "uslugi-i-ceny.html#consultations",
+          "sourceRefs": [
+            "staff"
+          ]
+        }
+      ],
+      "sourceRefs": [
+        "staff"
+      ]
+    }
+  ],
+  "reviews": {
+    "links": [
+      {
+        "sourceRef": "reviews"
+      }
+    ]
+  },
+  "deferred": {
+    "achievements": [],
+    "publications": [],
+    "clinicalCases": [],
+    "employment": [],
+    "experienceHistory": [
+      {
+        "label": "Более 20 лет",
+        "asOf": "2022-12-17",
+        "sourceRefs": [
+          "profile"
+        ]
+      }
+    ]
+  },
+  "sources": {
+    "education": {
+      "label": "Сведения об образовании медицинских работников",
+      "url": "https://metelitsa-dent.ru/files/Информация_об_образовании_медицинских_работников.pdf#page=6",
+      "kind": "official_document",
+      "checkedAt": "2026-11-24"
+    },
+    "staff": {
+      "label": "Специалисты клиники Метелица",
+      "url": "https://metelitsa-dent.ru/about/personal/",
+      "kind": "official_staff",
+      "checkedAt": "2026-11-24"
+    },
+    "profile": {
+      "label": "Профессиональная карточка врача",
+      "url": "https://www.otzovik.com/review_14078340.html",
+      "kind": "professional_profile",
+      "checkedAt": "2026-11-24"
+    },
+    "reviews": {
+      "label": "Startsmile",
+      "url": "https://spb.startsmile.ru/stomatologi/maslyenok_olga_borisovna.html",
+      "kind": "review_platform",
+      "checkedAt": "2026-11-24"
+    }
+  }
+}

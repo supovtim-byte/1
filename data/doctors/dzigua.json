@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "id": "dzigua",
+  "order": 17,
+  "name": "Дзигуа Кристина Романиевна",
+  "aliases": [],
+  "specialties": [
+    "Врач-ортодонт"
+  ],
+  "filterTags": [
+    "orthodontics"
+  ],
+  "publication": {
+    "catalog": true,
+    "bookable": true
+  },
+  "availabilityLabel": null,
+  "photo": null,
+  "documents": [],
+  "about": [
+    {
+      "text": "Дзигуа Кристина Романиевна — врач-ортодонт.",
+      "sourceRefs": [
+        "staff"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "year": 2021,
+      "text": "Первый Санкт-Петербургский государственный медицинский университет им. акад. И. П. Павлова. Стоматология.",
+      "sourceRefs": [
+        "education"
+      ]
+    },
+    {
+      "year": 2023,
+      "text": "Санкт-Петербургский институт стоматологии последипломного образования. Ординатура, ортодонтия.",
+      "sourceRefs": [
+        "education"
+      ]
+    }
+  ],
+  "experience": null,
+  "directions": [
+    {
+      "title": "Ортодонтия",
+      "items": [
+        {
+          "label": "Консультация ортодонта",
+          "href": "uslugi-i-ceny.html#consultations",
+          "sourceRefs": [
+            "staff"
+          ]
+        }
+      ],
+      "sourceRefs": [
+        "staff"
+      ]
+    }
+  ],
+  "reviews": {
+    "links": [
+      {
+        "sourceRef": "reviews"
+      }
+    ]
+  },
+  "deferred": {
+    "achievements": [],
+    "publications": [],
+    "clinicalCases": [],
+    "employment": [
+      {
+        "organization": "Orident",
+        "position": "Ортодонт",
+        "sourceRefs": [
+          "employment"
+        ]
+      }
+    ],
+    "experienceHistory": []
+  },
+  "sources": {
+    "education": {
+      "label": "Сведения об образовании медицинских работников",
+      "url": "https://metelitsa-dent.ru/files/Информация_об_образовании_медицинских_работников.pdf#page=13",
+      "kind": "official_document",
+      "checkedAt": "2026-11-24"
+    },
+    "staff": {
+      "label": "Специалисты клиники Метелица",
+      "url": "https://metelitsa-dent.ru/about/personal/",
+      "kind": "official_staff",
+      "checkedAt": "2026-11-24"
+    },
+    "profile": {
+      "label": "Профессиональная карточка врача",
+      "url": "https://orident.ru/doctors/dzigua-kristina-romanievna",
+      "kind": "professional_profile",
+      "checkedAt": "2026-11-24"
+    },
+    "employment": {
+      "label": "Профессиональная карточка врача",
+      "url": "https://orident.ru/doctors/dzigua-kristina-romanievna",
+      "kind": "professional_profile",
+      "checkedAt": "2026-11-24"
+    },
+    "reviews": {
+      "label": "ПроДокторов",
+      "url": "https://prodoctorov.ru/spb/vrach/1312084-dzigua/",
+      "kind": "review_platform",
+      "checkedAt": "2026-11-24"
+    }
+  }
+}

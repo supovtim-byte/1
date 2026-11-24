@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 1,
+  "id": "filippova",
+  "order": 16,
+  "name": "Филиппова Алина Владиславовна",
+  "aliases": [],
+  "specialties": [
+    "Врач-ортодонт"
+  ],
+  "filterTags": [
+    "orthodontics"
+  ],
+  "publication": {
+    "catalog": true,
+    "bookable": true
+  },
+  "availabilityLabel": null,
+  "photo": null,
+  "documents": [],
+  "about": [
+    {
+      "text": "Филиппова Алина Владиславовна — врач-ортодонт.",
+      "sourceRefs": [
+        "staff"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "year": 2018,
+      "text": "Новгородский государственный университет им. Ярослава Мудрого. Стоматология.",
+      "sourceRefs": [
+        "education"
+      ]
+    },
+    {
+      "year": 2020,
+      "text": "Северо-Западный государственный медицинский университет им. И. И. Мечникова. Ординатура, ортодонтия.",
+      "sourceRefs": [
+        "education"
+      ]
+    }
+  ],
+  "experience": {
+    "years": 8,
+    "asOf": "2026-11-24",
+    "sourceRefs": [
+      "profile"
+    ]
+  },
+  "directions": [
+    {
+      "title": "Ортодонтия",
+      "items": [
+        {
+          "label": "Консультация ортодонта",
+          "href": "uslugi-i-ceny.html#consultations",
+          "sourceRefs": [
+            "staff"
+          ]
+        }
+      ],
+      "sourceRefs": [
+        "staff"
+      ]
+    }
+  ],
+  "reviews": {
+    "links": [
+      {
+        "sourceRef": "reviews"
+      }
+    ]
+  },
+  "deferred": {
+    "achievements": [
+      {
+        "title": "Диплом по стоматологии с отличием",
+        "year": 2018,
+        "kind": "academic_achievement",
+        "sourceRefs": [
+          "profile"
+        ]
+      }
+    ],
+    "publications": [],
+    "clinicalCases": [],
+    "employment": [
+      {
+        "organization": "Orident",
+        "position": "Ортодонт",
+        "sourceRefs": [
+          "employment"
+        ]
+      }
+    ],
+    "experienceHistory": []
+  },
+  "sources": {
+    "education": {
+      "label": "Сведения об образовании медицинских работников",
+      "url": "https://metelitsa-dent.ru/files/Информация_об_образовании_медицинских_работников.pdf#page=14",
+      "kind": "official_document",
+      "checkedAt": "2026-11-24"
+    },
+    "staff": {
+      "label": "Специалисты клиники Метелица",
+      "url": "https://metelitsa-dent.ru/about/personal/",
+      "kind": "official_staff",
+      "checkedAt": "2026-11-24"
+    },
+    "profile": {
+      "label": "Профессиональная карточка врача",
+      "url": "https://prodoctorov.ru/spb/vrach/968841-filippova/",
+      "kind": "professional_profile",
+      "checkedAt": "2026-11-24"
+    },
+    "employment": {
+      "label": "Профессиональная карточка врача",
+      "url": "https://orident.ru/doctors/filippova-alina-vladislavovna",
+      "kind": "professional_profile",
+      "checkedAt": "2026-11-24"
+    },
+    "reviews": {
+      "label": "ПроДокторов",
+      "url": "https://prodoctorov.ru/spb/vrach/968841-filippova/",
+      "kind": "review_platform",
+      "checkedAt": "2026-11-24"
+    }
+  }
+}
