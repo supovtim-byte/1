@@ -36,6 +36,11 @@ for (const [file, content] of pages) {
     }
   }
 }
+const homepageReviews = html.match(/<section\b[^>]*\bid="reviews"[^>]*>([\s\S]*?)<\/section>/)?.[1];
+assert.ok(homepageReviews, 'Homepage reviews section is missing');
+for (const [card] of homepageReviews.matchAll(/<article\b[^>]*>/g)) {
+  assert.match(card, /\breview-card--imported\b/, 'Homepage review cards must come from a platform');
+}
 const faqs = [...html.matchAll(/<details\b[^>]*\bname="clinic-faq"[^>]*>/g)];
 assert.equal(faqs.length, 5, 'Expected five FAQs');
 for (const [faq] of faqs) assert.doesNotMatch(faq, /\sopen(?:[\s=>])/, 'All FAQs must start collapsed');

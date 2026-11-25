@@ -442,6 +442,7 @@ address { font-style: normal; }
 .deck-more { display: inline-block; margin: max(20px, calc(40 * var(--unit))) 0 0 var(--inside); }
 
 .review-track { --card-width: max(285px, calc(560 * var(--unit))); }
+.home-page #reviews:not(:has(.review-card)) :is(.carousel-controls, .review-track) { display: none; }
 .review-card {
   min-height: max(248px, calc(458 * var(--unit)));
   display: flex;
