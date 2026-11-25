@@ -177,7 +177,7 @@ function reviews(d) {
           <button class="icon-button" type="button" data-prev aria-label="Предыдущий источник отзывов" aria-controls="reviews-track"><img src="assets/carousel-prev.svg" alt=""></button>
           <button class="icon-button" type="button" data-next aria-label="Следующий источник отзывов" aria-controls="reviews-track"><img src="assets/carousel-next.svg" alt=""></button>
         </div>` : '';
-  return `<section class="section deck section-shell doctor-reviews" id="reviews" aria-labelledby="reviews-title"${controls ? ' data-carousel' : ''}>
+  return `<section class="section deck doctor-shell doctor-reviews" id="reviews" aria-labelledby="reviews-title"${controls ? ' data-carousel' : ''}>
       <div class="section-heading">
         <h2 id="reviews-title">Отзывы о враче</h2>
         ${controls}

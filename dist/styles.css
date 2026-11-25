@@ -43,6 +43,7 @@
   --link-hover: #007fae;
   --white: #fff;
   --unit: calc(100vw / 1920);
+  --hero-back-title-gap: clamp(32px, calc(50 * var(--unit)), 50px);
   --edge: 20px;
   --intro-section-gap: max(56px, calc(100 * var(--unit)));
   --inside: max(20px, calc(40 * var(--unit)));
