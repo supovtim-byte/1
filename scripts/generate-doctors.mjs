@@ -21,6 +21,7 @@ const text = (value, label) => assert.ok(typeof value === 'string' && value.trim
 const date = value => /^\d{4}-\d{2}-\d{2}$/.test(value) && !Number.isNaN(Date.parse(value));
 const reviewSources = new Map([
   ['yandex', { title: 'Яндекс Карты', host: 'yandex.ru' }],
+  ['32top', { title: '32top', host: 'www.32top.ru' }],
   ['startsmile', { title: 'Startsmile', host: 'spb.startsmile.ru' }],
 ]);
 const reviewDate = new Intl.DateTimeFormat('ru-RU', { dateStyle: 'long', timeZone: 'UTC' });
@@ -40,12 +41,18 @@ export function readImportedReviews(snapshot) {
         || (card.rating !== null && !(typeof card.rating === 'number' && card.rating >= 1 && card.rating <= 5))) continue;
       const url = URL.parse(card.url);
       if (url?.protocol !== 'https:' || url.host !== source.host || url.username || url.password) continue;
-      const startsmilePath = subject === 'clinic' ? /^\/stomatologii\/metelitsa-otzyvy\.html$/ : /^\/stomatologi\/[a-z0-9_-]+\.html$/;
-      const directLink = provider === 'yandex'
-        ? subject === 'clinic' && url.pathname === '/maps/org/metelitsa/1132881772/reviews/'
-          && /^[a-z0-9]{15,40}$/.test(url.searchParams.get('reviews[publicId]') ?? '')
-        : startsmilePath.test(url.pathname) && /^#review[0-9]+$/.test(url.hash);
-      if (directLink) reviews.set(url.href, { ...card, url: url.href, source: source.title });
+      let directLink;
+      if (provider === 'yandex') {
+        directLink = url.pathname === '/maps/org/metelitsa/1132881772/reviews/'
+          && /^[a-z0-9]{15,40}$/.test(url.searchParams.get('reviews[publicId]') ?? '');
+      } else if (provider === '32top') {
+        directLink = subject === 'clinic' && url.pathname === '/spb/clinics/3886/comments/' && /^#comment_[0-9]+$/.test(url.hash);
+      } else {
+        const startsmilePath = subject === 'clinic' ? /^\/stomatologii\/metelitsa-otzyvy\.html$/ : /^\/stomatologi\/[a-z0-9_-]+\.html$/;
+        directLink = startsmilePath.test(url.pathname) && /^#review[0-9]+$/.test(url.hash);
+      }
+      const title = provider === 'yandex' && subject !== 'clinic' ? 'Яндекс Карты · отзыв о клинике' : source.title;
+      if (directLink) reviews.set(url.href, { ...card, url: url.href, source: title });
     }
     bySubject.set(subject, reviews);
   }
