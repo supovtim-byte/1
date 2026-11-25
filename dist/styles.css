@@ -453,6 +453,11 @@ address { font-style: normal; }
 }
 .review-card h3 { font-size: var(--large); line-height: 1.2; }
 .review-card > p { line-height: 1.6; }
+.review-card--interactive { position: relative; overflow-wrap: anywhere; }
+.review-open { color: inherit; font: inherit; text-align: start; background: none; border: 0; padding: 0; cursor: pointer; }
+.review-open::after { content: ""; position: absolute; inset: 0; border-radius: var(--radius); }
+.review-open:focus-visible::after { outline: 2px solid currentColor; outline-offset: -3px; }
+.review-card--interactive .review-meta a { position: relative; z-index: 1; }
 .review-meta { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; margin-block-start: auto; font-size: var(--small); }
 .review-card--imported .review-meta { flex-wrap: wrap; }
 .review-meta img { width: max(48px, calc(90 * var(--unit))); height: auto; aspect-ratio: 1; object-fit: cover; border-radius: max(5px, calc(10 * var(--unit))); background: var(--photo-background); }
@@ -632,6 +637,12 @@ address { font-style: normal; }
 .dialog-copy p { margin-block-start: 16px; }
 .dialog-actions { margin-block-start: 20px; display: flex; align-items: center; flex-wrap: wrap; gap: 12px 18px; }
 .appointment-dialog h2 { margin-inline-end: 32px; }
+.review-dialog { overscroll-behavior: contain; overflow-wrap: anywhere; }
+.review-dialog-header { position: sticky; inset-block-start: 0; background: var(--page); padding-block-end: 14px; }
+.review-dialog-header h2 { margin-inline-end: 48px; }
+.review-dialog-header h2:focus { outline: none; }
+.review-dialog-meta { display: flex; flex-wrap: wrap; gap: 4px 16px; margin-block-start: 6px; color: var(--muted); }
+.review-dialog-text { padding-block-start: 0; white-space: pre-wrap; line-height: 1.65; }
 :root:has(dialog[open]) { overflow: hidden; }
 
 :root.high-contrast { --page: #fff; --panel: #e2f0f8; --header-panel: #e2f0f8; --arrival-panel: #e2f0f8; --ink: #081f2b; --link: #005e87; --muted: #214153; }

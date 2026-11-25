@@ -700,6 +700,82 @@ function updateAppointmentButton() {
 window.addEventListener("pageshow", updateAppointmentButton);
 updateAppointmentButton();
 
+function enableReviewDialog() {
+  const cards = document.querySelectorAll(".review-card");
+  if (!cards.length) return;
+
+  const dialog = document.createElement("dialog");
+  dialog.className = "detail-dialog review-dialog";
+  dialog.setAttribute("aria-labelledby", "review-dialog-title");
+  dialog.innerHTML = `
+    <div class="dialog-copy review-dialog-header">
+      <form method="dialog"><button type="submit" class="dialog-close icon-button" aria-label="Закрыть">×</button></form>
+      <h2 id="review-dialog-title" tabindex="-1"></h2>
+      <div class="review-dialog-meta">
+        <time></time>
+        <span data-review-context></span>
+        <a class="text-link" target="_blank" rel="noopener"></a>
+      </div>
+    </div>
+    <div class="dialog-copy review-dialog-text"></div>`;
+  const title = dialog.querySelector("h2");
+  const date = dialog.querySelector("time");
+  const context = dialog.querySelector("[data-review-context]");
+  const body = dialog.querySelector(".review-dialog-text");
+  const link = dialog.querySelector("a");
+  let opener;
+  let hasReviews = false;
+
+  for (const card of cards) {
+    const heading = card.querySelector(":scope > h3");
+    const preview = card.querySelector(":scope > p")?.textContent.trim();
+    const source = card.querySelector(".review-meta a[href]");
+    const imported = card.classList.contains("review-card--imported");
+    if (!heading || !preview || (source && !imported)) continue;
+
+    const fullText = card.querySelector("template[data-review-text]")?.content.textContent;
+    const posted = card.querySelector(".review-meta time");
+    const author = heading.textContent.trim();
+    const open = document.createElement("button");
+    open.type = "button";
+    open.className = "review-open";
+    open.textContent = author;
+    open.setAttribute("aria-label", `Прочитать отзыв — ${author}`);
+    open.setAttribute("aria-haspopup", "dialog");
+    heading.replaceChildren(open);
+    card.classList.add("review-card--interactive");
+    hasReviews = true;
+
+    open.addEventListener("click", () => {
+      opener = open;
+      title.textContent = author;
+      date.textContent = posted?.textContent ?? "";
+      date.dateTime = posted?.dateTime ?? "";
+      date.hidden = !posted;
+      const note = imported && !fullText ? "Фрагмент отзыва"
+        : card.hasAttribute("data-clinic-review") ? "Отзыв о клинике" : "";
+      context.textContent = note;
+      context.hidden = !note;
+      link.hidden = !source;
+      if (source) {
+        link.href = source.href;
+        link.textContent = source.textContent;
+      }
+      body.textContent = fullText || preview;
+      dialog.showModal();
+      dialog.scrollTop = 0;
+      title.focus({ preventScroll: true });
+    });
+  }
+
+  if (hasReviews) {
+    dialog.addEventListener("close", () => opener?.focus({ preventScroll: true }));
+    document.body.append(dialog);
+  }
+}
+
+enableReviewDialog();
+
 document.querySelectorAll(".detail-dialog").forEach(dialog => {
   dialog.addEventListener("click", event => {
     const box = dialog.getBoundingClientRect();

@@ -11,9 +11,12 @@ const profile = fs.readFileSync(path.join(root, 'templates/doctor.html'), 'utf8'
 const catalog = fs.readFileSync(path.join(root, 'templates/doctors.html'), 'utf8');
 const copy = id => structuredClone(doctors.find(d => d.id === id));
 
-test('imported review cards escape excerpts and require a direct link from the configured platform', () => {
+test('imported reviews show the author and a platform link and escape the full text', () => {
   const source = 'https://spb.startsmile.ru/stomatologi/test.html';
-  const card = { date: '2026-11-25', excerpt: 'Отзыв <img src=x> {{example}}', rating: 4.5 };
+  const card = {
+    date: '2026-11-25', author: 'Анна & Олег', excerpt: 'Отзыв <img src=x> {{example}}',
+    text: 'Полный отзыв\n</template><img src=x> {{example}}', rating: 4.5,
+  };
   const imported = readImportedReviews({ version: 1, sources: {
     'startsmile:hodykina': [
       { ...card, url: source + '#review1234' },
@@ -24,17 +27,25 @@ test('imported review cards escape excerpts and require a direct link from the c
   const reviews = imported.get('hodykina');
   assert.equal(reviews.length, 1);
   const html = renderDoctor(copy('hodykina'), profile, reviews);
+  assert.match(html, /<h3>Анна &amp; Олег<\/h3>/);
   assert.match(html, /Отзыв &lt;img src=x&gt; &#123;&#123;example&#125;&#125;/);
-  assert.match(html, /4,5 из 5/);
-  assert.match(html, /href="https:\/\/spb\.startsmile\.ru\/stomatologi\/test\.html#review1234"[^>]*>Читать оригинал/);
+  assert.match(html, /<template data-review-text>Полный отзыв\n&lt;\/template&gt;&lt;img src=x&gt; &#123;&#123;example&#125;&#125;<\/template>/);
+  assert.doesNotMatch(html, /из 5|Читать оригинал/);
+  assert.match(html, /href="https:\/\/spb\.startsmile\.ru\/stomatologi\/test\.html#review1234"[^>]*>Startsmile/);
   assert.match(html, /Все отзывы на ПроДокторов/);
 });
 
 test('updating the homepage review slot is idempotent and keeps the editorial cards', () => {
   const initial = '  <!-- imported-reviews:start -->\n  <!-- imported-reviews:end -->\n  <article>Отзыв клиники</article>';
-  const cards = [{ source: 'Яндекс Карты', date: '2026-11-25', excerpt: 'Отзыв', rating: 5, url: 'https://yandex.ru/maps/' }];
+  const imported = readImportedReviews({ version: 1, sources: { 'yandex:clinic': [{
+    date: '2026-11-25', excerpt: 'Сохранённый фрагмент', rating: 5,
+    url: 'https://yandex.ru/maps/org/metelitsa/1132881772/reviews/?reviews%5BpublicId%5D=testreviewauthor123',
+  }] } });
+  const cards = imported.get('clinic');
   const updated = updateHomepageReviews(initial, cards);
-  assert.match(updated, /Читать оригинал/);
+  assert.match(updated, /<h3>Автор не указан<\/h3>/);
+  assert.match(updated, /target="_blank" rel="noopener">Яндекс<\/a>/);
+  assert.doesNotMatch(updated, /data-review-text|Яндекс Карты|из 5/);
   assert.equal(updateHomepageReviews(updated, cards), updated);
   assert.equal(updateHomepageReviews(updated, []), initial);
 });
