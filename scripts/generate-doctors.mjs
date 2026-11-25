@@ -114,10 +114,24 @@ function fill(template, values) {
 }
 function portrait(d, context) {
   const photo = d.photo || { path: 'assets/doctors/placeholder.svg', alt: '', width: 1594, height: 1594 };
-  return `<img class="cover" src="${escapeHtml(photo.path)}" width="${photo.width}" height="${photo.height}" alt="${escapeHtml(context === 'appointment' ? '' : photo.alt)}" ${context === 'hero' ? 'fetchpriority="high"' : 'loading="lazy"'} draggable="false">`;
+  const alt = context === 'appointment' ? '' : context === 'card' && d.photo ? previewName(d) : photo.alt;
+  const source = d.photo ? photo.path : `${photo.path}?v=20261125`;
+  return `<img class="cover" src="${escapeHtml(source)}" width="${photo.width}" height="${photo.height}" alt="${escapeHtml(alt)}" ${context === 'hero' ? 'fetchpriority="high"' : 'loading="lazy"'} draggable="false">`;
 }
+export function previewName(d) {
+  return d.name.trim().split(/\s+/).slice(0, 2).join(' ');
+}
+const specialtyLabels = new Map([
+  ['Главный врач', 'Главный врач'], ['Врач-стоматолог детский', 'Детский стоматолог'],
+  ['Врач-стоматолог-терапевт', 'Терапевт'], ['Врач-стоматолог-хирург', 'Хирург'],
+  ['Врач-стоматолог-ортопед', 'Ортопед'], ['Врач-ортодонт', 'Ортодонт'],
+  ['Врач-стоматолог', 'Стоматолог'], ['Гигиенист стоматологический', 'Гигиенист'],
+  ['Врач-анестезиолог-реаниматолог', 'Анестезиолог-реаниматолог'],
+]);
 function specialty(d) {
-  return d.specialties.map((s, i) => i ? s[0].toLocaleLowerCase('ru') + s.slice(1) : s).join(', ');
+  const labels = [...new Set(d.specialties.map(s => specialtyLabels.get(s) || s))];
+  const specific = labels.filter(s => labels.length === 1 || s !== 'Стоматолог');
+  return specific.map((s, i) => i ? s[0].toLocaleLowerCase('ru') + s.slice(1) : s).join(', ');
 }
 function experience(d, className = '') {
   return d.experience ? `<p${className ? ` class="${className}"` : ''}>опыт: ${d.experience.years} ${yearWord(d.experience.years)}</p>` : '';
@@ -155,7 +169,7 @@ function reviews(d) {
           <button class="icon-button" type="button" data-prev aria-label="Предыдущий источник отзывов" aria-controls="reviews-track"><img src="assets/carousel-prev.svg" alt=""></button>
           <button class="icon-button" type="button" data-next aria-label="Следующий источник отзывов" aria-controls="reviews-track"><img src="assets/carousel-next.svg" alt=""></button>
         </div>` : '';
-  return `<section class="section deck section-shell doctor-reviews" id="reviews" aria-labelledby="reviews-title" data-carousel>
+  return `<section class="section deck section-shell doctor-reviews" id="reviews" aria-labelledby="reviews-title"${controls ? ' data-carousel' : ''}>
       <div class="section-heading">
         <h2 id="reviews-title">Отзывы о враче</h2>
         ${controls}
@@ -189,12 +203,13 @@ export function renderDoctor(d, template) {
 export function renderCard(d) {
   const url = `doctor-${d.id}.html`;
   const label = d.publication.bookable ? 'записаться к врачу' : 'о враче';
+  const name = escapeHtml(previewName(d));
   return `        <article class="doctor-card" id="doctor-${d.id}" data-doctor-specialties="${d.filterTags.join(' ')}" aria-labelledby="${d.id}-name">
           <div class="doctor-photo">
-            <a class="doctor-profile-photo" href="${url}" aria-label="Открыть страницу врача: ${escapeHtml(d.name)}">${portrait(d, 'card')}</a>
-            <a class="button doctor-book" href="${url}${d.publication.bookable ? '#appointment' : ''}" aria-label="${escapeHtml(label)}: ${escapeHtml(d.name)}"><span class="button-label">${label}</span></a>
+            <a class="doctor-profile-photo" href="${url}" aria-label="Открыть страницу врача: ${name}">${portrait(d, 'card')}</a>
+            <a class="button doctor-book" href="${url}${d.publication.bookable ? '#appointment' : ''}" aria-label="${escapeHtml(label)}: ${name}"><span class="button-label">${label}</span></a>
           </div>
-          <h3 id="${d.id}-name"><a class="doctor-profile-link" href="${url}">${escapeHtml(d.name)}</a></h3>
+          <h3 id="${d.id}-name"><a class="doctor-profile-link" href="${url}">${name}</a></h3>
           <p>${escapeHtml(specialty(d))}</p>
           ${experience(d, 'doctor-experience')}
           ${d.availabilityLabel ? `<p>${escapeHtml(d.availabilityLabel)}</p>` : ''}
@@ -210,16 +225,22 @@ export function renderCatalog(doctors, template) {
   });
 }
 
-// Existing carousels keep their layout, short names and IDs, but use the same data.
+// Existing carousels keep their layout and IDs, and share the catalogue's labels.
 export function updateRelatedCards(html, doctors) {
   return html.replace(/<article\b[^>]*class="[^"]*\bdoctor-card\b[^"]*"[\s\S]*?<\/article>/g, card => {
     const heading = card.match(/<h3\b[^>]*>([\s\S]*?)<\/h3>/)?.[1].replace(/<[^>]+>/g, '').trim();
-    const d = doctors.find(d => d.name === heading || d.aliases.includes(heading));
+    const d = doctors.find(d => d.name === heading || previewName(d) === heading || d.aliases.includes(heading));
     if (!d) return card;
     const url = `doctor-${d.id}.html`;
     let result = card.replace(/href="doctor-[a-z0-9-]+\.html(?:#[^"]*)?"/g, `href="${url}"`);
     result = result.replace(/<p class="doctor-experience">[\s\S]*?<\/p>/, experience(d, 'doctor-experience'));
     result = result.replace(/<img\b[^>]*class="cover"[^>]*>/, portrait(d, 'card'));
+    result = result.replace(/(<h3\b[^>]*>)([\s\S]*?)(<\/h3>)/, (_, open, content, close) => {
+      const name = escapeHtml(previewName(d));
+      return open + (content.includes('<a ') ? content.replace(/(<a\b[^>]*>)[\s\S]*?(<\/a>)/, `$1${name}$2`) : name) + close;
+    });
+    result = result.replace(/(<\/h3>\s*)<p>[\s\S]*?<\/p>/, `$1<p>${escapeHtml(specialty(d))}</p>`);
+    result = result.replace(/(aria-label="[^"\n]*: )[^"\n]*(")/g, `$1${escapeHtml(previewName(d))}$2`);
     return result.replace(/[\t ]+$/gm, '');
   });
 }

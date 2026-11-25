@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 import vm from 'node:vm';
-import { loadDoctors, validateDoctor, renderDoctor, renderCatalog, updateRelatedCards } from './generate-doctors.mjs';
+import { loadDoctors, validateDoctor, renderDoctor, renderCatalog, renderCard, updateRelatedCards } from './generate-doctors.mjs';
 
 const root = path.resolve(import.meta.dirname, '..');
 const doctors = loadDoctors();
@@ -52,6 +52,16 @@ test('reviews identify each platform without copying sample testimonials or inve
   assert.doesNotMatch(html, /Наталья Иванова|Лечимся в данной клинике|<time|ratingValue|aggregateRating/);
 });
 
+test('every interactive review carousel provides the controls required by the shared site script', () => {
+  for (const d of doctors) {
+    const html = renderDoctor(d, profile);
+    for (const [section] of html.matchAll(/<section\b[^>]*\bdata-carousel\b[\s\S]*?<\/section>/g)) {
+      assert.ok(section.includes('data-prev'), `${d.id}: previous control missing`);
+      assert.ok(section.includes('data-next'), `${d.id}: next control missing`);
+    }
+  }
+});
+
 test('unavailable and document-only doctors do not offer an appointment with that doctor', () => {
   for (const id of ['doncova', 'kilyusheva', 'buhtoyarova', 'nikiforov', 'efimova']) {
     const d = copy(id);
@@ -85,6 +95,28 @@ test('catalogue links every listed doctor once and excludes unconfirmed active s
   assert.doesNotMatch(html, /data-doctor-copy/);
   assert.ok(html.includes('data-specialty="orthodontics"'));
   assert.ok(html.includes('data-specialty="orthopedics"'));
+});
+
+test('preview cards use surname and given name while profiles and data keep the full name', () => {
+  const d = copy('hodykina');
+  const original = structuredClone(d);
+  const card = renderCard(d);
+  assert.ok(card.includes('>Ходыкина Дарья</a></h3>'));
+  assert.ok(!card.includes('Ходыкина Дарья Александровна'));
+  assert.ok(renderDoctor(d, profile).includes('<h1 id="doctor-title">Ходыкина Дарья Александровна</h1>'));
+  assert.deepEqual(d, original);
+  const legacy = '<article class="doctor-card"><h3><a href="doctor-barmashev.html">Филипп Бармашев</a></h3><p>врач-стоматолог-хирург</p></article>';
+  const updated = updateRelatedCards(legacy, doctors);
+  assert.ok(updated.includes('>Бармашев Филипп</a></h3>'));
+  assert.equal(updateRelatedCards(updated, doctors), updated);
+});
+
+test('specialty labels retain specific roles without repeated physician prefixes or redundant general roles', () => {
+  const chief = renderDoctor(copy('sizonec'), profile);
+  assert.ok(chief.includes('<p>Главный врач, детский стоматолог, терапевт, хирург</p>'));
+  assert.ok(renderCard(copy('skalozub')).includes('<p>Хирург</p>'));
+  assert.ok(renderCard(copy('simonin')).includes('<p>Терапевт</p>'));
+  assert.ok(renderCard(copy('bogdanova')).includes('<p>Гигиенист</p>'));
 });
 
 test('existing carousel links and stale experience follow doctor data without changing short headings', () => {

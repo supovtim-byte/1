@@ -3,19 +3,22 @@
 .doctor-shell { inline-size: var(--doctor-column); max-inline-size: calc(100% - 48px); margin-inline: auto; }
 .doctor-hero-screen { padding-block-start: calc(var(--header-height) + 20px); min-block-size: calc(var(--header-height) + 560px); }
 .doctor-hero { display: block; overflow: hidden; padding: max(24px, calc(50 * var(--unit))) max(24px, calc(50 * var(--unit))) max(24px, calc(45 * var(--unit))); color: var(--ink); background: radial-gradient(ellipse 36.36% 85.03% at 70.7979% 77.0522%, rgb(120 191 255 / 60%), rgb(169 214 255 / 60%) 50%, rgb(217 237 255 / 60%)), var(--panel); }
-.doctor-back { position: absolute; z-index: 2; inset-block-start: max(24px, calc(40 * var(--unit))); inset-inline-start: max(24px, calc(50 * var(--unit))); display: inline-flex; align-items: center; gap: 12px; min-block-size: 30px; }
+.doctor-back { position: absolute; z-index: 2; inset-block-start: max(24px, calc(40 * var(--unit))); inset-inline-start: max(24px, calc(50 * var(--unit))); display: inline-flex; align-items: center; gap: 12px; min-block-size: 30px; font-size: var(--button-font-size); }
 .doctor-back img { flex: none; max-inline-size: none; }
 .doctor-back:hover { color: var(--link-hover); }
-.doctor-intro { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: flex-start; block-size: 100%; padding-block-start: calc(70 * var(--unit)); }
-.doctor-intro h1 { max-inline-size: calc(588 * var(--unit)); font-size: var(--display); font-weight: 500; line-height: 1; letter-spacing: -.03em; }
-.doctor-specialty { margin-block-start: var(--doctor-intro-gap); font-size: max(16px, calc(20 * var(--unit))); font-weight: 400; line-height: 1.5; }
+.doctor-intro { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: flex-start; inline-size: min(43%, calc(588 * var(--unit))); min-inline-size: 0; block-size: 100%; padding-block-start: calc(70 * var(--unit)); }
+.doctor-intro h1 { max-inline-size: 100%; overflow-wrap: anywhere; font-size: var(--display); font-weight: 500; line-height: 1; letter-spacing: -.03em; }
+.doctor-specialty { max-inline-size: 100%; margin-block-start: var(--doctor-intro-gap); font-size: var(--button-font-size); font-weight: 400; line-height: 1.5; }
 .doctor-specialty p + p { margin-block-start: 10px; }
 .doctor-profile-book { color: var(--ink); background: var(--white); }
 .doctor-profile-book:not(:disabled):hover { color: var(--white); background: var(--link); }
 .doctor-intro > .button { flex-shrink: 0; margin-block-start: var(--doctor-intro-gap); }
 .doctor-hero-slot { position: absolute; z-index: 0; inset-block: 0; inset-inline-start: 43.4043%; inline-size: 50.266%; min-inline-size: 0; }
-.doctor-hero-media { position: absolute; inset: 0; overflow: hidden; border-radius: var(--photo-radius); }
-.doctor-hero-media img { inset: auto; inset-block-start: -5.4341%; inset-inline-start: 0; inline-size: 100%; block-size: 117.3957%; max-inline-size: none; object-fit: cover; object-position: center top; }
+/* Clip the portrait at the blue hero (or mobile slot), never at an inner frame. */
+.doctor-hero-media { position: absolute; inset: 0; container-type: size; }
+/* Keep the former cover scale and centre, but let the complete square image
+   extend beyond its slot so only the outer blue rectangle crops the doctor. */
+.doctor-hero-media img { inset: auto; inset-block-start: -5.4341%; inset-inline-start: 50%; inline-size: max(100cqw, 117.3957cqh); block-size: auto; aspect-ratio: 1; max-inline-size: none; object-fit: contain; transform: translateX(-50%); }
 .doctor-layout { margin-block-start: max(44px, calc(120 * var(--unit) - var(--edge))); }
 .doctor-content { min-inline-size: 0; }
 .doctor-content h2 { font-size: var(--doctor-heading); font-weight: 500; line-height: 1.1; letter-spacing: -.03em; }
@@ -65,11 +68,13 @@
   .doctor-appointment .appointment-content { padding: 30px 24px; }
   .doctor-appointment .consent > div { max-inline-size: 100%; }
 }
+@media (min-width: 601px) and (max-width: 1100px) {
+  .doctor-intro { inline-size: 42%; }
+  .doctor-intro h1 { font-size: min(var(--display), 4.7vw); }
+  .doctor-hero-media img { transform: translateX(-50%) scale(.9); transform-origin: 50% 105.4341cqh; }
+}
 @media (max-width: 780px) {
   .doctor-page { --doctor-column: calc(100% - 48px); }
-  .doctor-back { font-size: 16px; }
-  .doctor-intro h1 { max-inline-size: 56%; }
-  .doctor-specialty { font-size: 15px; }
   .doctor-appointment { grid-template-columns: minmax(0, 40fr) minmax(0, 60fr); }
 }
 @media (max-width: 600px) {
@@ -89,9 +94,8 @@
   .doctor-brand { position: relative; z-index: 2; inset: auto; margin-inline: var(--mobile-copy-gutter); }
   .doctor-brand img { filter: none; }
   .doctor-back { position: relative; inset: auto; align-self: flex-start; margin-inline: var(--mobile-copy-gutter); }
-  .doctor-intro { block-size: auto; padding: 0 var(--mobile-copy-gutter); }
+  .doctor-intro { inline-size: 100%; block-size: auto; padding: 0 var(--mobile-copy-gutter); }
   .doctor-intro h1 { max-inline-size: 100%; font-size: clamp(30px, 9.167vw, 42px); }
-  .doctor-specialty { font-size: max(13px, var(--small)); }
   .doctor-specialty p + p { margin-block-start: 5px; }
   .doctor-intro > .button { display: inline-flex; }
   .doctor-hero-slot {
@@ -105,13 +109,13 @@
     overflow: hidden;
     background: radial-gradient(ellipse at 50% 75%, rgb(120 191 255 / 60%), var(--panel));
   }
-  .doctor-hero-media { border-radius: inherit; }
   .doctor-hero-media img {
     inset: 0;
     inline-size: 100%;
     block-size: 100%;
     object-fit: contain;
     object-position: center bottom;
+    transform: none;
   }
   .doctor-layout { margin-block-start: 60px; }
   .doctor-about h2 + p, .doctor-education dl { margin-block-start: 24px; }
