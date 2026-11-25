@@ -17,7 +17,7 @@ test('imported reviews show the author and a platform link and escape the full t
     date: '2026-11-25', author: 'Анна & Олег', excerpt: 'Отзыв <img src=x> {{example}}',
     text: 'Полный отзыв\n</template><img src=x> {{example}}', rating: 4.5,
   };
-  const imported = readImportedReviews({ version: 1, sources: {
+  const imported = readImportedReviews({ version: 2, sources: {
     'startsmile:hodykina': [
       { ...card, url: source + '#review1234' },
       { ...card, url: source },
@@ -37,10 +37,12 @@ test('imported reviews show the author and a platform link and escape the full t
 
 test('updating the homepage review slot is idempotent and keeps the editorial cards', () => {
   const initial = '  <!-- imported-reviews:start -->\n  <!-- imported-reviews:end -->\n  <article>Отзыв клиники</article>';
-  const imported = readImportedReviews({ version: 1, sources: { 'yandex:clinic': [{
+  const sources = { 'yandex:clinic': [{
     date: '2026-11-25', excerpt: 'Сохранённый фрагмент', rating: 5,
     url: 'https://yandex.ru/maps/org/metelitsa/1132881772/reviews/?reviews%5BpublicId%5D=testreviewauthor123',
-  }] } });
+  }] };
+  assert.equal(readImportedReviews({ version: 1, sources }).size, 0);
+  const imported = readImportedReviews({ version: 2, sources });
   const cards = imported.get('clinic');
   const updated = updateHomepageReviews(initial, cards);
   assert.match(updated, /<h3>Автор не указан<\/h3>/);

@@ -29,7 +29,7 @@ const homepageReviewsSlot = /(^[ \t]*<!-- imported-reviews:start -->\n)[\s\S]*?(
 
 export function readImportedReviews(snapshot) {
   const bySubject = new Map();
-  if (snapshot?.version !== 1) return bySubject;
+  if (snapshot?.version !== 2) return bySubject;
   for (const [key, cards] of Object.entries(snapshot.sources ?? {})) {
     const [provider, subject] = key.split(':');
     const source = reviewSources.get(provider);

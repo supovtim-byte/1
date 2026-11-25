@@ -9,11 +9,13 @@ from pathlib import Path
 import re
 from tempfile import TemporaryDirectory
 from urllib.error import HTTPError
-from urllib.parse import urlencode, urlsplit
+from urllib.parse import parse_qs, urlencode, urlsplit
 from urllib.request import Request, urlopen
 
 ROOT = Path(__file__).resolve().parents[1]
 SNAPSHOT = ROOT / "dist/reviews.json"
+MODERATION = ROOT / "data/review-moderation.json"
+SNAPSHOT_VERSION = 2
 PUBLISHED_SNAPSHOT = "https://supovtim-byte.github.io/1/reviews.json"
 YANDEX_ORG = "1132881772"
 YANDEX_URL = f"https://yandex.ru/maps/org/metelitsa/{YANDEX_ORG}/reviews/"
@@ -23,6 +25,7 @@ USER_AGENT = "MetelitsaReviews/1.0 (+https://github.com/supovtim-byte/1)"
 MAX_BYTES = 4_000_000
 CARDS_PER_SOURCE = 8
 EXCERPT_LENGTH = 220
+MAX_HIDDEN_RATING = 2
 
 STARTSMILE_ITEM = re.compile(
     r'<li\b(?=[^>]*\bclass="[^"]*\bhreview\b[^"]*")'
@@ -56,11 +59,11 @@ def excerpt(value):
     return value[:EXCERPT_LENGTH].rsplit(" ", 1)[0] + "…"
 
 
-def review(url, timestamp, author, text):
+def review(url, timestamp, author, text, rating):
     day = date.fromisoformat(timestamp[:10]).isoformat()
     author = " ".join(author.split()) if isinstance(author, str) else ""
     full_text = "\n".join(line.rstrip() for line in text.splitlines()).strip()
-    return {"url": url, "date": day, "author": author, "text": full_text, "excerpt": excerpt(full_text)}
+    return {"url": url, "date": day, "author": author, "text": full_text, "excerpt": excerpt(full_text), "rating": rating}
 
 
 def normalized_name(text):
@@ -110,7 +113,7 @@ def yandex_reviews(html, mentions=None):
                 or not isinstance(text, str) or not text.strip()):
             continue
         link = YANDEX_URL + "?" + urlencode({"reviews[publicId]": author_id})
-        card = review(link, item["updatedTime"], author.get("name"), text)
+        card = review(link, item["updatedTime"], author.get("name"), text, item.get("rating"))
         if mentions:
             normalized = f" {normalized_name(text)} "
             doctors = sorted({doctor for phrase, doctor in mentions.items() if phrase in normalized})
@@ -150,7 +153,8 @@ def startsmile_reviews(html, url):
             continue
         timestamp = field(section, "dtreviewed")
         author = field(section, "reviewer")
-        cards.append(review(url + "#" + match["id"], timestamp, author, text))
+        rating = field(section, "best__c-b-r-count")
+        cards.append(review(url + "#" + match["id"], timestamp, author, text, rating))
     if matches and not cards:
         raise ValueError("review descriptions are unavailable")
     return cards
@@ -174,7 +178,11 @@ def top32_reviews(html):
         item = items.get(text)
         if item:
             author = (item.get("author") or {}).get("name")
-            cards.append(review(f"{TOP32_CLINIC}#{match['id']}", item["datePublished"], author, unescape(item["reviewBody"])))
+            rating = (item.get("reviewRating") or {}).get("ratingValue")
+            cards.append(review(
+                f"{TOP32_CLINIC}#{match['id']}", item["datePublished"],
+                author, unescape(item["reviewBody"]), rating,
+            ))
     if not cards:
         raise ValueError("review data and permalinks are unavailable")
     return cards
@@ -197,12 +205,57 @@ def configured_sources(doctors):
     return sources
 
 
-def latest(cards):
-    unique = {card["url"]: card for card in cards}
-    return sorted(unique.values(), key=lambda card: card["date"], reverse=True)[:CARDS_PER_SOURCE]
+def review_key(url):
+    parts = urlsplit(url)
+    host = (parts.hostname or "").removeprefix("www.")
+    if host in ("yandex.ru", "yandex.com") and re.search(rf"/{YANDEX_ORG}/reviews/?$", parts.path):
+        author = parse_qs(parts.query).get("reviews[publicId]", [""])[0]
+        return ("yandex.ru", YANDEX_ORG, author)
+    if host == "spb.startsmile.ru":
+        return (host, parts.fragment)
+    return (host, parts.path.rstrip("/"), parts.fragment)
 
 
-def refresh(source, mentions):
+def load_moderation():
+    rules = json.loads(MODERATION.read_text(encoding="utf-8"))
+    result = {}
+    for decision in ("hide", "show"):
+        urls = rules[decision]
+        if not isinstance(urls, list) or not all(
+            isinstance(url, str) and urlsplit(url).scheme == "https" and urlsplit(url).hostname
+            for url in urls
+        ):
+            raise ValueError(f"review-moderation.json: {decision} must contain HTTPS review URLs")
+        result[decision] = {review_key(url) for url in urls}
+    return result
+
+
+def rating_passes(rating):
+    try:
+        return MAX_HIDDEN_RATING < float(rating) <= 5
+    except (OverflowError, TypeError, ValueError):
+        return False
+
+
+def latest(cards, moderation):
+    selected = {}
+    automatic = {}
+    for card in cards:
+        key = review_key(card["url"])
+        passes = rating_passes(card["rating"])
+        manually_selected = key in moderation["show"]
+        if key in moderation["hide"] or (not passes and not manually_selected):
+            continue
+        published = {field: value for field, value in card.items() if field != "rating"}
+        if not passes:
+            published["manualOnly"] = True
+        group = selected if manually_selected else automatic
+        group[key] = published
+    slots = max(0, CARDS_PER_SOURCE - len(selected))
+    return list(selected.values()) + sorted(automatic.values(), key=lambda card: card["date"], reverse=True)[:slots]
+
+
+def refresh(source, mentions, moderation):
     key, url = source
     if key.startswith("yandex:"):
         cards = yandex_reviews(download(url, {"yandex.ru", "yandex.com"}), mentions)
@@ -210,34 +263,45 @@ def refresh(source, mentions):
         for card in cards:
             for doctor in card.pop("doctors", []):
                 groups.setdefault(f"yandex:{doctor}", []).append(card)
-        return {subject: latest(entries) for subject, entries in groups.items()}
+        return {subject: latest(entries, moderation) for subject, entries in groups.items()}
     if key == "32top:clinic":
-        return {key: latest(top32_reviews(download(url, {"www.32top.ru"})))}
-    return {key: latest(startsmile_reviews(download(url, {"spb.startsmile.ru"}), url))}
+        return {key: latest(top32_reviews(download(url, {"www.32top.ru"})), moderation)}
+    return {key: latest(startsmile_reviews(download(url, {"spb.startsmile.ru"}), url), moderation)}
 
 
-def parse_snapshot(payload):
+def parse_snapshot(payload, moderation):
     snapshot = json.loads(payload)
-    if snapshot["version"] != 1 or not isinstance(snapshot["sources"], dict):
+    if snapshot["version"] != SNAPSHOT_VERSION:
+        return {}
+    if not isinstance(snapshot["sources"], dict):
         raise ValueError("unsupported snapshot format")
-    return {key: cards for key, cards in snapshot["sources"].items() if isinstance(cards, list)}
+    cached = {}
+    for source, cards in snapshot["sources"].items():
+        if not isinstance(cards, list):
+            continue
+        cached[source] = []
+        for card in cards:
+            key = review_key(card["url"])
+            if key not in moderation["hide"] and (not card.get("manualOnly") or key in moderation["show"]):
+                cached[source].append(card)
+    return cached
 
 
-def previous_sources(restore):
+def previous_sources(restore, moderation):
     if restore:
         try:
-            return parse_snapshot(download(PUBLISHED_SNAPSHOT, {"supovtim-byte.github.io"}))
+            return parse_snapshot(download(PUBLISHED_SNAPSHOT, {"supovtim-byte.github.io"}), moderation)
         except HTTPError as error:
             if error.code != 404:
                 print(f"::warning::Published review snapshot returned HTTP {error.code}")
         except (OSError, TypeError, KeyError, ValueError) as error:
             print(f"::warning::Published review snapshot is unavailable ({type(error).__name__})")
     if SNAPSHOT.exists():
-        return parse_snapshot(SNAPSHOT.read_text(encoding="utf-8"))
+        return parse_snapshot(SNAPSHOT.read_text(encoding="utf-8"), moderation)
     return {}
 
 
-def collect(sources, previous, mentions=None):
+def collect(sources, previous, moderation, mentions=None):
     collected = {}
     blocked = set()
     for key, url in sources.items():
@@ -247,7 +311,7 @@ def collect(sources, previous, mentions=None):
                 collected[key] = previous[key]
             continue
         try:
-            refreshed = refresh((key, url), mentions)
+            refreshed = refresh((key, url), mentions, moderation)
             collected.update(refreshed)
             print(f"{key}: {len(refreshed[key])} cards, {len(refreshed) - 1} doctor profiles")
         except (OSError, SourceBlocked, AttributeError, TypeError, KeyError, ValueError) as error:
@@ -278,8 +342,11 @@ def main():
         json.loads(filename.read_text(encoding="utf-8"))
         for filename in sorted((ROOT / "data/doctors").glob("*.json"))
     ]
-    collected = collect(configured_sources(doctors), previous_sources(args.restore), doctor_mentions(doctors))
-    snapshot = {"version": 1, "sources": collected}
+    moderation = load_moderation()
+    collected = collect(
+        configured_sources(doctors), previous_sources(args.restore, moderation), moderation, doctor_mentions(doctors),
+    )
+    snapshot = {"version": SNAPSHOT_VERSION, "sources": collected}
     with TemporaryDirectory(dir=ROOT) as directory:
         temporary = Path(directory) / "reviews.json"
         temporary.write_text(json.dumps(snapshot, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

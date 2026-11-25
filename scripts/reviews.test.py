@@ -31,6 +31,7 @@ class ReviewCollectorTest(unittest.TestCase):
             "author": "Анна",
             "text": "Проверочный отзыв\nВторой абзац",
             "excerpt": "Проверочный отзыв Второй абзац",
+            "rating": 4,
         }])
 
     def test_only_unambiguous_mentions_of_current_doctors_can_link_a_clinic_review(self):
@@ -59,6 +60,7 @@ class ReviewCollectorTest(unittest.TestCase):
             "author": "Ирина",
             "text": "Первый & второй\nабзац",
             "excerpt": "Первый & второй абзац",
+            "rating": "4.0",
         }])
 
     def test_32top_matches_review_dates_to_their_own_anchors(self):
@@ -76,7 +78,42 @@ class ReviewCollectorTest(unittest.TestCase):
             "url": collector.TOP32_CLINIC + "#comment_1234", "date": "2026-11-25",
             "author": "Александр", "text": "Запись прошла хорошо.\nВторой абзац.",
             "excerpt": "Запись прошла хорошо. Второй абзац.",
+            "rating": 4,
         }])
+
+    def test_rating_filter_and_manual_selection(self):
+        url = collector.TOP32_CLINIC
+        cards = [
+            {"url": f"{url}#comment_{index}", "date": "2026-11-25", "rating": rating}
+            for index, rating in enumerate([1, 2, 3, 4, 5, None], start=1)
+        ]
+        self.assertEqual(
+            collector.latest(cards, {"hide": set(), "show": set()}),
+            [{field: value for field, value in card.items() if field != "rating"} for card in cards[2:5]],
+        )
+        rules = {
+            "hide": {collector.review_key(f"{url}#comment_4")},
+            "show": {collector.review_key(f"{url}?utm_source=share#comment_2"), collector.review_key(f"{url}#comment_4")},
+        }
+        self.assertEqual(collector.latest(cards, rules), [
+            {"url": f"{url}#comment_2", "date": "2026-11-25", "manualOnly": True},
+            {"url": f"{url}#comment_3", "date": "2026-11-25"},
+            {"url": f"{url}#comment_5", "date": "2026-11-25"},
+        ])
+
+    def test_restored_snapshot_rechecks_manual_rules_and_discards_unfiltered_versions(self):
+        url = collector.YANDEX_URL
+        hidden = f"{url}?reviews%5BpublicId%5D=hiddenauthor1234"
+        previously_selected = f"{url}?reviews%5BpublicId%5D=manualauthor1234"
+        visible = f"{url}?reviews%5BpublicId%5D=visibleauthor1234"
+        hidden_share_url = hidden.replace("yandex.ru", "yandex.com") + "&utm_source=review"
+        rules = {"hide": {collector.review_key(hidden_share_url)}, "show": set()}
+        groups = {"yandex:clinic": [{"url": hidden}, {"url": previously_selected, "manualOnly": True}, {"url": visible}]}
+        self.assertEqual(collector.parse_snapshot(json.dumps({"version": 1, "sources": groups}), rules), {})
+        self.assertEqual(
+            collector.parse_snapshot(json.dumps({"version": collector.SNAPSHOT_VERSION, "sources": groups}), rules),
+            {"yandex:clinic": [{"url": visible}]},
+        )
 
     def test_rate_limit_keeps_previous_cards_for_the_source(self):
         older = {"startsmile:clinic": [{"url": "previous"}], "startsmile:doctor": [{"url": "previous-doctor"}]}
@@ -87,7 +124,8 @@ class ReviewCollectorTest(unittest.TestCase):
         }
         throttled = HTTPError(collector.STARTSMILE_CLINIC, 429, "Too Many Requests", None, None)
         with patch.object(collector, "refresh", side_effect=[throttled, {"yandex:clinic": [{"url": "fresh"}]}]) as refresh:
-            self.assertEqual(collector.collect(sources, older), {**older, "yandex:clinic": [{"url": "fresh"}]})
+            result = collector.collect(sources, older, {"hide": set(), "show": set()})
+            self.assertEqual(result, {**older, "yandex:clinic": [{"url": "fresh"}]})
             self.assertEqual(refresh.call_count, 2)
 
 
