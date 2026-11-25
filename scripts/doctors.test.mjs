@@ -35,8 +35,8 @@ test('imported reviews show the author and a platform link and escape the full t
   assert.match(html, /Все отзывы на ПроДокторов/);
 });
 
-test('updating the homepage review slot is idempotent and keeps the editorial cards', () => {
-  const initial = '  <!-- imported-reviews:start -->\n  <!-- imported-reviews:end -->\n  <article>Отзыв клиники</article>';
+test('updating the homepage review slot is idempotent and preserves the link to all reviews', () => {
+  const initial = '  <!-- imported-reviews:start -->\n  <!-- imported-reviews:end -->\n</div>\n<a href="https://yandex.ru/maps/org/metelitsa/1132881772/reviews/">Все отзывы</a>';
   const sources = { 'yandex:clinic': [{
     date: '2026-11-25', excerpt: 'Сохранённый фрагмент', rating: 5,
     url: 'https://yandex.ru/maps/org/metelitsa/1132881772/reviews/?reviews%5BpublicId%5D=testreviewauthor123',
@@ -48,6 +48,7 @@ test('updating the homepage review slot is idempotent and keeps the editorial ca
   assert.match(updated, /<h3>Автор не указан<\/h3>/);
   assert.match(updated, /target="_blank" rel="noopener">Яндекс<\/a>/);
   assert.doesNotMatch(updated, /data-review-text|Яндекс Карты|из 5/);
+  assert.match(updated, /<a href="https:\/\/yandex\.ru\/maps\/org\/metelitsa\/1132881772\/reviews\/">Все отзывы<\/a>/);
   assert.equal(updateHomepageReviews(updated, cards), updated);
   assert.equal(updateHomepageReviews(updated, []), initial);
 });
