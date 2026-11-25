@@ -14,8 +14,8 @@ class ReviewCollectorTest(unittest.TestCase):
     def test_yandex_links_to_the_clinic_review_by_author(self):
         item = {
             "businessId": collector.YANDEX_ORG,
-            "author": {"publicId": "reviewauthor12345678"},
-            "text": "Проверочный отзыв",
+            "author": {"publicId": "reviewauthor12345678", "name": "Анна"},
+            "text": "Проверочный отзыв\nВторой абзац",
             "updatedTime": "2026-11-25T02:00:00Z",
             "rating": 4,
         }
@@ -28,8 +28,9 @@ class ReviewCollectorTest(unittest.TestCase):
         self.assertEqual(collector.yandex_reviews(html), [{
             "url": collector.YANDEX_URL + "?reviews%5BpublicId%5D=reviewauthor12345678",
             "date": "2026-11-25",
-            "rating": 4,
-            "excerpt": "Проверочный отзыв",
+            "author": "Анна",
+            "text": "Проверочный отзыв\nВторой абзац",
+            "excerpt": "Проверочный отзыв Второй абзац",
         }])
 
     def test_only_unambiguous_mentions_of_current_doctors_can_link_a_clinic_review(self):
@@ -47,6 +48,7 @@ class ReviewCollectorTest(unittest.TestCase):
         <li class="doc-main__feedbacks__item hreview " id="review1234">
           <span class="dtreviewed">2026-11-25 11:00:00</span>
           <div class="best__c-b-r-count value">4.0</div>
+          <div class="reviewer vcard"><a class="url fn">Ирина</a></div>
           <div class="doc-main__feedbacks__item-text description">Первый &amp; второй<br>абзац</div>
         </li>
         """
@@ -54,23 +56,26 @@ class ReviewCollectorTest(unittest.TestCase):
         self.assertEqual(collector.startsmile_reviews(html, url), [{
             "url": url + "#review1234",
             "date": "2026-11-25",
-            "rating": 4,
+            "author": "Ирина",
+            "text": "Первый & второй\nабзац",
             "excerpt": "Первый & второй абзац",
         }])
 
     def test_32top_matches_review_dates_to_their_own_anchors(self):
         item = {
-            "@type": "Review", "reviewBody": "Запись прошла хорошо.",
+            "@type": "Review", "reviewBody": "Запись прошла хорошо.\nВторой абзац.",
+            "author": {"@type": "Person", "name": "Александр"},
             "datePublished": "2026-11-25", "reviewRating": {"ratingValue": 4},
         }
         html = f"""
         <script type="application/ld+json">{json.dumps({"review": [item]})}</script>
         <div id="comment_4321"><div class="js-commentText">Ответ на отзыв.</div></div>
-        <div id="comment_1234"><div class="js-commentText">Запись прошла хорошо.</div></div>
+        <div id="comment_1234"><div class="js-commentText">Запись прошла хорошо.<br>Второй абзац.</div></div>
         """
         self.assertEqual(collector.top32_reviews(html), [{
             "url": collector.TOP32_CLINIC + "#comment_1234", "date": "2026-11-25",
-            "rating": 4, "excerpt": "Запись прошла хорошо.",
+            "author": "Александр", "text": "Запись прошла хорошо.\nВторой абзац.",
+            "excerpt": "Запись прошла хорошо. Второй абзац.",
         }])
 
     def test_rate_limit_keeps_previous_cards_for_the_source(self):

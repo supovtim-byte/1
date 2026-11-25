@@ -20,7 +20,7 @@ export const yearWord = n => n % 10 === 1 && n % 100 !== 11 ? 'год'
 const text = (value, label) => assert.ok(typeof value === 'string' && value.trim(), `Missing text: ${label}`);
 const date = value => /^\d{4}-\d{2}-\d{2}$/.test(value) && !Number.isNaN(Date.parse(value));
 const reviewSources = new Map([
-  ['yandex', { title: 'Яндекс Карты', host: 'yandex.ru' }],
+  ['yandex', { title: 'Яндекс', host: 'yandex.ru' }],
   ['32top', { title: '32top', host: 'www.32top.ru' }],
   ['startsmile', { title: 'Startsmile', host: 'spb.startsmile.ru' }],
 ]);
@@ -37,8 +37,7 @@ export function readImportedReviews(snapshot) {
     const reviews = bySubject.get(subject) ?? new Map();
     for (const card of cards) {
       if (typeof card?.url !== 'string' || typeof card.date !== 'string' || !date(card.date)
-        || typeof card.excerpt !== 'string' || !card.excerpt.trim() || card.excerpt.length > 480
-        || (card.rating !== null && !(typeof card.rating === 'number' && card.rating >= 1 && card.rating <= 5))) continue;
+        || typeof card.excerpt !== 'string' || !card.excerpt.trim() || card.excerpt.length > 480) continue;
       const url = URL.parse(card.url);
       if (url?.protocol !== 'https:' || url.host !== source.host || url.username || url.password) continue;
       let directLink;
@@ -51,8 +50,12 @@ export function readImportedReviews(snapshot) {
         const startsmilePath = subject === 'clinic' ? /^\/stomatologii\/metelitsa-otzyvy\.html$/ : /^\/stomatologi\/[a-z0-9_-]+\.html$/;
         directLink = startsmilePath.test(url.pathname) && /^#review[0-9]+$/.test(url.hash);
       }
-      const title = provider === 'yandex' && subject !== 'clinic' ? 'Яндекс Карты · отзыв о клинике' : source.title;
-      if (directLink) reviews.set(url.href, { ...card, url: url.href, source: title });
+      if (directLink) reviews.set(url.href, {
+        url: url.href, date: card.date, excerpt: card.excerpt, source: source.title,
+        author: typeof card.author === 'string' ? card.author.trim() : '',
+        text: typeof card.text === 'string' ? card.text.trim() : '',
+        clinicReview: provider === 'yandex' && subject !== 'clinic',
+      });
     }
     bySubject.set(subject, reviews);
   }
@@ -62,16 +65,15 @@ export function readImportedReviews(snapshot) {
 }
 
 function renderImportedReview(card) {
-  const rating = card.rating === null ? '' : `<span>${String(card.rating).replace('.', ',')} из 5</span>`;
-  const excerpt = escapeHtml(card.excerpt).replace(/\{/g, '&#123;').replace(/\}/g, '&#125;');
-  return `<article class="review-card review-card--imported">
-          <h3>${escapeHtml(card.source)}</h3>
-          <p>${excerpt}</p>
+  const escapeReviewText = value => escapeHtml(value).replace(/\{/g, '&#123;').replace(/\}/g, '&#125;');
+  const fullText = card.text ? `\n          <template data-review-text>${escapeReviewText(card.text)}</template>` : '';
+  return `<article class="review-card review-card--imported"${card.clinicReview ? ' data-clinic-review' : ''}>
+          <h3>${escapeReviewText(card.author || 'Автор не указан')}</h3>
+          <p>${escapeReviewText(card.excerpt)}</p>
           <div class="review-meta">
             <time datetime="${card.date}">${reviewDate.format(new Date(card.date))}</time>
-            ${rating}
-            <a class="text-link" href="${escapeHtml(card.url)}" target="_blank" rel="noopener">Читать оригинал</a>
-          </div>
+            <a class="text-link" href="${escapeHtml(card.url)}" target="_blank" rel="noopener">${escapeHtml(card.source)}</a>
+          </div>${fullText}
         </article>`;
 }
 

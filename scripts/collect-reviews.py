@@ -56,11 +56,11 @@ def excerpt(value):
     return value[:EXCERPT_LENGTH].rsplit(" ", 1)[0] + "…"
 
 
-def review(url, timestamp, rating, text):
+def review(url, timestamp, author, text):
     day = date.fromisoformat(timestamp[:10]).isoformat()
-    if rating is not None and not 1 <= rating <= 5:
-        raise ValueError("invalid rating")
-    return {"url": url, "date": day, "rating": rating, "excerpt": excerpt(text)}
+    author = " ".join(author.split()) if isinstance(author, str) else ""
+    full_text = "\n".join(line.rstrip() for line in text.splitlines()).strip()
+    return {"url": url, "date": day, "author": author, "text": full_text, "excerpt": excerpt(full_text)}
 
 
 def normalized_name(text):
@@ -102,14 +102,15 @@ def yandex_reviews(html, mentions=None):
     reviews = organization["reviewResults"]["reviews"]
     cards = []
     for item in reviews:
-        author_id = item.get("author", {}).get("publicId", "")
+        author = item.get("author") or {}
+        author_id = author.get("publicId", "")
         text = item.get("text", "")
         if (str(item.get("businessId")) != YANDEX_ORG
                 or not re.fullmatch(r"[a-z0-9]{15,40}", author_id or "")
                 or not isinstance(text, str) or not text.strip()):
             continue
         link = YANDEX_URL + "?" + urlencode({"reviews[publicId]": author_id})
-        card = review(link, item["updatedTime"], item["rating"], text)
+        card = review(link, item["updatedTime"], author.get("name"), text)
         if mentions:
             normalized = f" {normalized_name(text)} "
             doctors = sorted({doctor for phrase, doctor in mentions.items() if phrase in normalized})
@@ -130,7 +131,7 @@ def field(html, class_name):
     )
     if not result:
         return ""
-    content = re.sub(r'<(?:br\s*/?|/p)>', ' ', result[2], flags=re.IGNORECASE)
+    content = re.sub(r'<(?:br\s*/?|/p)>', '\n', result[2], flags=re.IGNORECASE)
     return unescape(re.sub(r'<[^>]+>', '', content)).strip()
 
 
@@ -148,8 +149,8 @@ def startsmile_reviews(html, url):
         if not text:
             continue
         timestamp = field(section, "dtreviewed")
-        rating = field(section, "best__c-b-r-count")
-        cards.append(review(url + "#" + match["id"], timestamp, float(rating) if rating else None, text))
+        author = field(section, "reviewer")
+        cards.append(review(url + "#" + match["id"], timestamp, author, text))
     if matches and not cards:
         raise ValueError("review descriptions are unavailable")
     return cards
@@ -172,8 +173,8 @@ def top32_reviews(html):
         text = " ".join(field(html[match.end():end], "js-commentText").split())
         item = items.get(text)
         if item:
-            rating = float(item["reviewRating"]["ratingValue"])
-            cards.append(review(f"{TOP32_CLINIC}#{match['id']}", item["datePublished"], rating, text))
+            author = (item.get("author") or {}).get("name")
+            cards.append(review(f"{TOP32_CLINIC}#{match['id']}", item["datePublished"], author, unescape(item["reviewBody"])))
     if not cards:
         raise ValueError("review data and permalinks are unavailable")
     return cards
