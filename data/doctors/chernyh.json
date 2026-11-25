@@ -60,6 +60,54 @@
   "experience": null,
   "directions": [
     {
+      "title": "Лечение молочных зубов",
+      "items": [
+        {
+          "label": "Восстановление молочных зубов композитным материалом",
+          "href": "uslugi-i-ceny.html#milk-teeth",
+          "kind": "procedure",
+          "sourceRefs": [
+            "clinical-scope"
+          ]
+        },
+        {
+          "label": "Установка металлических коронок на молочные зубы",
+          "href": "uslugi-i-ceny.html#milk-teeth",
+          "kind": "procedure",
+          "sourceRefs": [
+            "clinical-scope"
+          ]
+        }
+      ],
+      "sourceRefs": [
+        "clinical-scope"
+      ]
+    },
+    {
+      "title": "Адаптация и лечение во сне",
+      "items": [
+        {
+          "label": "Адаптация ребёнка к стоматологическому лечению",
+          "href": "uslugi-i-ceny.html#consultations",
+          "kind": "method",
+          "sourceRefs": [
+            "clinical-scope"
+          ]
+        },
+        {
+          "label": "Лечение молочных зубов в условиях медикаментозного сна",
+          "href": "lechenie-vo-sne.html#top",
+          "kind": "method",
+          "sourceRefs": [
+            "clinical-scope"
+          ]
+        }
+      ],
+      "sourceRefs": [
+        "clinical-scope"
+      ]
+    },
+    {
       "title": "Терапевтическая стоматология",
       "items": [
         {
@@ -67,7 +115,8 @@
           "href": "uslugi-i-ceny.html#consultations",
           "sourceRefs": [
             "staff"
-          ]
+          ],
+          "kind": "consultation"
         }
       ],
       "sourceRefs": [
@@ -82,7 +131,8 @@
           "href": "uslugi-i-ceny.html#consultations",
           "sourceRefs": [
             "staff"
-          ]
+          ],
+          "kind": "consultation"
         }
       ],
       "sourceRefs": [
@@ -136,6 +186,13 @@
       "url": "https://spb.startsmile.ru/stomatologi/chernykh_aleksandra_dmitrievna.html",
       "kind": "review_platform",
       "checkedAt": "2026-11-24"
+    },
+    "clinical-scope": {
+      "label": "Метелица — опубликованный клиникой случай лечения от 12 ноября 2026",
+      "url": "https://peterburg2.ru/restplaces/detskaya-stomatologiya-metelica-18225.html",
+      "kind": "clinic_publication",
+      "checkedAt": "2026-11-25",
+      "publishedAt": "2026-11-12"
     }
   }
 }

@@ -67,6 +67,70 @@
   },
   "directions": [
     {
+      "title": "Эндодонтия",
+      "items": [
+        {
+          "label": "Лечение корневых каналов",
+          "href": "uslugi-i-ceny.html#root-canals",
+          "kind": "procedure",
+          "sourceRefs": [
+            "clinical-scope"
+          ]
+        },
+        {
+          "label": "Повторное эндодонтическое лечение",
+          "href": "uslugi-i-ceny.html#root-canals",
+          "kind": "procedure",
+          "sourceRefs": [
+            "clinical-scope"
+          ]
+        },
+        {
+          "label": "Извлечение фрагментов инструментов из корневых каналов",
+          "href": "uslugi-i-ceny.html#root-canals",
+          "kind": "procedure",
+          "sourceRefs": [
+            "clinical-scope"
+          ]
+        }
+      ],
+      "sourceRefs": [
+        "clinical-scope"
+      ]
+    },
+    {
+      "title": "Лечение под микроскопом",
+      "items": [
+        {
+          "label": "Лечение зубов взрослых и детей с применением микроскопа",
+          "href": "uslugi-i-ceny.html#root-canals",
+          "kind": "method",
+          "sourceRefs": [
+            "clinical-scope"
+          ]
+        }
+      ],
+      "sourceRefs": [
+        "clinical-scope"
+      ]
+    },
+    {
+      "title": "Зубосохраняющая хирургия",
+      "items": [
+        {
+          "label": "Апикальная хирургия для сохранения зубов",
+          "href": "uslugi-i-ceny.html#surgery",
+          "kind": "procedure",
+          "sourceRefs": [
+            "clinical-scope"
+          ]
+        }
+      ],
+      "sourceRefs": [
+        "clinical-scope"
+      ]
+    },
+    {
       "title": "Терапевтическая стоматология",
       "items": [
         {
@@ -74,26 +138,12 @@
           "href": "uslugi-i-ceny.html#consultations",
           "sourceRefs": [
             "staff"
-          ]
+          ],
+          "kind": "consultation"
         }
       ],
       "sourceRefs": [
         "staff"
-      ]
-    },
-    {
-      "title": "Эндодонтия",
-      "items": [
-        {
-          "label": "Лечение корневых каналов",
-          "href": "uslugi-i-ceny.html#root-canals",
-          "sourceRefs": [
-            "profile"
-          ]
-        }
-      ],
-      "sourceRefs": [
-        "profile"
       ]
     }
   ],
@@ -193,6 +243,12 @@
       "url": "https://prodoctorov.ru/spb/vrach/194834-simonin/",
       "kind": "review_platform",
       "checkedAt": "2026-11-24"
+    },
+    "clinical-scope": {
+      "label": "NK Dental — профессиональные навыки Дмитрия Симонина",
+      "url": "https://nkdental.ru/aboutsimonin",
+      "kind": "professional_profile",
+      "checkedAt": "2026-11-25"
     }
   }
 }

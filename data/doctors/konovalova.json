@@ -51,7 +51,8 @@
           "href": "uslugi-i-ceny.html#consultations",
           "sourceRefs": [
             "staff"
-          ]
+          ],
+          "kind": "consultation"
         }
       ],
       "sourceRefs": [

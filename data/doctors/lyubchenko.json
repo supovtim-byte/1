@@ -50,6 +50,79 @@
   },
   "directions": [
     {
+      "title": "Протезирование и восстановление зубов",
+      "items": [
+        {
+          "label": "Восстановление зубов коронками",
+          "href": "uslugi-i-ceny.html#crowns",
+          "kind": "procedure",
+          "sourceRefs": [
+            "clinical-scope"
+          ]
+        },
+        {
+          "label": "Восстановление зубов вкладками",
+          "href": "uslugi-i-ceny.html#crowns",
+          "kind": "procedure",
+          "sourceRefs": [
+            "clinical-scope"
+          ]
+        },
+        {
+          "label": "Установка виниров",
+          "href": "uslugi-i-ceny.html#crowns",
+          "kind": "procedure",
+          "sourceRefs": [
+            "clinical-scope"
+          ]
+        },
+        {
+          "label": "Протезирование на имплантатах циркониевыми коронками",
+          "href": "uslugi-i-ceny.html#crowns",
+          "kind": "procedure",
+          "sourceRefs": [
+            "clinical-feed"
+          ]
+        }
+      ],
+      "sourceRefs": [
+        "clinical-scope",
+        "clinical-feed"
+      ]
+    },
+    {
+      "title": "Эндодонтия",
+      "items": [
+        {
+          "label": "Лечение корневых каналов под увеличением",
+          "href": "uslugi-i-ceny.html#root-canals",
+          "kind": "method",
+          "sourceRefs": [
+            "clinical-scope"
+          ]
+        }
+      ],
+      "sourceRefs": [
+        "clinical-scope"
+      ]
+    },
+    {
+      "title": "Терапевтическое восстановление",
+      "items": [
+        {
+          "label": "Восстановление тканей зубов",
+          "href": "uslugi-i-ceny.html#restoration",
+          "kind": "procedure",
+          "sourceRefs": [
+            "clinical-scope"
+          ]
+        }
+      ],
+      "sourceRefs": [
+        "clinical-scope"
+      ]
+    },
+    {
       "title": "Ортопедическая стоматология",
       "items": [
         {
@@ -57,7 +130,8 @@
           "href": "uslugi-i-ceny.html#consultations",
           "sourceRefs": [
             "staff"
-          ]
+          ],
+          "kind": "consultation"
         }
       ],
       "sourceRefs": [
@@ -133,6 +207,12 @@
       "url": "https://prodoctorov.ru/spb/vrach/1312103-lyubchenko/",
       "kind": "review_platform",
       "checkedAt": "2026-11-24"
+    },
+    "clinical-scope": {
+      "label": "Orident — направления работы Любови Любченко",
+      "url": "https://orident.ru/doctors/lyubchenko-lyubov-olegovna",
+      "kind": "professional_profile",
+      "checkedAt": "2026-11-25"
     }
   }
 }

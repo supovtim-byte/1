@@ -43,6 +43,126 @@
   },
   "directions": [
     {
+      "title": "Детская стоматология",
+      "items": [
+        {
+          "label": "Адаптация детей и подростков к лечению",
+          "href": "uslugi-i-ceny.html#consultations",
+          "kind": "method",
+          "sourceRefs": [
+            "clinical-scope"
+          ]
+        },
+        {
+          "label": "Лечение кариеса молочных зубов",
+          "href": "uslugi-i-ceny.html#milk-teeth",
+          "kind": "procedure",
+          "sourceRefs": [
+            "clinical-scope"
+          ]
+        },
+        {
+          "label": "Лечение пульпита и периодонтита молочных зубов",
+          "href": "uslugi-i-ceny.html#milk-teeth",
+          "kind": "procedure",
+          "sourceRefs": [
+            "clinical-scope"
+          ]
+        },
+        {
+          "label": "Восстановление молочных зубов коронками",
+          "href": "uslugi-i-ceny.html#milk-teeth",
+          "kind": "procedure",
+          "sourceRefs": [
+            "clinical-scope"
+          ]
+        }
+      ],
+      "sourceRefs": [
+        "clinical-scope"
+      ]
+    },
+    {
+      "title": "Лечение и восстановление постоянных зубов",
+      "items": [
+        {
+          "label": "Лечение кариеса постоянных зубов",
+          "href": "uslugi-i-ceny.html#caries",
+          "kind": "procedure",
+          "sourceRefs": [
+            "clinical-scope"
+          ]
+        },
+        {
+          "label": "Лечение пульпита и периодонтита постоянных зубов",
+          "href": "uslugi-i-ceny.html#root-canals",
+          "kind": "procedure",
+          "sourceRefs": [
+            "clinical-scope"
+          ]
+        },
+        {
+          "label": "Эстетические реставрации зубов",
+          "href": "uslugi-i-ceny.html#restoration",
+          "kind": "procedure",
+          "sourceRefs": [
+            "clinical-scope"
+          ]
+        },
+        {
+          "label": "Лечение травм зубов",
+          "href": "uslugi-i-ceny.html#restoration",
+          "kind": "procedure",
+          "sourceRefs": [
+            "clinical-scope"
+          ]
+        }
+      ],
+      "sourceRefs": [
+        "clinical-scope"
+      ]
+    },
+    {
+      "title": "Профилактика",
+      "items": [
+        {
+          "label": "Профессиональная гигиена полости рта",
+          "href": "uslugi-i-ceny.html#hygiene",
+          "kind": "procedure",
+          "sourceRefs": [
+            "clinical-scope"
+          ]
+        },
+        {
+          "label": "Обучение чистке зубов",
+          "href": "uslugi-i-ceny.html#hygiene",
+          "kind": "method",
+          "sourceRefs": [
+            "clinical-scope"
+          ]
+        }
+      ],
+      "sourceRefs": [
+        "clinical-scope"
+      ]
+    },
+    {
+      "title": "Эстетическая стоматология",
+      "items": [
+        {
+          "label": "Отбеливание зубов",
+          "href": "uslugi-i-ceny.html#restoration",
+          "kind": "procedure",
+          "sourceRefs": [
+            "clinical-scope"
+          ]
+        }
+      ],
+      "sourceRefs": [
+        "clinical-scope"
+      ]
+    },
+    {
       "title": "Стоматология общей практики",
       "items": [
         {
@@ -50,7 +170,8 @@
           "href": "uslugi-i-ceny.html#consultations",
           "sourceRefs": [
             "staff"
-          ]
+          ],
+          "kind": "consultation"
         }
       ],
       "sourceRefs": [
@@ -96,6 +217,12 @@
       "url": "https://spb.startsmile.ru/stomatologi/garipova_albina_ildarovna.html",
       "kind": "review_platform",
       "checkedAt": "2026-11-24"
+    },
+    "clinical-scope": {
+      "label": "Time to Smile — профессиональные навыки Альбины Гариповой",
+      "url": "https://timetosmile.ru/albina-garipova",
+      "kind": "professional_profile",
+      "checkedAt": "2026-11-25"
     }
   }
 }

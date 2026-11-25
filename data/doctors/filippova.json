@@ -50,6 +50,70 @@
   },
   "directions": [
     {
+      "title": "Брекет-системы",
+      "items": [
+        {
+          "label": "Исправление прикуса на брекет-системах",
+          "href": "uslugi-i-ceny.html#braces",
+          "kind": "procedure",
+          "sourceRefs": [
+            "clinical-scope"
+          ]
+        }
+      ],
+      "sourceRefs": [
+        "clinical-scope"
+      ]
+    },
+    {
+      "title": "Элайнеры",
+      "items": [
+        {
+          "label": "Исправление прикуса элайнерами",
+          "href": "uslugi-i-ceny.html#braces",
+          "kind": "procedure",
+          "sourceRefs": [
+            "clinical-scope"
+          ]
+        }
+      ],
+      "sourceRefs": [
+        "clinical-scope"
+      ]
+    },
+    {
+      "title": "Ортодонтические аппараты",
+      "items": [
+        {
+          "label": "Лечение с применением ортодонтических аппаратов",
+          "href": "uslugi-i-ceny.html#child-orthodontics",
+          "kind": "procedure",
+          "sourceRefs": [
+            "clinical-scope"
+          ]
+        }
+      ],
+      "sourceRefs": [
+        "clinical-scope"
+      ]
+    },
+    {
+      "title": "Планирование лечения",
+      "items": [
+        {
+          "label": "Планирование ортодонтического лечения с учётом состояния ВНЧС",
+          "href": "uslugi-i-ceny.html#consultations",
+          "kind": "method",
+          "sourceRefs": [
+            "clinical-scope"
+          ]
+        }
+      ],
+      "sourceRefs": [
+        "clinical-scope"
+      ]
+    },
+    {
       "title": "Ортодонтия",
       "items": [
         {
@@ -57,7 +121,8 @@
           "href": "uslugi-i-ceny.html#consultations",
           "sourceRefs": [
             "staff"
-          ]
+          ],
+          "kind": "consultation"
         }
       ],
       "sourceRefs": [
@@ -126,6 +191,12 @@
       "url": "https://prodoctorov.ru/spb/vrach/968841-filippova/",
       "kind": "review_platform",
       "checkedAt": "2026-11-24"
+    },
+    "clinical-scope": {
+      "label": "Orident — направления работы Алины Филипповой",
+      "url": "https://orident.ru/doctors/filippova-alina-vladislavovna",
+      "kind": "professional_profile",
+      "checkedAt": "2026-11-25"
     }
   }
 }

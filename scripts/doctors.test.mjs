@@ -119,6 +119,35 @@ test('specialty labels retain specific roles without repeated physician prefixes
   assert.ok(renderCard(copy('bogdanova')).includes('<p>Гигиенист</p>'));
 });
 
+test('consultation-only records do not produce a placeholder clinical-scope block', () => {
+  const d = copy('hodykina');
+  assert.ok(d.directions.some(group => group.items.some(item => item.kind === 'consultation')));
+  const html = renderDoctor(d, profile);
+  assert.doesNotMatch(html, /id="directions"|id="directions-title"|Консультация стоматолога-терапевта/);
+});
+
+test('individual scope comes from each doctor record and uses the existing accordion design', () => {
+  const orthodontist = renderDoctor(copy('dzigua'), profile);
+  assert.ok(orthodontist.includes('Исправление прикуса элайнерами'));
+  assert.ok(orthodontist.includes('Лечение с применением ортодонтических пластинок'));
+  assert.ok(orthodontist.includes('<details name="doctor-directions">'));
+  const surgeon = renderDoctor(copy('barmashev'), profile);
+  assert.ok(surgeon.includes('Установка зубных имплантатов'));
+  assert.ok(!surgeon.includes('Исправление прикуса элайнерами'));
+  const therapist = renderDoctor(copy('simonin'), profile);
+  assert.ok(therapist.includes('Повторное эндодонтическое лечение'));
+  assert.ok(therapist.includes('Апикальная хирургия для сохранения зубов'));
+  assert.ok(!therapist.includes('Консультация стоматолога-терапевта'));
+});
+
+test('clinical procedures cannot be inferred from a job title, education or patient review', () => {
+  for (const ref of ['staff', 'education', 'reviews']) {
+    const d = copy('dzigua');
+    d.directions[0].items[0].sourceRefs = [ref];
+    assert.throws(() => validateDoctor(d), /individual professional source/);
+  }
+});
+
 test('existing carousel links and stale experience follow doctor data without changing short headings', () => {
   const original = '<article class="doctor-card"><h3><a href="doctor-hodykina.html">Сизонец Александра</a></h3><p class="doctor-experience">опыт: 6 лет</p></article>';
   const updated = updateRelatedCards(original, doctors);

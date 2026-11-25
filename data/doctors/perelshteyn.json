@@ -44,6 +44,46 @@
   "experience": null,
   "directions": [
     {
+      "title": "Брекет-системы",
+      "items": [
+        {
+          "label": "Лечение на лигатурных брекет-системах",
+          "href": "uslugi-i-ceny.html#braces",
+          "kind": "procedure",
+          "sourceRefs": [
+            "clinical-scope"
+          ]
+        },
+        {
+          "label": "Лечение на самолигирующих брекет-системах",
+          "href": "uslugi-i-ceny.html#braces",
+          "kind": "procedure",
+          "sourceRefs": [
+            "clinical-scope"
+          ]
+        }
+      ],
+      "sourceRefs": [
+        "clinical-scope"
+      ]
+    },
+    {
+      "title": "Элайнеры",
+      "items": [
+        {
+          "label": "Исправление прикуса элайнерами",
+          "href": "uslugi-i-ceny.html#braces",
+          "kind": "procedure",
+          "sourceRefs": [
+            "clinical-scope"
+          ]
+        }
+      ],
+      "sourceRefs": [
+        "clinical-scope"
+      ]
+    },
+    {
       "title": "Ортодонтия",
       "items": [
         {
@@ -51,7 +91,8 @@
           "href": "uslugi-i-ceny.html#consultations",
           "sourceRefs": [
             "staff"
-          ]
+          ],
+          "kind": "consultation"
         }
       ],
       "sourceRefs": [
@@ -127,6 +168,12 @@
       "url": "https://spb.startsmile.ru/stomatologi/perelshteyn_nina_vladimirovna.html",
       "kind": "review_platform",
       "checkedAt": "2026-11-24"
+    },
+    "clinical-scope": {
+      "label": "Singa Dental — направления работы Нины Перельштейн",
+      "url": "https://singadental.ru/",
+      "kind": "professional_profile",
+      "checkedAt": "2026-11-25"
     }
   }
 }

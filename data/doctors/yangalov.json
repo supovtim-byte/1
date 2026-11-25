@@ -43,12 +43,13 @@
           "label": "Профессиональная гигиена полости рта",
           "href": "uslugi-i-ceny.html#hygiene",
           "sourceRefs": [
-            "staff"
-          ]
+            "professional-services"
+          ],
+          "kind": "procedure"
         }
       ],
       "sourceRefs": [
-        "staff"
+        "professional-services"
       ]
     }
   ],
@@ -84,6 +85,12 @@
       "url": "https://spb.startsmile.ru/stomatologi/yangalov_roman_alekseevich.html",
       "kind": "review_platform",
       "checkedAt": "2026-11-24"
+    },
+    "professional-services": {
+      "label": "Startsmile — индивидуальные услуги врача",
+      "url": "https://spb.startsmile.ru/stomatologi/yangalov_roman_alekseevich.html",
+      "kind": "professional_services",
+      "checkedAt": "2026-11-25"
     }
   }
 }

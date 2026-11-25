@@ -44,6 +44,54 @@
   "experience": null,
   "directions": [
     {
+      "title": "Брекет-системы",
+      "items": [
+        {
+          "label": "Исправление прикуса на брекет-системах",
+          "href": "uslugi-i-ceny.html#braces",
+          "kind": "procedure",
+          "sourceRefs": [
+            "clinical-scope"
+          ]
+        }
+      ],
+      "sourceRefs": [
+        "clinical-scope"
+      ]
+    },
+    {
+      "title": "Элайнеры",
+      "items": [
+        {
+          "label": "Исправление прикуса элайнерами",
+          "href": "uslugi-i-ceny.html#braces",
+          "kind": "procedure",
+          "sourceRefs": [
+            "clinical-scope"
+          ]
+        }
+      ],
+      "sourceRefs": [
+        "clinical-scope"
+      ]
+    },
+    {
+      "title": "Ортодонтические пластинки",
+      "items": [
+        {
+          "label": "Лечение с применением ортодонтических пластинок",
+          "href": "uslugi-i-ceny.html#child-orthodontics",
+          "kind": "procedure",
+          "sourceRefs": [
+            "clinical-scope"
+          ]
+        }
+      ],
+      "sourceRefs": [
+        "clinical-scope"
+      ]
+    },
+    {
       "title": "Ортодонтия",
       "items": [
         {
@@ -51,7 +99,8 @@
           "href": "uslugi-i-ceny.html#consultations",
           "sourceRefs": [
             "staff"
-          ]
+          ],
+          "kind": "consultation"
         }
       ],
       "sourceRefs": [
@@ -111,6 +160,12 @@
       "url": "https://prodoctorov.ru/spb/vrach/1312084-dzigua/",
       "kind": "review_platform",
       "checkedAt": "2026-11-24"
+    },
+    "clinical-scope": {
+      "label": "Orident — направления работы Кристины Дзигуа",
+      "url": "https://orident.ru/doctors/dzigua-kristina-romanievna",
+      "kind": "professional_profile",
+      "checkedAt": "2026-11-25"
     }
   }
 }

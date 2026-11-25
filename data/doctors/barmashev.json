@@ -51,6 +51,22 @@
   "experience": null,
   "directions": [
     {
+      "title": "Имплантация",
+      "items": [
+        {
+          "label": "Установка зубных имплантатов",
+          "href": "uslugi-i-ceny.html#implants",
+          "kind": "procedure",
+          "sourceRefs": [
+            "clinical-feed"
+          ]
+        }
+      ],
+      "sourceRefs": [
+        "clinical-feed"
+      ]
+    },
+    {
       "title": "Хирургическая стоматология",
       "items": [
         {
@@ -58,7 +74,8 @@
           "href": "uslugi-i-ceny.html#consultations",
           "sourceRefs": [
             "staff"
-          ]
+          ],
+          "kind": "consultation"
         }
       ],
       "sourceRefs": [

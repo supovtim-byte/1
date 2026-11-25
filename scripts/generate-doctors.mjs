@@ -73,6 +73,11 @@ export function validateDoctor(d) {
     assert.ok(group.items.length);
     group.items.forEach(item => {
       text(item.label, 'service'); fact(item);
+      assert.ok(['consultation', 'procedure', 'method'].includes(item.kind), 'Direction item needs an explicit kind');
+      if (item.kind !== 'consultation') {
+        assert.ok(item.sourceRefs.some(id => !['official_staff', 'official_document', 'review_platform'].includes(d.sources[id].kind)),
+          'A clinical procedure needs an individual professional source, not a job title, diploma or patient review');
+      }
       assert.match(item.href, /^[a-z0-9-]+\.html#[a-z0-9-]+$/, 'Service link must target a local section');
     });
   });
@@ -151,10 +156,13 @@ function education(d) {
         </section>` : '';
 }
 function directions(d) {
-  return d.directions.length ? `<section class="section faq doctor-directions" id="directions" aria-labelledby="directions-title">
+  // Keep consultations in the data, but do not present them as clinical scope.
+  const groups = d.directions.map(group => ({ ...group, items: group.items.filter(item => item.kind !== 'consultation') }))
+    .filter(group => group.items.length);
+  return groups.length ? `<section class="section faq doctor-directions" id="directions" aria-labelledby="directions-title">
           <h2 id="directions-title">Направления работы</h2>
           <div class="faq-list">
-            ${d.directions.map(g => `<details name="doctor-directions">
+            ${groups.map(g => `<details name="doctor-directions">
               <summary><span class="doctor-direction-label">${escapeHtml(g.title)}</span><span class="doctor-direction-icon" aria-hidden="true"><img class="doctor-direction-down" src="assets/doctor-direction-down.svg" width="21" height="13" alt=""><img class="doctor-direction-up" src="assets/doctor-direction-up.svg" width="21" height="13" alt=""></span></summary>
               <ul class="doctor-service-links">
                 ${g.items.map(item => `<li><a href="${escapeHtml(item.href)}">${escapeHtml(item.label)}</a></li>`).join('\n                ')}
