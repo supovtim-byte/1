@@ -18,6 +18,7 @@ PUBLISHED_SNAPSHOT = "https://supovtim-byte.github.io/1/reviews.json"
 YANDEX_ORG = "1132881772"
 YANDEX_URL = f"https://yandex.ru/maps/org/metelitsa/{YANDEX_ORG}/reviews/"
 STARTSMILE_CLINIC = "https://spb.startsmile.ru/stomatologii/metelitsa-otzyvy.html"
+TOP32_CLINIC = "https://www.32top.ru/spb/clinics/3886/comments/"
 USER_AGENT = "MetelitsaReviews/1.0 (+https://github.com/supovtim-byte/1)"
 MAX_BYTES = 4_000_000
 CARDS_PER_SOURCE = 8
@@ -28,6 +29,7 @@ STARTSMILE_ITEM = re.compile(
     r'(?=[^>]*\bid="(?P<id>review[0-9]+)")[^>]*>',
     re.IGNORECASE,
 )
+TOP32_ITEM = re.compile(r'<div\b[^>]*\bid="(?P<id>comment_[0-9]+)"[^>]*>', re.IGNORECASE)
 
 
 class SourceBlocked(Exception):
@@ -38,7 +40,8 @@ def download(url, allowed_hosts):
     request = Request(url, headers={"User-Agent": USER_AGENT, "Accept-Language": "ru"})
     with urlopen(request, timeout=15) as response:
         final = urlsplit(response.url)
-        if final.scheme != "https" or final.hostname not in allowed_hosts:
+        if (final.scheme != "https" or final.hostname not in allowed_hosts
+                or final.path.rstrip("/") != urlsplit(url).path.rstrip("/")):
             raise ValueError("unexpected destination")
         body = response.read(MAX_BYTES + 1)
         if len(body) > MAX_BYTES:
@@ -60,7 +63,26 @@ def review(url, timestamp, rating, text):
     return {"url": url, "date": day, "rating": rating, "excerpt": excerpt(text)}
 
 
-def yandex_reviews(html):
+def normalized_name(text):
+    return " ".join(re.findall(r"[а-я-]+", text.lower().replace("ё", "е")))
+
+
+def doctor_mentions(doctors):
+    aliases = {}
+    for doctor in doctors:
+        parts = normalized_name(doctor["name"]).split()
+        if len(parts) != 3:
+            continue
+        last, first, middle = parts
+        for phrase in (f"{last} {first}", f"{first} {last}", f"{first} {middle}"):
+            aliases.setdefault(f" {phrase} ", []).append(doctor)
+    return {
+        phrase: matches[0]["id"] for phrase, matches in aliases.items()
+        if len(matches) == 1 and matches[0]["publication"]["catalog"]
+    }
+
+
+def yandex_reviews(html, mentions=None):
     state_tag = re.search(
         r'<script\b[^>]*\bclass="state-view"[^>]*>(.*?)</script>',
         html,
@@ -87,7 +109,13 @@ def yandex_reviews(html):
                 or not isinstance(text, str) or not text.strip()):
             continue
         link = YANDEX_URL + "?" + urlencode({"reviews[publicId]": author_id})
-        cards.append(review(link, item["updatedTime"], item["rating"], text))
+        card = review(link, item["updatedTime"], item["rating"], text)
+        if mentions:
+            normalized = f" {normalized_name(text)} "
+            doctors = sorted({doctor for phrase, doctor in mentions.items() if phrase in normalized})
+            if doctors:
+                card["doctors"] = doctors
+        cards.append(card)
     if reviews and not cards:
         raise ValueError("review permalinks are unavailable")
     return cards
@@ -127,10 +155,37 @@ def startsmile_reviews(html, url):
     return cards
 
 
-def configured_sources():
-    sources = {"yandex:clinic": YANDEX_URL, "startsmile:clinic": STARTSMILE_CLINIC}
-    for filename in sorted((ROOT / "data/doctors").glob("*.json")):
-        doctor = json.loads(filename.read_text(encoding="utf-8"))
+def top32_reviews(html):
+    items = {}
+    scripts = re.findall(r'<script\b[^>]*\btype="application/ld\+json"[^>]*>(.*?)</script>', html, re.DOTALL)
+    for script in scripts:
+        data = json.loads(script)
+        if isinstance(data, dict):
+            for item in data.get("review", []):
+                if item.get("@type") == "Review":
+                    body = " ".join(unescape(item["reviewBody"]).split())
+                    items[body] = item
+    matches = list(TOP32_ITEM.finditer(html))
+    cards = []
+    for index, match in enumerate(matches):
+        end = matches[index + 1].start() if index + 1 < len(matches) else len(html)
+        text = " ".join(field(html[match.end():end], "js-commentText").split())
+        item = items.get(text)
+        if item:
+            rating = float(item["reviewRating"]["ratingValue"])
+            cards.append(review(f"{TOP32_CLINIC}#{match['id']}", item["datePublished"], rating, text))
+    if not cards:
+        raise ValueError("review data and permalinks are unavailable")
+    return cards
+
+
+def configured_sources(doctors):
+    sources = {
+        "yandex:clinic": YANDEX_URL,
+        "32top:clinic": TOP32_CLINIC,
+        "startsmile:clinic": STARTSMILE_CLINIC,
+    }
+    for doctor in doctors:
         for link in doctor["reviews"]["links"]:
             source = doctor["sources"][link["sourceRef"]]
             url = urlsplit(source["url"])
@@ -141,14 +196,23 @@ def configured_sources():
     return sources
 
 
-def refresh(source):
-    key, url = source
-    if key.startswith("yandex:"):
-        cards = yandex_reviews(download(url, {"yandex.ru", "yandex.com"}))
-    else:
-        cards = startsmile_reviews(download(url, {"spb.startsmile.ru"}), url)
+def latest(cards):
     unique = {card["url"]: card for card in cards}
     return sorted(unique.values(), key=lambda card: card["date"], reverse=True)[:CARDS_PER_SOURCE]
+
+
+def refresh(source, mentions):
+    key, url = source
+    if key.startswith("yandex:"):
+        cards = yandex_reviews(download(url, {"yandex.ru", "yandex.com"}), mentions)
+        groups = {key: cards}
+        for card in cards:
+            for doctor in card.pop("doctors", []):
+                groups.setdefault(f"yandex:{doctor}", []).append(card)
+        return {subject: latest(entries) for subject, entries in groups.items()}
+    if key == "32top:clinic":
+        return {key: latest(top32_reviews(download(url, {"www.32top.ru"})))}
+    return {key: latest(startsmile_reviews(download(url, {"spb.startsmile.ru"}), url))}
 
 
 def parse_snapshot(payload):
@@ -172,7 +236,7 @@ def previous_sources(restore):
     return {}
 
 
-def collect(sources, previous):
+def collect(sources, previous, mentions=None):
     collected = {}
     blocked = set()
     for key, url in sources.items():
@@ -182,13 +246,19 @@ def collect(sources, previous):
                 collected[key] = previous[key]
             continue
         try:
-            collected[key] = refresh((key, url))
-            print(f"{key}: {len(collected[key])} cards")
+            refreshed = refresh((key, url), mentions)
+            collected.update(refreshed)
+            print(f"{key}: {len(refreshed[key])} cards, {len(refreshed) - 1} doctor profiles")
         except (OSError, SourceBlocked, AttributeError, TypeError, KeyError, ValueError) as error:
             if isinstance(error, SourceBlocked) or (isinstance(error, HTTPError) and error.code in (403, 429)):
                 blocked.add(host)
             if key in previous:
                 collected[key] = previous[key]
+            if key == "yandex:clinic":
+                for doctor in sorted(set((mentions or {}).values())):
+                    subject = f"yandex:{doctor}"
+                    if subject in previous:
+                        collected[subject] = previous[subject]
             if isinstance(error, HTTPError):
                 reason = f"HTTP {error.code}"
             elif isinstance(error, SourceBlocked):
@@ -203,7 +273,11 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--restore", action="store_true", help="restore the last GitHub Pages snapshot")
     args = parser.parse_args()
-    collected = collect(configured_sources(), previous_sources(args.restore))
+    doctors = [
+        json.loads(filename.read_text(encoding="utf-8"))
+        for filename in sorted((ROOT / "data/doctors").glob("*.json"))
+    ]
+    collected = collect(configured_sources(doctors), previous_sources(args.restore), doctor_mentions(doctors))
     snapshot = {"version": 1, "sources": collected}
     with TemporaryDirectory(dir=ROOT) as directory:
         temporary = Path(directory) / "reviews.json"

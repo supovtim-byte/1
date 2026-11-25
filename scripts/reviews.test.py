@@ -32,6 +32,15 @@ class ReviewCollectorTest(unittest.TestCase):
             "excerpt": "Проверочный отзыв",
         }])
 
+    def test_only_unambiguous_mentions_of_current_doctors_can_link_a_clinic_review(self):
+        doctors = [
+            {"id": "first", "name": "Орлова Анна Олеговна", "publication": {"catalog": True}},
+            {"id": "second", "name": "Соколова Анна Олеговна", "publication": {"catalog": False}},
+        ]
+        self.assertEqual(collector.doctor_mentions(doctors), {
+            " орлова анна ": "first", " анна орлова ": "first",
+        })
+
     def test_startsmile_extracts_text_and_links_to_the_review_anchor(self):
         html = """
         <h1>Профиль</h1>
@@ -49,6 +58,21 @@ class ReviewCollectorTest(unittest.TestCase):
             "excerpt": "Первый & второй абзац",
         }])
 
+    def test_32top_matches_review_dates_to_their_own_anchors(self):
+        item = {
+            "@type": "Review", "reviewBody": "Запись прошла хорошо.",
+            "datePublished": "2026-11-25", "reviewRating": {"ratingValue": 4},
+        }
+        html = f"""
+        <script type="application/ld+json">{json.dumps({"review": [item]})}</script>
+        <div id="comment_4321"><div class="js-commentText">Ответ на отзыв.</div></div>
+        <div id="comment_1234"><div class="js-commentText">Запись прошла хорошо.</div></div>
+        """
+        self.assertEqual(collector.top32_reviews(html), [{
+            "url": collector.TOP32_CLINIC + "#comment_1234", "date": "2026-11-25",
+            "rating": 4, "excerpt": "Запись прошла хорошо.",
+        }])
+
     def test_rate_limit_keeps_previous_cards_for_the_source(self):
         older = {"startsmile:clinic": [{"url": "previous"}], "startsmile:doctor": [{"url": "previous-doctor"}]}
         sources = {
@@ -57,7 +81,7 @@ class ReviewCollectorTest(unittest.TestCase):
             "yandex:clinic": collector.YANDEX_URL,
         }
         throttled = HTTPError(collector.STARTSMILE_CLINIC, 429, "Too Many Requests", None, None)
-        with patch.object(collector, "refresh", side_effect=[throttled, [{"url": "fresh"}]]) as refresh:
+        with patch.object(collector, "refresh", side_effect=[throttled, {"yandex:clinic": [{"url": "fresh"}]}]) as refresh:
             self.assertEqual(collector.collect(sources, older), {**older, "yandex:clinic": [{"url": "fresh"}]})
             self.assertEqual(refresh.call_count, 2)
 
