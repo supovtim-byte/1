@@ -19,6 +19,59 @@ export const yearWord = n => n % 10 === 1 && n % 100 !== 11 ? 'год'
   : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 'года' : 'лет';
 const text = (value, label) => assert.ok(typeof value === 'string' && value.trim(), `Missing text: ${label}`);
 const date = value => /^\d{4}-\d{2}-\d{2}$/.test(value) && !Number.isNaN(Date.parse(value));
+const reviewSources = new Map([
+  ['yandex', { title: 'Яндекс Карты', host: 'yandex.ru' }],
+  ['startsmile', { title: 'Startsmile', host: 'spb.startsmile.ru' }],
+]);
+const reviewDate = new Intl.DateTimeFormat('ru-RU', { dateStyle: 'long', timeZone: 'UTC' });
+const homepageReviewsSlot = /(^[ \t]*<!-- imported-reviews:start -->\n)[\s\S]*?(^[ \t]*<!-- imported-reviews:end -->)/m;
+
+export function readImportedReviews(snapshot) {
+  const bySubject = new Map();
+  if (snapshot?.version !== 1) return bySubject;
+  for (const [key, cards] of Object.entries(snapshot.sources ?? {})) {
+    const [provider, subject] = key.split(':');
+    const source = reviewSources.get(provider);
+    if (!source || !subject || !Array.isArray(cards)) continue;
+    const reviews = bySubject.get(subject) ?? new Map();
+    for (const card of cards) {
+      if (typeof card?.url !== 'string' || typeof card.date !== 'string' || !date(card.date)
+        || typeof card.excerpt !== 'string' || !card.excerpt.trim() || card.excerpt.length > 480
+        || (card.rating !== null && !(typeof card.rating === 'number' && card.rating >= 1 && card.rating <= 5))) continue;
+      const url = URL.parse(card.url);
+      if (url?.protocol !== 'https:' || url.host !== source.host || url.username || url.password) continue;
+      const startsmilePath = subject === 'clinic' ? /^\/stomatologii\/metelitsa-otzyvy\.html$/ : /^\/stomatologi\/[a-z0-9_-]+\.html$/;
+      const directLink = provider === 'yandex'
+        ? subject === 'clinic' && url.pathname === '/maps/org/metelitsa/1132881772/reviews/'
+          && /^[a-z0-9]{15,40}$/.test(url.searchParams.get('reviews[publicId]') ?? '')
+        : startsmilePath.test(url.pathname) && /^#review[0-9]+$/.test(url.hash);
+      if (directLink) reviews.set(url.href, { ...card, url: url.href, source: source.title });
+    }
+    bySubject.set(subject, reviews);
+  }
+  return new Map([...bySubject].map(([subject, cards]) => [
+    subject, [...cards.values()].sort((a, b) => b.date.localeCompare(a.date)),
+  ]));
+}
+
+function renderImportedReview(card) {
+  const rating = card.rating === null ? '' : `<span>${String(card.rating).replace('.', ',')} из 5</span>`;
+  const excerpt = escapeHtml(card.excerpt).replace(/\{/g, '&#123;').replace(/\}/g, '&#125;');
+  return `<article class="review-card review-card--imported">
+          <h3>${escapeHtml(card.source)}</h3>
+          <p>${excerpt}</p>
+          <div class="review-meta">
+            <time datetime="${card.date}">${reviewDate.format(new Date(card.date))}</time>
+            ${rating}
+            <a class="text-link" href="${escapeHtml(card.url)}" target="_blank" rel="noopener">Читать оригинал</a>
+          </div>
+        </article>`;
+}
+
+export function updateHomepageReviews(html, cards) {
+  const rendered = cards.map(renderImportedReview).join('\n        ');
+  return html.replace(homepageReviewsSlot, (_, start, end) => start + (rendered ? `        ${rendered}\n` : '') + end);
+}
 
 function assetPath(value) {
   assert.match(value, /^assets\/doctors\/(?:[a-z0-9-]+\/)*[a-zA-Z0-9_.-]+\.(?:png|jpe?g|webp|svg|pdf)$/);
@@ -171,31 +224,34 @@ function directions(d) {
           </div>
         </section>` : '';
 }
-function reviews(d) {
-  if (!d.reviews.links.length) return '';
-  const controls = d.reviews.links.length > 1 ? `<div class="carousel-controls">
-          <button class="icon-button" type="button" data-prev aria-label="Предыдущий источник отзывов" aria-controls="reviews-track"><img src="assets/carousel-prev.svg" alt=""></button>
-          <button class="icon-button" type="button" data-next aria-label="Следующий источник отзывов" aria-controls="reviews-track"><img src="assets/carousel-next.svg" alt=""></button>
+function reviews(d, imported) {
+  const sources = d.reviews.links.map(({ sourceRef }) => d.sources[sourceRef]);
+  const cards = imported.length ? imported.map(renderImportedReview) : sources.map(s => `<article class="review-card">
+          <h3>${escapeHtml(s.label)}</h3>
+          <p>Отзывы о враче: ${escapeHtml(d.name)}.</p>
+          <div class="review-meta"><a class="text-link" href="${escapeHtml(s.url)}" target="_blank" rel="noopener">Читать на ${escapeHtml(s.label)}</a></div>
+        </article>`);
+  if (!cards.length) return '';
+  const controls = cards.length > 1 ? `<div class="carousel-controls">
+          <button class="icon-button" type="button" data-prev aria-label="${imported.length ? 'Предыдущий отзыв' : 'Предыдущий источник отзывов'}" aria-controls="reviews-track"><img src="assets/carousel-prev.svg" alt=""></button>
+          <button class="icon-button" type="button" data-next aria-label="${imported.length ? 'Следующий отзыв' : 'Следующий источник отзывов'}" aria-controls="reviews-track"><img src="assets/carousel-next.svg" alt=""></button>
         </div>` : '';
+  const sourceLinks = imported.length && sources.length
+    ? '\n      ' + sources.map(s => `<a class="text-link deck-more" href="${escapeHtml(s.url)}" target="_blank" rel="noopener">Все отзывы на ${escapeHtml(s.label)}</a>`).join('\n      ')
+    : '';
   return `<section class="section deck doctor-shell doctor-reviews" id="reviews" aria-labelledby="reviews-title"${controls ? ' data-carousel' : ''}>
       <div class="section-heading">
         <h2 id="reviews-title">Отзывы о враче</h2>
         ${controls}
       </div>
-      <div class="carousel review-track" id="reviews-track" tabindex="0" aria-label="Источники отзывов о враче">
-        ${d.reviews.links.map(link => {
-    const s = d.sources[link.sourceRef];
-    return `<article class="review-card">
-          <h3>${escapeHtml(s.label)}</h3>
-          <p>Отзывы о враче: ${escapeHtml(d.name)}.</p>
-          <div class="review-meta"><a class="text-link" href="${escapeHtml(s.url)}" target="_blank" rel="noopener">Читать на ${escapeHtml(s.label)}</a></div>
-        </article>`;
-  }).join('\n        ')}
-      </div>
+      <div class="carousel review-track" id="reviews-track" tabindex="0" aria-label="${imported.length ? 'Карточки отзывов о враче' : 'Источники отзывов о враче'}">
+        ${cards.join('\n        ')}
+      </div>${sourceLinks}
     </section>`;
 }
 
-export function renderDoctor(d, template) {
+export function renderDoctor(d, template, imported = []) {
+  const reviewSection = reviews(d, imported);
   const rendered = fill(template, {
     name: escapeHtml(d.name), description: escapeHtml(`${d.name}. ${specialty(d)}. Образование и информация о враче стоматологии «Метелица».`),
     specialty: `<p>${escapeHtml(specialty(d))}</p>${experience(d)}${d.availabilityLabel ? `<p>${escapeHtml(d.availabilityLabel)}</p>` : ''}`,
@@ -203,9 +259,9 @@ export function renderDoctor(d, template) {
     bookingLabel: d.publication.bookable ? 'записаться к врачу' : 'связаться с клиникой',
     appointmentTitle: d.publication.bookable ? 'Запись на приём' : 'Связаться с клиникой',
     heroPortrait: portrait(d, 'hero'), appointmentPortrait: portrait(d, 'appointment'),
-    about: about(d), education: education(d), directions: directions(d), reviews: reviews(d),
+    about: about(d), education: education(d), directions: directions(d), reviews: reviewSection,
   });
-  return d.reviews.links.length ? rendered : rendered.replaceAll('href="#reviews"', 'href="index.html#reviews"');
+  return reviewSection ? rendered : rendered.replaceAll('href="#reviews"', 'href="index.html#reviews"');
 }
 
 export function renderCard(d) {
@@ -255,9 +311,11 @@ export function updateRelatedCards(html, doctors) {
 
 export function generate({ check = false } = {}) {
   const doctors = loadDoctors();
+  const snapshot = path.join(dist, 'reviews.json');
+  const imported = readImportedReviews(fs.existsSync(snapshot) ? JSON.parse(fs.readFileSync(snapshot, 'utf8')) : null);
   const doctorTemplate = fs.readFileSync(path.join(root, 'templates/doctor.html'), 'utf8');
   const catalogTemplate = fs.readFileSync(path.join(root, 'templates/doctors.html'), 'utf8');
-  const outputs = new Map(doctors.map(d => [`doctor-${d.id}.html`, renderDoctor(d, doctorTemplate)]));
+  const outputs = new Map(doctors.map(d => [`doctor-${d.id}.html`, renderDoctor(d, doctorTemplate, imported.get(d.id))]));
   outputs.set('doctors.html', renderCatalog(doctors, catalogTemplate));
   const stale = [];
   for (const file of fs.readdirSync(dist).filter(f => f.endsWith('.html'))) {
@@ -267,7 +325,8 @@ export function generate({ check = false } = {}) {
       stale.push(file);
       if (!check) fs.unlinkSync(path.join(dist, file));
     } else {
-      const updated = updateRelatedCards(html, doctors);
+      let updated = updateRelatedCards(html, doctors);
+      if (file === 'index.html') updated = updateHomepageReviews(updated, imported.get('clinic') ?? []);
       if (updated !== html) outputs.set(file, updated);
     }
   }

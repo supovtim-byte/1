@@ -3,6 +3,8 @@ name: Publish Metelitsa to GitHub Pages
 on:
   push:
     branches: [main]
+  schedule:
+    - cron: '37 2 * * *'
   workflow_dispatch:
 
 permissions:
@@ -28,6 +30,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '24'
+      - name: Refresh patient reviews
+        run: npm run reviews:refresh -- --restore
       - name: Generate doctor pages and catalogue
         run: npm run build
       - name: Verify local resources and JavaScript

@@ -454,6 +454,7 @@ address { font-style: normal; }
 .review-card h3 { font-size: var(--large); line-height: 1.2; }
 .review-card > p { line-height: 1.6; }
 .review-meta { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; margin-block-start: auto; font-size: var(--small); }
+.review-card--imported .review-meta { flex-wrap: wrap; }
 .review-meta img { width: max(48px, calc(90 * var(--unit))); height: auto; aspect-ratio: 1; object-fit: cover; border-radius: max(5px, calc(10 * var(--unit))); background: var(--photo-background); }
 
 .faq-list { display: grid; gap: var(--gap); }
@@ -923,6 +924,7 @@ address { font-style: normal; }
   .review-meta time { order: -1; margin-block-start: 2px; }
   .review-card h3 { order: -2; line-height: 1.5; }
   .review-card > p { margin: 25px 0 15px; line-height: 1.5; }
+  .review-card--imported .review-meta a { align-self: flex-start; margin-block-start: auto; padding-block-start: 12px; }
   .review-meta img { margin-block-start: auto; inline-size: calc(75 * var(--mobile-unit)); border-radius: calc(15 * var(--mobile-unit)); }
 
   .faq-list, .mobile-routes { gap: 8px; }

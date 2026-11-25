@@ -3,13 +3,41 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 import vm from 'node:vm';
-import { loadDoctors, validateDoctor, renderDoctor, renderCatalog, renderCard, updateRelatedCards } from './generate-doctors.mjs';
+import { loadDoctors, validateDoctor, renderDoctor, renderCatalog, renderCard, updateRelatedCards, readImportedReviews, updateHomepageReviews } from './generate-doctors.mjs';
 
 const root = path.resolve(import.meta.dirname, '..');
 const doctors = loadDoctors();
 const profile = fs.readFileSync(path.join(root, 'templates/doctor.html'), 'utf8');
 const catalog = fs.readFileSync(path.join(root, 'templates/doctors.html'), 'utf8');
 const copy = id => structuredClone(doctors.find(d => d.id === id));
+
+test('imported review cards escape excerpts and require a direct link from the configured platform', () => {
+  const source = 'https://spb.startsmile.ru/stomatologi/test.html';
+  const card = { date: '2026-11-25', excerpt: 'Отзыв <img src=x> {{example}}', rating: 4.5 };
+  const imported = readImportedReviews({ version: 1, sources: {
+    'startsmile:hodykina': [
+      { ...card, url: source + '#review1234' },
+      { ...card, url: source },
+      { ...card, url: 'https://other.example/store#review1234' },
+    ],
+  } });
+  const reviews = imported.get('hodykina');
+  assert.equal(reviews.length, 1);
+  const html = renderDoctor(copy('hodykina'), profile, reviews);
+  assert.match(html, /Отзыв &lt;img src=x&gt; &#123;&#123;example&#125;&#125;/);
+  assert.match(html, /4,5 из 5/);
+  assert.match(html, /href="https:\/\/spb\.startsmile\.ru\/stomatologi\/test\.html#review1234"[^>]*>Читать оригинал/);
+  assert.match(html, /Все отзывы на ПроДокторов/);
+});
+
+test('updating the homepage review slot is idempotent and keeps the editorial cards', () => {
+  const initial = '  <!-- imported-reviews:start -->\n  <!-- imported-reviews:end -->\n  <article>Отзыв клиники</article>';
+  const cards = [{ source: 'Яндекс Карты', date: '2026-11-25', excerpt: 'Отзыв', rating: 5, url: 'https://yandex.ru/maps/' }];
+  const updated = updateHomepageReviews(initial, cards);
+  assert.match(updated, /Читать оригинал/);
+  assert.equal(updateHomepageReviews(updated, cards), updated);
+  assert.equal(updateHomepageReviews(updated, []), initial);
+});
 
 test('data cannot inject markup through profile text, image alt or external review links', () => {
   const d = copy('hodykina');
