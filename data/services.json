@@ -6,7 +6,7 @@
       "title": "Лечение постоянных зубов",
       "description": "Лечим кариес и корневые каналы, восстанавливаем повреждённые зубы у взрослых и детей.",
       "image": "therapy-clinic.jpg",
-      "heroImage": "about-2.jpg",
+      "heroImage": "service-therapy.jpg",
       "about": [
         "Постоянные зубы лечат и у взрослых, и у детей. На консультации врач оценивает состояние зуба и обсуждает, какое восстановление ему требуется."
       ],
@@ -19,37 +19,44 @@
         {
           "id": "option-1",
           "title": "Лечение кариеса",
-          "priceGroup": "caries"
+          "priceGroup": "caries",
+          "anchor": "price-group-caries"
         },
         {
           "id": "option-2",
           "title": "Лечение начального кариеса без сверления методом ICON",
-          "priceGroup": "caries"
+          "priceGroup": "caries",
+          "anchor": "price-group-caries"
         },
         {
           "id": "option-3",
           "title": "Лечение и перелечивание корневых каналов",
-          "priceGroup": "root-canals"
+          "priceGroup": "root-canals",
+          "anchor": "price-group-root-canals"
         },
         {
           "id": "option-4",
           "title": "Восстановление разрушенных зубов и сколов",
-          "priceGroup": "restoration"
+          "priceGroup": "restoration",
+          "anchor": "price-group-restoration"
         },
         {
           "id": "option-5",
           "title": "Восстановление зубов после травмы",
-          "priceGroup": "restoration"
+          "priceGroup": "restoration",
+          "anchor": "price-group-restoration"
         },
         {
           "id": "option-6",
           "title": "Лечение клиновидных дефектов",
-          "priceGroup": "caries"
+          "priceGroup": "caries",
+          "anchor": "price-group-caries"
         },
         {
           "id": "option-7",
           "title": "Лечение под микроскопом",
-          "priceGroup": "caries"
+          "priceGroup": "caries",
+          "anchor": "price-group-caries"
         }
       ],
       "steps": [
@@ -65,15 +72,33 @@
           "Приём и рекомендации",
           "Проводим согласованные процедуры и обсуждаем дальнейший уход и наблюдение."
         ]
-      ]
+      ],
+      "priceSections": [
+        {
+          "group": "caries"
+        },
+        {
+          "group": "root-canals"
+        },
+        {
+          "group": "restoration",
+          "rows": [
+            0,
+            1,
+            2,
+            3
+          ]
+        }
+      ],
+      "heroAlt": "Приём у стоматолога"
     },
     {
       "id": "children",
-      "slug": "service-lechenie-molochnyh-zubov.html",
+      "slug": "lechenie-molochnyh-zubov.html",
       "title": "Лечение молочных зубов",
       "description": "Помогаем сохранить молочные зубы, восстановить их форму и вернуть ребёнку комфорт при жевании.",
       "image": "service-child.jpg",
-      "heroImage": "about-2.jpg",
+      "heroImage": "about-1.jpg",
       "about": [
         "Для молочных зубов в клинике есть лечение кариеса и пульпита, восстановление пломбировочными материалами и детскими коронками. Способ восстановления обсуждают после осмотра."
       ],
@@ -84,38 +109,45 @@
         {
           "id": "option-1",
           "title": "Лечение кариеса молочных зубов",
-          "priceGroup": "milk-teeth"
+          "priceGroup": "milk-teeth",
+          "anchor": "milk-caries"
         },
         {
           "id": "option-2",
           "title": "Лечение пульпита молочных зубов",
-          "priceGroup": "milk-teeth"
+          "priceGroup": "milk-teeth",
+          "anchor": "milk-pulpitis"
         },
         {
           "id": "option-3",
           "title": "Повторное лечение после другой клиники",
-          "priceGroup": "milk-teeth"
+          "priceGroup": "milk-teeth",
+          "anchor": "milk-pulpitis"
         },
         {
           "id": "option-4",
           "title": "Восстановление разрушенных молочных зубов",
-          "priceGroup": "milk-teeth"
+          "priceGroup": "milk-teeth",
+          "anchor": "milk-restoration"
         },
         {
           "id": "option-5",
           "title": "Эстетическое восстановление передних молочных зубов",
-          "priceGroup": "milk-teeth"
+          "priceGroup": "milk-teeth",
+          "anchor": "milk-restoration"
         },
         {
           "id": "option-6",
           "title": "Металлические и циркониевые детские коронки",
           "shortTitle": "Детские коронки",
-          "priceGroup": "milk-teeth"
+          "priceGroup": "milk-teeth",
+          "anchor": "milk-crowns"
         },
         {
           "id": "option-7",
           "title": "Серебрение молочных зубов",
-          "priceGroup": "milk-teeth"
+          "priceGroup": "milk-teeth",
+          "anchor": "prices"
         }
       ],
       "steps": [
@@ -131,7 +163,14 @@
           "Приём и рекомендации",
           "Проводим согласованные процедуры и обсуждаем дальнейший уход и наблюдение."
         ]
-      ]
+      ],
+      "preservedPage": true,
+      "priceSections": [
+        {
+          "group": "milk-teeth"
+        }
+      ],
+      "heroAlt": "Ребёнок в стоматологическом кресле"
     },
     {
       "id": "adaptation",
@@ -139,7 +178,7 @@
       "title": "Адаптационный приём",
       "description": "Знакомим ребёнка со стоматологом и помогаем постепенно освоиться в кабинете.",
       "image": "service-adaptation.png",
-      "heroImage": "about-2.jpg",
+      "heroImage": "service-adaptation.png",
       "about": [
         "Первый визит можно посвятить знакомству. В прайсе отдельно предусмотрены знакомство без инструментов и адаптационный приём. При записи администратор поможет выбрать формат визита."
       ],
@@ -150,12 +189,14 @@
         {
           "id": "option-1",
           "title": "Знакомство с врачом без использования инструментов",
-          "priceGroup": "consultations"
+          "priceGroup": "consultations",
+          "anchor": "price-group-consultations"
         },
         {
           "id": "option-2",
           "title": "Адаптационный приём с постепенным знакомством со стоматологическими процедурами",
-          "priceGroup": "consultations"
+          "priceGroup": "consultations",
+          "anchor": "price-group-consultations"
         }
       ],
       "steps": [
@@ -171,7 +212,17 @@
           "Следующий визит",
           "Обсуждаем с родителями дальнейшие шаги."
         ]
-      ]
+      ],
+      "priceSections": [
+        {
+          "group": "consultations",
+          "rows": [
+            9,
+            10
+          ]
+        }
+      ],
+      "heroAlt": "Знакомство ребёнка со стоматологом"
     },
     {
       "id": "comfort",
@@ -179,7 +230,7 @@
       "title": "Седация и лечение во сне",
       "description": "Помогаем пройти лечение, если страх или другие обстоятельства затрудняют обычный приём. Подходящий способ подбирают врачи.",
       "image": "sleep-recovery.png",
-      "heroImage": "about-2.jpg",
+      "heroImage": "service-sleep.jpg",
       "about": [
         "Седация закисью азота и общая анестезия — разные способы проведения лечения. При седации пациент остаётся в сознании, а лечение под общей анестезией проходит во сне. Возможность применения и подготовку обсуждают с врачами."
       ],
@@ -191,22 +242,26 @@
         {
           "id": "option-1",
           "title": "Седация закисью азота",
-          "priceGroup": "sedation"
+          "priceGroup": "sedation",
+          "anchor": "price-group-sedation"
         },
         {
           "id": "option-2",
           "title": "Лечение под общей анестезией",
-          "priceGroup": "sedation"
+          "priceGroup": "sedation",
+          "anchor": "price-group-sedation"
         },
         {
           "id": "option-3",
           "title": "Консультация анестезиолога перед лечением",
-          "priceGroup": "consultations"
+          "priceGroup": "consultations",
+          "anchor": "price-group-consultations"
         },
         {
           "id": "option-4",
           "title": "Наблюдение после общей анестезии",
-          "priceGroup": "sedation"
+          "priceGroup": "sedation",
+          "anchor": "price-group-sedation"
         }
       ],
       "steps": [
@@ -222,7 +277,19 @@
           "Лечение и наблюдение",
           "Лечение проводится выбранным способом. После общей анестезии предусмотрено наблюдение."
         ]
-      ]
+      ],
+      "priceSections": [
+        {
+          "group": "sedation"
+        },
+        {
+          "group": "consultations",
+          "rows": [
+            7
+          ]
+        }
+      ],
+      "heroAlt": "Лечение с седацией"
     },
     {
       "id": "hygiene",
@@ -230,7 +297,7 @@
       "title": "Чистка и профилактика",
       "description": "Удаляем налёт и зубной камень, помогаем укрепить эмаль и подобрать домашний уход.",
       "image": "service-hygiene.jpg",
-      "heroImage": "about-2.jpg",
+      "heroImage": "service-hygiene.jpg",
       "about": [
         "Профессиональная гигиена предусмотрена для молочных и постоянных зубов, а также для периода их смены. На приёме можно обсудить домашний уход и обучение чистке зубов."
       ],
@@ -241,42 +308,50 @@
         {
           "id": "option-1",
           "title": "Профессиональная чистка постоянных зубов",
-          "priceGroup": "hygiene"
+          "priceGroup": "hygiene",
+          "anchor": "price-group-hygiene"
         },
         {
           "id": "option-2",
           "title": "Чистка молочных зубов",
-          "priceGroup": "hygiene"
+          "priceGroup": "hygiene",
+          "anchor": "price-group-hygiene"
         },
         {
           "id": "option-3",
           "title": "Чистка в период смены зубов",
-          "priceGroup": "hygiene"
+          "priceGroup": "hygiene",
+          "anchor": "price-group-hygiene"
         },
         {
           "id": "option-4",
           "title": "Профессиональная гигиена в области имплантов",
-          "priceGroup": "hygiene"
+          "priceGroup": "hygiene",
+          "anchor": "price-group-hygiene"
         },
         {
           "id": "option-5",
           "title": "Обучение чистке зубов",
-          "priceGroup": "hygiene"
+          "priceGroup": "hygiene",
+          "anchor": "price-group-hygiene"
         },
         {
           "id": "option-6",
           "title": "Герметизация фиссур молочных и постоянных зубов",
-          "priceGroup": "hygiene"
+          "priceGroup": "hygiene",
+          "anchor": "price-group-hygiene"
         },
         {
           "id": "option-7",
           "title": "Реминерализация и фторирование эмали",
-          "priceGroup": "hygiene"
+          "priceGroup": "hygiene",
+          "anchor": "price-group-hygiene"
         },
         {
           "id": "option-8",
           "title": "Обработка зубов при повышенной чувствительности",
-          "priceGroup": "hygiene"
+          "priceGroup": "hygiene",
+          "anchor": "price-group-hygiene"
         }
       ],
       "steps": [
@@ -292,7 +367,13 @@
           "Приём и рекомендации",
           "Проводим согласованные процедуры и обсуждаем дальнейший уход и наблюдение."
         ]
-      ]
+      ],
+      "priceSections": [
+        {
+          "group": "hygiene"
+        }
+      ],
+      "heroAlt": "Стоматолог объясняет уход за зубами"
     },
     {
       "id": "orthodontics",
@@ -300,7 +381,7 @@
       "title": "Исправление прикуса",
       "description": "Выравниваем зубы у детей и взрослых, работаем с положением челюстей и помогаем сохранить результат лечения.",
       "image": "service-ortho.jpg",
-      "heroImage": "about-2.jpg",
+      "heroImage": "service-ortho.jpg",
       "about": [
         "В клинике применяют брекеты, элайнеры и детские ортодонтические аппараты. Выбор зависит от результатов диагностики. После лечения предусмотрены ретейнеры и удерживающие каппы."
       ],
@@ -312,52 +393,62 @@
         {
           "id": "option-1",
           "title": "Металлические и эстетические брекеты",
-          "priceGroup": "braces"
+          "priceGroup": "braces",
+          "anchor": "price-group-braces"
         },
         {
           "id": "option-2",
           "title": "Частичные брекет-системы для детей",
-          "priceGroup": "child-orthodontics"
+          "priceGroup": "child-orthodontics",
+          "anchor": "price-group-child-orthodontics"
         },
         {
           "id": "option-3",
           "title": "Элайнеры",
-          "priceGroup": "braces"
+          "priceGroup": "braces",
+          "anchor": "price-group-braces"
         },
         {
           "id": "option-4",
           "title": "Съёмные ортодонтические пластинки",
-          "priceGroup": "child-orthodontics"
+          "priceGroup": "child-orthodontics",
+          "anchor": "price-group-child-orthodontics"
         },
         {
           "id": "option-5",
           "title": "Аппараты Twin Block и Френкеля",
-          "priceGroup": "child-orthodontics"
+          "priceGroup": "child-orthodontics",
+          "anchor": "price-group-child-orthodontics"
         },
         {
           "id": "option-6",
           "title": "Трейнеры, LM-активаторы и эластопозиционеры",
-          "priceGroup": "child-orthodontics"
+          "priceGroup": "child-orthodontics",
+          "anchor": "price-group-child-orthodontics"
         },
         {
           "id": "option-7",
           "title": "Аппараты для расширения верхней челюсти",
-          "priceGroup": "child-orthodontics"
+          "priceGroup": "child-orthodontics",
+          "anchor": "price-group-child-orthodontics"
         },
         {
           "id": "option-8",
           "title": "Сохранение места после ранней потери молочного зуба",
-          "priceGroup": "child-orthodontics"
+          "priceGroup": "child-orthodontics",
+          "anchor": "price-group-child-orthodontics"
         },
         {
           "id": "option-9",
           "title": "Ретейнеры и удерживающие каппы",
-          "priceGroup": "braces"
+          "priceGroup": "braces",
+          "anchor": "price-group-braces"
         },
         {
           "id": "option-10",
           "title": "Контрольные приёмы, коррекция и ремонт аппаратов",
-          "priceGroup": "child-orthodontics"
+          "priceGroup": "child-orthodontics",
+          "anchor": "price-group-child-orthodontics"
         }
       ],
       "steps": [
@@ -373,7 +464,16 @@
           "Приём и рекомендации",
           "Проводим согласованные процедуры и обсуждаем дальнейший уход и наблюдение."
         ]
-      ]
+      ],
+      "priceSections": [
+        {
+          "group": "child-orthodontics"
+        },
+        {
+          "group": "braces"
+        }
+      ],
+      "heroAlt": "Обсуждение ортодонтического лечения"
     },
     {
       "id": "gums",
@@ -381,7 +481,7 @@
       "title": "Лечение дёсен",
       "description": "Лечим воспаление дёсен, работаем с подвижностью зубов и оголением корней.",
       "image": "children-treatment.png",
-      "heroImage": "about-2.jpg",
+      "heroImage": "service-therapy.jpg",
       "about": [
         "В этом направлении объединены обследование дёсен, профессиональная чистка, лечение аппаратом Vector и хирургические методы. План составляют с учётом состояния тканей вокруг зубов."
       ],
@@ -392,37 +492,44 @@
         {
           "id": "option-1",
           "title": "Обследование дёсен и десневых карманов",
-          "priceGroup": "gums"
+          "priceGroup": "gums",
+          "anchor": "price-group-gums"
         },
         {
           "id": "option-2",
           "title": "Профессиональная чистка при заболеваниях дёсен",
-          "priceGroup": "gums"
+          "priceGroup": "gums",
+          "anchor": "price-group-gums"
         },
         {
           "id": "option-3",
           "title": "Лечение аппаратом Vector",
-          "priceGroup": "gums"
+          "priceGroup": "gums",
+          "anchor": "price-group-gums"
         },
         {
           "id": "option-4",
           "title": "Глубокая чистка десневых карманов, открытый и закрытый кюретаж",
-          "priceGroup": "gums"
+          "priceGroup": "gums",
+          "anchor": "price-group-gums"
         },
         {
           "id": "option-5",
           "title": "Укрепление подвижных зубов шинированием",
-          "priceGroup": "gums"
+          "priceGroup": "gums",
+          "anchor": "price-group-gums"
         },
         {
           "id": "option-6",
           "title": "Хирургическое лечение дёсен",
-          "priceGroup": "gums"
+          "priceGroup": "gums",
+          "anchor": "price-group-gums"
         },
         {
           "id": "option-7",
           "title": "Закрытие оголённых корней зубов",
-          "priceGroup": "gums"
+          "priceGroup": "gums",
+          "anchor": "price-group-gums"
         }
       ],
       "steps": [
@@ -438,7 +545,13 @@
           "Приём и рекомендации",
           "Проводим согласованные процедуры и обсуждаем дальнейший уход и наблюдение."
         ]
-      ]
+      ],
+      "priceSections": [
+        {
+          "group": "gums"
+        }
+      ],
+      "heroAlt": "Осмотр полости рта"
     },
     {
       "id": "surgery",
@@ -446,7 +559,7 @@
       "title": "Удаление зубов и хирургия",
       "description": "Удаляем зубы по показаниям и проводим операции на зубах и мягких тканях полости рта.",
       "image": "children-service-extraction.jpg",
-      "heroImage": "about-2.jpg",
+      "heroImage": "therapy-clinic.jpg",
       "about": [
         "Хирург принимает детей и взрослых. В направлении собраны удаления зубов, пластика уздечек и другие операции полости рта. Объём вмешательства определяют после осмотра и диагностики."
       ],
@@ -457,57 +570,68 @@
         {
           "id": "option-1",
           "title": "Удаление молочных и постоянных зубов",
-          "priceGroup": "surgery"
+          "priceGroup": "surgery",
+          "anchor": "price-group-surgery"
         },
         {
           "id": "option-2",
           "title": "Сложное удаление, в том числе непрорезавшихся и неправильно расположенных зубов",
-          "priceGroup": "surgery"
+          "priceGroup": "surgery",
+          "anchor": "price-group-surgery"
         },
         {
           "id": "option-3",
           "title": "Удаление оставшихся фрагментов зубов",
-          "priceGroup": "surgery"
+          "priceGroup": "surgery",
+          "anchor": "price-group-surgery"
         },
         {
           "id": "option-4",
           "title": "Пластика уздечки языка, включая приём грудных детей",
-          "priceGroup": "surgery"
+          "priceGroup": "surgery",
+          "anchor": "price-group-surgery"
         },
         {
           "id": "option-5",
           "title": "Пластика уздечек верхней и нижней губы",
-          "priceGroup": "surgery"
+          "priceGroup": "surgery",
+          "anchor": "price-group-surgery"
         },
         {
           "id": "option-6",
           "title": "Удаление кист",
-          "priceGroup": "surgery"
+          "priceGroup": "surgery",
+          "anchor": "price-group-surgery"
         },
         {
           "id": "option-7",
           "title": "Операции на верхушке корня зуба",
-          "priceGroup": "surgery"
+          "priceGroup": "surgery",
+          "anchor": "price-group-surgery"
         },
         {
           "id": "option-8",
           "title": "Лечение воспаления вокруг прорезывающегося зуба",
-          "priceGroup": "surgery"
+          "priceGroup": "surgery",
+          "anchor": "price-group-surgery"
         },
         {
           "id": "option-9",
           "title": "Коррекция формы десны",
-          "priceGroup": "surgery"
+          "priceGroup": "surgery",
+          "anchor": "price-group-surgery"
         },
         {
           "id": "option-10",
           "title": "Открытие зуба для ортодонтического лечения",
-          "priceGroup": "surgery"
+          "priceGroup": "surgery",
+          "anchor": "price-group-surgery"
         },
         {
           "id": "option-11",
           "title": "Удаление костных выступов",
-          "priceGroup": "surgery"
+          "priceGroup": "surgery",
+          "anchor": "price-group-surgery"
         }
       ],
       "steps": [
@@ -523,7 +647,13 @@
           "Приём и рекомендации",
           "Проводим согласованные процедуры и обсуждаем дальнейший уход и наблюдение."
         ]
-      ]
+      ],
+      "priceSections": [
+        {
+          "group": "surgery"
+        }
+      ],
+      "heroAlt": "Стоматолог проводит лечение"
     },
     {
       "id": "implants",
@@ -531,7 +661,7 @@
       "title": "Имплантация зубов",
       "description": "Восстанавливаем утраченные зубы с помощью имплантов и при необходимости подготавливаем костную ткань.",
       "image": "children-service-milk.jpg",
-      "heroImage": "about-2.jpg",
+      "heroImage": "service-prosthetics.jpg",
       "about": [
         "Имплантация включает установку имплантов и, при необходимости, подготовку костной ткани. Коронки и протезы на имплантах относятся к отдельному этапу протезирования, который обсуждают при составлении общего плана."
       ],
@@ -542,32 +672,38 @@
         {
           "id": "option-1",
           "title": "Имплантация одного или нескольких зубов",
-          "priceGroup": "implants"
+          "priceGroup": "implants",
+          "anchor": "price-group-implants"
         },
         {
           "id": "option-2",
           "title": "Установка имплантов при полном отсутствии зубов",
-          "priceGroup": "implants"
+          "priceGroup": "implants",
+          "anchor": "price-group-implants"
         },
         {
           "id": "option-3",
           "title": "Установка имплантов INNO, Osstem и Straumann",
-          "priceGroup": "implants"
+          "priceGroup": "implants",
+          "anchor": "price-group-implants"
         },
         {
           "id": "option-4",
           "title": "Наращивание костной ткани",
-          "priceGroup": "implants"
+          "priceGroup": "implants",
+          "anchor": "price-group-implants"
         },
         {
           "id": "option-5",
           "title": "Костная пластика с пересадкой костных блоков",
-          "priceGroup": "implants"
+          "priceGroup": "implants",
+          "anchor": "price-group-implants"
         },
         {
           "id": "option-6",
           "title": "Открытый и закрытый синус-лифтинг",
-          "priceGroup": "implants"
+          "priceGroup": "implants",
+          "anchor": "price-group-implants"
         }
       ],
       "steps": [
@@ -583,7 +719,13 @@
           "Приём и рекомендации",
           "Проводим согласованные процедуры и обсуждаем дальнейший уход и наблюдение."
         ]
-      ]
+      ],
+      "priceSections": [
+        {
+          "group": "implants"
+        }
+      ],
+      "heroAlt": "Стоматолог на приёме со взрослым пациентом"
     },
     {
       "id": "prosthetics",
@@ -591,7 +733,7 @@
       "title": "Коронки и протезирование",
       "description": "Восстанавливаем повреждённые и утраченные зубы с помощью коронок, вкладок и протезов.",
       "image": "service-prosthetics.jpg",
-      "heroImage": "about-2.jpg",
+      "heroImage": "service-prosthetics.jpg",
       "about": [
         "Коронки и вкладки помогают восстановить повреждённые зубы, а протезы замещают утраченные. В клинике предусмотрены съёмные конструкции и протезирование на имплантах."
       ],
@@ -603,47 +745,56 @@
         {
           "id": "option-1",
           "title": "Металлокерамические коронки",
-          "priceGroup": "crowns"
+          "priceGroup": "crowns",
+          "anchor": "price-group-crowns"
         },
         {
           "id": "option-2",
           "title": "Коронки из циркония и E.max",
-          "priceGroup": "crowns"
+          "priceGroup": "crowns",
+          "anchor": "price-group-crowns"
         },
         {
           "id": "option-3",
           "title": "Композитные и керамические вкладки и накладки",
-          "priceGroup": "crowns"
+          "priceGroup": "crowns",
+          "anchor": "price-group-crowns"
         },
         {
           "id": "option-4",
           "title": "Временные коронки",
-          "priceGroup": "crowns"
+          "priceGroup": "crowns",
+          "anchor": "price-group-crowns"
         },
         {
           "id": "option-5",
           "title": "Коронки на имплантах",
-          "priceGroup": "crowns"
+          "priceGroup": "crowns",
+          "anchor": "price-group-crowns"
         },
         {
           "id": "option-6",
           "title": "Частичные и полные съёмные протезы",
-          "priceGroup": "dentures"
+          "priceGroup": "dentures",
+          "anchor": "price-group-dentures"
         },
         {
           "id": "option-7",
           "title": "Бюгельные протезы",
-          "priceGroup": "dentures"
+          "priceGroup": "dentures",
+          "anchor": "price-group-dentures"
         },
         {
           "id": "option-8",
           "title": "Протезирование всей челюсти на имплантах",
-          "priceGroup": "dentures"
+          "priceGroup": "dentures",
+          "anchor": "price-group-dentures"
         },
         {
           "id": "option-9",
           "title": "Ремонт, повторная фиксация и коррекция протезных конструкций",
-          "priceGroup": "crowns"
+          "priceGroup": "crowns",
+          "anchor": "price-group-crowns"
         }
       ],
       "steps": [
@@ -659,7 +810,20 @@
           "Приём и рекомендации",
           "Проводим согласованные процедуры и обсуждаем дальнейший уход и наблюдение."
         ]
-      ]
+      ],
+      "priceSections": [
+        {
+          "group": "crowns",
+          "exclude": [
+            8,
+            9
+          ]
+        },
+        {
+          "group": "dentures"
+        }
+      ],
+      "heroAlt": "Консультация по восстановлению зубов"
     },
     {
       "id": "aesthetics",
@@ -667,7 +831,7 @@
       "title": "Эстетика зубов",
       "description": "Помогаем изменить цвет и форму зубов, восстановить внешний вид улыбки.",
       "image": "visit.jpg",
-      "heroImage": "about-2.jpg",
+      "heroImage": "service-ortho.jpg",
       "about": [
         "В зависимости от задачи врач может предложить отбеливание, реставрацию или керамические конструкции. На консультации обсуждают желаемые изменения цвета и формы зубов."
       ],
@@ -679,37 +843,44 @@
         {
           "id": "option-1",
           "title": "Отбеливание зубов BEYOND",
-          "priceGroup": "restoration"
+          "priceGroup": "restoration",
+          "anchor": "price-group-restoration"
         },
         {
           "id": "option-2",
           "title": "Изготовление капп для домашнего отбеливания",
-          "priceGroup": "restoration"
+          "priceGroup": "restoration",
+          "anchor": "price-group-restoration"
         },
         {
           "id": "option-3",
           "title": "Керамические виниры",
-          "priceGroup": "crowns"
+          "priceGroup": "crowns",
+          "anchor": "price-group-crowns"
         },
         {
           "id": "option-4",
           "title": "Люминиры",
-          "priceGroup": "crowns"
+          "priceGroup": "crowns",
+          "anchor": "price-group-crowns"
         },
         {
           "id": "option-5",
           "title": "Эстетическая реставрация пломбировочным материалом",
-          "priceGroup": "restoration"
+          "priceGroup": "restoration",
+          "anchor": "price-group-restoration"
         },
         {
           "id": "option-6",
           "title": "Коррекция контура зубов",
-          "priceGroup": "restoration"
+          "priceGroup": "restoration",
+          "anchor": "price-group-restoration"
         },
         {
           "id": "option-7",
           "title": "Установка украшений на зубы",
-          "priceGroup": "restoration"
+          "priceGroup": "restoration",
+          "anchor": "price-group-restoration"
         }
       ],
       "steps": [
@@ -725,7 +896,29 @@
           "Приём и рекомендации",
           "Проводим согласованные процедуры и обсуждаем дальнейший уход и наблюдение."
         ]
-      ]
+      ],
+      "priceSections": [
+        {
+          "group": "restoration",
+          "rows": [
+            2,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "group": "crowns",
+          "rows": [
+            8,
+            9
+          ]
+        }
+      ],
+      "heroAlt": "Обсуждение формы и внешнего вида зубов"
     },
     {
       "id": "diagnostics",
@@ -733,7 +926,7 @@
       "title": "Консультации и диагностика",
       "description": "Выясняем состояние зубов и дёсен, проводим необходимые исследования и составляем план лечения.",
       "image": "sleep-recovery.png",
-      "heroImage": "about-2.jpg",
+      "heroImage": "service-hygiene.jpg",
       "about": [
         "Консультация помогает определить, с чего начать. В клинике предусмотрены прицельные и панорамные снимки, КТ, ТРГ и цифровое сканирование. Необходимые исследования подбирает врач."
       ],
@@ -745,52 +938,62 @@
         {
           "id": "option-1",
           "title": "Консультации взрослого и детского стоматолога",
-          "priceGroup": "consultations"
+          "priceGroup": "consultations",
+          "anchor": "price-group-consultations"
         },
         {
           "id": "option-2",
           "title": "Консультации ортодонта, хирурга и стоматолога-ортопеда",
-          "priceGroup": "consultations"
+          "priceGroup": "consultations",
+          "anchor": "price-group-consultations"
         },
         {
           "id": "option-3",
           "title": "Консультации специалиста по заболеваниям дёсен и гигиениста",
-          "priceGroup": "consultations"
+          "priceGroup": "consultations",
+          "anchor": "price-group-consultations"
         },
         {
           "id": "option-4",
           "title": "Совместная консультация нескольких специалистов",
-          "priceGroup": "consultations"
+          "priceGroup": "consultations",
+          "anchor": "price-group-consultations"
         },
         {
           "id": "option-5",
           "title": "Прицельные снимки зубов",
-          "priceGroup": "diagnostics"
+          "priceGroup": "diagnostics",
+          "anchor": "price-group-diagnostics"
         },
         {
           "id": "option-6",
           "title": "Панорамный снимок",
-          "priceGroup": "diagnostics"
+          "priceGroup": "diagnostics",
+          "anchor": "price-group-diagnostics"
         },
         {
           "id": "option-7",
           "title": "КТ зубов и челюстей",
-          "priceGroup": "diagnostics"
+          "priceGroup": "diagnostics",
+          "anchor": "price-group-diagnostics"
         },
         {
           "id": "option-8",
           "title": "ТРГ для оценки прикуса",
-          "priceGroup": "diagnostics"
+          "priceGroup": "diagnostics",
+          "anchor": "price-group-diagnostics"
         },
         {
           "id": "option-9",
           "title": "Цифровое сканирование зубов",
-          "priceGroup": "diagnostics"
+          "priceGroup": "diagnostics",
+          "anchor": "price-group-diagnostics"
         },
         {
           "id": "option-10",
           "title": "Комплексная диагностика перед лечением на брекетах или элайнерах",
-          "priceGroup": "diagnostics"
+          "priceGroup": "diagnostics",
+          "anchor": "price-group-diagnostics"
         }
       ],
       "steps": [
@@ -806,7 +1009,28 @@
           "Приём и рекомендации",
           "Проводим согласованные процедуры и обсуждаем дальнейший уход и наблюдение."
         ]
-      ]
+      ],
+      "priceSections": [
+        {
+          "group": "consultations",
+          "rows": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            8,
+            11,
+            12
+          ]
+        },
+        {
+          "group": "diagnostics"
+        }
+      ],
+      "heroAlt": "Консультация стоматолога"
     }
   ],
   "home": [

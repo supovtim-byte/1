@@ -7,11 +7,20 @@ class ServicesTest(unittest.TestCase):
   data=json.loads(module.read('data/services.json'));out=module.outputs()
   self.assertEqual(len(data['services']),12)
   for s in data['services']:
-   page=out['dist/'+s['slug']]
+   page=out.get('dist/'+s['slug'],module.read('dist/'+s['slug']))
    self.assertNotIn('Здесь ',page);self.assertNotIn('рыба-текст',page)
    for item in s['items']:
-    self.assertIn('id="'+item['id']+'"',page)
-    self.assertIn(s['slug']+'#'+item['id'],out['dist/uslugi.html'])
+    self.assertIn('id="'+item.get('anchor',item['id'])+'"',page)
+    self.assertIn(s['slug']+'#'+item.get('anchor',item['id']),out['dist/uslugi.html'])
+ def test_prices_stay_inside_disclosures_and_unknown_staff_is_omitted(self):
+  data=json.loads(module.read('data/services.json'));out=module.outputs()
+  for service in data['services']:
+   if service.get('preservedPage'): continue
+   page=out['dist/'+service['slug']]
+   self.assertNotIn('id="doctors"',page); self.assertNotIn('id="reviews"',page)
+   self.assertNotIn('Посмотреть цены',page);self.assertNotIn('Полный прайс по направлению',page)
+   self.assertIn('<dl>',page);self.assertIn('₽',page)
+   self.assertNotIn('assets/about-2.jpg',page)
  def test_title_change_propagates_and_is_escaped(self):
   original=module.read;data=json.loads(original('data/services.json'));s=data['services'][0];s['title']='Тест <script>alert(1)</script>'
   with patch.object(module,'read',side_effect=lambda p:json.dumps(data) if p=='data/services.json' else original(p)):

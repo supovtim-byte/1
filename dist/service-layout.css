@@ -59,3 +59,7 @@
   .unified-service .service-adaptation { padding-inline: calc(5 * var(--mobile-unit)); }
   .unified-service .service-adaptation .section-heading { padding-inline: 0; }
 }
+
+/* Keep carousel headings and doctor captions on the same inset as the homepage. */
+.unified-service .treatment-content .deck .section-heading { padding-inline: var(--inside); }
+.unified-service .treatment-content .deck-more { margin-inline-start: var(--inside); }
