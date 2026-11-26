@@ -21,6 +21,20 @@ class ServicesTest(unittest.TestCase):
    self.assertNotIn('Посмотреть цены',page);self.assertNotIn('Полный прайс по направлению',page)
    self.assertIn('<dl>',page);self.assertIn('₽',page)
    self.assertNotIn('assets/about-2.jpg',page)
+ def test_closed_panels_show_a_starting_price(self):
+  import re
+  data=json.loads(module.read('data/services.json'));out=module.outputs()
+  for service in data['services']:
+   if service.get('preservedPage'): continue
+   page=out['dist/'+service['slug']]
+   prices=re.findall(r'<summary>.*?<span class="treatment-price">(.*?)</span>',page)
+   self.assertEqual(len(prices),len(service['priceSections']))
+   self.assertTrue(all(p.startswith('от ') and p.endswith('₽') for p in prices))
+ def test_starting_price_uses_primary_rows_and_range_lower_bound(self):
+  rows=[{'amount':'600 ₽'},{'amount':'19\u00a0500 – 25\u00a0000 ₽'},{'amount':'42 000 ₽'}]
+  self.assertEqual(module.starting_price({'fromRows':[1,2]},rows,rows),'от 19\u00a0500\u00a0₽')
+  rows[1]['amount']='21 000 ₽'
+  self.assertEqual(module.starting_price({'fromRows':[1,2]},rows,rows),'от 21\u00a0000\u00a0₽')
  def test_title_change_propagates_and_is_escaped(self):
   original=module.read;data=json.loads(original('data/services.json'));s=data['services'][0];s['title']='Тест <script>alert(1)</script>'
   with patch.object(module,'read',side_effect=lambda p:json.dumps(data) if p=='data/services.json' else original(p)):

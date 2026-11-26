@@ -1,0 +1,42 @@
+/* Approved price panel layout from 40688ca (21 November), scoped to service pages. */
+.unified-service .treatment-prices {
+  --price-summary-gap: max(18px, calc(30 * var(--unit)));
+  --price-arrow-width: 20px;
+  --price-copy-size: max(18px, calc(26 * var(--unit)));
+}
+.unified-service .treatment-prices summary {
+  min-block-size: max(76px, calc(89 * var(--unit)));
+  padding: max(20px, calc(24 * var(--unit))) max(24px, calc(40 * var(--unit)));
+  font-size: var(--price-copy-size);
+  line-height: 1.5;
+}
+.unified-service .treatment-prices .treatment-price-body {
+  margin: 0;
+  padding: max(22px, calc(34 * var(--unit))) max(24px, calc(40 * var(--unit))) max(30px, calc(40 * var(--unit)));
+  font-size: var(--price-copy-size);
+}
+.unified-service .treatment-prices .treatment-price-body dl { max-inline-size: 100%; }
+.unified-service .treatment-prices .treatment-price-body dl > div { padding-block-end: max(18px, calc(26 * var(--unit))); }
+.unified-service .treatment-prices .treatment-price-body dl > div:last-child { padding-block-end: 0; }
+.unified-service .treatment-prices .treatment-price-body dl > div::after { inset-block-end: max(8px, calc(12 * var(--unit))); }
+@media (min-width: 601px) {
+  .unified-service .treatment-prices {
+    --price-content-gap: max(30px, calc(60 * var(--unit)));
+    --price-panel-padding: max(24px, calc(40 * var(--unit)));
+    --price-summary-padding: max(20px, calc(24 * var(--unit)));
+  }
+  .unified-service .treatment-prices details[open] summary { min-block-size: 0; }
+  .unified-service .treatment-prices .treatment-price-body {
+    padding-block-start: calc(var(--price-content-gap) - var(--price-summary-padding));
+    padding-inline-end: calc(var(--price-panel-padding) + var(--price-summary-gap) + var(--price-arrow-width));
+  }
+  .unified-service .treatment-prices .treatment-price-body > p { max-inline-size: 100%; }
+  .unified-service .treatment-prices .treatment-price-body dl { margin-block-start: var(--price-content-gap); }
+  .unified-service .treatment-prices .treatment-price-body dd { text-align: end; }
+}
+@media (max-width: 600px) {
+  .unified-service .treatment-prices { --price-copy-size: 16px; }
+  .unified-service .treatment-prices summary { padding: 20px; }
+  .unified-service .treatment-prices .treatment-price { font-size: 16px; }
+  .unified-service .treatment-prices .treatment-price-body { padding: 12px 20px 24px; }
+}

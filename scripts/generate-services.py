@@ -20,14 +20,28 @@ def price_groups():
   groups[m[1]]=rows
  return groups
 
+def starting_price(section,rows,selected):
+ candidates=[row for n,row in enumerate(rows) if n in section.get('fromRows',range(len(rows))) and row in selected]
+ assert candidates, 'No primary price rows'
+ values=[]
+ for row in candidates:
+  # A range starts with its lower bound; preserve the original units in the detail rows.
+  match=re.search(r'\d[\d\s\u00a0\u202f]*',row['amount'])
+  assert match, row['amount']
+  value=int(re.sub(r'\D','',match[0]))
+  if value>0: values.append(value)
+ assert values, 'No positive starting prices'
+ return 'от '+format(min(values),',').replace(',', '\u00a0')+'\u00a0₽'
+
 def render_prices(service,data,groups):
  blocks=[]
  for section in service['priceSections']:
   group=section['group']; rows=groups[group]
   selected=[row for n,row in enumerate(rows) if n in section.get('rows',range(len(rows))) and n not in section.get('exclude',[])]
   assert selected, group
+  from_price=starting_price(section,rows,selected)
   dl=''.join('<div><dt>'+e(row['title'])+'</dt><dd>'+e(row['amount'])+'</dd></div>' for row in selected)
-  blocks.append(f'<details name="treatment-prices" id="price-group-{e(group)}"><summary><span>{e(data["priceLabels"][group])}</span><span class="treatment-price"></span><span class="treatment-price-chevron" aria-hidden="true"><img src="assets/price-caries-chevron.svg" width="22" height="13" alt=""></span></summary><div class="treatment-price-body"><dl>{dl}</dl><a class="text-link treatment-price-book" href="#appointment" data-book="{e(service["title"])}">Записаться на приём</a></div></details>')
+  blocks.append(f'<details name="treatment-prices" id="price-group-{e(group)}"><summary><span>{e(data["priceLabels"][group])}</span><span class="treatment-price">{e(from_price)}</span><span class="treatment-price-chevron" aria-hidden="true"><img src="assets/price-caries-chevron.svg" width="22" height="13" alt=""></span></summary><div class="treatment-price-body"><dl>{dl}</dl><a class="text-link treatment-price-book" href="#appointment" data-book="{e(service["title"])}">Записаться на приём</a></div></details>')
  return '\n'.join(blocks)
 
 def outputs():

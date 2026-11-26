@@ -75,10 +75,30 @@
       ],
       "priceSections": [
         {
-          "group": "caries"
+          "group": "caries",
+          "fromRows": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ]
         },
         {
-          "group": "root-canals"
+          "group": "root-canals",
+          "fromRows": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ]
         },
         {
           "group": "restoration",
@@ -280,7 +300,12 @@
       ],
       "priceSections": [
         {
-          "group": "sedation"
+          "group": "sedation",
+          "fromRows": [
+            3,
+            4,
+            5
+          ]
         },
         {
           "group": "consultations",
@@ -467,10 +492,34 @@
       ],
       "priceSections": [
         {
-          "group": "child-orthodontics"
+          "group": "child-orthodontics",
+          "fromRows": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
         },
         {
-          "group": "braces"
+          "group": "braces",
+          "fromRows": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17
+          ]
         }
       ],
       "heroAlt": "Обсуждение ортодонтического лечения"
@@ -548,7 +597,20 @@
       ],
       "priceSections": [
         {
-          "group": "gums"
+          "group": "gums",
+          "fromRows": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ]
         }
       ],
       "heroAlt": "Осмотр полости рта"
@@ -722,7 +784,20 @@
       ],
       "priceSections": [
         {
-          "group": "implants"
+          "group": "implants",
+          "fromRows": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ]
         }
       ],
       "heroAlt": "Стоматолог на приёме со взрослым пациентом"
@@ -817,10 +892,34 @@
           "exclude": [
             8,
             9
+          ],
+          "fromRows": [
+            0,
+            1,
+            2,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
           ]
         },
         {
-          "group": "dentures"
+          "group": "dentures",
+          "fromRows": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ]
         }
       ],
       "heroAlt": "Консультация по восстановлению зубов"
@@ -908,6 +1007,14 @@
             7,
             8,
             9
+          ],
+          "fromRows": [
+            2,
+            4,
+            5,
+            6,
+            7,
+            8
           ]
         },
         {
@@ -915,6 +1022,17 @@
           "rows": [
             8,
             9
+          ],
+          "fromRows": [
+            0,
+            1,
+            2,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
           ]
         }
       ],
@@ -1024,6 +1142,16 @@
             8,
             11,
             12
+          ],
+          "fromRows": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            8
           ]
         },
         {
