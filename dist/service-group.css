@@ -8,3 +8,7 @@
   .service-group-template .hero-screen { min-block-size: 620px; }
   .service-group-template .service-hero-bottom { gap: 16px; }
 }
+
+/* Generated service pages share the template layout. */
+.generated-service .service-price-links { display: flex; flex-wrap: wrap; gap: 12px 24px; }
+.generated-service .treatment-price-body > .text-link { display: inline-block; margin-inline-end: 24px; }

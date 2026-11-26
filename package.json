@@ -4,10 +4,10 @@
   "private": true,
   "description": "Адаптивная главная страница стоматологии Метелица",
   "scripts": {
-    "check": "npm run check:doctors && node --check dist/site.js && node --check dist/catalog.js && node --check dist/contacts.js && node --check dist/prices.js && node --check dist/tax-deduction.js && node --check dist/tax-date-alternative.js && node scripts/check.mjs && python3 -B scripts/reviews.test.py",
+    "check": "python3 -B scripts/services.test.py && python3 scripts/generate-services.py --check && npm run check:doctors && node --check dist/site.js && node --check dist/catalog.js && node --check dist/contacts.js && node --check dist/prices.js && node --check dist/tax-deduction.js && node --check dist/tax-date-alternative.js && node scripts/check.mjs && python3 -B scripts/reviews.test.py",
     "reviews:refresh": "python3 scripts/collect-reviews.py",
     "dev": "python3 scripts/dev.py",
-    "build": "node scripts/generate-doctors.mjs",
+    "build": "node scripts/generate-doctors.mjs && python3 scripts/generate-services.py",
     "check:doctors": "node scripts/generate-doctors.mjs --check && node --test scripts/doctors.test.mjs"
   }
 }
