@@ -46,7 +46,13 @@
       ]
     }
   ],
-  "experience": null,
+  "experience": {
+    "years": 6,
+    "asOf": "2026-11-27",
+    "sourceRefs": [
+      "experience-profile"
+    ]
+  },
   "directions": [
     {
       "title": "Стоматология общей практики",
@@ -97,6 +103,13 @@
       "url": "https://spb.startsmile.ru/stomatologi/konovalova_viktoriya_nikolaevna.html",
       "kind": "review_platform",
       "checkedAt": "2026-11-24"
+    },
+    "experience-profile": {
+      "label": "Публикация Viru Clinic о Виктории Николаевне Коноваловой",
+      "url": "https://t.me/s/katidodo/1336",
+      "kind": "official_statement",
+      "checkedAt": "2026-11-27",
+      "note": "В публикации клиники с полным ФИО врача указано 6 лет опыта."
     }
   }
 }

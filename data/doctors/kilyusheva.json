@@ -39,7 +39,13 @@
       ]
     }
   ],
-  "experience": null,
+  "experience": {
+    "years": 5,
+    "asOf": "2026-11-27",
+    "sourceRefs": [
+      "experience-profile"
+    ]
+  },
   "directions": [
     {
       "title": "Стоматология общей практики",
@@ -80,6 +86,13 @@
       "url": "https://www.metelitsa-dent.ru/about/personal/",
       "kind": "official_staff",
       "checkedAt": "2026-11-27"
+    },
+    "experience-profile": {
+      "label": "Профессиональная карточка врача на Doctu",
+      "url": "https://doctu.ru/chelyabinsk/doctor/kiljusheva-julija-aleksandrovna-1",
+      "kind": "professional_profile",
+      "checkedAt": "2026-11-27",
+      "note": "Указан стаж 5 лет. Совпадают полное ФИО, университет им. Павлова и год окончания стоматологии — 2021; данные обновлены 27.11.2026."
     }
   }
 }

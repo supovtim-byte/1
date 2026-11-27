@@ -46,7 +46,13 @@
       ]
     }
   ],
-  "experience": null,
+  "experience": {
+    "years": 8,
+    "asOf": "2026-11-27",
+    "sourceRefs": [
+      "experience-profile"
+    ]
+  },
   "directions": [
     {
       "title": "Брекет-системы",
@@ -179,6 +185,13 @@
       "url": "https://singadental.ru/",
       "kind": "professional_profile",
       "checkedAt": "2026-11-25"
+    },
+    "experience-profile": {
+      "label": "Профессиональная карточка врача в iDСтом",
+      "url": "https://idctom.ru/doctors/perelshtejn-nina-vladimirovna/",
+      "kind": "professional_profile",
+      "checkedAt": "2026-11-27",
+      "note": "На странице работодателя указан опыт работы 8 лет; на ПроДокторов — 9 лет. Сохранено меньшее из опубликованных значений."
     }
   }
 }

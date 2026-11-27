@@ -39,7 +39,13 @@
       ]
     }
   ],
-  "experience": null,
+  "experience": {
+    "years": 3,
+    "asOf": "2026-11-27",
+    "sourceRefs": [
+      "experience-profile"
+    ]
+  },
   "directions": [
     {
       "title": "Стоматология общей практики",
@@ -90,6 +96,13 @@
       "url": "https://spb.startsmile.ru/stomatologi/korostoyanova_elizaveta_andreevna.html",
       "kind": "review_platform",
       "checkedAt": "2026-11-24"
+    },
+    "experience-profile": {
+      "label": "Карточка врача на НаПоправку",
+      "url": "https://napopravku.ru/spb/doctor-profile/korostoyanova-elizaveta-andreevna/",
+      "kind": "professional_profile",
+      "checkedAt": "2026-11-27",
+      "note": "В разделе «О враче» указан стаж работы 3 года; данные площадки актуальны на 07.08.2026."
     }
   }
 }

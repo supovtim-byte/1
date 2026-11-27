@@ -46,7 +46,13 @@
       ]
     }
   ],
-  "experience": null,
+  "experience": {
+    "years": 3,
+    "asOf": "2026-11-27",
+    "sourceRefs": [
+      "experience-profile"
+    ]
+  },
   "directions": [
     {
       "title": "Брекет-системы",
@@ -171,6 +177,13 @@
       "url": "https://orident.ru/doctors/dzigua-kristina-romanievna",
       "kind": "professional_profile",
       "checkedAt": "2026-11-25"
+    },
+    "experience-profile": {
+      "label": "Профессиональная карточка врача в Orident",
+      "url": "https://orident.ru/doctors/dzigua-kristina-romanievna",
+      "kind": "professional_profile",
+      "checkedAt": "2026-11-27",
+      "note": "В поле «Стаж работы» указано 3 года; в описании — более 4 лет. Сохранено меньшее из опубликованных значений."
     }
   }
 }
