@@ -15,7 +15,12 @@
     "bookable": true
   },
   "availabilityLabel": null,
-  "photo": null,
+  "photo": {
+    "path": "assets/doctors/bogdanova/portrait-20261127.png",
+    "alt": "Богданова Диана Александровна",
+    "width": 1500,
+    "height": 1500
+  },
   "documents": [],
   "about": [
     {

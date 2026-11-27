@@ -17,7 +17,12 @@
     "bookable": true
   },
   "availabilityLabel": null,
-  "photo": null,
+  "photo": {
+    "path": "assets/doctors/pinahina/portrait-20261127.png",
+    "alt": "Пинахина Виктория Дмитриевна",
+    "width": 1500,
+    "height": 1500
+  },
   "documents": [],
   "about": [
     {

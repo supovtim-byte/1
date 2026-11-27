@@ -78,7 +78,7 @@ test('deferred information stays out of HTML, including source URLs', () => {
 
 test('unknown experience, education, photo and reviews do not produce invented content or broken navigation', () => {
   const d = copy('novakovskaya');
-  d.about = []; d.education = []; d.directions = []; d.reviews.links = []; d.experience = null;
+  d.about = []; d.education = []; d.directions = []; d.reviews.links = []; d.experience = null; d.photo = null;
   const html = renderDoctor(d, profile);
   assert.doesNotMatch(html, /опыт:|id="education"|id="doctor-about"|id="directions"|id="reviews"|href="#reviews"/);
   assert.ok(html.includes('assets/doctors/placeholder.svg'));

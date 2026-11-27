@@ -17,7 +17,12 @@
     "bookable": false
   },
   "availabilityLabel": "Приём временно недоступен",
-  "photo": null,
+  "photo": {
+    "path": "assets/doctors/buhtoyarova/portrait-20261127.png",
+    "alt": "Бухтоярова Анастасия Александровна",
+    "width": 1500,
+    "height": 1500
+  },
   "documents": [],
   "about": [
     {

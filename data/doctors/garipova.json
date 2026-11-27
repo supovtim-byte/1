@@ -15,7 +15,12 @@
     "bookable": true
   },
   "availabilityLabel": null,
-  "photo": null,
+  "photo": {
+    "path": "assets/doctors/garipova/portrait-20261127.png",
+    "alt": "Гарипова Альбина Ильдаровна",
+    "width": 1500,
+    "height": 1500
+  },
   "documents": [],
   "about": [
     {
