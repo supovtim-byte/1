@@ -1,0 +1,7 @@
+[
+  { "id": "video-review-1", "title": "Видеоотзыв 1", "poster": "assets/children-playroom.png", "video": null },
+  { "id": "video-review-2", "title": "Видеоотзыв 2", "poster": "assets/appointment-room.jpg", "video": null },
+  { "id": "video-review-3", "title": "Видеоотзыв 3", "poster": "assets/about-2.jpg", "video": null },
+  { "id": "video-review-4", "title": "Видеоотзыв 4", "poster": "assets/about-3.jpg", "video": null },
+  { "id": "video-review-5", "title": "Видеоотзыв 5", "poster": "assets/home-team.jpg", "video": null }
+]

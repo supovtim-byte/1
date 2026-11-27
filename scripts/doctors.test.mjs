@@ -82,7 +82,7 @@ test('unknown experience, education, photo and reviews do not produce invented c
   const html = renderDoctor(d, profile);
   assert.doesNotMatch(html, /опыт:|id="education"|id="doctor-about"|id="directions"|id="reviews"|href="#reviews"/);
   assert.ok(html.includes('assets/doctors/placeholder.svg'));
-  assert.ok(html.includes('href="index.html#reviews"'));
+  assert.ok(html.includes('href="reviews.html"'));
   assert.ok(html.includes('id="appointment-title"'));
   assert.doesNotMatch(html, /Наталья Иванова|2022-08-24/);
 });
