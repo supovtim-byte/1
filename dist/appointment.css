@@ -1,0 +1,111 @@
+/* Empty booking fields use the same muted ink on every page. */
+.appointment .field input::placeholder,
+.appointment .field input:focus::placeholder,
+.appointment .phone-mask { color: rgb(17 61 80 / 60%); opacity: 1; }
+.appointment-thumbnail,
+.appointment-name-field,
+.appointment-submit-mobile,
+.appointment-title-mobile { display: none; }
+
+@media (max-width: 600px) {
+  :is(.doctor-page, .unified-service) .mobile-booking {
+    inline-size: min(500px, 100%);
+    max-inline-size: 100%;
+    max-block-size: calc(100dvh - 20px);
+    padding: 0;
+    color: var(--ink);
+    background: var(--page);
+    border-radius: 25px;
+  }
+  :is(.doctor-page, .unified-service) .appointment {
+    min-block-size: 0;
+    padding: 24px calc(10 * var(--mobile-unit)) 23px;
+    color: var(--ink);
+    background: transparent;
+    overflow: visible;
+  }
+  :is(.doctor-page, .unified-service) .mobile-booking .appointment {
+    display: block;
+    min-block-size: 0;
+    margin: 0;
+    padding: 24px calc(25 * var(--mobile-unit)) 23px;
+  }
+  :is(.doctor-page, .unified-service) .appointment .appointment-content {
+    inline-size: 100%;
+    padding: 0;
+  }
+  .doctor-page .appointment .doctor-appointment-portrait,
+  .unified-service .appointment .appointment-thumbnail {
+    position: relative;
+    display: block;
+    inline-size: calc(132 * var(--mobile-unit));
+    block-size: calc(132 * var(--mobile-unit));
+    margin: 0 0 23px;
+    aspect-ratio: 1;
+    border-radius: calc(25 * var(--mobile-unit));
+    background: var(--panel);
+    overflow: hidden;
+    object-fit: cover;
+  }
+  .doctor-page .appointment .doctor-appointment-portrait img {
+    inset: 0;
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: contain;
+    object-position: center bottom;
+  }
+  .unified-service .appointment .appointment-photo,
+  .unified-service .appointment .appointment-shade,
+  .unified-service .appointment .service-appointment-intro { display: none; }
+  :is(.doctor-page, .unified-service) .appointment h2 {
+    max-inline-size: none;
+    margin: 0 0 20px;
+    font-size: calc(30 * var(--mobile-unit));
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -.03em;
+  }
+  :is(.doctor-page, .unified-service) .appointment form { gap: 10px; }
+  :is(.doctor-page, .unified-service) .appointment .field {
+    --field-pad: 22px;
+    min-block-size: 60px;
+    border-radius: 20px;
+    font-size: 16px;
+    line-height: 1.4;
+    background: var(--panel);
+  }
+  :is(.doctor-page, .unified-service) .appointment .appointment-name-field { display: flex; }
+  :is(.doctor-page, .unified-service) .appointment .required-mark { display: none; }
+  :is(.doctor-page, .unified-service) .appointment .consent {
+    gap: 13px;
+    margin-block-start: 15px;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+  :is(.doctor-page, .unified-service) .appointment .consent > div { max-inline-size: none; }
+  :is(.doctor-page, .unified-service) .appointment .consent input {
+    inline-size: 30px;
+    border-radius: 10px;
+    background-color: #f8fcff;
+  }
+  :is(.doctor-page, .unified-service) .appointment .consent input:checked { background-color: var(--link); }
+  :is(.doctor-page, .unified-service) .appointment .consent input:focus-visible { outline-color: var(--ink); }
+  :is(.doctor-page, .unified-service) .appointment form > .button {
+    --button-font-size: 16px;
+    --button-padding-inline: 25px;
+    --button-height: 50px;
+    margin-block-start: 15px;
+    background: var(--link);
+    color: var(--white);
+  }
+  :is(.doctor-page, .unified-service) .appointment form > .button:disabled {
+    background: var(--white);
+    color: rgb(17 61 80 / 60%);
+    opacity: 1;
+    cursor: default;
+  }
+  .appointment-submit-desktop, .appointment-title-desktop { display: none; }
+  .appointment-submit-mobile, .appointment-title-mobile { display: inline; }
+  .mobile-large-text :is(.doctor-page, .unified-service) .appointment .field,
+  :is(.doctor-page, .unified-service).mobile-large-text .appointment .field { font-size: max(16px, var(--body)); }
+}
