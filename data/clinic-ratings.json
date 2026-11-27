@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "sources": [
+    {
+      "id": "yandex",
+      "name": "Яндекс Карты",
+      "url": "https://yandex.ru/maps/org/metelitsa/1132881772/reviews/",
+      "rating": 5.0,
+      "reviewCount": 674,
+      "checkedAt": "2026-11-27"
+    },
+    {
+      "id": "2gis",
+      "name": "2ГИС",
+      "url": "https://2gis.ru/spb/firm/5348552838508509/tab/reviews",
+      "rating": 4.6,
+      "reviewCount": 59,
+      "checkedAt": "2026-11-27"
+    },
+    {
+      "id": "zoon",
+      "name": "Zoon",
+      "url": "https://zoon.ru/spb/medical/stomatologiya_metelitsa_na_prospekte_obuhovskoj_oborony/",
+      "rating": 4.5,
+      "reviewCount": 15,
+      "checkedAt": "2026-11-27"
+    },
+    {
+      "id": "otzovik",
+      "name": "Отзовик",
+      "url": "https://otzovik.com/reviews/stomatologicheskaya_klinika_metelica_russia_sankt-peterburg/",
+      "rating": 3.61,
+      "reviewCount": 23,
+      "checkedAt": "2026-11-27"
+    }
+  ]
+}
