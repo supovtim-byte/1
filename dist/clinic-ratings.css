@@ -1,0 +1,43 @@
+.clinic-ratings .section-heading { margin-block-end: max(20px, calc(40 * var(--unit))); }
+.clinic-ratings-intro { max-inline-size: 36em; margin: 16px 0 0; font-size: var(--body); line-height: 1.5; }
+.clinic-ratings-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--gap); list-style: none; padding: 0; margin: 0; }
+.clinic-ratings-grid > li { min-inline-size: 0; }
+.clinic-rating-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: max(20px, calc(36 * var(--unit)));
+  block-size: 100%;
+  padding: max(24px, calc(40 * var(--unit)));
+  border-radius: var(--radius);
+  background: var(--panel);
+  color: var(--ink);
+  transition: background-color .2s ease, color .2s ease;
+}
+.clinic-rating-name { font-size: var(--large); font-weight: 400; line-height: 1.3; }
+.clinic-rating-score { display: flex; align-items: baseline; gap: 10px; margin-block-start: auto; }
+.clinic-rating-value { font-size: clamp(48px, calc(80 * var(--unit)), 80px); font-weight: 500; line-height: 1; letter-spacing: -.04em; font-variant-numeric: lining-nums tabular-nums; }
+.clinic-rating-scale { font-size: var(--body); color: var(--muted); }
+.clinic-rating-count { font-size: var(--body); line-height: 1.4; }
+.clinic-rating-card:focus-visible { outline: 2px solid var(--link-hover); outline-offset: 4px; }
+@media (hover: hover) and (pointer: fine) {
+  .clinic-rating-card:hover { background: #cce7fc; color: var(--link-hover); }
+}
+@media (max-width: 780px) {
+  .clinic-ratings-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 600px) {
+  .clinic-ratings .section-heading { display: block; margin-block-end: 24px; }
+  .clinic-ratings-intro { margin-block-start: 16px; font-size: var(--body); }
+  .clinic-ratings-grid { gap: 10px; }
+  .clinic-rating-card { gap: 22px; padding: 22px calc(15 * var(--mobile-unit)); border-radius: calc(25 * var(--mobile-unit)); }
+  .clinic-rating-name { font-size: max(14px, calc(16 * var(--mobile-unit))); }
+  .clinic-rating-value { font-size: calc(44 * var(--mobile-unit)); }
+  .clinic-rating-scale { font-size: var(--small); }
+  .clinic-rating-score { gap: 8px; }
+  .clinic-rating-count { font-size: var(--body); }
+}
+@media (max-width: 600px) {
+  .mobile-large-text .clinic-ratings-grid { grid-template-columns: minmax(0, 1fr); }
+  .mobile-large-text .clinic-rating-name, .mobile-large-text .clinic-rating-count { font-size: var(--body); }
+}

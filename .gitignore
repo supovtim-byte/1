@@ -2,3 +2,4 @@ node_modules/
 .DS_Store
 work/
 dist/reviews.json
+dist/clinic-ratings.json
