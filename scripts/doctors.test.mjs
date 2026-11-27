@@ -204,11 +204,19 @@ test('clinical procedures cannot be inferred from a job title, education or pati
 
 test('existing carousel links and stale experience follow doctor data without changing short headings', () => {
   const original = '<article class="doctor-card"><h3><a href="doctor-hodykina.html">Сизонец Александра</a></h3><p class="doctor-experience">опыт: 6 лет</p></article>';
-  const updated = updateRelatedCards(original, doctors);
+  const d = copy('sizonec');
+  d.experience = { years: 9, asOf: '2026-11-27', sourceRefs: ['staff'] };
+  const updated = updateRelatedCards(original, [d]);
   assert.ok(updated.includes('href="doctor-sizonec.html"'));
   assert.ok(updated.includes('>Сизонец Александра</a>'));
-  assert.doesNotMatch(updated, /опыт:/);
-  assert.equal(updateRelatedCards(updated, doctors), updated);
+  assert.match(updated, /опыт: 9 лет/);
+  assert.equal(updateRelatedCards(updated, [d]), updated);
+  const noExperience = '<article class="doctor-card"><h3>Сизонец Александра</h3><p>Стоматолог</p></article>';
+  const added = updateRelatedCards(noExperience, [d]);
+  assert.match(added, /<p class="doctor-experience">опыт: 9 лет<\/p>/);
+  assert.equal(updateRelatedCards(added, [d]), added);
+  d.experience = null;
+  assert.doesNotMatch(updateRelatedCards(added, [d]), /опыт:/);
 });
 
 test('catalogue filtering retains deep links, keyboard-button events, invalid-filter fallback and history', () => {

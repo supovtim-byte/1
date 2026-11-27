@@ -312,7 +312,9 @@ export function updateRelatedCards(html, doctors) {
       const name = escapeHtml(previewName(d));
       return open + (content.includes('<a ') ? content.replace(/(<a\b[^>]*>)[\s\S]*?(<\/a>)/, `$1${name}$2`) : name) + close;
     });
-    result = result.replace(/(<\/h3>\s*)<p>[\s\S]*?<\/p>/, `$1<p>${escapeHtml(specialty(d))}</p>`);
+    const missingExperience = d.experience && !result.includes('class="doctor-experience"');
+    result = result.replace(/(<\/h3>)(\s*)<p>[\s\S]*?<\/p>/, (_, headingEnd, spacing) =>
+      `${headingEnd}${spacing}<p>${escapeHtml(specialty(d))}</p>${missingExperience ? spacing + experience(d, 'doctor-experience') : ''}`);
     result = result.replace(/(aria-label="[^"\n]*: )[^"\n]*(")/g, `$1${escapeHtml(previewName(d))}$2`);
     return result.replace(/[\t ]+$/gm, '');
   });

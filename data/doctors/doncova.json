@@ -62,7 +62,21 @@
       ]
     }
   ],
-  "experience": null,
+  "experience": {
+    "years": 17,
+    "asOf": "2026-11-27",
+    "sourceRefs": [
+      "experience-clinic-2022"
+    ],
+    "calculation": {
+      "method": "published_experience_plus_elapsed_full_months",
+      "baselineYears": 14,
+      "baselineAsOf": "2022-12-17",
+      "elapsedFullMonths": 47,
+      "rounding": "floor",
+      "assumption": "Практика продолжалась после даты публикации исходного стажа."
+    }
+  },
   "directions": [
     {
       "title": "Терапевтическая стоматология",
@@ -143,6 +157,12 @@
       "url": "https://doctu.ru/spb/doctor/doncova-marija-sergeevna",
       "kind": "review_platform",
       "checkedAt": "2026-11-24"
+    },
+    "experience-clinic-2022": {
+      "label": "Официальный ответ клиники Метелица о стаже врачей от 17 декабря 2022 года",
+      "url": "https://www.otzovik.com/review_14078340.html",
+      "kind": "official_statement",
+      "checkedAt": "2026-11-27"
     }
   }
 }
