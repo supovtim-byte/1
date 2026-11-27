@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 import vm from 'node:vm';
-import { loadDoctors, validateDoctor, renderDoctor, renderCatalog, renderCard, updateRelatedCards, readImportedReviews, updateHomepageReviews } from './generate-doctors.mjs';
+import { loadDoctors, validateDoctor, renderDoctor, renderCatalog, renderCard, updateHomepageDoctors, updateRelatedCards, readImportedReviews, updateHomepageReviews } from './generate-doctors.mjs';
 
 const root = path.resolve(import.meta.dirname, '..');
 const doctors = loadDoctors();
@@ -163,6 +163,30 @@ test('preview cards use surname and given name while profiles and data keep the 
   const updated = updateRelatedCards(legacy, doctors);
   assert.ok(updated.includes('>Бармашев Филипп</a></h3>'));
   assert.equal(updateRelatedCards(updated, doctors), updated);
+});
+
+test('homepage uses the current catalogue once and follows roster and portrait changes', () => {
+  const source = '<section>Unrelated content</section>\n<!-- generated-doctors:start -->\nStale repeated cards\n<!-- generated-doctors:end -->\n<footer>Preserved footer</footer>';
+  const hidden = copy('hodykina');
+  hidden.id = 'not-listed'; hidden.publication.catalog = false;
+  const updated = updateHomepageDoctors(source, [...doctors, hidden]);
+  const links = [...updated.matchAll(/class="doctor-profile-link" href="([^"]+)"/g)].map(m => m[1]);
+  assert.deepEqual(links, doctors.filter(d => d.publication.catalog).map(d => `doctor-${d.id}.html`));
+  assert.equal(new Set(links).size, links.length);
+  assert.doesNotMatch(updated, /not-listed|Stale repeated cards/);
+  assert.match(updated, /^<section>Unrelated content<\/section>/);
+  assert.match(updated, /<footer>Preserved footer<\/footer>$/);
+  assert.equal(updateHomepageDoctors(updated, doctors), updated);
+  const changed = copy('yangalov');
+  changed.photo = structuredClone(copy('hodykina').photo);
+  const refreshed = updateHomepageDoctors(updated, [changed]);
+  assert.equal([...refreshed.matchAll(/class="doctor-profile-link"/g)].length, 1);
+  assert.ok(refreshed.includes(changed.photo.path));
+  assert.doesNotMatch(refreshed, /href="doctor-sizonec.html"/);
+  const homepage = fs.readFileSync(path.join(root, 'dist/index.html'), 'utf8');
+  assert.doesNotMatch(homepage.match(/<div[^>]+id="doctors-track"[^>]*>/)[0], /data-repeat/);
+  const publishedCards = homepage.match(/<!-- generated-doctors:start -->([\s\S]*?)<!-- generated-doctors:end -->/)[1];
+  assert.equal([...publishedCards.matchAll(/class="doctor-profile-link"/g)].length, links.length);
 });
 
 test('specialty labels retain specific roles without repeated physician prefixes or redundant general roles', () => {

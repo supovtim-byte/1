@@ -26,6 +26,7 @@ const reviewSources = new Map([
 ]);
 const reviewDate = new Intl.DateTimeFormat('ru-RU', { dateStyle: 'long', timeZone: 'UTC' });
 const homepageReviewsSlot = /(^[ \t]*<!-- imported-reviews:start -->\n)[\s\S]*?(^[ \t]*<!-- imported-reviews:end -->)/m;
+const homepageDoctorsSlot = /(^[ \t]*<!-- generated-doctors:start -->\n)[\s\S]*?(^[ \t]*<!-- generated-doctors:end -->)/m;
 
 export function readImportedReviews(snapshot) {
   const bySubject = new Map();
@@ -298,6 +299,12 @@ export function renderCatalog(doctors, template) {
   });
 }
 
+export function updateHomepageDoctors(html, doctors) {
+  assert.match(html, homepageDoctorsSlot, 'Homepage doctor slot is missing');
+  const cards = doctors.filter(d => d.publication.catalog).map(renderCard).join('\n').replace(/[\t ]+$/gm, '');
+  return html.replace(homepageDoctorsSlot, (_, start, end) => start + (cards ? cards + '\n' : '') + end);
+}
+
 // Existing carousels keep their layout and IDs, and share the catalogue's labels.
 export function updateRelatedCards(html, doctors) {
   return html.replace(/<article\b[^>]*class="[^"]*\bdoctor-card\b[^"]*"[\s\S]*?<\/article>/g, card => {
@@ -337,7 +344,10 @@ export function generate({ check = false } = {}) {
       if (!check) fs.unlinkSync(path.join(dist, file));
     } else {
       let updated = updateRelatedCards(html, doctors);
-      if (file === 'index.html') updated = updateHomepageReviews(updated, imported.get('clinic') ?? []);
+      if (file === 'index.html') {
+        updated = updateHomepageDoctors(updated, doctors);
+        updated = updateHomepageReviews(updated, imported.get('clinic') ?? []);
+      }
       if (updated !== html) outputs.set(file, updated);
     }
   }
