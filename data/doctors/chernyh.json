@@ -1,9 +1,12 @@
 {
   "schemaVersion": 1,
   "id": "chernyh",
-  "order": 4,
-  "name": "Черных Александра Дмитриевна",
-  "aliases": [],
+  "order": 5,
+  "name": "Береза Александра Дмитриевна",
+  "aliases": [
+    "Черных Александра Дмитриевна",
+    "Черных Александра"
+  ],
   "specialties": [
     "Врач-стоматолог-терапевт",
     "Врач-стоматолог детский"
@@ -19,14 +22,14 @@
   "availabilityLabel": null,
   "photo": {
     "path": "assets/doctors/chernyh/portrait-20261127.png",
-    "alt": "Черных Александра Дмитриевна",
+    "alt": "Береза Александра Дмитриевна",
     "width": 1500,
     "height": 1500
   },
   "documents": [],
   "about": [
     {
-      "text": "Черных Александра Дмитриевна — врач-стоматолог-терапевт, врач-стоматолог детский.",
+      "text": "Береза Александра Дмитриевна — врач-стоматолог-терапевт, врач-стоматолог детский.",
       "sourceRefs": [
         "staff"
       ]
@@ -176,9 +179,9 @@
     },
     "staff": {
       "label": "Специалисты клиники Метелица",
-      "url": "https://metelitsa-dent.ru/about/personal/",
+      "url": "https://www.metelitsa-dent.ru/about/personal/",
       "kind": "official_staff",
-      "checkedAt": "2026-11-24"
+      "checkedAt": "2026-11-27"
     },
     "profile": {
       "label": "Профессиональная карточка врача",

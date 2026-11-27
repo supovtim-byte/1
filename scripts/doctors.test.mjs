@@ -67,10 +67,10 @@ test('data cannot inject markup through profile text, image alt or external revi
 });
 
 test('deferred information stays out of HTML, including source URLs', () => {
-  const d = copy('nikiforov');
-  d.deferred.publications[0].title = 'DEFERRED-PUBLICATION';
+  const d = copy('nikitenok');
+  d.deferred.publications = [{ title: 'DEFERRED-PUBLICATION', sourceRefs: ['paper-1'] }];
   d.deferred.employment[0].organization = 'DEFERRED-EMPLOYMENT';
-  d.sources['paper-1'].url = 'https://example.org/deferred-source';
+  d.sources['paper-1'] = { ...d.sources.profile, url: 'https://example.org/deferred-source' };
   const html = renderDoctor(d, profile);
   assert.doesNotMatch(html, /DEFERRED-|example\.org\/deferred-source|10\.18705/);
   assert.doesNotMatch(html, /sourceRefs|checkedAt|"deferred"/);
@@ -105,8 +105,9 @@ test('every interactive review carousel provides the controls required by the sh
 });
 
 test('unavailable and document-only doctors do not offer an appointment with that doctor', () => {
-  for (const id of ['doncova', 'kilyusheva', 'buhtoyarova', 'nikiforov', 'efimova']) {
-    const d = copy(id);
+  const unlisted = copy('hodykina');
+  unlisted.publication = { catalog: false, bookable: false };
+  for (const d of [copy('doncova'), copy('kilyusheva'), copy('buhtoyarova'), unlisted]) {
     const html = renderDoctor(d, profile);
     assert.ok(html.includes('связаться с клиникой'));
     assert.ok(!html.includes(`data-book="${d.name}"`));
@@ -132,11 +133,22 @@ test('validator rejects missing references, unsafe links and paths, and unsource
 test('catalogue links every listed doctor once and excludes unconfirmed active staff', () => {
   const html = renderCatalog(doctors, catalog);
   const links = [...html.matchAll(/class="doctor-profile-link" href="([^"]+)"/g)].map(m => m[1]);
-  assert.equal(new Set(links).size, 28);
+  assert.equal(new Set(links).size, 30);
   for (const d of doctors) assert.equal(links.includes(`doctor-${d.id}.html`), d.publication.catalog);
   assert.doesNotMatch(html, /data-doctor-copy/);
   assert.ok(html.includes('data-specialty="orthodontics"'));
   assert.ok(html.includes('data-specialty="orthopedics"'));
+});
+
+test('published doctors match the official staff roster checked on 27 November 2026', () => {
+  const roster = JSON.parse(fs.readFileSync(path.join(root, 'scripts/fixtures/official-staff-20261127.json'), 'utf8'));
+  assert.deepEqual(doctors.map(({ id, name }) => ({ id, name })), roster.doctors);
+  assert.ok(doctors.every(d => d.publication.catalog));
+  assert.ok(doctors.every(d => d.photo), 'Every current staff member has a portrait');
+  const html = renderCatalog(doctors, catalog);
+  assert.match(html, /data-specialty="anesthesia"/);
+  assert.match(html, /Береза Александра/);
+  assert.doesNotMatch(html, /Черных|Голошубова|Ковалева|Шевченко|Никифоров|Ефимова/);
 });
 
 test('preview cards use surname and given name while profiles and data keep the full name', () => {

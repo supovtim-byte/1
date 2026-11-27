@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "buhtoyarova",
-  "order": 28,
+  "order": 30,
   "name": "Бухтоярова Анастасия Александровна",
   "aliases": [],
   "specialties": [
@@ -90,9 +90,9 @@
     },
     "staff": {
       "label": "Специалисты клиники Метелица",
-      "url": "https://metelitsa-dent.ru/about/personal/",
+      "url": "https://www.metelitsa-dent.ru/about/personal/",
       "kind": "official_staff",
-      "checkedAt": "2026-11-24"
+      "checkedAt": "2026-11-27"
     },
     "reviews": {
       "label": "ПроДокторов",

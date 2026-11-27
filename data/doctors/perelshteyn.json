@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "perelshteyn",
-  "order": 18,
+  "order": 20,
   "name": "Перельштейн Нина Владимировна",
   "aliases": [],
   "specialties": [
@@ -152,9 +152,9 @@
     },
     "staff": {
       "label": "Специалисты клиники Метелица",
-      "url": "https://metelitsa-dent.ru/about/personal/",
+      "url": "https://www.metelitsa-dent.ru/about/personal/",
       "kind": "official_staff",
-      "checkedAt": "2026-11-24"
+      "checkedAt": "2026-11-27"
     },
     "profile": {
       "label": "Профессиональная карточка врача",

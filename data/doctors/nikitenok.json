@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "nikitenok",
-  "order": 32,
+  "order": 7,
   "name": "Никитенок Даниил Николаевич",
   "aliases": [],
   "specialties": [
@@ -11,8 +11,8 @@
     "anesthesia"
   ],
   "publication": {
-    "catalog": false,
-    "bookable": false
+    "catalog": true,
+    "bookable": true
   },
   "availabilityLabel": null,
   "photo": {
@@ -26,7 +26,7 @@
     {
       "text": "Никитенок Даниил Николаевич — врач-анестезиолог-реаниматолог.",
       "sourceRefs": [
-        "education"
+        "staff"
       ]
     }
   ],
@@ -126,6 +126,12 @@
       "url": "https://like.doctor/sankt-peterburg/vrachi/nikitenok-daniil-nikolaevich",
       "kind": "review_platform",
       "checkedAt": "2026-11-24"
+    },
+    "staff": {
+      "label": "Специалисты клиники Метелица",
+      "url": "https://www.metelitsa-dent.ru/about/personal/",
+      "kind": "official_staff",
+      "checkedAt": "2026-11-27"
     }
   }
 }

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "konovalova",
-  "order": 21,
+  "order": 23,
   "name": "Коновалова Виктория Николаевна",
   "aliases": [],
   "specialties": [
@@ -15,7 +15,12 @@
     "bookable": true
   },
   "availabilityLabel": null,
-  "photo": null,
+  "photo": {
+    "path": "assets/doctors/konovalova/portrait-20261127.png",
+    "alt": "Коновалова Виктория Николаевна",
+    "width": 1500,
+    "height": 1500
+  },
   "documents": [],
   "about": [
     {
@@ -83,9 +88,9 @@
     },
     "staff": {
       "label": "Специалисты клиники Метелица",
-      "url": "https://metelitsa-dent.ru/about/personal/",
+      "url": "https://www.metelitsa-dent.ru/about/personal/",
       "kind": "official_staff",
-      "checkedAt": "2026-11-24"
+      "checkedAt": "2026-11-27"
     },
     "reviews": {
       "label": "Startsmile",

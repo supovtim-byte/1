@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "hodykina",
-  "order": 6,
+  "order": 9,
   "name": "Ходыкина Дарья Александровна",
   "aliases": [],
   "specialties": [
@@ -124,9 +124,9 @@
     },
     "staff": {
       "label": "Специалисты клиники Метелица",
-      "url": "https://metelitsa-dent.ru/about/personal/",
+      "url": "https://www.metelitsa-dent.ru/about/personal/",
       "kind": "official_staff",
-      "checkedAt": "2026-11-24"
+      "checkedAt": "2026-11-27"
     },
     "profile": {
       "label": "Профессиональная карточка врача",

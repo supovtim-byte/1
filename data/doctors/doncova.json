@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "doncova",
-  "order": 26,
+  "order": 28,
   "name": "Донцова Мария Сергеевна",
   "aliases": [],
   "specialties": [
@@ -128,9 +128,9 @@
     },
     "staff": {
       "label": "Специалисты клиники Метелица",
-      "url": "https://metelitsa-dent.ru/about/personal/",
+      "url": "https://www.metelitsa-dent.ru/about/personal/",
       "kind": "official_staff",
-      "checkedAt": "2026-11-24"
+      "checkedAt": "2026-11-27"
     },
     "profile": {
       "label": "Профессиональная карточка врача",

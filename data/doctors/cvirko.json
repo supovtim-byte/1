@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "cvirko",
-  "order": 15,
+  "order": 17,
   "name": "Цвирко Карина Викторовна",
   "aliases": [],
   "specialties": [
@@ -87,9 +87,9 @@
     },
     "staff": {
       "label": "Специалисты клиники Метелица",
-      "url": "https://metelitsa-dent.ru/about/personal/",
+      "url": "https://www.metelitsa-dent.ru/about/personal/",
       "kind": "official_staff",
-      "checkedAt": "2026-11-24"
+      "checkedAt": "2026-11-27"
     },
     "profile": {
       "label": "Профессиональная карточка врача",

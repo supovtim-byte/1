@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "bogdanova",
-  "order": 24,
+  "order": 26,
   "name": "Богданова Диана Александровна",
   "aliases": [],
   "specialties": [
@@ -81,9 +81,9 @@
     },
     "staff": {
       "label": "Специалисты клиники Метелица",
-      "url": "https://metelitsa-dent.ru/about/personal/",
+      "url": "https://www.metelitsa-dent.ru/about/personal/",
       "kind": "official_staff",
-      "checkedAt": "2026-11-24"
+      "checkedAt": "2026-11-27"
     },
     "reviews": {
       "label": "Startsmile",

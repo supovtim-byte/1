@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "sokolova",
-  "order": 10,
+  "order": 4,
   "name": "Соколова Галина Сергеевна",
   "aliases": [],
   "specialties": [
@@ -88,9 +88,9 @@
     },
     "staff": {
       "label": "Специалисты клиники Метелица",
-      "url": "https://metelitsa-dent.ru/about/personal/",
+      "url": "https://www.metelitsa-dent.ru/about/personal/",
       "kind": "official_staff",
-      "checkedAt": "2026-11-24"
+      "checkedAt": "2026-11-27"
     },
     "reviews": {
       "label": "Startsmile",
