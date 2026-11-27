@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import assert from 'node:assert/strict';
+import { deduplicateReviews } from './review-dedup.mjs';
 
 const root = path.resolve(import.meta.dirname, '..');
 const dist = path.join(root, 'dist');
@@ -61,7 +62,7 @@ export function readImportedReviews(snapshot) {
     bySubject.set(subject, reviews);
   }
   return new Map([...bySubject].map(([subject, cards]) => [
-    subject, [...cards.values()].sort((a, b) => b.date.localeCompare(a.date)),
+    subject, deduplicateReviews([...cards.values()]),
   ]));
 }
 
@@ -79,7 +80,7 @@ export function renderImportedReview(card) {
 }
 
 export function updateHomepageReviews(html, cards) {
-  const rendered = cards.map(renderImportedReview).join('\n        ');
+  const rendered = deduplicateReviews(cards).map(renderImportedReview).join('\n        ');
   return html.replace(homepageReviewsSlot, (_, start, end) => start + (rendered ? `        ${rendered}\n` : '') + end);
 }
 
@@ -235,6 +236,7 @@ function directions(d) {
         </section>` : '';
 }
 function reviews(d, imported) {
+  imported = deduplicateReviews(imported);
   const sources = d.reviews.links.map(({ sourceRef }) => d.sources[sourceRef]);
   const cards = imported.length ? imported.map(renderImportedReview) : sources.map(s => `<article class="review-card">
           <h3>${escapeHtml(s.label)}</h3>
