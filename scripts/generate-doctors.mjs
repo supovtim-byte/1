@@ -65,7 +65,7 @@ export function readImportedReviews(snapshot) {
   ]));
 }
 
-function renderImportedReview(card) {
+export function renderImportedReview(card) {
   const escapeReviewText = value => escapeHtml(value).replace(/\{/g, '&#123;').replace(/\}/g, '&#125;');
   const fullText = card.text ? `\n          <template data-review-text>${escapeReviewText(card.text)}</template>` : '';
   return `<article class="review-card review-card--imported"${card.clinicReview ? ' data-clinic-review' : ''}>
@@ -271,7 +271,7 @@ export function renderDoctor(d, template, imported = []) {
     heroPortrait: portrait(d, 'hero'), appointmentPortrait: portrait(d, 'appointment'),
     about: about(d), education: education(d), directions: directions(d), reviews: reviewSection,
   });
-  return reviewSection ? rendered : rendered.replaceAll('href="#reviews"', 'href="index.html#reviews"');
+  return reviewSection ? rendered : rendered.replaceAll('href="#reviews"', 'href="reviews.html"');
 }
 
 export function renderCard(d) {

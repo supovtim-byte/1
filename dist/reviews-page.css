@@ -1,0 +1,53 @@
+/* Catalogue geometry comes from services.css; text cards keep homepage styling. */
+.reviews-page .reviews-video-section { margin: max(36px, calc(60 * var(--unit))) calc(30 * var(--unit)) 0; }
+.reviews-page .reviews-video-section .section-heading { align-items: center; }
+.reviews-page .reviews-video-section .carousel-controls { display: flex; }
+.reviews-page .reviews-video-section .carousel-controls .icon-button { min-inline-size: 44px; min-block-size: 44px; }
+.reviews-page .reviews-video-track {
+  --card-width: calc((100% - 2 * var(--gap)) / 3);
+  margin-inline: 0;
+  padding: 4px 0;
+  scroll-padding-inline: 0;
+}
+.reviews-page .reviews-text-section { margin-block-start: max(60px, calc(100 * var(--unit))); }
+.reviews-page .reviews-text-section > .section-heading { margin-inline: calc(30 * var(--unit)); }
+.reviews-page .reviews-grid { margin-block-start: 0; }
+.reviews-grid .review-card { block-size: 100%; }
+.reviews-empty { grid-column: 1 / -1; padding-inline: var(--inside); }
+.video-review-card { min-inline-size: 0; }
+.video-review-open { display: block; inline-size: 100%; block-size: 100%; text-align: start; border-radius: var(--radius); background: var(--panel); overflow: hidden; }
+.video-review-preview { position: relative; display: block; aspect-ratio: 16 / 10; overflow: hidden; background: var(--panel); }
+.video-review-preview > img { display: block; inline-size: 100%; block-size: 100%; object-fit: cover; }
+.video-review-play { position: absolute; inset: 50% auto auto 50%; display: grid; place-items: center; inline-size: max(52px, calc(70 * var(--unit))); aspect-ratio: 1; border-radius: 50%; background: var(--white); transform: translate(-50%, -50%); transition: background-color .18s ease; }
+.video-review-play img { margin-inline-start: 3px; }
+.video-review-soon { position: absolute; inset: max(16px, calc(24 * var(--unit))) auto auto max(16px, calc(24 * var(--unit))); padding: 5px 12px; border-radius: 20px; background: var(--page); color: var(--ink); font-size: var(--small); }
+.video-review-title { display: block; padding: 20px var(--inside) 24px; font-size: var(--body); line-height: 1.5; }
+.video-review-open:focus-visible { outline: 2px solid var(--link-hover); outline-offset: 3px; }
+.video-review-dialog .dialog-copy { padding: max(28px, calc(45 * var(--unit))); }
+.video-review-dialog h2 { margin-inline-end: 32px; margin-block-end: 24px; font-size: var(--title); line-height: 1.2; }
+.video-review-unavailable { display: grid; place-items: center; align-content: center; gap: 12px; min-block-size: 240px; padding: 32px 20px; border-radius: var(--radius); background: var(--panel); text-align: center; }
+.video-review-unavailable p { max-inline-size: 24em; }
+.video-review-unavailable p:first-child { font-size: var(--large); }
+.video-review-unavailable p:last-child { font-size: var(--body); color: var(--muted); }
+.video-review-player { display: block; inline-size: 100%; max-block-size: 70dvh; border-radius: 20px; background: #081f2b; }
+.video-review-player[hidden], .video-review-unavailable[hidden] { display: none; }
+@media (hover: hover) and (pointer: fine) {
+  .video-review-open:hover .video-review-play { background: var(--panel); }
+}
+@media (max-width: 1100px) {
+  .reviews-page .reviews-video-track { --card-width: calc((100% - var(--gap)) / 2); }
+}
+@media (max-width: 600px) {
+  .reviews-page .reviews-video-section { margin: 36px var(--edge) 0; }
+  .reviews-page .reviews-video-section .section-heading { align-items: flex-start; gap: 10px; }
+  .reviews-page .reviews-video-section .carousel-controls { display: flex; gap: 5px; }
+  .reviews-page .reviews-video-track { --card-width: 100%; gap: 15px; }
+  .reviews-page .reviews-text-section { margin-block-start: 60px; }
+  .reviews-page .reviews-text-section > .section-heading { margin-inline: var(--edge); }
+  .reviews-page .reviews-grid { margin-block-start: 0; }
+  .reviews-grid .review-card { min-block-size: 0; }
+  .reviews-page .video-review-soon { font-size: max(13px, var(--small)); }
+  .video-review-title { padding-block: 16px 20px; }
+  .video-review-dialog .dialog-copy { padding: 25px 20px; }
+  .video-review-unavailable { min-block-size: 200px; }
+}
