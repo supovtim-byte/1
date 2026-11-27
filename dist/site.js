@@ -695,8 +695,10 @@ appointmentForm.addEventListener("submit", event => {
   appointmentDialog.showModal();
 });
 function updateAppointmentButton() {
-  appointmentForm.querySelector("[type=submit]").disabled = !/^\+7 \d{3} \d{3} \d{2} \d{2}$/.test(phone.value);
+  const consent = appointmentForm.querySelector('[name="consent"]');
+  appointmentForm.querySelector("[type=submit]").disabled = !/^\+7 \d{3} \d{3} \d{2} \d{2}$/.test(phone.value) || !consent.checked;
 }
+appointmentForm.addEventListener("change", updateAppointmentButton);
 window.addEventListener("pageshow", updateAppointmentButton);
 updateAppointmentButton();
 
