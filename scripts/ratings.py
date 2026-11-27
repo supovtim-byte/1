@@ -151,16 +151,15 @@ def render(sources):
         score = str(Decimal(str(source["rating"])).quantize(Decimal("0.1"), rounding=ROUND_HALF_UP))
         count = source["reviewCount"]
         cards.append(f'''        <li><a class="clinic-rating-card" href="{escape(source['url'], quote=True)}" target="_blank" rel="noopener" data-rating-source="{escape(source['id'], quote=True)}">
+          <span class="clinic-rating-score"><span class="clinic-rating-value">{score}</span></span>
           <h3 class="clinic-rating-name">{escape(source['name'])}</h3>
-          <span class="clinic-rating-score"><span class="clinic-rating-value">{score}</span><span class="clinic-rating-scale">из 5</span></span>
           <span class="clinic-rating-count">{count:,} {review_label(count)}</span>
         </a></li>'''.replace(f"{count:,}", f"{count:,}".replace(",", "\u00a0")))
     return f'''{START}
     <section class="section section-shell clinic-ratings" id="clinic-ratings" aria-labelledby="clinic-ratings-title">
-      <div class="section-heading"><div>
-        <h2 id="clinic-ratings-title">Ценим вашу честную оценку</h2>
-        <p class="clinic-ratings-intro">Что говорят о «Метелице» пациенты на независимых площадках</p>
-      </div></div>
+      <div class="section-heading">
+        <h2 id="clinic-ratings-title">Оценки пациентов на независимых площадках</h2>
+      </div>
       <ul class="clinic-ratings-grid">
 {chr(10).join(cards)}
       </ul>
