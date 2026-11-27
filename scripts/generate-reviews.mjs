@@ -3,18 +3,12 @@ import path from 'node:path';
 import assert from 'node:assert/strict';
 import { pathToFileURL } from 'node:url';
 import { readImportedReviews, renderImportedReview, escapeHtml } from './generate-doctors.mjs';
+import { deduplicateReviews } from './review-dedup.mjs';
 
 const root = path.resolve(import.meta.dirname, '..');
 
 export function allReviews(imported) {
-  const unique = new Map();
-  for (const cards of imported.values()) {
-    for (const card of cards) {
-      const previous = unique.get(card.url);
-      if (!previous || (!previous.text && card.text)) unique.set(card.url, card);
-    }
-  }
-  return [...unique.values()].sort((a, b) => b.date.localeCompare(a.date) || a.url.localeCompare(b.url));
+  return deduplicateReviews([...imported.values()].flat());
 }
 
 function localAsset(value, extensions) {
