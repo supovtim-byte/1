@@ -426,16 +426,20 @@ address { font-style: normal; }
   transform: translateY(5px);
   pointer-events: none;
 }
-.doctor-card:focus-within .doctor-book { opacity: 1; transform: translateY(0); pointer-events: auto; }
-@media (hover: hover) {
+.doctor-card:has(:focus-visible) .doctor-book { opacity: 1; transform: translateY(0); pointer-events: auto; }
+@media (hover: hover) and (pointer: fine) {
   .doctor-card:hover .doctor-book { opacity: 1; transform: translateY(0); pointer-events: auto; }
+}
+.carousel.is-dragging .doctor-book { opacity: 0; transform: translateY(5px); pointer-events: none; transition: none; }
+@media (max-width: 1080px), (hover: none), (pointer: coarse) {
+  .doctor-card .doctor-book.button { display: none; }
 }
 .doctor-book:hover { background: var(--link-hover); color: var(--white); }
 .doctor-card h3, .doctor-card p { padding-inline: var(--inside); font-size: var(--body); color: var(--ink); }
 .doctor-card h3 { margin-block-start: 15px; font-size: max(16px, calc(20 * var(--unit))); line-height: 1.2; }
 .doctor-card p { color: var(--ink); font-size: max(11px, calc(17 * var(--unit))); font-weight: 400; line-height: 1.5; }
 .doctor-card h3 + p { margin-block-start: 10px; }
-.doctor-card .doctor-experience { margin-block-start: 5px; }
+.doctor-card p + p { margin-block-start: 5px; }
 .doctor-profile-link:hover { color: var(--link-hover); }
 .doctor-profile-photo { position: absolute; inset: 0; border-radius: inherit; }
 .doctor-profile-photo:focus-visible { outline-offset: -4px; }

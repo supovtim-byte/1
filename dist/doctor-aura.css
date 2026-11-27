@@ -51,9 +51,14 @@
     animation-delay: -13s;
   }
   .doctor-card:hover .doctor-photo::before, .doctor-card:hover .doctor-photo::after,
-  .doctor-card:focus-within .doctor-photo::before, .doctor-card:focus-within .doctor-photo::after {
+  .doctor-card:has(:focus-visible) .doctor-photo::before, .doctor-card:has(:focus-visible) .doctor-photo::after {
     opacity: 1;
     animation-play-state: running;
+  }
+  .carousel.is-dragging .doctor-photo::before, .carousel.is-dragging .doctor-photo::after {
+    opacity: 0;
+    animation-play-state: paused;
+    transition: none;
   }
   .doctor-photo .doctor-profile-photo { z-index: 1; }
   .doctor-photo .doctor-book { z-index: 2; }

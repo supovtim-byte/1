@@ -39,7 +39,19 @@
       ]
     }
   ],
-  "experience": null,
+  "experience": {
+    "years": 3,
+    "asOf": "2026-11-27",
+    "sourceRefs": [
+      "education"
+    ],
+    "calculation": {
+      "method": "full_years_from_professional_accreditation",
+      "baselineAsOf": "2023-06-27",
+      "rounding": "floor_full_years",
+      "assumption": "Практика началась после профильной аккредитации и продолжалась. Фактическая дата начала работы не подтверждена."
+    }
+  },
   "directions": [
     {
       "title": "Профилактическая стоматология",
@@ -77,7 +89,7 @@
       "label": "Сведения об образовании медицинских работников",
       "url": "https://metelitsa-dent.ru/files/Информация_об_образовании_медицинских_работников.pdf#page=16",
       "kind": "official_document",
-      "checkedAt": "2026-11-24"
+      "checkedAt": "2026-11-27"
     },
     "staff": {
       "label": "Специалисты клиники Метелица",

@@ -48,7 +48,19 @@
       ]
     }
   ],
-  "experience": null,
+  "experience": {
+    "years": 7,
+    "asOf": "2026-11-27",
+    "sourceRefs": [
+      "education"
+    ],
+    "calculation": {
+      "method": "calendar_years_from_first_professional_qualification",
+      "baselineYear": 2019,
+      "rounding": "calendar_year_difference",
+      "assumption": "Практика началась в год получения первой профильной квалификации и продолжалась. Значение рассчитано по образованию, фактический год начала работы не подтверждён."
+    }
+  },
   "directions": [
     {
       "title": "Имплантация",
@@ -121,7 +133,7 @@
       "label": "Сведения об образовании медицинских работников",
       "url": "https://metelitsa-dent.ru/files/Информация_об_образовании_медицинских_работников.pdf#page=5",
       "kind": "official_document",
-      "checkedAt": "2026-11-24"
+      "checkedAt": "2026-11-27"
     },
     "staff": {
       "label": "Специалисты клиники Метелица",

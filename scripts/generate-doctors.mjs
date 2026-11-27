@@ -198,7 +198,7 @@ const specialtyLabels = new Map([
 function specialty(d) {
   const labels = [...new Set(d.specialties.map(s => specialtyLabels.get(s) || s))];
   const specific = labels.filter(s => labels.length === 1 || s !== 'Стоматолог');
-  return specific.map((s, i) => i ? s[0].toLocaleLowerCase('ru') + s.slice(1) : s).join(', ');
+  return specific.join(', ').toLocaleLowerCase('ru');
 }
 function experience(d, className = '') {
   return d.experience ? `<p${className ? ` class="${className}"` : ''}>опыт: ${d.experience.years} ${yearWord(d.experience.years)}</p>` : '';

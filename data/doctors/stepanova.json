@@ -46,7 +46,19 @@
       ]
     }
   ],
-  "experience": null,
+  "experience": {
+    "years": 5,
+    "asOf": "2026-11-27",
+    "sourceRefs": [
+      "education"
+    ],
+    "calculation": {
+      "method": "calendar_years_from_first_professional_qualification",
+      "baselineYear": 2021,
+      "rounding": "calendar_year_difference",
+      "assumption": "Практика началась в год получения первой профильной квалификации и продолжалась. Значение рассчитано по образованию, фактический год начала работы не подтверждён."
+    }
+  },
   "directions": [
     {
       "title": "Стоматология общей практики",
@@ -84,7 +96,7 @@
       "label": "Сведения об образовании медицинских работников",
       "url": "https://metelitsa-dent.ru/files/Информация_об_образовании_медицинских_работников.pdf#page=12",
       "kind": "official_document",
-      "checkedAt": "2026-11-24"
+      "checkedAt": "2026-11-27"
     },
     "staff": {
       "label": "Специалисты клиники Метелица",

@@ -167,10 +167,10 @@ test('preview cards use surname and given name while profiles and data keep the 
 
 test('specialty labels retain specific roles without repeated physician prefixes or redundant general roles', () => {
   const chief = renderDoctor(copy('sizonec'), profile);
-  assert.ok(chief.includes('<p>Главный врач, детский стоматолог, терапевт, хирург</p>'));
-  assert.ok(renderCard(copy('skalozub')).includes('<p>Хирург</p>'));
-  assert.ok(renderCard(copy('simonin')).includes('<p>Терапевт</p>'));
-  assert.ok(renderCard(copy('bogdanova')).includes('<p>Гигиенист</p>'));
+  assert.ok(chief.includes('<p>главный врач, детский стоматолог, терапевт, хирург</p>'));
+  assert.ok(renderCard(copy('skalozub')).includes('<p>хирург</p>'));
+  assert.ok(renderCard(copy('simonin')).includes('<p>терапевт</p>'));
+  assert.ok(renderCard(copy('bogdanova')).includes('<p>гигиенист</p>'));
 });
 
 test('consultation-only records do not produce a placeholder clinical-scope block', () => {
