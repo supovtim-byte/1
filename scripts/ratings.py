@@ -16,6 +16,11 @@ CONFIG = ROOT / "data/clinic-ratings.json"
 SNAPSHOT = ROOT / "dist/clinic-ratings.json"
 PUBLISHED = "https://supovtim-byte.github.io/1/clinic-ratings.json"
 START, END = "<!-- clinic-ratings:start -->", "<!-- clinic-ratings:end -->"
+# Ink bounds measured from the unchanged Figma star strip (218 × 34 viewBox).
+# Clip inside the actual star, rather than counting the transparent gaps as fill.
+STAR_BOUNDS = [("0.864040", "33.579659"), ("46.633598", "33.579605"),
+               ("91.094498", "33.579506"), ("136.863998", "33.580002"),
+               ("182.634003", "33.578995")]
 HOSTS = {
     "yandex": {"yandex.ru", "yandex.com", "yandex.eu"},
     "2gis": {"2gis.ru"},
@@ -145,20 +150,34 @@ def review_label(count):
     return "отзыв" if count % 10 == 1 and count % 100 != 11 else "отзыва" if 2 <= count % 10 <= 4 and not 12 <= count % 100 <= 14 else "отзывов"
 
 
+def star_fill_percent(score):
+    score = min(Decimal("5"), max(Decimal("0"), Decimal(str(score))))
+    if score == 5:
+        return "100"
+    if score == 0:
+        return "0"
+    index = int(score)
+    start, width = map(Decimal, STAR_BOUNDS[index])
+    percent = (start + (score - index) * width) * 100 / Decimal("218")
+    return format(percent.quantize(Decimal("0.000001")), "f").rstrip("0").rstrip(".")
+
+
 def render(sources):
     cards = []
     for source in sources:
         score = str(Decimal(str(source["rating"])).quantize(Decimal("0.1"), rounding=ROUND_HALF_UP))
         count = source["reviewCount"]
+        logo = "assets/rating-" + source["id"] + ".png"
         cards.append(f'''        <li><a class="clinic-rating-card" href="{escape(source['url'], quote=True)}" target="_blank" rel="noopener" data-rating-source="{escape(source['id'], quote=True)}">
-          <span class="clinic-rating-score"><span class="clinic-rating-value">{score}</span></span>
-          <h3 class="clinic-rating-name">{escape(source['name'])}</h3>
+          <span class="clinic-rating-logo"><img src="{logo}" width="75" height="75" alt="" loading="lazy"></span>
+          <h3 class="sr-only clinic-rating-name">{escape(source['name'])}</h3>
+          <span class="clinic-rating-stars" role="img" aria-label="Рейтинг {score} из 5" data-rating="{score}" style="--rating-fill: {star_fill_percent(score)}%"></span>
           <span class="clinic-rating-count">{count:,} {review_label(count)}</span>
         </a></li>'''.replace(f"{count:,}", f"{count:,}".replace(",", "\u00a0")))
     return f'''{START}
     <section class="section section-shell clinic-ratings" id="clinic-ratings" aria-labelledby="clinic-ratings-title">
       <div class="section-heading">
-        <h2 id="clinic-ratings-title">Оценки пациентов на независимых площадках</h2>
+        <h2 id="clinic-ratings-title">Независимый рейтинг</h2>
       </div>
       <ul class="clinic-ratings-grid">
 {chr(10).join(cards)}

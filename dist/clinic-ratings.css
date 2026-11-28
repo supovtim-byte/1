@@ -1,3 +1,4 @@
+/* Rating card geometry and logos follow Figma 560:117; totals remain source data. */
 .clinic-ratings .section-heading { margin-block-end: max(20px, calc(40 * var(--unit))); }
 .clinic-ratings-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--gap); list-style: none; padding: 0; margin: 0; }
 .clinic-ratings-grid > li { min-inline-size: 0; }
@@ -5,24 +6,41 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: max(8px, calc(10 * var(--unit)));
+  min-block-size: max(210px, calc(299 * var(--unit)));
   block-size: 100%;
   padding: max(24px, calc(40 * var(--unit)));
   border-radius: var(--radius);
-  background: var(--panel);
+  background: #cfe8ff;
   color: var(--ink);
-  transition: background-color .2s ease, color .2s ease;
+  transition: background-color .2s ease;
 }
-.clinic-rating-name { font-size: var(--body); font-weight: 400; line-height: 1.5; }
-.clinic-rating-score { display: block; margin-block-end: max(12px, calc(20 * var(--unit))); }
-.clinic-rating-value { font-size: clamp(48px, calc(80 * var(--unit)), 80px); font-weight: 500; line-height: 1; letter-spacing: -.04em; font-variant-numeric: lining-nums tabular-nums; }
-.clinic-rating-count { font-size: var(--small); line-height: 1.4; }
+.clinic-rating-logo {
+  --rating-logo-size: clamp(52px, calc(75 * var(--unit)), 75px);
+  display: block;
+  flex: none;
+  inline-size: var(--rating-logo-size);
+  block-size: calc(var(--rating-logo-size) * .99186992);
+}
+.clinic-rating-logo img { display: block; inline-size: 100%; block-size: 100%; }
+.clinic-rating-stars {
+  --rating-empty: #8ca8b9;
+  display: block;
+  flex: none;
+  inline-size: min(100%, max(130px, calc(218 * var(--unit))));
+  aspect-ratio: 218 / 34;
+  margin-block-start: auto;
+  background: linear-gradient(to right, var(--ink) 0, var(--ink) var(--rating-fill), var(--rating-empty) var(--rating-fill), var(--rating-empty) 100%);
+  -webkit-mask: url("assets/rating-stars.svg") center / 100% 100% no-repeat;
+  mask: url("assets/rating-stars.svg") center / 100% 100% no-repeat;
+}
+.clinic-rating-count { margin-block-start: max(10px, calc(13 * var(--unit))); font-size: var(--body); line-height: 1.5; letter-spacing: -.02em; }
 .clinic-rating-card:focus-visible { outline: 2px solid var(--link-hover); outline-offset: 4px; }
-@media (min-width: 601px) {
-  .accessibility-mode .clinic-rating-count { font-size: var(--body); }
-}
+.accessibility-mode .clinic-rating-card { background: var(--panel); }
+.accessibility-mode .clinic-rating-stars { --rating-empty: #888; }
+.accessibility-no-images .clinic-rating-logo { display: none; }
+.accessibility-no-images .clinic-rating-name { position: static; inline-size: auto; block-size: auto; margin: 0; overflow: visible; clip: auto; clip-path: none; white-space: normal; font-size: var(--body); line-height: 1.5; }
 @media (hover: hover) and (pointer: fine) {
-  .clinic-rating-card:hover { background: #cce7fc; color: var(--link-hover); }
+  .clinic-rating-card:hover { background: var(--panel); }
 }
 @media (max-width: 780px) {
   .clinic-ratings-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -30,10 +48,9 @@
 @media (max-width: 600px) {
   .clinic-ratings .section-heading { display: block; margin-block-end: 24px; }
   .clinic-ratings-grid { gap: 10px; }
-  .clinic-rating-card { padding: 22px calc(15 * var(--mobile-unit)); border-radius: calc(25 * var(--mobile-unit)); }
-  .clinic-rating-value { font-size: calc(44 * var(--mobile-unit)); }
-  .clinic-rating-count { font-size: max(13px, var(--small)); }
-}
-@media (max-width: 600px) {
+  .clinic-rating-card { min-block-size: 210px; padding: 24px calc(20 * var(--mobile-unit)); border-radius: calc(25 * var(--mobile-unit)); }
+  .clinic-rating-logo { --rating-logo-size: 56px; }
+  .clinic-rating-stars { inline-size: min(100%, 185px); }
+  .clinic-rating-count { margin-block-start: 10px; }
   .mobile-large-text .clinic-ratings-grid { grid-template-columns: minmax(0, 1fr); }
 }
