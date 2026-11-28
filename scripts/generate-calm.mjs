@@ -22,13 +22,12 @@ export function renderCalmPage(template, data, videos) {
   const values = {
     TITLE: e(data.title),
     LEAD: e(data.lead),
-    INDICATIONS: data.indications.map(item => `<article class="calm-indication"><h3>${e(item.title)}</h3><p>${e(item.text)}</p></article>`).join('\n'),
-    CHOICES: data.methods.map(method => `<a class="calm-choice" href="#${method.id}"><img class="calm-choice-photo" src="assets/calm-method.png" width="255" height="255" alt="" loading="lazy"><div><h3>${e(method.shortTitle)}</h3><p>${e(method.summary)}</p><img class="calm-choice-arrow" src="assets/calm-method-link.svg" width="16" height="16" alt=""></div></a>`).join('\n'),
+    CHOICES: data.methods.map(method => `<a class="calm-choice" href="#${method.id}"><img class="calm-choice-photo" src="${e(method.image.src)}" width="${method.image.width}" height="${method.image.height}" alt="" loading="lazy"><div><h3>${e(method.shortTitle)}</h3><p>${e(method.summary)}</p><img class="calm-choice-arrow" src="assets/calm-method-link.svg" width="16" height="16" alt=""></div></a>`).join('\n'),
     METHODS: data.methods.map(method => `<section class="calm-section calm-method" id="${method.id}" aria-labelledby="${method.id}-title">
         <h2 id="${method.id}-title">${e(method.title)}</h2>
         <div class="calm-method-intro">
           <div class="calm-description">${method.description.map(text => `<p>${e(text)}</p>`).join('\n')}</div>
-          <img class="calm-method-photo" src="assets/calm-treatment.png" width="715" height="546" alt="Стоматологическое лечение ребёнка" loading="lazy">
+          <img class="calm-method-photo" src="${e(method.image.src)}" width="${method.image.width}" height="${method.image.height}" alt="${e(method.image.alt)}" loading="lazy">
         </div>
         <div class="calm-method-details">
           <div class="calm-detail"><h3>В каких случаях применяется</h3>${list(method.indications, 'ul')}</div>
