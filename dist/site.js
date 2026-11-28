@@ -39,7 +39,7 @@ for (const photo of document.querySelectorAll(".hero-photo, .appointment-photo")
 }
 
 const compactMenu = header.querySelector("#compact-menu-panel");
-for (const link of header.querySelectorAll(".primary-links a, #more-panel a, #more-panel [data-accessibility]")) {
+for (const link of header.querySelectorAll(".primary-links a, #more-panel a, #more-panel [data-accessibility], #more-panel [data-open-site-search]")) {
   compactMenu.append(link.cloneNode(true));
 }
 
@@ -887,53 +887,80 @@ let pressedMenuBackdrop = false;
 let menuSwipe = null;
 let menuDismissTimer;
 let lastMenuSwipe = -Infinity;
-const searchCatalog = [
-  ...[...document.querySelectorAll(".mobile-menu-links a, .treatment-nav a")].map(link => ({
-    title: link.textContent.trim(),
-    href: link.getAttribute("href"),
-    service: link.dataset.showService
-  })),
-  ...serviceOptions.map(option => ({ title: option.textContent.trim(), href: "#" + option.id, service: option.dataset.service })),
-  ...[...document.querySelectorAll(".doctors-grid .doctor-card")].map(card => ({
-    title: card.querySelector("h3").textContent.trim() + " — " + card.querySelector("p").textContent.trim(),
-    href: card.querySelector(".doctor-profile-link")?.getAttribute("href") || "doctors.html#" + card.id
-  })),
-  ...[...document.querySelectorAll(".direction-card")].map(card => ({
-    title: card.querySelector("h2").textContent.trim(), href: card.querySelector("h2 a")?.getAttribute("href") || "uslugi.html#" + card.id
-  })),
-  ...[...document.querySelectorAll(".direction-details a")].map(link => ({
-    title: link.textContent.trim(), href: link.getAttribute("href")
-  })),
-  ...[...document.querySelectorAll(".prices-service-link")].map(item => ({
-    title: item.textContent.trim(), href: "#" + item.closest(".prices-category").id
-  })),
-  { title: "Частые вопросы", href: document.querySelector("#faq") ? "#faq" : "index.html#faq" }
-];
+const searchCatalog = window.METELITSA_SEARCH_INDEX || [];
 
 function normalizeSearch(value) {
   return value.trim().toLocaleLowerCase("ru").replaceAll("ё", "е");
 }
 
-function renderSearch() {
-  const query = normalizeSearch(searchField.value);
+function matchingSearch(value) {
+  const query = normalizeSearch(value);
+  if (!query) return [];
   const terms = query.split(/\s+/);
-  const matches = query ? searchCatalog.filter(entry => {
-    const title = normalizeSearch(entry.title);
-    return terms.every(term => title.includes(term));
-  }) : [];
-
-  searchResults.hidden = !query;
-  searchStatus.textContent = query && !matches.length ? "Ничего не найдено" : "";
-  searchList.replaceChildren(...matches.map(entry => {
+  return searchCatalog.filter(entry => terms.every(term => normalizeSearch(entry.title).includes(term))).slice(0, 30);
+}
+function fillSearchResults(value, results, status, list) {
+  const query = normalizeSearch(value);
+  const matches = matchingSearch(value);
+  results.hidden = !query;
+  status.textContent = query && !matches.length ? "Ничего не найдено" : "";
+  list.replaceChildren(...matches.map(entry => {
     const item = document.createElement("li");
     const link = document.createElement("a");
     link.href = entry.href;
-    link.textContent = entry.title;
-    if (entry.service) link.dataset.showService = entry.service;
+    const title = document.createElement("span");
+    title.textContent = entry.title;
+    const kind = document.createElement("small");
+    kind.textContent = entry.kind || "";
+    link.append(title, kind);
     item.append(link);
     return item;
   }));
 }
+function renderSearch() {
+  fillSearchResults(searchField.value, searchResults, searchStatus, searchList);
+}
+
+const desktopSearch = document.createElement("section");
+desktopSearch.className = "site-search-panel";
+desktopSearch.id = "site-search";
+desktopSearch.hidden = true;
+desktopSearch.setAttribute("aria-label", "Поиск по сайту");
+desktopSearch.innerHTML = `<form class="site-search-form" role="search"><img src="assets/mobile-menu-search.svg" alt=""><input type="search" aria-label="Поиск по сайту" placeholder="Поиск по сайту" autocomplete="off"><button type="button" class="site-search-close" aria-label="Закрыть поиск">×</button></form><div class="site-search-results" hidden><p role="status"></p><ul></ul></div>`;
+header.after(desktopSearch);
+const desktopSearchInput = desktopSearch.querySelector("input");
+const desktopSearchResults = desktopSearch.querySelector(".site-search-results");
+const desktopSearchStatus = desktopSearch.querySelector("[role=status]");
+const desktopSearchList = desktopSearch.querySelector("ul");
+let searchReturnFocus;
+function closeSiteSearch() {
+  desktopSearch.hidden = true;
+  desktopSearchInput.value = "";
+  fillSearchResults("", desktopSearchResults, desktopSearchStatus, desktopSearchList);
+  searchReturnFocus?.focus({ preventScroll: true });
+}
+document.querySelectorAll("[data-open-site-search]").forEach(button => {
+  button.addEventListener("click", event => {
+    event.preventDefault();
+    closePopover();
+    if (mobileLayout.matches) {
+      if (!mobileMenu.open) mobileMenu.showModal();
+      mobileMenuButton.setAttribute("aria-expanded", "true");
+      searchForm.hidden = false;
+      searchOpen.setAttribute("aria-expanded", "true");
+      searchField.focus();
+    } else {
+      searchReturnFocus = button;
+      desktopSearch.hidden = false;
+      desktopSearchInput.focus();
+    }
+  });
+});
+desktopSearchInput.addEventListener("input", () => fillSearchResults(desktopSearchInput.value, desktopSearchResults, desktopSearchStatus, desktopSearchList));
+desktopSearch.querySelector("form").addEventListener("submit", event => { event.preventDefault(); desktopSearchList.querySelector("a")?.click(); });
+desktopSearch.querySelector(".site-search-close").addEventListener("click", closeSiteSearch);
+document.addEventListener("keydown", event => { if (event.key === "Escape" && !desktopSearch.hidden) { event.preventDefault(); closeSiteSearch(); } });
+document.addEventListener("pointerdown", event => { if (!desktopSearch.hidden && !desktopSearch.contains(event.target) && !event.target.closest("[data-open-site-search]")) closeSiteSearch(); });
 
 function positionSearch() {
   if (!visualViewport || !mobileMenu.classList.contains("is-searching")) return;

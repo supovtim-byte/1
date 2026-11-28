@@ -1530,3 +1530,25 @@ address { font-style: normal; }
   .home-page :is(.service-more, .deck-more) { margin-inline-start: var(--mobile-copy-gutter); }
   .home-page .contacts h2 { margin-inline: var(--mobile-copy-gutter); }
 }
+
+/* Site-wide search and sitemap. */
+.header-search-button { display:flex; align-items:center; gap:10px; text-align:left; }
+.header-search-button img { width:18px; height:18px; }
+.site-search-panel { position:fixed; z-index:30; inset:calc(var(--accessibility-toolbar-height, 0px) + var(--header-height)) var(--edge) auto; max-height:min(70vh, 650px); overflow:auto; padding:24px var(--inside); background:var(--page); border-radius:0 0 var(--radius) var(--radius); box-shadow:0 14px 30px rgb(17 61 80 / 12%); }
+.site-search-panel[hidden] { display:none; }
+.site-search-form { display:flex; align-items:center; gap:18px; border-bottom:1px solid var(--ink); }
+.site-search-form img { width:22px; height:22px; }
+.site-search-form input { min-width:0; flex:1; padding:15px 0; border:0; outline:0; background:transparent; font-size:var(--large); }
+.site-search-close { font-size:32px; line-height:1; padding:8px; }
+.site-search-results ul { list-style:none; padding:0; margin:0; }
+.site-search-results li { border-bottom:1px solid rgb(17 61 80 / 14%); }
+.site-search-results a, .mobile-search-results li a { display:flex; justify-content:space-between; gap:15px; padding:14px 0; }
+.site-search-results a:hover { color:var(--link-hover); }
+.site-search-results small, .mobile-search-results small { flex:none; color:var(--muted); font-size:var(--small); }
+.site-search-results p { padding:16px 0; }
+.sitemap-content .documents-group:first-of-type { margin-block-start:50px; }
+.sitemap-list { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:0 40px; padding:0; margin:20px 0 0; list-style:none; }
+.sitemap-list li { border-bottom:1px solid rgb(17 61 80 / 15%); }
+.sitemap-list a { display:block; padding:14px 0; }
+.sitemap-list a:hover { color:var(--link-hover); }
+@media(max-width:600px) { .site-search-panel { display:none; } .sitemap-list { grid-template-columns:1fr; } .sitemap-content .documents-group:first-of-type { margin-block-start:35px; } }
