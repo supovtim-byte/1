@@ -148,9 +148,27 @@
           "format": "PDF"
         },
         {
-          "title": "Территориальная программа государственных гарантий бесплатного оказания гражданам медицинской помощи в Санкт-Петербурге",
-          "href": "https://metelitsa-dent.ru/files/ТПГГ_2023.pdf",
-          "format": "PDF"
+          "title": "Территориальная программа государственных гарантий бесплатного оказания гражданам медицинской помощи в Санкт-Петербурге на 2026 год и плановый период 2027–2028 годов",
+          "href": "assets/documents/spb-territorial-program-2026-2028.pdf",
+          "format": "PDF",
+          "replaces": {
+            "title": "Территориальная программа государственных гарантий бесплатного оказания гражданам медицинской помощи в Санкт-Петербурге",
+            "href": "https://metelitsa-dent.ru/files/ТПГГ_2023.pdf"
+          },
+          "description": "Закон Санкт-Петербурга от 19.12.2025 № 756-148, редакция от 09.07.2026.",
+          "sourcePage": "https://spboms.ru/dokumenty-i-spravochniki/",
+          "downloadSource": "https://spboms.ru/upload/iblock/b24/id8qg5qg3qyyipi8b70f9dl4ujvdeyxj.pdf",
+          "sha256": "51c1e8f45c7236a14d31dbe0f5d94a2475c60ea8e9515b5719774b69340294f8",
+          "checkedAt": "2026-11-28",
+          "relatedDocuments": [
+            {
+              "title": "Изменения от 23.10.2026 № 602-99 (PDF)",
+              "href": "assets/documents/spb-territorial-program-amendments-602-99-2026.pdf",
+              "publicationUrl": "https://publication.pravo.gov.ru/document/7800202610270002",
+              "downloadSource": "http://publication.pravo.gov.ru/file/pdf?eoNumber=7800202610270002",
+              "sha256": "6a5d98b9d4c4e5fc55e060e8aa8e16e3c161cdbe737cb3c00eeb112f43f15f35"
+            }
+          ]
         },
         {
           "title": "Положение о видеонаблюдении",
