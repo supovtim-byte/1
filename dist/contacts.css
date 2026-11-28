@@ -11,8 +11,10 @@
 }
 .contacts-main .section-shell { margin-inline: var(--contacts-edge); }
 .contacts-intro {
+  /* At 1600px, the 693px panel shares 1550px with the photo after the gaps. */
+  --contacts-panel-width: min(693px, calc((100% - var(--contacts-edge)) * 693 / 1550));
   display: grid;
-  grid-template-columns: minmax(0, 1173fr) minmax(0, 693fr);
+  grid-template-columns: minmax(0, 1fr) var(--contacts-panel-width);
   grid-template-areas: "photo copy";
   gap: var(--contacts-edge);
   min-block-size: calc(100svh - var(--contacts-top) - var(--contacts-edge) - var(--accessibility-toolbar-height, 0px));
@@ -151,11 +153,6 @@
 .accessibility-mode :is(.contacts-route-card h3, .contacts-chief-card h3) { font-size: var(--large); }
 
 @media (max-width: 780px) {
-  .contacts-intro {
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: auto minmax(200px, 1fr);
-    grid-template-areas: "copy" "photo";
-  }
   .contacts-route-grid { grid-template-columns: minmax(0, 1fr); }
   .contacts-chief-card { grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); }
 }
@@ -166,7 +163,9 @@
   .contacts-mobile-brand { display: block; inset-block-start: 25px; inset-inline-start: calc(var(--edge) + var(--mobile-gutter)); }
   .contacts-mobile-brand img { filter: none; }
   .contacts-intro {
+    grid-template-columns: minmax(0, 1fr);
     grid-template-rows: auto minmax(180px, 1fr);
+    grid-template-areas: "copy" "photo";
     min-block-size: calc(var(--initial-viewport-height, 100svh) - var(--contacts-top) - var(--mobile-control-size) - 2 * var(--mobile-gutter) - var(--edge) - var(--dock-safe-area));
   }
   .contacts-intro h1 { font-size: var(--display); }
@@ -180,4 +179,12 @@
   .contacts-requisites-list { grid-template-columns: minmax(0, 1fr); row-gap: 4px; }
   .contacts-requisites-list dd + dt { margin-block-start: 12px; }
   .mobile-large-text .contacts-main { font-size: var(--body); }
+}
+
+@media (min-width: 601px) and (max-aspect-ratio: 1 / 1) {
+  .contacts-intro { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 600px) and (max-aspect-ratio: 1 / 1) {
+  .contacts-intro { grid-template-rows: repeat(2, minmax(180px, 1fr)); }
 }
