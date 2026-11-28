@@ -2,7 +2,7 @@
 import json
 from unittest import TestCase, main
 from unittest.mock import patch
-from ratings import merge_snapshot, parse_source, refresh, render, review_label, validated
+from ratings import merge_snapshot, parse_source, refresh, render, review_label, star_fill_percent, validated
 
 
 class RatingsTests(TestCase):
@@ -52,8 +52,16 @@ class RatingsTests(TestCase):
         with self.assertRaises(ValueError):
             validated(dict(id="zoon", rating=4, reviewCount=53.5, checkedAt="2026-11-27"))
         html = render([dict(id="otzovik", name="Отзовик", url="https://otzovik.com/", rating=3.61, reviewCount=23)])
-        self.assertIn('clinic-rating-value">3.6<', html)
+        self.assertIn('data-rating="3.6"', html)
+        self.assertIn('aria-label="Рейтинг 3.6 из 5"', html)
         self.assertIn("23 отзыва", html)
+
+    def test_fractional_fill_uses_star_ink_bounds_instead_of_the_whole_row(self):
+        self.assertEqual(star_fill_percent(5), "100")
+        self.assertEqual(star_fill_percent(0), "0")
+        stop = float(star_fill_percent("4.5")) / 100 * 218
+        self.assertAlmostEqual(stop, 199.4235005, places=5)
+        self.assertGreater(float(star_fill_percent("4.6")), float(star_fill_percent("4.5")))
 
 
 if __name__ == "__main__":
