@@ -10,7 +10,7 @@
   <link rel="preload" href="assets/geologica-regular.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/geologica-medium.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="styles.css?v=doctor-cards-20261127">
-  <link rel="stylesheet" href="contacts.css?v=mobile-controls-20261123">
+  <link rel="stylesheet" href="contacts.css?v=20261128-layout">
   <link rel="stylesheet" href="mobile-menu.css?v=dock-blur-20261123">
   <link rel="stylesheet" href="buttons.css?v=20261123">
   <link rel="stylesheet" href="accessibility.css?v=20261123-layout">
@@ -81,7 +81,11 @@
     <section class="contacts-intro section-shell" id="top" aria-labelledby="contacts-title">
       <div class="contacts-intro-copy">
         <h1 id="contacts-title">Контакты</h1>
-        <address class="contacts-address">192012, Санкт-Петербург, БЦ «Обуховъ»,<br>пр. Обуховской обороны, д. 271 Ж</address>
+        <address class="contacts-address">
+          <span>192012, Санкт-Петербург, БЦ «Обуховъ»,</span>
+          <span>пр. Обуховской обороны, д. 271 Ж</span>
+          <span>м. Обухово, м. Пролетарская</span>
+        </address>
         <a class="text-link contacts-map-link" href="https://yandex.ru/maps/org/metelitsa/1132881772/" target="_blank" rel="noopener">Смотреть на карте</a>
         <div class="contacts-communication">
           <a href="tel:+79313990580">+7 931 399 05 80</a>
@@ -95,7 +99,7 @@
         </div>
       </div>
       <div class="contacts-building">
-        <img src="assets/contacts-building.jpg" width="1172" height="807" alt="Здание БЦ «Обуховъ» и вход в стоматологическую клинику «Метелица»" fetchpriority="high">
+        <img src="assets/contacts-building.webp" width="2000" height="1500" alt="Здание БЦ «Обуховъ» и вход в стоматологическую клинику «Метелица»" fetchpriority="high">
       </div>
     </section>
 
@@ -103,6 +107,7 @@
       <h2 id="how-to-get-title">Как добраться</h2>
       <div class="contacts-route-grid">
         <article class="contacts-route-card" aria-labelledby="public-route-title">
+          <div class="contacts-route-icon"><img src="assets/contacts-bus.svg" alt=""></div>
           <h3 id="public-route-title">Общественным транспортом</h3>
           <div class="contacts-route-copy">
             <p>БЦ «Обуховъ» находится на проспекте Обуховской Обороны, рядом с КАД.</p>
@@ -111,6 +116,7 @@
           <a class="text-link" href="https://yandex.ru/maps/2/saint-petersburg/?mode=routes&amp;rtext=~59.852033%2C30.478653&amp;rtt=mt" target="_blank" rel="noopener" aria-label="Смотреть на карте маршрут общественным транспортом">Смотреть на карте</a>
         </article>
         <article class="contacts-route-card" aria-labelledby="obukhovo-route-title">
+          <div class="contacts-route-icon"><img src="assets/contacts-metro.svg" alt=""></div>
           <h3 id="obukhovo-route-title">От метро «Обухово»</h3>
           <div class="contacts-route-copy">
             <p>До БЦ «Обуховъ» ходит бесплатный автобус.<br>Время в пути — всего 4 минуты.</p>
@@ -128,17 +134,32 @@
         <div class="contacts-chief-copy">
           <h3 id="chief-name">Сизонец Александра Игоревна</h3>
           <div class="contacts-chief-phones">
+            <a href="tel:+79313990580">+7 931 399 05 80</a>
             <a href="tel:+78123138030">313-80-30</a>
             <a href="tel:+78123090580">309-05-80</a>
-            <a href="tel:+79313990580">+7 931 399 05 80</a>
           </div>
           <div class="contacts-chief-email">
             <a href="mailto:info@metelitsa-dent.ru?subject=%D0%B4%D0%BB%D1%8F%20%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%B2%D1%80%D0%B0%D1%87%D0%B0">info@metelitsa-dent.ru</a>
             <p>в теме письма указать «для главного врача»</p>
           </div>
-          <p class="contacts-chief-hours">Часы приема: Четверг с 15 до 18</p>
+          <div class="contacts-chief-hours">
+            <p>Часы приёма</p>
+            <p>Четверг с 15 до 18</p>
+          </div>
         </div>
       </article>
+    </section>
+
+    <section class="contacts-requisites section-shell" id="requisites" aria-labelledby="requisites-title">
+      <h2 id="requisites-title">Реквизиты клиники</h2>
+      <dl class="contacts-requisites-list">
+        <dt>Полное наименование</dt>
+        <dd>Общество с ограниченной ответственностью «Метелица-Дент»</dd>
+        <dt>ОГРН</dt>
+        <dd>1137847430335</dd>
+        <dt>ИНН / КПП</dt>
+        <dd>7811564603 / 781101001</dd>
+      </dl>
     </section>
   </main>
 
