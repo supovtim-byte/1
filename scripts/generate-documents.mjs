@@ -8,6 +8,14 @@ import { escapeHtml as e } from './generate-doctors.mjs';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const text = value => assert.ok(typeof value === 'string' && value.trim(), 'Document text is required');
 
+function renderOrganizationRows(organization, wrapRow) {
+  return organization.fields.map(field => {
+    text(field.label); text(field.value);
+    const row = `<dt>${e(field.label)}</dt><dd>${e(field.value)}</dd>`;
+    return wrapRow ? `<div>${row}</div>` : row;
+  }).join('\n');
+}
+
 export function renderDocumentsPage(template, data, { documentRoot = path.join(root, 'dist') } = {}) {
   const ids = new Set();
   const links = new Set();
@@ -46,10 +54,7 @@ export function renderDocumentsPage(template, data, { documentRoot = path.join(r
     return `<p class="documents-notice">${e(notice.text)}${source}</p>`;
   }
   function renderOrganization(organization) {
-    const rows = organization.fields.map(field => {
-      text(field.label); text(field.value);
-      return `<div><dt>${e(field.label)}</dt><dd>${e(field.value)}</dd></div>`;
-    }).join('\n');
+    const rows = renderOrganizationRows(organization, true);
     text(organization.sourceNote);
     return `<div class="organization-information"><dl class="organization-details">${rows}</dl><p class="document-source">${e(organization.sourceNote)}</p></div>`;
   }
@@ -101,6 +106,16 @@ export function generateDocuments({ check = false } = {}) {
   const target = path.join(root, 'dist/documents.html');
   if (check) assert.equal(fs.readFileSync(target, 'utf8'), html, 'Regenerate documents page: npm run build');
   else fs.writeFileSync(target, html);
+
+  const contactsTarget = path.join(root, 'dist/contacts.html');
+  const contacts = fs.readFileSync(contactsTarget, 'utf8');
+  const slot = /(<!-- clinic-requisites:start -->)[\s\S]*?(<!-- clinic-requisites:end -->)/g;
+  assert.equal([...contacts.matchAll(slot)].length, 1, 'Expected one contacts requisites slot');
+  const rows = renderOrganizationRows(data.organization, false).replaceAll('\n', '\n        ');
+  const updatedContacts = contacts.replace(slot, (_, start, end) => `${start}\n        ${rows}\n        ${end}`);
+  if (check) assert.equal(contacts, updatedContacts, 'Regenerate contacts requisites: npm run build');
+  else if (contacts !== updatedContacts) fs.writeFileSync(contactsTarget, updatedContacts);
+
   console.log(`${check ? 'Verified' : 'Generated'} documents page: ${data.groups.reduce((count, group) => count + group.documents.length, 0)} documents.`);
 }
 
