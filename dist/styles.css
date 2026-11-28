@@ -1546,9 +1546,8 @@ address { font-style: normal; }
 .site-search-results a:hover { color:var(--link-hover); }
 .site-search-results small, .mobile-search-results small { flex:none; color:var(--muted); font-size:var(--small); }
 .site-search-results p { padding:16px 0; }
-.sitemap-content .documents-group:first-of-type { margin-block-start:50px; }
+.sitemap-content .catalog-heading + .documents-group { margin-block-start:56px; }
 .sitemap-list { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:0 40px; padding:0; margin:20px 0 0; list-style:none; }
-.sitemap-list li { border-bottom:1px solid rgb(17 61 80 / 15%); }
-.sitemap-list a { display:block; padding:14px 0; }
+.sitemap-list a { display:block; padding:10px 0; }
 .sitemap-list a:hover { color:var(--link-hover); }
-@media(max-width:600px) { .site-search-panel { display:none; } .sitemap-list { grid-template-columns:1fr; } .sitemap-content .documents-group:first-of-type { margin-block-start:35px; } }
+@media(max-width:600px) { .site-search-panel { display:none; } .sitemap-list { grid-template-columns:1fr; } .sitemap-content .catalog-heading + .documents-group { margin-block-start:40px; } }
