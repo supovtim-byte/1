@@ -8,24 +8,39 @@
       "documents": [
         {
           "title": "Выписка из реестра лицензий",
-          "href": "https://metelitsa-dent.ru/files/vypiska_iz_reestra_2023.pdf",
-          "format": "PDF"
+          "href": "assets/documents/clinic-license-register.pdf",
+          "format": "PDF",
+          "sha256": "5c36dc7330560c7072b3ebb7a8982442d6188d770a43adf3f4ef6370db051b03",
+          "downloadSource": "https://metelitsa-dent.ru/files/vypiska_iz_reestra_2023.pdf",
+          "checkedAt": "2026-11-28"
         },
         {
           "title": "Выписка из ЕГРЮЛ",
-          "href": "https://metelitsa-dent.ru/files/vypiska_iz_egryul.pdf",
-          "format": "PDF"
+          "href": "assets/documents/clinic-egrul.pdf",
+          "format": "PDF",
+          "sha256": "4629037c13ffa23ac2f0c2bc90e1a368a16765856668bc23780cf737ca91e9a6",
+          "downloadSource": "https://metelitsa-dent.ru/files/vypiska_iz_egryul.pdf",
+          "checkedAt": "2026-11-28"
         },
         {
           "title": "Информация об образовании медицинских работников",
-          "href": "https://metelitsa-dent.ru/files/Информация_об_образовании_медицинских_работников.pdf",
-          "format": "PDF"
+          "href": "assets/documents/medical-staff-qualifications.pdf",
+          "format": "PDF",
+          "sha256": "cd5c129a37238423edca054fdc938a369716f0a7fdff339d92ff074fef61126d",
+          "downloadSource": "https://metelitsa-dent.ru/files/Информация_об_образовании_медицинских_работников.pdf",
+          "checkedAt": "2026-11-28"
+        },
+        {
+          "title": "Структура и органы управления медицинской организацией",
+          "shortTitle": "Структура управления клиникой",
+          "href": "https://metelitsa-dent.ru/struktura-organy-upravleniya-medicinskoi-organizacii/",
+          "format": "Страница"
         }
       ]
     },
     {
       "id": "rules",
-      "title": "Правила и договор",
+      "title": "Правила для пациентов",
       "documents": [
         {
           "title": "Правила предоставления платных медицинских услуг",
@@ -42,8 +57,11 @@
         },
         {
           "title": "Правила внутреннего распорядка для посетителей клиники",
-          "href": "https://metelitsa-dent.ru/files/pravila_vnutrennego_rasporyadka.pdf",
-          "format": "PDF"
+          "href": "assets/documents/patient-internal-rules.pdf",
+          "format": "PDF",
+          "sha256": "a06e044c50966a9301274fb022ff602718d4cd949b8279813c6c34ef2dc9ba88",
+          "downloadSource": "https://metelitsa-dent.ru/files/pravila_vnutrennego_rasporyadka.pdf",
+          "checkedAt": "2026-11-28"
         },
         {
           "title": "Права и обязанности граждан в сфере охраны здоровья",
@@ -52,18 +70,57 @@
         },
         {
           "title": "Положение о гарантиях при оказании стоматологических услуг",
-          "href": "https://metelitsa-dent.ru/files/Положение_о_гарантиях_при_оказании_стоматологических_услуг.pdf",
-          "format": "PDF"
+          "href": "assets/documents/dental-treatment-guarantees.pdf",
+          "format": "PDF",
+          "sha256": "e4d46fb23efc896f22d68021a0f17211d6ba5f786e3cb436f32adf708ce93715",
+          "downloadSource": "https://metelitsa-dent.ru/files/Положение_о_гарантиях_при_оказании_стоматологических_услуг.pdf",
+          "checkedAt": "2026-11-28"
         },
         {
           "title": "Политика обработки персональных данных",
-          "href": "https://metelitsa-dent.ru/files/Политика_обработки_ПД_ООО_МЕТЕЛИЦА_ДЕНТ_2026.pdf",
-          "format": "PDF"
+          "href": "assets/documents/clinic-personal-data-policy.pdf",
+          "format": "PDF",
+          "sha256": "d35df438997e90ae1507fe462ee289d71ed4918bda47a7f49a6298ed93eb2d74",
+          "downloadSource": "https://metelitsa-dent.ru/files/Политика_обработки_ПД_ООО_МЕТЕЛИЦА_ДЕНТ_2026.pdf",
+          "checkedAt": "2026-11-28"
         },
         {
           "title": "Договор оказания платных медицинских услуг",
-          "href": "https://metelitsa-dent.ru/files/Договор_оказания_платных_медицинских_услуг.pdf",
-          "format": "PDF"
+          "href": "assets/documents/paid-treatment-contract.pdf",
+          "format": "PDF",
+          "sha256": "b1a251e659e96a5a9c5ccace57916907dabf9d3103dd3835383442ec5d1b280b",
+          "downloadSource": "https://metelitsa-dent.ru/files/Договор_оказания_платных_медицинских_услуг.pdf",
+          "checkedAt": "2026-11-28"
+        },
+        {
+          "title": "Правила записи на первичный приём, обследование и консультацию",
+          "shortTitle": "Правила записи на приём",
+          "href": "https://metelitsa-dent.ru/about/pravila-zapisi-na-pervichnyy-priem-obsledovanie-konsultatsiyu/",
+          "format": "Страница"
+        },
+        {
+          "title": "Правила подготовки к диагностическим исследованиям",
+          "shortTitle": "Подготовка к исследованиям",
+          "href": "https://metelitsa-dent.ru/about/pravila-podgotovki-k-diagnosticheskim-issledovaniyam/",
+          "format": "Страница"
+        }
+      ]
+    },
+    {
+      "id": "standards",
+      "title": "Стандарты и рекомендации",
+      "documents": [
+        {
+          "title": "Клинические рекомендации Министерства здравоохранения Российской Федерации",
+          "shortTitle": "Клинические рекомендации Минздрава",
+          "href": "https://cr.minzdrav.gov.ru/",
+          "format": "Страница"
+        },
+        {
+          "title": "Стандарты медицинской помощи на Официальном интернет-портале правовой информации",
+          "shortTitle": "Стандарты медицинской помощи",
+          "href": "https://pravo.gov.ru/",
+          "format": "Страница"
         }
       ]
     },
@@ -72,54 +129,151 @@
       "title": "Согласия на лечение",
       "documents": [
         {
-          "title": "ИДС на зубную имплантацию",
-          "href": "https://metelitsa-dent.ru/files/ИДС на зубную имплантацию.doc",
-          "format": "DOC"
+          "title": "Информированное добровольное согласие на имплантацию зубов",
+          "href": "assets/documents/consent-implantation.doc",
+          "format": "DOC",
+          "sha256": "2af249bd3a446cfbcc721f10b9bd3f7ce93c0cadf7c51d853af8fdf31ece075e",
+          "downloadSource": "https://metelitsa-dent.ru/files/ИДС на зубную имплантацию.doc",
+          "checkedAt": "2026-11-28",
+          "sourceTitle": "ИДС на зубную имплантацию",
+          "shortTitle": "Согласие на имплантацию зубов"
         },
         {
-          "title": "ИДС на протезирование",
-          "href": "https://metelitsa-dent.ru/files/ИДС на протезирование.doc",
-          "format": "DOC"
+          "title": "Информированное добровольное согласие на протезирование",
+          "href": "assets/documents/consent-prosthetics.doc",
+          "format": "DOC",
+          "sha256": "612e3a2bec110e7d33c7f14a73473a57a634a37689567e81581601eaddd7a8ae",
+          "downloadSource": "https://metelitsa-dent.ru/files/ИДС на протезирование.doc",
+          "checkedAt": "2026-11-28",
+          "sourceTitle": "ИДС на протезирование",
+          "shortTitle": "Согласие на протезирование"
         },
         {
-          "title": "ИДС эндодонтическое лечение зуба",
-          "href": "https://metelitsa-dent.ru/files/ИДС_эндодонтическое_лечение_зуба.doc",
-          "format": "DOC"
+          "title": "Информированное добровольное согласие на эндодонтическое лечение зуба",
+          "href": "assets/documents/consent-endodontics.doc",
+          "format": "DOC",
+          "sha256": "3563a8d82ebf297f489cbd6062d4c48d35287d684c295ce51e5b5ff831bcf145",
+          "downloadSource": "https://metelitsa-dent.ru/files/ИДС_эндодонтическое_лечение_зуба.doc",
+          "checkedAt": "2026-11-28",
+          "sourceTitle": "ИДС эндодонтическое лечение зуба",
+          "shortTitle": "Согласие на эндодонтическое лечение зуба"
         },
         {
-          "title": "ИДС на лечение кариеса у детей",
-          "href": "https://metelitsa-dent.ru/files/ИДС на лечение кариеса у детей.doc",
-          "format": "DOC"
+          "title": "Информированное добровольное согласие на лечение кариеса у детей",
+          "href": "assets/documents/consent-child-caries.doc",
+          "format": "DOC",
+          "sha256": "19ad5c7d90933562b78c3e7dc6ba5099997954f7626296e94ac303ede6db28c5",
+          "downloadSource": "https://metelitsa-dent.ru/files/ИДС на лечение кариеса у детей.doc",
+          "checkedAt": "2026-11-28",
+          "sourceTitle": "ИДС на лечение кариеса у детей",
+          "shortTitle": "Согласие на лечение кариеса у детей"
         },
         {
-          "title": "ИДС на ортодонтическое лечение",
-          "href": "https://metelitsa-dent.ru/files/ИДС на ортодонтическое лечение.doc",
-          "format": "DOC"
+          "title": "Информированное добровольное согласие на ортодонтическое лечение",
+          "href": "assets/documents/consent-orthodontics.doc",
+          "format": "DOC",
+          "sha256": "80dae277d1034c589a537c0dcc78613b5ddd38231dcd11e6bad5f0f11869a947",
+          "downloadSource": "https://metelitsa-dent.ru/files/ИДС на ортодонтическое лечение.doc",
+          "checkedAt": "2026-11-28",
+          "sourceTitle": "ИДС на ортодонтическое лечение",
+          "shortTitle": "Согласие на ортодонтическое лечение"
         },
         {
-          "title": "ИДС на проф.гигиену и терапию",
-          "href": "https://metelitsa-dent.ru/files/ИДС на проф.гигиену и терапию.doc",
-          "format": "DOC"
+          "title": "Информированное добровольное согласие на профессиональную гигиену и терапию",
+          "href": "assets/documents/consent-hygiene-therapy.doc",
+          "format": "DOC",
+          "sha256": "727880639cadbc285a97e37fd93395a5bb9606206ca5edcbd517a15ea1a4156b",
+          "downloadSource": "https://metelitsa-dent.ru/files/ИДС на проф.гигиену и терапию.doc",
+          "checkedAt": "2026-11-28",
+          "sourceTitle": "ИДС на проф.гигиену и терапию",
+          "shortTitle": "Согласие на гигиену и терапию"
         },
         {
-          "title": "ИДС на хирургическое лечение",
-          "href": "https://metelitsa-dent.ru/files/ИДС на хирургическое лечение.doc",
-          "format": "DOC"
+          "title": "Информированное добровольное согласие на хирургическое лечение",
+          "href": "assets/documents/consent-surgery.doc",
+          "format": "DOC",
+          "sha256": "0bdb76f7eedf09f7d9e35e1b3d6a4c2d2798e6a308b88252116862b42c19242f",
+          "downloadSource": "https://metelitsa-dent.ru/files/ИДС на хирургическое лечение.doc",
+          "checkedAt": "2026-11-28",
+          "sourceTitle": "ИДС на хирургическое лечение",
+          "shortTitle": "Согласие на хирургическое лечение"
         },
         {
-          "title": "ИДС на лечение молочного зуба пульпит",
-          "href": "https://metelitsa-dent.ru/files/ИДС_на_лечение_молочного_зуба_пульпит.doc",
-          "format": "DOC"
+          "title": "Информированное добровольное согласие на лечение пульпита молочного зуба",
+          "href": "assets/documents/consent-primary-tooth-pulpitis.doc",
+          "format": "DOC",
+          "sha256": "d50609fdb3ef9a7f57fc9c942490be0f049c45661387a9e3e742f4c1aa7f30f3",
+          "downloadSource": "https://metelitsa-dent.ru/files/ИДС_на_лечение_молочного_зуба_пульпит.doc",
+          "checkedAt": "2026-11-28",
+          "sourceTitle": "ИДС на лечение молочного зуба пульпит",
+          "shortTitle": "Согласие на лечение пульпита молочного зуба"
         },
         {
-          "title": "ИДС на пародонтологическое лечение",
-          "href": "https://metelitsa-dent.ru/files/ИДС_на_пародонтологическое_лечение.doc",
-          "format": "DOC"
+          "title": "Информированное добровольное согласие на пародонтологическое лечение",
+          "href": "assets/documents/consent-periodontology.doc",
+          "format": "DOC",
+          "sha256": "b6bc48c621ea2c4845e7f7d20f98bd636df27741148133d9c57916ffb9261412",
+          "downloadSource": "https://metelitsa-dent.ru/files/ИДС_на_пародонтологическое_лечение.doc",
+          "checkedAt": "2026-11-28",
+          "sourceTitle": "ИДС на пародонтологическое лечение",
+          "shortTitle": "Согласие на пародонтологическое лечение"
         },
         {
-          "title": "ИДС на рентгенодиагностику зубочелюстной системы",
-          "href": "https://metelitsa-dent.ru/files/ИДС_на_рентгенодиагностику_зубочелюстной_системы.doc",
-          "format": "DOC"
+          "title": "Информированное добровольное согласие на рентгенодиагностику зубочелюстной системы",
+          "href": "assets/documents/consent-dental-radiology.doc",
+          "format": "DOC",
+          "sha256": "e9fb46f75af78612f6262c72cb07d7a4c40bfc087e8c55d7e859cec554c518ac",
+          "downloadSource": "https://metelitsa-dent.ru/files/ИДС_на_рентгенодиагностику_зубочелюстной_системы.doc",
+          "checkedAt": "2026-11-28",
+          "sourceTitle": "ИДС на рентгенодиагностику зубочелюстной системы",
+          "shortTitle": "Согласие на рентгенодиагностику зубочелюстной системы"
+        }
+      ],
+      "description": "Информированные добровольные согласия на медицинские вмешательства."
+    },
+    {
+      "id": "medicines",
+      "title": "Лекарственное обеспечение",
+      "documents": [
+        {
+          "title": "Перечни жизненно необходимых и важнейших лекарственных препаратов, препаратов для обеспечения лиц с отдельными заболеваниями и минимальный ассортимент лекарственных препаратов, необходимых для оказания медицинской помощи",
+          "shortTitle": "Федеральные перечни лекарств",
+          "href": "https://publication.pravo.gov.ru/file/pdf?eoNumber=0001202512240041",
+          "format": "PDF",
+          "description": "Распоряжение Правительства РФ от 18.12.2025 № 3867-р. Действует с 24.02.2026.",
+          "publicationUrl": "https://publication.pravo.gov.ru/document/0001202512240041",
+          "downloadSource": "http://publication.pravo.gov.ru/file/pdf?eoNumber=0001202512240041",
+          "replaces": {
+            "href": "https://metelitsa-dent.ru/files/perechen-lek-preparatov.pdf",
+            "title": "Перечень жизненно необходимых и важнейших лекарственных препаратов для медицинского применения и минимального ассортимента лекарственных препаратов, необходимых для оказания медицинской помощи на 2023 год"
+          },
+          "sourceSha256": "c75faf180793ef4cc0b562a2ee8963d414fb90ac3b543c62542d2ed31c58a81b",
+          "sizeBytes": 24559455
+        },
+        {
+          "title": "Перечень лекарственных препаратов, отпускаемых населению в соответствии с перечнем групп населения и категорий заболеваний, при амбулаторном лечении которых лекарственные средства и изделия медицинского назначения отпускаются по рецептам врачей бесплатно, а также в соответствии с перечнем групп населения, при амбулаторном лечении которых лекарственные средства отпускаются по рецептам врачей с 50-процентной скидкой",
+          "shortTitle": "Лекарства бесплатно и со скидкой 50%",
+          "href": "assets/documents/spb-territorial-program-2026-2028.pdf#page=155",
+          "format": "PDF",
+          "description": "Перечни Санкт-Петербурга в приложении 2 к Территориальной программе на 2026 год и плановый период 2027–2028 годов.",
+          "sha256": "51c1e8f45c7236a14d31dbe0f5d94a2475c60ea8e9515b5719774b69340294f8",
+          "downloadSource": "https://spboms.ru/upload/iblock/b24/id8qg5qg3qyyipi8b70f9dl4ujvdeyxj.pdf",
+          "replaces": {
+            "href": "https://metelitsa-dent.ru/files/discount.pdf",
+            "title": "Перечень лекарственных препаратов, отпускаемых населению в соответствии с перечнем групп населения и категорий заболеваний, при амбулаторном лечении которых лекарственные средства и изделия медицинского назначения отпускаются по рецептам врачей бесплатно, а также в соответствии с перечнем групп населения, при амбулаторном лечении которых лекарственные средства отпускаются по рецептам врачей с 50-процентной скидкой"
+          }
+        }
+      ],
+      "notices": [
+        {
+          "text": "Отдельный перечень препаратов, назначаемых по решению врачебных комиссий (приложение 2 к распоряжению № 2406-р), утратил силу с 01.01.2021.",
+          "source": {
+            "title": "Сведения об отмене перечня (PDF)",
+            "href": "assets/documents/commission-medicines-repealed.pdf",
+            "sha256": "68bbe13e21ef1936c3d13379c169b966ce58cb73c9d4d7b70092b49853550bf0",
+            "downloadSource": "https://metelitsa-dent.ru/files/doc2.pdf",
+            "checkedAt": "2026-11-28"
+          }
         }
       ]
     },
@@ -127,26 +281,6 @@
       "id": "other",
       "title": "Другие документы",
       "documents": [
-        {
-          "title": "Перечень жизненно необходимых и важнейших лекарственных препаратов для медицинского применения и минимального ассортимента лекарственных препаратов, необходимых для оказания медицинской помощи на 2023 год",
-          "href": "https://metelitsa-dent.ru/files/perechen-lek-preparatov.pdf",
-          "format": "PDF"
-        },
-        {
-          "title": "Перечень лекарственных препаратов, предназначенных для обеспечения лиц, больных гемофилией, муковисцидозом, гипофизарным нанизмом, болезнью Гоше, злокачественными новообразованиями лимфоидной, кроветворной и родственных им тканей, рассеянным склерозом, гемолитико-уремическим синдромом, юношеским артритом с системным началом, мукополисахаридозом I, II и VI типов, апластической анемией неуточненной, наследственным дефицитом факторов II (фибриногена), VII (лабильного), X (Стюарта - Прауэра), лиц после трансплантации органов и (или) тканей",
-          "href": "https://metelitsa-dent.ru/files/doc3.pdf",
-          "format": "PDF"
-        },
-        {
-          "title": "Перечень лекарственных препаратов для медицинского применения, в том числе лекарственных препаратов для медицинского применения, назначаемых по решению врачебных комиссий медицинских организаций",
-          "href": "https://metelitsa-dent.ru/files/doc2.pdf",
-          "format": "PDF"
-        },
-        {
-          "title": "Перечень лекарственных препаратов, отпускаемых населению в соответствии с перечнем групп населения и категорий заболеваний, при амбулаторном лечении которых лекарственные средства и изделия медицинского назначения отпускаются по рецептам врачей бесплатно, а также в соответствии с перечнем групп населения, при амбулаторном лечении которых лекарственные средства отпускаются по рецептам врачей с 50-процентной скидкой",
-          "href": "https://metelitsa-dent.ru/files/discount.pdf",
-          "format": "PDF"
-        },
         {
           "title": "Территориальная программа государственных гарантий бесплатного оказания гражданам медицинской помощи в Санкт-Петербурге на 2026 год и плановый период 2027–2028 годов",
           "href": "assets/documents/spb-territorial-program-2026-2028.pdf",
@@ -168,19 +302,89 @@
               "downloadSource": "http://publication.pravo.gov.ru/file/pdf?eoNumber=7800202610270002",
               "sha256": "6a5d98b9d4c4e5fc55e060e8aa8e16e3c161cdbe737cb3c00eeb112f43f15f35"
             }
-          ]
+          ],
+          "shortTitle": "Территориальная программа на 2026–2028 годы"
         },
         {
           "title": "Положение о видеонаблюдении",
-          "href": "https://metelitsa-dent.ru/files/video.pdf",
-          "format": "PDF"
+          "href": "assets/documents/clinic-video-policy.pdf",
+          "format": "PDF",
+          "sha256": "67ba8b4c71b0b552ef2f32de3db8ad982b3eac877a4bb1dc7081020c7d959bcb",
+          "downloadSource": "https://metelitsa-dent.ru/files/video.pdf",
+          "checkedAt": "2026-11-28"
         },
         {
           "title": "Сводная ведомость СОУТ 2025 г.",
-          "href": "https://metelitsa-dent.ru/files/Сводная_ведомость_СОУТ_2025_г.pdf",
-          "format": "PDF"
+          "href": "assets/documents/workplace-assessment-2025.pdf",
+          "format": "PDF",
+          "sha256": "385e6cbc936ee57a06a208ebb721829f41ce0c23d6db73af4f7eaa99d7deffcc",
+          "downloadSource": "https://metelitsa-dent.ru/files/Сводная_ведомость_СОУТ_2025_г.pdf",
+          "checkedAt": "2026-11-28"
         }
       ]
+    }
+  ],
+  "organization": {
+    "fields": [
+      {
+        "label": "Полное наименование",
+        "value": "Общество с ограниченной ответственностью «Метелица-Дент»"
+      },
+      {
+        "label": "ОГРН",
+        "value": "1137847430335"
+      },
+      {
+        "label": "ИНН / КПП",
+        "value": "7811564603 / 781101001"
+      },
+      {
+        "label": "Юридический адрес",
+        "value": "192012, Санкт-Петербург, проспект Обуховской Обороны, д. 271, литера Ж, помещ. 7-Н, помещ. 133"
+      },
+      {
+        "label": "Адрес медицинской деятельности",
+        "value": "192012, Санкт-Петербург, проспект Обуховской Обороны, д. 271, литера Ж, пом. 17, 20–34 в 7-Н"
+      },
+      {
+        "label": "Лицензия",
+        "value": "Л041-01148-78/00328119 от 17.09.2019"
+      },
+      {
+        "label": "Лицензирующий орган",
+        "value": "Комитет по здравоохранению Санкт-Петербурга"
+      },
+      {
+        "label": "Генеральный директор",
+        "value": "Масленок Борис Борисович"
+      },
+      {
+        "label": "Учредители",
+        "value": "Масленок Борис Борисович, Масленок Ольга Борисовна"
+      }
+    ],
+    "sourceNote": "Сведения приведены по выпискам ЕГРЮЛ и реестра лицензий от 20.01.2026.",
+    "sources": [
+      "assets/documents/clinic-egrul.pdf",
+      "assets/documents/clinic-license-register.pdf"
+    ]
+  },
+  "retiredSources": [
+    {
+      "href": "https://metelitsa-dent.ru/files/perechen-lek-preparatov.pdf",
+      "title": "Перечень жизненно необходимых и важнейших лекарственных препаратов для медицинского применения и минимального ассортимента лекарственных препаратов, необходимых для оказания медицинской помощи на 2023 год"
+    },
+    {
+      "href": "https://metelitsa-dent.ru/files/doc3.pdf",
+      "title": "Перечень лекарственных препаратов, предназначенных для обеспечения лиц, больных гемофилией, муковисцидозом, гипофизарным нанизмом, болезнью Гоше, злокачественными новообразованиями лимфоидной, кроветворной и родственных им тканей, рассеянным склерозом, гемолитико-уремическим синдромом, юношеским артритом с системным началом, мукополисахаридозом I, II и VI типов, апластической анемией неуточненной, наследственным дефицитом факторов II (фибриногена), VII (лабильного), X (Стюарта - Прауэра), лиц после трансплантации органов и (или) тканей"
+    },
+    {
+      "href": "assets/documents/commission-medicines-repealed.pdf",
+      "title": "Перечень лекарственных препаратов для медицинского применения, в том числе лекарственных препаратов для медицинского применения, назначаемых по решению врачебных комиссий медицинских организаций"
+    },
+    {
+      "href": "https://metelitsa-dent.ru/files/discount.pdf",
+      "title": "Перечень лекарственных препаратов, отпускаемых населению в соответствии с перечнем групп населения и категорий заболеваний, при амбулаторном лечении которых лекарственные средства и изделия медицинского назначения отпускаются по рецептам врачей бесплатно, а также в соответствии с перечнем групп населения, при амбулаторном лечении которых лекарственные средства отпускаются по рецептам врачей с 50-процентной скидкой"
     }
   ]
 }
