@@ -30,7 +30,7 @@ accessibilityToolbar.innerHTML = `
 `;
 header.before(accessibilityToolbar);
 
-const treatmentNav = document.querySelector(".treatment-nav");
+const treatmentNav = document.querySelector(".treatment-nav, .calm-tags");
 
 for (const photo of document.querySelectorAll(".hero-photo, .appointment-photo")) {
   if (photo.complete && photo.naturalWidth) continue;
@@ -147,6 +147,7 @@ function updateTreatmentHeader(height) {
   if (!treatmentNav || height === visibleHeaderHeight) return;
   visibleHeaderHeight = height;
   treatmentNav.style.setProperty("--visible-header-height", height + "px");
+  if (treatmentNav.matches(".calm-tags")) document.body.style.setProperty("--visible-header-height", height + "px");
 }
 
 function positionHeader() {
@@ -202,10 +203,10 @@ if (treatmentNav) {
   const sections = [...treatmentNav.querySelectorAll('a[href^="#"]')]
     .map(link => ({ link, section: document.getElementById(link.hash.slice(1)) }))
     .filter(item => item.section);
-  const horizontalNav = window.matchMedia("(max-width: 780px)");
+  const horizontalNav = treatmentNav.matches(".calm-tags") ? { matches: true } : window.matchMedia("(max-width: 780px)");
   let activeLink;
   let pendingFrame = false;
-  const alignedHeading = !document.body.classList.contains("prices-page")
+  const alignedHeading = !document.body.classList.contains("prices-page") && !treatmentNav.matches(".calm-tags")
     ? sections[0]?.section.querySelector("h2") : null;
 
   function alignFirstNavRow() {
@@ -283,7 +284,7 @@ if (treatmentNav) {
     scheduleActiveSection();
     revealActiveLink();
   });
-  new ResizeObserver(scheduleActiveSection).observe(document.querySelector(".treatment-content"));
+  new ResizeObserver(scheduleActiveSection).observe(document.querySelector(".treatment-content, .calm-content"));
   if (alignedHeading) {
     const alignmentObserver = new ResizeObserver(alignFirstNavRow);
     alignmentObserver.observe(treatmentNav);

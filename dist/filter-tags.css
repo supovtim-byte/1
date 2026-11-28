@@ -1,5 +1,5 @@
 /* Shared filter tags for prices and doctors. Loaded after each page's styles. */
-.prices-filter, .doctors-page .catalog-filter {
+.prices-filter, .doctors-page .catalog-filter, .calm-tags .section-tag {
   min-block-size: max(48px, calc(53 * var(--unit)));
   padding: 9px 20px 14px;
   border-radius: max(12px, calc(17 * var(--unit)));
@@ -8,16 +8,16 @@
   font-size: max(16px, calc(20 * var(--unit)));
   line-height: 1.5;
 }
-.prices-filter[aria-pressed="true"], .doctors-page .catalog-filter[aria-pressed="true"] {
+.prices-filter[aria-pressed="true"], .doctors-page .catalog-filter[aria-pressed="true"], .calm-tags .section-tag[aria-current="location"] {
   color: var(--page);
   background: var(--ink);
 }
-.prices-filter:hover, .doctors-page .catalog-filter:hover {
+.prices-filter:hover, .doctors-page .catalog-filter:hover, .calm-tags .section-tag:hover {
   box-shadow: inset 0 0 0 1px var(--ink);
 }
 .doctors-page .catalog-filters { gap: 10px; }
 @media (max-width: 600px) {
-  .prices-page .prices-filter, .doctors-page .catalog-filter {
+  .prices-page .prices-filter, .doctors-page .catalog-filter, .calm-tags .section-tag {
     min-block-size: 38px;
     padding: 6px 14px 10px;
     border-radius: 12px;
