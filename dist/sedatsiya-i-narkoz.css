@@ -58,12 +58,9 @@
 .calm-content > section { scroll-margin-top: calc(var(--visible-header-height, 0px) + 95px); }
 .calm-section + .calm-section { margin-block-start: var(--section-gap); }
 .calm-section > h2 { padding-inline: var(--inside); margin-block-end: max(25px, calc(40 * var(--unit))); }
-.calm-indications, .calm-choices, .calm-method-details, .calm-videos { display: grid; gap: var(--gap); }
-.calm-indications { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-.calm-indication, .calm-detail { padding: var(--inside); border-radius: var(--radius); background: var(--panel); }
-.calm-indication { min-block-size: calc(290 * var(--unit)); }
+.calm-choices, .calm-method-details, .calm-videos { display: grid; gap: var(--gap); }
+.calm-detail { padding: var(--inside); border-radius: var(--radius); background: var(--panel); }
 .calm-page h3 { font-size: max(20px, calc(26 * var(--unit))); font-weight: 500; line-height: 1.2; letter-spacing: -.02em; }
-.calm-indication p { margin-block-start: 20px; }
 .calm-choices { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .calm-choice { display: grid; grid-template-columns: minmax(0, 255fr) minmax(0, 637fr); gap: var(--inside); padding: 10px; border-radius: var(--radius); background: var(--panel); }
 .calm-choice-photo { inline-size: 100%; block-size: 100%; aspect-ratio: 1; object-fit: cover; border-radius: max(16px, calc(30 * var(--unit))); }
@@ -93,7 +90,6 @@
 .calm-content > .appointment { margin: var(--section-gap) 0 0; }
 .calm-page .appointment h2 { max-inline-size: 12ch; }
 @media (max-width: 1100px) {
-  .calm-indications { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .calm-hero-copy { padding: 30px; }
   .calm-hero h1 { margin-block-start: 36px; }
   .calm-choice { grid-template-columns: 30% minmax(0, 1fr); gap: 20px; }
@@ -126,9 +122,6 @@
   .calm-content > section { scroll-margin-top: 76px; }
   .calm-section > h2 { padding-inline: var(--mobile-copy-gutter); margin-block-end: 25px; }
   .calm-section + .calm-section { margin-block-start: 60px; }
-  .calm-indications { grid-template-columns: 1fr; }
-  .calm-indication { min-block-size: 0; }
-  .calm-indication p { margin-block-start: 14px; }
   .calm-choice { grid-template-columns: 1fr; gap: 0; }
   .calm-choice-photo { max-block-size: none; aspect-ratio: 16 / 9; }
   .calm-choice > div { padding: 24px calc(var(--inside) - 10px) 20px; }
