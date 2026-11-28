@@ -11,6 +11,7 @@ const list = (items, tag) => `<${tag}>${items.map(text => `<li>${e(text)}</li>`)
 
 export function renderCalmPage(template, data, videos) {
   assert.deepEqual(data.methods.map(method => method.id), ['sedation', 'sleep']);
+  for (const method of data.methods) assert.equal(method.steps.length, 5, 'Each method includes recovery as step five');
   assert.equal(data.videoReviewIds.length, 3);
   assert.equal(new Set(data.videoReviewIds).size, 3);
   const selectedVideos = data.videoReviewIds.map(id => {
@@ -33,9 +34,15 @@ export function renderCalmPage(template, data, videos) {
           <div class="calm-detail"><h3>В каких случаях применяется</h3>${list(method.indications, 'ul')}</div>
           <div class="calm-detail"><h3>Как проходит лечение</h3>${list(method.steps, 'ol')}</div>
         </div>
-        <div class="calm-detail calm-after"><h3>После лечения</h3><p>${e(method.after)}</p></div>
       </section>`).join('\n'),
-    VIDEO_CARDS: selectedVideos.map(renderVideoCard).join('\n'),
+    VIDEO_CARDS: selectedVideos.map(item => renderVideoCard(item, { previewOnly: true })).join('\n'),
+    SAFETY_TITLE: e(data.safety.title),
+    SAFETY_INTRO: e(data.safety.intro),
+    SAFETY_CARDS: data.safety.items.map(item => `<article class="calm-detail"><h3>${e(item.title)}</h3><p>${e(item.text)}</p></article>`).join('\n'),
+    RECOVERY_TITLE: e(data.recovery.title),
+    RECOVERY_TEXT: e(data.recovery.text),
+    RECOVERY_IMAGE: e(data.recovery.image),
+    RECOVERY_ALT: e(data.recovery.alt),
   };
   const html = template.replace(/\{\{([A-Z_]+)\}\}/g, (_, key) => {
     assert.ok(Object.hasOwn(values, key), `Unknown template key: ${key}`);
