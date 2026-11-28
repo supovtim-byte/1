@@ -19,15 +19,16 @@ function localAsset(value, extensions) {
   return escapeHtml(value);
 }
 
-export function renderVideoCard(item) {
+export function renderVideoCard(item, { previewOnly = false } = {}) {
   assert.match(item.id, /^video-review-[a-z0-9-]+$/);
   assert.ok(typeof item.title === 'string' && item.title.trim());
   const poster = localAsset(item.poster, 'png|jpe?g|webp');
   const video = item.video ? ` data-video-src="${localAsset(item.video, 'mp4|webm')}"` : '';
+  const label = previewOnly ? ` aria-label="${escapeHtml(item.title)}${item.video ? '' : ' — видео пока недоступно'}"` : '';
+  const title = previewOnly ? '' : `\n            <span class="video-review-title">${escapeHtml(item.title)}</span>`;
   return `<article class="video-review-card" id="${item.id}">
-          <button class="video-review-open" type="button" data-video-review data-video-title="${escapeHtml(item.title)}"${video} aria-haspopup="dialog" aria-controls="video-review-dialog">
-            <span class="video-review-preview"><img src="${poster}" width="800" height="500" alt="" loading="lazy" draggable="false"><span class="video-review-play" aria-hidden="true"><img src="assets/video-play.svg" width="20" height="24" alt=""></span>${item.video ? '' : '<span class="video-review-soon">Скоро</span>'}</span>
-            <span class="video-review-title">${escapeHtml(item.title)}</span>
+          <button class="video-review-open" type="button" data-video-review data-video-title="${escapeHtml(item.title)}"${video}${label} aria-haspopup="dialog" aria-controls="video-review-dialog">
+            <span class="video-review-preview"><img src="${poster}" width="800" height="500" alt="" loading="lazy" draggable="false"><span class="video-review-play" aria-hidden="true"><img src="assets/video-play.svg" width="20" height="24" alt=""></span>${item.video || previewOnly ? '' : '<span class="video-review-soon">Скоро</span>'}</span>${title}
           </button>
         </article>`;
 }

@@ -21,7 +21,7 @@
   <link rel="stylesheet" href="filter-tags.css?v=calm-20261128">
   <link rel="stylesheet" href="reviews-page.css?v=20261128">
   <script src="reviews-page.js?v=20261128" defer></script>
-  <link rel="stylesheet" href="sedatsiya-i-narkoz.css?v=20261128">
+  <link rel="stylesheet" href="sedatsiya-i-narkoz.css?v=20261128-refine">
   <link rel="stylesheet" href="appointment.css?v=20261127">
 </head>
 <body class="treatment-page calm-page">
@@ -97,6 +97,8 @@
       <a class="section-tag" href="#sedation">Седация</a>
       <a class="section-tag" href="#sleep">Лечение во сне</a>
       <a class="section-tag" href="#reviews">Видеоотзывы</a>
+      <a class="section-tag" href="#safety">Безопасность</a>
+      <a class="section-tag" href="#recovery">Комната пробуждения</a>
       <a class="section-tag" href="#appointment">Записаться</a>
     </nav>
 
@@ -113,6 +115,18 @@
       <section class="calm-section" id="reviews" aria-labelledby="reviews-title">
         <h2 id="reviews-title">Что говорят о лечении во сне и седации</h2>
         <div class="calm-videos">{{VIDEO_CARDS}}</div>
+      </section>
+      <section class="calm-section" id="safety" aria-labelledby="safety-title">
+        <h2 id="safety-title">{{SAFETY_TITLE}}</h2>
+        <p class="calm-section-intro">{{SAFETY_INTRO}}</p>
+        <div class="calm-safety-grid">{{SAFETY_CARDS}}</div>
+      </section>
+      <section class="calm-section" id="recovery" aria-labelledby="recovery-title">
+        <h2 id="recovery-title">{{RECOVERY_TITLE}}</h2>
+        <div class="calm-recovery">
+          <div class="calm-description"><p>{{RECOVERY_TEXT}}</p></div>
+          <img src="{{RECOVERY_IMAGE}}" width="1272" height="591" alt="{{RECOVERY_ALT}}" loading="lazy">
+        </div>
       </section>
       <section class="section appointment" id="appointment" aria-labelledby="appointment-title">
           <img class="appointment-thumbnail" src="assets/sleep-hero.png" width="132" height="132" alt="" loading="lazy">
